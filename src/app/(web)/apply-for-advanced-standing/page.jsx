@@ -20,20 +20,6 @@ const page = () => {
         <div className="grid grid-cols-1 gap-8 mb-12">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-              <svg
-                className="w-6 h-6 text-orange-500 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  L
-                  stroke-linecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
               Advanced Standing Eligibility
             </h2>
             <p className="text-gray-600 mb-4">
@@ -64,7 +50,6 @@ const page = () => {
                 viewBox="0 0 24 24"
               >
                 <path
-                  L
                   stroke-linecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
@@ -146,7 +131,6 @@ const page = () => {
               viewBox="0 0 24 24"
             >
               <path
-                L
                 stroke-linecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
@@ -227,7 +211,6 @@ const page = () => {
                 viewBox="0 0 24 24"
               >
                 <path
-                  L
                   stroke-linecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
@@ -249,7 +232,6 @@ const page = () => {
                 viewBox="0 0 24 24"
               >
                 <path
-                  L
                   stroke-linecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
@@ -273,7 +255,6 @@ const page = () => {
                 viewBox="0 0 24 24"
               >
                 <path
-                  L
                   stroke-linecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
@@ -293,7 +274,6 @@ const page = () => {
                 viewBox="0 0 24 24"
               >
                 <path
-                  L
                   stroke-linecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
@@ -314,7 +294,6 @@ const page = () => {
                 viewBox="0 0 24 24"
               >
                 <path
-                  L
                   stroke-linecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"

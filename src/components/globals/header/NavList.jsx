@@ -203,7 +203,7 @@ const NavList = ({
                                       />
                                     </div>
                                     <div className="flex flex-1 flex-col gap-1">
-                                      <p className="leading-3 line-clamp-4 text-xs md:text-base">
+                                      <p className=" text-xs md:text-base">
                                         {subItem.menuTitle ||
                                           subItem.course_name}
                                       </p>
@@ -223,17 +223,17 @@ const NavList = ({
                 </li>
               ) : (
                 <Link href={item?.slug || "#"}>
-              <li
-                className={`flex gap-1 items-center ${
-                  isActive && "text-[#eb9320]"
-                } cursor-pointer pb-5`}
-              >
-                <p className="hover:text-[#eb9320] text-[12px] custom-1280-text">
-                  {item?.title}
-                </p>
-              </li>
-            </Link>
-          )}
+                  <li
+                    className={`flex gap-1 items-center ${
+                      isActive && "text-[#eb9320]"
+                    } cursor-pointer pb-5`}
+                  >
+                    <p className="hover:text-[#eb9320] text-[12px] custom-1280-text">
+                      {item?.title}
+                    </p>
+                  </li>
+                </Link>
+              )}
             </div>
           );
         })}

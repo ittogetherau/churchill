@@ -1,13 +1,13 @@
 import { CourseDetails } from "@/components";
 import React from "react";
 
-const page = ({ params }) => {
-  const { slug } = params;
+const page = async ({ params }) => {
+  const { slug } = await params;
 
   return (
-    <div>
+    <>
       <CourseDetails slug={slug} />
-    </div>
+    </>
   );
 };
 
