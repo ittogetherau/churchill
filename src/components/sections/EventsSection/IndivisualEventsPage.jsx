@@ -121,7 +121,7 @@ const IndivisualEventsPage = ({ slug }) => {
                       {data?.title}
                     </h2>
 
-                    <h4
+                    <div
                       dangerouslySetInnerHTML={{ __html: data?.description }}
                     />
                   </div>

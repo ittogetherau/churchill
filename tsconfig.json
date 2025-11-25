@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "src/app/(web)/courses/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

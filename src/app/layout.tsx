@@ -106,7 +106,7 @@ export default function RootLayout({
           href="https://cdn-uicons.flaticon.com/2.4.0/uicons-brands/css/uicons-brands.css"
         ></link>
       </head>
-      <body>
+      <body className="relative">
         <Header />
         {children}
         {/* <EmergencyContactFloater /> */}

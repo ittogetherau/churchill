@@ -2,8 +2,6 @@ import React from "react";
 import FadeUpAnimation from "@/animations/FadeUp";
 
 const CourseOverviewSection = ({ overviewData }) => {
-  console.log(overviewData);
-
   return (
     <>
       <div className="container mx-auto px-5">
@@ -24,10 +22,10 @@ const CourseOverviewSection = ({ overviewData }) => {
                   >
                     {/* {item?.description} */}
                   </h3>
-                  <p
+                  <div
                     className="text-[#2C2B4B]"
                     dangerouslySetInnerHTML={{ __html: item?.title }}
-                  ></p>
+                  ></div>
                 </div>
               </div>
             </FadeUpAnimation>

@@ -4,16 +4,16 @@ import DesktopNav from "./ForDesktop";
 import MobileNav from "./ForMobile";
 
 const Header = () => {
-  const [offset, setOffset] = useState();
+  // const [offset, setOffset] = useState();
   const [showAnnouncement, setShowAnnouncement] = useState(true);
-  const announcementStorageKey = "orientation-marquee-dismissed";
+  const announcementStorageKey = "orientation-marquee";
 
-  useEffect(() => {
-    const onScroll = () => {
-      setOffset(window.scrollY);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }, []);
+  // useEffect(() => {
+  //   const onScroll = () => {
+  //     setOffset(window.scrollY);
+  //   };
+  //   window.addEventListener("scroll", onScroll, { passive: true });
+  // }, []);
 
   useEffect(() => {
     const hasDismissed = localStorage.getItem(announcementStorageKey);
@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <div className="header z-40 relative bg-white shadow-lg ">
+    <div className="header z-40 sticky top-0 left-0 w-full bg-white shadow-lg ">
       {showAnnouncement && (
         <div className="bg-primary-orange text-white">
           <div className="container mx-auto px-5 py-2 flex items-center gap-4">
@@ -49,11 +49,7 @@ const Header = () => {
           </div>
         </div>
       )}
-      <div
-        className={`z-40 bg-white hidden lg:block shadow-lg ${
-          offset > 100 ? "fixed top-0 w-full bg-white flex" : ""
-        }`}
-      >
+      <div className={`z-40 bg-white hidden lg:block shadow-lg`}>
         <div className="hidden lg:block relative">
           <DesktopNav />
         </div>

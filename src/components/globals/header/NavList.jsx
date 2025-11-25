@@ -27,9 +27,7 @@ const NavList = ({
       script.src = "https://cse.google.com/cse.js?cx=820c819b7996d4c87";
       document.body.appendChild(script);
 
-      return () => {
-        document.body.removeChild(script);
-      };
+      return () => document.body.removeChild(script);
     }
   }, [openSearch]);
 

@@ -70,7 +70,6 @@ const page = () => {
                   viewBox="0 0 24 24"
                 >
                   <path
-                    L
                     stroke-linecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"

@@ -28,7 +28,7 @@ const PopUpDetailsCard = ({ data, handlePopUpClose }) => {
                 <p className="font-bold text-[16px] text-[#E59623]">
                   {subTitle}
                 </p>
-                <p
+                <div
                   className="flex flex-col gap-2"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />

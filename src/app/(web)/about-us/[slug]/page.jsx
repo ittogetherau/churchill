@@ -1,23 +1,19 @@
-"use client";
 import {
-  Button,
-  PoliciesSection,
-  GovernancePageSection,
   AccredentialSection,
-  GovernanceStructure,
-  // OrganisationalChartSection,
-  GalleryPage,
+  Button,
   FinancialStanding,
+  GalleryPage,
+  GovernancePageSection,
+  GovernanceStructure,
 } from "@/components";
-import { FaArrowRight } from "react-icons/fa";
 import Animation from "@/constDatas/animations/PageNotFound.json";
-import dynamic from "next/dynamic";
+import Lottie from "lottie-react";
 import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-
-const Page = ({ params }) => {
-  const { slug } = params;
+const Page = async ({ params }) => {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
 
   return (
     <>

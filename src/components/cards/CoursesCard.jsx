@@ -31,10 +31,10 @@ const CoursesCard = ({ image, title, faculty, subTitle, link }) => {
             </h3>
           </Link>
 
-          <p
+          <div
             className="clamp-3"
             dangerouslySetInnerHTML={{ __html: subTitle }}
-          ></p>
+          ></div>
 
           <div className="flex  pb-2 justify-center sm:justify-between flex-col items-center sm:flex-row gap-3">
             {/* <Link className="w-full" href={"/apply-now"}>

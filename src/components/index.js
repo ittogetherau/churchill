@@ -30,7 +30,7 @@ import GovernancePageSection from "./sections/aboutUsSections/GovernancePageSect
 import GovernanceCard from "./cards/GovernanceCard";
 import PopUpDetailsCard from "./cards/PopUpDetailsCard";
 import KeyDatesCard from "./cards/KeyDatesCard";
-import CourseDetails from "./sections/courseSections/CourseDetails";
+// import CourseDetails from "./sections/courseSections/CourseDetails";
 import TabbedPane from "./TabbedPane/TabbedPane";
 import CourseOverviewSection from "./cards/CourseOverviewCard";
 import FilterComponent from "./filter/FilterComponent";
@@ -103,7 +103,7 @@ export {
   UpcomingKeyDates,
   BlogSection,
   KeyDatesCard,
-  CourseDetails,
+  // CourseDetails,
   TabbedPane,
   CourseOverviewSection,
   FilterComponent,

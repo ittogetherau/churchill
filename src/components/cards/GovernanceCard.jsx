@@ -27,7 +27,7 @@ const GovernanceCard = ({ data }) => {
         <p className="font-bold text-[16px] text-[#302f36]transition-all ">
           {subTitle}
         </p>
-        <p
+        <div
           className="clamp-3"
           dangerouslySetInnerHTML={{ __html: description }}
         />

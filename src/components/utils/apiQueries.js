@@ -28,9 +28,9 @@ export const FetchCourseData = (slug) => {
   const data = axiosBaseURL.get(
     `/api/v1/edu_hub/courses${slug ? `/${slug}` : ""}`
   );
+
   return data;
 };
-
 
 export const FetchAgents = () => {
   const data = axiosBaseURL.get("/api/v1/cms/get-active-agents");
@@ -38,9 +38,6 @@ export const FetchAgents = () => {
 };
 
 export const AgentUserData = (slug) => {
-  const data = axiosBaseURL.get(
-    `/api/v1/cms/get-active-agents`
-  );
+  const data = axiosBaseURL.get(`/api/v1/cms/get-active-agents`);
   return data;
 };
-
