@@ -5,7 +5,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -26,16 +26,19 @@
         "./src/*"
       ]
     },
-    "target": "ES2017"
+    "target": "ES2017",
+    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",
+    "src/**/*",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-, "src/app/(web)/courses/page.jsx", "src/app/(web)/about-us/governance-and-leadership/page.jsx", "src/app/(web)/about-us/company-and-financial-documents/page.jsx", "src/app/(web)/find-agent/FilterAgent.jsx"  ],
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".next"
   ]
 }
