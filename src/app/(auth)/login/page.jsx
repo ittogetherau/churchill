@@ -1,8 +1,7 @@
-import React from "react";
-import { navItems } from "@/constDatas/navItems";
-import { PatternBannerCard, Button } from "@/components";
-import Link from "next/link";
 import FadeUpAnimation from "@/animations/FadeUp";
+import { PatternBannerCard } from "@/components";
+import { navItems } from "@/constDatas/navItems";
+import Link from "next/link";
 
 const page = () => {
   const loginData = navItems[3];

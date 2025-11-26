@@ -1,11 +1,11 @@
 "use client";
+import FadeUpAnimation from "@/animations/FadeUp";
+import { BlogItemCard } from "@/components";
+import Button from "@/components/button";
+import { FetchBlogData } from "@/components/utils/apiQueries";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import Link from "next/link";
-import Button from "@/components/button";
-import { BlogItemCard } from "@/components";
-import FadeUpAnimation from "@/animations/FadeUp";
-import { FetchBlogData } from "@/components/utils/apiQueries";
 
 function BlogSection() {
   const [data, setData] = useState([]);

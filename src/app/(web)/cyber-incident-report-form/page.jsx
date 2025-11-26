@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useRef } from "react";
-import { Spiner, ToastComponent } from "@/components";
+import { ToastComponent } from "@/components";
+import { useRef, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 
 const defaultFormState = {
@@ -183,8 +183,8 @@ const CybersecurityIncident = () => {
             <div className="bg-[#f2dede] p-4 rounded-md">
               <div className="flex flex-col gap-2">
                 <label className="font-semibold text-matte-purple">
-                  How do you identify yourself to Churchill Institute Institute of Higher Education?{" "}
-                  <span className="text-[#FF0000]">*</span>
+                  How do you identify yourself to Churchill Institute Institute
+                  of Higher Education? <span className="text-[#FF0000]">*</span>
                 </label>
                 <select
                   required
@@ -533,7 +533,9 @@ const CybersecurityIncident = () => {
                       Select
                     </option>
                     <option value="website">Website</option>
-                    <option value="eLearning">Learning Management System (LMS)</option>
+                    <option value="eLearning">
+                      Learning Management System (LMS)
+                    </option>
                     <option value="inHouseSystem">In-House System</option>
                     <option value="others">Others</option>
                   </select>

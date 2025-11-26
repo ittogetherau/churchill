@@ -7,7 +7,7 @@ import {
   Loading,
 } from "@/components";
 import { FetchAgents } from "@/components/utils/apiQueries";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaArrowRight, FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";

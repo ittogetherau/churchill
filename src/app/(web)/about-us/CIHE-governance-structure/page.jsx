@@ -1,4 +1,3 @@
-
 import { PatternBannerCard } from "@/components";
 import Image from "next/image";
 
@@ -38,7 +37,7 @@ const GovernanceStructure = () => {
         />
 
         <h3 className="text-[24px] font-bold text-[#2C2B4B] text-center my-20">
-          Organisational  
+          Organisational
         </h3>
         <Image
           width={1000}

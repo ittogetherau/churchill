@@ -1,5 +1,3 @@
-import React from "react";
-
 const Page = () => {
   return (
     <div className="container-blog px-4 py-12">

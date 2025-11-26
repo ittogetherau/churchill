@@ -1,12 +1,9 @@
 import {
   CoursesFilterSection,
   EnquirySection,
-  NewsletterSection,
-  Spiner,
   TopBannerCard,
 } from "@/components";
 import Link from "next/link";
-
 import { FetchCourseData } from "@/components/utils/apiQueries";
 
 const Courses = async () => {
@@ -222,8 +219,7 @@ const Courses = async () => {
         <span id="scrollToCourse" />
 
         <CoursesFilterSection data={data} />
-        <EnquirySection />
-        <NewsletterSection />
+    
       </div>
     </>
   );

@@ -1,11 +1,4 @@
-import {
-  EnquirySection,
-  KeyDatesCard,
-  NewsletterSection,
-  TopBannerCard,
-  UpcomingKeyDates,
-} from "@/components";
-import React from "react";
+import { TopBannerCard } from "@/components";
 
 const page = () => {
   return (
@@ -186,9 +179,7 @@ const page = () => {
       </div>
 
       <br />
-      <EnquirySection />
       <br />
-      <NewsletterSection />
     </div>
   );
 };

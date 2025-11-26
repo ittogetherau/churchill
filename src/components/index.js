@@ -1,161 +1,136 @@
 import Button from "./button";
-import Spiner from "./spiner";
-import Header from "./globals/header";
-import Footer from "./globals/footer";
-import TopBannerCard from "./cards/TopBannerCard";
-import CoursesCard from "./cards/CoursesCard";
 import AboutUsCard from "./cards/AboutUsCard";
 import ApplyCard from "./cards/ApplyCard";
-import GuideCard from "./cards/GuideCard";
+import CoursesCard from "./cards/CoursesCard";
 import EventsCard from "./cards/EventsCard";
+import GovernanceCard from "./cards/GovernanceCard";
+import GuideCard from "./cards/GuideCard";
+import KeyDatesCard from "./cards/KeyDatesCard";
+import PopUpDetailsCard from "./cards/PopUpDetailsCard";
 import RequestFormCard from "./cards/RequestFormCard";
-import HeroSection from "./sections/homeSections/HeroSection";
-import CoursesSection from "./sections/homeSections/CoursesSection";
-import HelpSection from "./sections/homeSections/HelpSection";
-import UpcomingEvents from "./sections/homeSections/UpcomingEvents";
+import TopBannerCard from "./cards/TopBannerCard";
+import Footer from "./globals/footer";
+import Header from "./globals/header";
 import ReportFormSection from "./sections/ReportFormSections/ReportFormSection";
-import NewsletterSection from "./sections/commonSections/NewsletterSection";
-import GuideDetails from "./sections/guideSections/GuideDetails";
-import UpcomingEventsSection from "./sections/upcomingEventsSections/UpcomingEventsSection";
-import CoursesSlider from "./sliders/CoursesSlider";
-import AboutSlider from "./sliders/AboutSlider";
-import EnquirySection from "./sections/homeSections/EnquirySection";
-import UpcomingKeyDates from "./sections/upcomingEventsSections/UpcomingKeyDates";
-import BlogSection from "./sections/blogSections/BlogSection";
-import RelatedSection from "./sections/aboutUsSections/RelatedSection";
+import AboutSection from "./sections/aboutUsSections/AboutSection";
 import CoreValuesSection from "./sections/aboutUsSections/CoreValuesSection";
 import MissionVisionsection from "./sections/aboutUsSections/MissionVisionsection";
-import AboutSection from "./sections/aboutUsSections/AboutSection";
-import GovernancePageSection from "./sections/aboutUsSections/GovernancePageSection";
-import GovernanceCard from "./cards/GovernanceCard";
-import PopUpDetailsCard from "./cards/PopUpDetailsCard";
-import KeyDatesCard from "./cards/KeyDatesCard";
+import RelatedSection from "./sections/aboutUsSections/RelatedSection";
+import BlogSection from "./sections/blogSections/BlogSection";
+import NewsletterSection from "./sections/commonSections/NewsletterSection";
+import GuideDetails from "./sections/guideSections/GuideDetails";
+import CoursesSection from "./sections/homeSections/CoursesSection";
+import EnquirySection from "./sections/homeSections/EnquirySection";
+import HelpSection from "./sections/homeSections/HelpSection";
+import HeroSection from "./sections/homeSections/HeroSection";
+import UpcomingEvents from "./sections/homeSections/UpcomingEvents";
+import UpcomingEventsSection from "./sections/upcomingEventsSections/UpcomingEventsSection";
+import UpcomingKeyDates from "./sections/upcomingEventsSections/UpcomingKeyDates";
+import AboutSlider from "./sliders/AboutSlider";
+import CoursesSlider from "./sliders/CoursesSlider";
+import Spiner from "./spiner";
 // import CourseDetails from "./sections/courseSections/CourseDetails";
-import TabbedPane from "./TabbedPane/TabbedPane";
-import CourseOverviewSection from "./cards/CourseOverviewCard";
-import FilterComponent from "./filter/FilterComponent";
-import CoursesFilterSection from "./sections/filtersection/CoursesFilterSection";
-import CourseDetailsCard from "./cards/CourseDetailsCard";
-import ContactUsCard from "./cards/ContactUsCard";
-import SelectComponent from "./select/SelectComponent";
 import CheckBoxList from "./CheckBoxList/CheckBoxList";
-import EventsFilterSection from "./sections/filtersection/EventsFilterSection";
-import AccreditationSection from "./sections/aboutUsSections/AccreditationSection";
-import AboutInfoSection from "./sections/aboutUsSections/AboutInfoSection";
-import StyledHeroCard from "./cards/StyledHeroSection";
+import TabbedPane from "./TabbedPane/TabbedPane";
 import AccordionComponent from "./accordion/AccordionComponent";
-import Search from "./search/index";
-import IndivisualBlogPage from "./sections/blogSections/IndivisualBlogPage";
-import IndivisualEventsPage from "./sections/EventsSection/IndivisualEventsPage";
-import CookieBanner from "./globals/acceptCookie/CookieBanner";
-import Loading from "./globals/loading/Loading";
+import AgentInfoCard from "./cards/AgentInfoCard";
 import BlogItemCard from "./cards/BlogItemCard";
-import DataNotFound from "./globals/DataNotFound/DataNotFound";
-import ToastComponent from "./toast/Toast";
-import IndivisualMemberDetailsPage from "./sections/aboutUsSections/IndivisualMemberDetailsPage";
-import AIHelpSection from "./sections/commonSections/AIHelpSection";
-import YouTubeLinksSection from "./sections/commonSections/YouTubeLinksSection";
-import YoutubeSlider from "./sliders/YoutubeSlider";
-import YoutubeSliderCard from "./cards/YoutubeSliderCard";
-import MoreEventsSection from "./sections/EventsSection/MoreEventsSection";
-import MoreBlogsSection from "./sections/blogSections/MoreBlogsSection";
-import NewsSection from "./sections/homeSections/NewsSection";
+import ContactUsCard from "./cards/ContactUsCard";
+import CourseDetailsCard from "./cards/CourseDetailsCard";
+import CourseOverviewSection from "./cards/CourseOverviewCard";
+import HalfTopBanner from "./cards/HalfTopBannerCard";
 import NewsItemCard from "./cards/NewsItemCard";
 import PatternBannerCard from "./cards/PatternBannerCard";
-import AgentInfoCard from "./cards/AgentInfoCard";
-import AccredentialSection from "./sections/courseSections/AccredentialSection";
-import GovernanceStructure from "./sections/aboutUsSections/GovernanceStructure";
-// import OrganisationalChartSection from "./sections/aboutUsSections/OrganisationalChartSection";
-import GalleryPage from "./sections/aboutUsSections/GalleryPage";
-import Timer from "./timer/Timer";
-import RequestIDCardForm from "./forms/RequestIDCardForm";
-import FaqPage from "./sections/contactSections/FaqPage";
-import EventsPage from "./pages/EventsPage";
-import HandBookFloater from "./floater/HandBookFloater";
+import StyledHeroCard from "./cards/StyledHeroSection";
+import YoutubeSliderCard from "./cards/YoutubeSliderCard";
+import FilterComponent from "./filter/FilterComponent";
 import EmergencyContactFloater from "./floater/EmergencyContactFloater";
-import FinancialStanding from "./sections/aboutUsSections/FinancialStanding";
-import VideoSection from "./sections/homeSections/VideoSection";
-import HalfTopBanner from "./cards/HalfTopBannerCard";
+import HandBookFloater from "./floater/HandBookFloater";
+import RequestIDCardForm from "./forms/RequestIDCardForm";
+import DataNotFound from "./globals/DataNotFound/DataNotFound";
+import CookieBanner from "./globals/acceptCookie/CookieBanner";
+import Loading from "./globals/loading/Loading";
 import HierarchyChart from "./hiearchy/HiearchyChart";
+import Search from "./search/index";
+import MoreEventsSection from "./sections/EventsSection/MoreEventsSection";
+import AccreditationSection from "./sections/aboutUsSections/AccreditationSection";
+import FinancialStanding from "./sections/aboutUsSections/FinancialStanding";
+import MoreBlogsSection from "./sections/blogSections/MoreBlogsSection";
+import AIHelpSection from "./sections/commonSections/AIHelpSection";
+import YouTubeLinksSection from "./sections/commonSections/YouTubeLinksSection";
+import CoursesFilterSection from "./sections/filtersection/CoursesFilterSection";
+import NewsSection from "./sections/homeSections/NewsSection";
+import VideoSection from "./sections/homeSections/VideoSection";
+import SelectComponent from "./select/SelectComponent";
+import YoutubeSlider from "./sliders/YoutubeSlider";
+import Timer from "./timer/Timer";
+import ToastComponent from "./toast/Toast";
 
 export {
-  Button,
-  Spiner,
-  Header,
-  Footer,
-  TopBannerCard,
-  CoursesCard,
-  AboutUsCard,
-  ApplyCard,
-  GuideCard,
-  EventsCard,
-  RequestFormCard,
-  HeroSection,
-  CoursesSection,
-  HelpSection,
-  ReportFormSection,
-  UpcomingEvents,
-  NewsletterSection,
-  GuideDetails,
-  UpcomingEventsSection,
-  CoursesSlider,
-  EnquirySection,
-  UpcomingKeyDates,
-  BlogSection,
-  KeyDatesCard,
-  // CourseDetails,
-  TabbedPane,
-  CourseOverviewSection,
-  FilterComponent,
-  CoursesFilterSection,
-  CourseDetailsCard,
-  ContactUsCard,
-  SelectComponent,
-  CheckBoxList,
-  EventsFilterSection,
-  AboutSlider,
-  RelatedSection,
-  CoreValuesSection,
-  MissionVisionsection,
   AboutSection,
-  GovernancePageSection,
-  GovernanceCard,
-  PopUpDetailsCard,
-  AccreditationSection,
-  AboutInfoSection,
-  StyledHeroCard,
+  AboutSlider,
+  AboutUsCard,
   AccordionComponent,
-  Search,
-  IndivisualBlogPage,
-  IndivisualEventsPage,
-  CookieBanner,
-  Loading,
-  BlogItemCard,
-  DataNotFound,
-  ToastComponent,
-  IndivisualMemberDetailsPage,
+  AccreditationSection,
+  AgentInfoCard,
   AIHelpSection,
+  ApplyCard,
+  BlogItemCard,
+  BlogSection,
+  Button,
+  CheckBoxList,
+  ContactUsCard,
+  CookieBanner,
+  CoreValuesSection,
+  CourseDetailsCard,
+  CourseOverviewSection,
+  CoursesCard,
+  CoursesFilterSection,
+  CoursesSection,
+  CoursesSlider,
+  DataNotFound,
+  EmergencyContactFloater,
+  EnquirySection,
+  EventsCard,
+  FilterComponent,
+  FinancialStanding,
+  Footer,
+  GovernanceCard,
+  GuideCard,
+  GuideDetails,
+  HalfTopBanner,
+  HandBookFloater,
+  Header,
+  HelpSection,
+  HeroSection,
+  HierarchyChart,
+  KeyDatesCard,
+  Loading,
+  MissionVisionsection,
+  MoreBlogsSection,
+  MoreEventsSection,
+  NewsItemCard,
+  NewsletterSection,
+  NewsSection,
+  PatternBannerCard,
+  PopUpDetailsCard,
+  RelatedSection,
+  ReportFormSection,
+  RequestFormCard,
+  RequestIDCardForm,
+  Search,
+  SelectComponent,
+  Spiner,
+  StyledHeroCard,
+  TabbedPane,
+  Timer,
+  ToastComponent,
+  TopBannerCard,
+  UpcomingEvents,
+  UpcomingEventsSection,
+  UpcomingKeyDates,
+  VideoSection,
   YouTubeLinksSection,
   YoutubeSlider,
   YoutubeSliderCard,
-  MoreEventsSection,
-  MoreBlogsSection,
-  NewsSection,
-  NewsItemCard,
-  PatternBannerCard,
-  AgentInfoCard,
-  AccredentialSection,
-  GovernanceStructure,
-  // OrganisationalChartSection,
-  GalleryPage,
-  Timer,
-  RequestIDCardForm,
-  FaqPage,
-  EventsPage,
-  HandBookFloater,
-  EmergencyContactFloater,
-  FinancialStanding,
-  VideoSection,
-  HalfTopBanner,
-  HierarchyChart,
 };

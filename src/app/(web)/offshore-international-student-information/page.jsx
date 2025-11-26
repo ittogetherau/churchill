@@ -1,8 +1,6 @@
-import React from "react";
-
 const Page = () => {
   return (
-    <div className="container-blog px-4 py-12">
+    <div className="px-5 flex flex-col gap-[32px] md:gap-[64px] max-w-[1600px] mx-auto">
       <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
         Offshore International Student Information
       </h1>

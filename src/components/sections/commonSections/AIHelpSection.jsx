@@ -1,8 +1,8 @@
+import FadeUpAnimation from "@/animations/FadeUp";
 import { Button } from "@/components";
+import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import Image from "next/image";
-import FadeUpAnimation from "@/animations/FadeUp";
 
 const AIHelpSection = () => {
   const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL =

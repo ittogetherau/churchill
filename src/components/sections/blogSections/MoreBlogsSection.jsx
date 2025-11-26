@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import { BlogItemCard } from "@/components";
 import { FetchBlogData } from "@/components/utils/apiQueries";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const MoreBlogsSection = ({ item }) => {
   const { slug } = useParams();

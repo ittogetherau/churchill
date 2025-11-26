@@ -1,6 +1,5 @@
-import React from "react";
-import Link from "next/link";
 import { Button } from "@/components";
+import Link from "next/link";
 
 const page = () => {
   return (

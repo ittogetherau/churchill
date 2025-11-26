@@ -1,6 +1,6 @@
 import React from "react";
 import { eventsData } from "@/constDatas/eventsData";
-import { EventsCard, NewsletterSection, TopBannerCard } from "@/components";
+import { EventsCard, TopBannerCard } from "@/components";
 
 const UpcomingKeyDatesSection = () => {
   return (
@@ -34,9 +34,6 @@ const UpcomingKeyDatesSection = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div>
-        <NewsletterSection />
       </div>
     </div>
   );

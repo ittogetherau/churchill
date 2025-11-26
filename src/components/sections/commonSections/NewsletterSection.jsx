@@ -2,7 +2,6 @@ import FadeUpAnimation from "@/animations/FadeUp";
 import Button from "@/components/button";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 const NewsletterSection = () => {

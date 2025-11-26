@@ -1,13 +1,10 @@
 import {
-  EnquirySection,
-  HeroSection,
-  NewsletterSection,
-  CoursesSection,
-  UpcomingKeyDates,
   BlogSection,
-  VideoSection,
+  CoursesSection,
+  HeroSection,
+  UpcomingKeyDates,
+  VideoSection
 } from "@/components";
-import React from "react";
 
 const Home = () => {
   return (
@@ -19,15 +16,13 @@ const Home = () => {
 
         <UpcomingKeyDates />
 
-        <EnquirySection />
+     
 
         {/* <UpcomingEvents /> */}
 
         <BlogSection />
 
         <VideoSection />
-
-        <NewsletterSection />
       </div>
     </main>
   );

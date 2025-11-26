@@ -1,5 +1,3 @@
-import React from "react";
-import NewsletterSection from "../commonSections/NewsletterSection";
 import Button from "@/components/button";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
@@ -53,9 +51,6 @@ const AccreditationSection = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div>
-            <NewsletterSection />
           </div>
         </div>
       </div>

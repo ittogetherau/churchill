@@ -1,4 +1,3 @@
-import { NewsletterSection, StyledHeroCard } from "@/components";
 import { navItems } from "@/constDatas/navItems";
 import Link from "next/link";
 
@@ -20,8 +19,8 @@ const page = () => {
                   subItem?.redirectLink
                     ? subItem?.redirectLink
                     : subItem?.link
-                      ? subItem?.link
-                      : `/${item.slug}/${subItem.slug}`
+                    ? subItem?.link
+                    : `/${item.slug}/${subItem.slug}`
                 }
                 className="w-full h-full"
               >
@@ -45,8 +44,6 @@ const page = () => {
             ))}
         </div>
       </div>
-
-      <NewsletterSection />
     </div>
   );
 };

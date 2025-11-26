@@ -1,11 +1,6 @@
-import {
-  Search,
-  BlogItemCard,
-  DataNotFound,
-  Button,
-  Spiner,
-} from "@/components";
+import { BlogItemCard, DataNotFound } from "@/components";
 import { FetchBlogData } from "@/components/utils/apiQueries";
+
 const BlogsPage = async () => {
   const items = await FetchBlogData();
   const data = await items.data;

@@ -1,5 +1,4 @@
 import AboutSlider from "@/components/sliders/AboutSlider";
-import React from "react";
 
 const RelatedSection = () => {
   return (

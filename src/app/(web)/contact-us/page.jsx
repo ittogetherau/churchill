@@ -1,13 +1,7 @@
-import { FaArrowRight } from "react-icons/fa";
-import { contactData, contactFaqs } from "@/constDatas/contactData";
+import { Button, ContactUsCard, EnquirySection } from "@/components";
+import { contactData } from "@/constDatas/contactData";
 import Link from "next/link";
-import {
-  Button,
-  ContactUsCard,
-  EnquirySection,
-  AccordionComponent,
-  AskAQeustionForm,
-} from "@/components";
+import { FaArrowRight } from "react-icons/fa";
 
 const ContactUs = () => {
   return (
@@ -96,7 +90,6 @@ const ContactUs = () => {
             </span>
           </section> */}
 
-          <EnquirySection />
         </div>
       </div>
 

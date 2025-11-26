@@ -1,6 +1,5 @@
-import React from "react";
-import { NewsData } from "@/constDatas/NewsData";
 import { NewsCategory } from "@/constDatas/NewsCategory";
+import { NewsData } from "@/constDatas/NewsData";
 import Image from "next/image";
 
 const monthArray = [

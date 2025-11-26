@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FiMapPin, FiGlobe, FiPhone, FiMail } from "react-icons/fi";
+import { FiGlobe, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
 const campusDetails = [
   {
@@ -27,7 +27,8 @@ const campusDetails = [
     website: "https://www.churchill.nsw.edu.au",
     phone: "(03) 8652 9393",
     email: "info@churchill.nsw.edu.au",
-    mapUrl: "https://maps.google.com/?q=Level+8,+85+Queen+Street,+Melbourne+VIC+3000",
+    mapUrl:
+      "https://maps.google.com/?q=Level+8,+85+Queen+Street,+Melbourne+VIC+3000",
     ctaLabel: "Explore Melbourne Campus",
     image: "/assets/cihe-melbourne-campus.jpg",
   },

@@ -1,25 +1,15 @@
 "use client";
-import { navItems } from "@/constDatas/navItems";
-import React, { useEffect, useState } from "react";
+import FadeUpAnimation from "@/animations/FadeUp";
 import {
   GovernanceCard,
-  NewsletterSection,
-  DataNotFound,
   PatternBannerCard,
 } from "@/components";
-import FadeUpAnimation from "@/animations/FadeUp";
-import Image from "next/image";
+import { navItems } from "@/constDatas/navItems";
+import { useEffect, useState } from "react";
 
-const GovernancePageSection = ({ slug }) => {
-  const [openDetails, setOpenDetails] = useState(false);
+const slug = "governance-and-leadership";
 
-  const [comment, setComment] = useState({
-    title: "",
-    image: "",
-    subTitle: "",
-    description: "",
-  });
-
+const GovernancePageSection = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -29,11 +19,6 @@ const GovernancePageSection = ({ slug }) => {
 
   return (
     <>
-      {/* <TextBanner
-        title={slug?.split("-").join(" ")}
-        subTitle="Churchill's senior leaders guide our institution towards big goals, focusing on excellence and innovative teaching to help our community, country, and the world."
-      />
-       */}
       <PatternBannerCard
         title={slug?.split("-").join(" ")}
         description="Churchill's senior leaders guide our institution towards big goals, focusing on excellence and innovative teaching to help our community, country, and the world."
@@ -53,7 +38,7 @@ const GovernancePageSection = ({ slug }) => {
             ))}
           </div>
         </div>
-        <NewsletterSection />
+
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 const FadeByWordAnimation = ({ children }) => {
   const element = useRef(null);

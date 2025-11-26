@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import "./css/globals.css";
-import {
-  CookieBanner,
-  Footer,
-  EmergencyContactFloater,
-  Header,
-} from "@/components";
+import { CookieBanner, Footer, Header } from "@/components";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Churchill Institute of Higher Education",
@@ -110,7 +106,9 @@ export default function RootLayout({
         <Header />
         {children}
         {/* <EmergencyContactFloater /> */}
+        <Toaster />
         <CookieBanner />
+
         <Footer />
       </body>
     </html>

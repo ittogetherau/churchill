@@ -1,7 +1,6 @@
+import FadeUpAnimation from "@/animations/FadeUp";
 import { navItems } from "@/constDatas/navItems";
 import Image from "next/image";
-import React from "react";
-import FadeUpAnimation from "@/animations/FadeUp";
 
 const MissionVisionsection = () => {
   const aboutLists = navItems[0]?.page;

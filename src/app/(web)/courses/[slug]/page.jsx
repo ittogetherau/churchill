@@ -1,20 +1,17 @@
 import {
-  TabbedPane,
   CourseOverviewSection,
-  EnquirySection,
-  NewsletterSection,
-  TopBannerCard,
   CoursesSlider,
+  EnquirySection,
+  TabbedPane,
+  TopBannerCard,
 } from "@/components";
 import { FetchCourseData } from "@/components/utils/apiQueries";
 
 const Page = async ({ params }) => {
   const { slug } = await params;
-  let response;
-  let data = null;
 
-  response = await FetchCourseData(slug);
-  data = response?.data;
+  const response = await FetchCourseData(slug);
+  const data = await response?.data;
 
   return (
     <div>
@@ -36,7 +33,6 @@ const Page = async ({ params }) => {
 
         <TabbedPane data={data?.tabbed_pane} />
 
-        <EnquirySection />
 
         <div className="container mx-auto px-5">
           <h2 className="font-bold leading-9 mb-6 text-[36px] text-[#2C2B4B]">
@@ -45,7 +41,7 @@ const Page = async ({ params }) => {
           <CoursesSlider />
         </div>
 
-        <NewsletterSection />
+  
       </div>
     </div>
   );

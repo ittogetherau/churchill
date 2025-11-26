@@ -1,16 +1,20 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { Button, Search } from "@/components";
+import { useRouter } from "next/navigation";
 
-const FilterComponent = ({
-  children,
-  placeholderText,
-  searchQuery,
-  onSearchQuery,
-  onFilter,
-}) => {
+const FilterComponent = ({ children, placeholderText }) => {
+  const { replace } = useRouter();
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    const query = searchQuery.trim().toLowerCase();
+    replace(`/events?keyword=${encodeURIComponent(query)}`);
+  };
+
   return (
     <div className="p-4 rounded-xl bg-[#FAF4F4] lg:w-[21rem] h-fit flex flex-col gap-5">
       <h1 className="font-extrabold text-xl lg:text-2xl w-fit flex gap-3 items-center">
@@ -23,12 +27,12 @@ const FilterComponent = ({
       <Search
         placeholderText={placeholderText}
         text={searchQuery}
-        onSearchText={onSearchQuery}
+        onSearchText={setSearchQuery}
       />
 
       {children}
 
-      <div onClick={onFilter} className="">
+      <div onClick={handleSearch} className="">
         <Button
           btnName="Filter"
           style={
