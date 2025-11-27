@@ -7,7 +7,6 @@ const BlogsPage = async () => {
   const items = await FetchBlogData();
   const data: TBlogPost[] = await items.data;
 
-
   return (
     <>
       <div className="container mx-auto px-5 flex flex-col gap-[32px] lg:gap-[64px] mb-[48px] mt-[48px]">

@@ -1,7 +1,11 @@
+import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { NextResponse } from "next/server";
-
-export async function POST(req) {
+interface Attachment {
+  name: string;
+  data: string; // base64 string
+  type: string; // MIME type, e.g., "application/pdf"
+}
+export async function POST(req: NextRequest) {
   try {
     const {
       identity,
@@ -564,7 +568,7 @@ export async function POST(req) {
       `,
       attachments:
         attachments &&
-        attachments.map((attachment) => ({
+        attachments?.map((attachment: Attachment) => ({
           filename: attachment.name,
           content: Buffer.from(attachment.data, "base64"),
           contentType: attachment.type,

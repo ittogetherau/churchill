@@ -28,11 +28,9 @@ const AIHelpSection = () => {
                   href="https://forms.office.com/pages/responsepage.aspx?id=pchQSBwySU6qkkyOYABEq0c2jWIDBQtCqhGjIlivHnhUOEJQMU5YUVQ2U1A2T1A0RDM1WEFCOFBGQi4u"
                   target="_blank"
                 >
-                  <Button
-                    btnName={"Learn to use AI"}
-                    icon={<FaArrowRight />}
-                    styleA={"flex items-center gap-1"}
-                  />
+                  <Button>
+                    <FaArrowRight /> Learn to use AI
+                  </Button>
                 </Link>
               </div>
               <div className="flex items-center px-4 justify-end">
@@ -91,11 +89,9 @@ const AIHelpSection = () => {
               className="w-fit"
               target="_blank"
             >
-              <Button
-                btnName={"Learn more about support policy"}
-                icon={<FaArrowRight />}
-                styleA={"flex items-center gap-1"}
-              />
+              <Button>
+                <FaArrowRight /> Learn more about support policy
+              </Button>
             </Link>
           </div>
         </FadeUpAnimation>

@@ -16,7 +16,7 @@ const enrollments = {
   semester: "Semester 2/2025",
 };
 
-const GovernanceStructure = ({ slug }) => {
+const GovernanceStructure = () => {
   return (
     <>
       <PatternBannerCard title="Financial Standing, TPS & Enrolment Summary" />

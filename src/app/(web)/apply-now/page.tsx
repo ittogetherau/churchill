@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
-//   impruvement in heare  <PatternBannerCard>
+//   Improve in heare  <PatternBannerCard>
 const page = () => {
   return (
     // <PatternBannerCard>

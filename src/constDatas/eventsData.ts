@@ -1,29 +1,48 @@
-export interface TEventCategory {
-  title: string;
+export interface TEventTag {
+  name?: string;
 }
 
 export interface TEventDuration {
-  startDate: string;
-  startTime: string;
-  startDay: string;
-  startMonth: string;
-  endDate: string;
-  endTime: string;
-  endDay: string;
-  endMonth: string;
+  startDate?: string;
+  startTime?: string;
+  startDay?: string;
+  startMonth?: string;
+  endDate?: string;
+  endTime?: string;
+  endDay?: string;
+  endMonth?: string;
+}
+export interface TApiEvent {
+  id?: number;
+  slug?: string;
+  image?: string;
+  title: string;
+  description?: string;
+  rich_text?: string;
+  start_time?: string;
+  end_time?: string;
+  time_duration?: string;
+  tags?: Array<{ name: string }>;
 }
 
-export interface TEvent {
+export interface TStaticEvent {
+  id?: number;
   title: string;
-  subTitle: string;
-  slug: string;
-  link: string;
-  author: string;
+  subTitle?: string;
+  slug?: string;
+  link?: string;
+  author?: string;
   image: string;
   description: string;
-  duration: TEventDuration;
-  catagories: TEventCategory[];
+  rich_text?: string;
+  start_time?: string;
+  end_time?: string;
+  time_duration?: string;
+  duration?: TEventDuration;
+  catagories?: { title: string }[];
+  tags?: TEventTag[];
 }
+export type TEvent = TApiEvent | TStaticEvent;
 
 export const eventsData: TEvent[] = [
   {

@@ -2,11 +2,12 @@ import Link from "next/link";
 import { FetchCourseData } from "@/components/utils/apiQueries";
 import TopBannerCard from "@/components/cards/TopBannerCard";
 import CoursesFilterSection from "@/components/sections/filtersection/CoursesFilterSection";
-
-const Courses = async () => {
-  const items = await FetchCourseData();
-  const data = await items.data;
-
+interface PageProps {
+  params: { slug?: string };
+}
+const Courses = async ({ params }: PageProps) => {
+  const response = await FetchCourseData(params.slug);
+const data = response.data;
   return (
     <>
       <div className="flex flex-col gap-[32px] lg:gap-[64px]">

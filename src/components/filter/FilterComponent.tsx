@@ -1,12 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { LuSettings2 } from "react-icons/lu";\
+import { LuSettings2 } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import Search from "../search";
 import { Button } from "../ui/button";
 
-const FilterComponent = ({ children, placeholderText }) => {
+interface FilterComponentProps {
+  children?: ReactNode;
+  placeholderText?: string;
+}
+
+
+const FilterComponent: React.FC<FilterComponentProps> = ({
+  children,
+  placeholderText,
+}) => {
   const { replace } = useRouter();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,11 +44,9 @@ const FilterComponent = ({ children, placeholderText }) => {
 
       <div onClick={handleSearch} className="">
         <Button
-          btnName="Filter"
-          style={
-            "w-fit border font-semibold text-[14px] border-2 border-[#606060] rounded-md px-6 md:px-8 py-3 bg-[#E59623] hover:bg-[#ff9700] transition duration-200  ease-in-out hover:scale-105"
-          }
-        />
+         
+          
+     >Filter</Button>
       </div>
     </div>
   );

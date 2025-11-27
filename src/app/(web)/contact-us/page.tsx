@@ -29,13 +29,12 @@ const ContactUs = () => {
               }
             >
               <Button
-                btnName="Ask Us"
-                icon={<FaArrowRight />}
-                styleA={"flex items-center gap-1"}
-                style={
+                className={
                   "border font-semibold text-[14px] border-2 border-[#606060] rounded-md px-6 md:px-8 py-3 bg-[#E59623] hover:bg-[#ff9700] transition duration-200  ease-in-out hover:scale-105"
                 }
-              />
+              >
+                <FaArrowRight /> Ask Us
+              </Button>
             </Link>
             {/* <Link href={"/contact-us/faq"}>
               <Button

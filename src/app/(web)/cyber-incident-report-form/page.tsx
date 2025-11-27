@@ -1,8 +1,38 @@
-import { useRef, useState } from "react";
+"use client";
+import ToastComponent from "@/components/toast/Toast";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
-import { ToastComponent } from '@/components';
 
-const defaultFormState = {
+interface FormState {
+  identity: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  verifyEmail: string;
+  incidentDate: string;
+  incidentTime: string;
+  isOngoing: string;
+  incidentSeverity: string;
+  incidentDescription: string;
+  otherIncidentType: string;
+  reportingAbout: string;
+  osUsed: string;
+  browserUsed: string;
+  deviceUsed: string;
+  attachedFiles: File[];
+  incidentType: string[];
+  impacted: string[];
+  additionalDetails?: string;
+  consent?: boolean;
+}
+
+interface FileAttachment {
+  name: string;
+  type: string;
+  data: string;
+}
+
+const defaultFormState: FormState = {
   identity: "",
   firstName: "",
   lastName: "",
@@ -24,30 +54,39 @@ const defaultFormState = {
 };
 
 const CybersecurityIncident = () => {
-  const [formState, setFormState] = useState(defaultFormState);
-  const [fileError, setFileError] = useState("");
-  const [attachment, setAttachment] = useState("");
-  const [btnText, setBtnText] = useState("Submit");
+  const [formState, setFormState] = useState<FormState>(defaultFormState);
+  const [fileError, setFileError] = useState<string>("");
+  const [attachment, setAttachment] = useState<FileAttachment[]>([]);
+  const [btnText, setBtnText] = useState<string>("Submit");
   const isSending = btnText === "Sending...";
 
-  const toastRef = useRef();
+  const toastRef = useRef<{
+    showToast: (message: string, type?: string) => void;
+  } | null>(null);
 
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = e.target;
-    if (checked) {
+    if (name === "incidentType" || name === "impacted") {
+      if (checked) {
+        setFormState((prevState) => ({
+          ...prevState,
+          [name]: [...prevState[name], value],
+        }));
+      } else {
+        setFormState((prevState) => ({
+          ...prevState,
+          [name]: prevState[name].filter((item: string) => item !== value),
+        }));
+      }
+    } else if (name === "consent") {
       setFormState((prevState) => ({
         ...prevState,
-        [name]: [...prevState[name], value],
-      }));
-    } else {
-      setFormState((prevState) => ({
-        ...prevState,
-        [name]: prevState[name].filter((item) => item !== value),
+        [name]: checked,
       }));
     }
   };
 
-  const handleRadioChange = (e) => {
+  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
       ...prevState,
@@ -55,14 +94,16 @@ const CybersecurityIncident = () => {
     }));
   };
 
-  const handleOtherChange = (e) => {
+  const handleOtherChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormState((prev) => ({
       ...prev,
       otherIncidentType: e.target.value,
     }));
   };
 
-  const handleFormChange = (e) => {
+  const handleFormChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
     setFormState((prevState) => ({
@@ -71,15 +112,14 @@ const CybersecurityIncident = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files ? Array.from(e.target.files) : []);
 
     if (files.length > 5) {
-      toastRef.current.showToast(
+      toastRef.current?.showToast(
         "You can upload a maximum of 5 files.",
         "error"
       );
-
       e.target.value = "";
       return;
     }
@@ -87,50 +127,48 @@ const CybersecurityIncident = () => {
     const totalSize = files.reduce((acc, file) => acc + file.size, 0);
 
     if (totalSize > 10 * 1024 * 1024) {
-      toastRef.current.showToast(
+      toastRef.current?.showToast(
         "Total file size must not exceed 10MB.",
         "error"
       );
-
       e.target.value = "";
       return;
     }
 
-    const newAttachments = [];
+    const newAttachments: FileAttachment[] = [];
 
     const readerPromises = files.map((file) => {
       return new Promise((resolve) => {
         const reader = new FileReader();
 
         reader.onload = (event) => {
-          const fileData = event.target.result.split(",")[1];
+          const fileData = event.target?.result as string;
+          const base64Data = fileData.split(",")[1];
           newAttachments.push({
             name: file.name,
             type: file.type,
-            data: fileData,
+            data: base64Data,
           });
-          resolve();
+          reader.readAsDataURL(file);
         };
 
         reader.readAsDataURL(file);
       });
     });
-
     Promise.all(readerPromises).then(() => {
       setAttachment(newAttachments);
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setBtnText("Sending...");
 
     if (formState.email !== formState.verifyEmail) {
-      toastRef.current.showToast("Email doesn't match", "error");
+      toastRef.current?.showToast("Email doesn't match", "error");
       setBtnText("Submit");
       return;
     }
-
     // if (!attachment) {
     //   setFileError("Please upload a file");
     //   setBtnText("Submit");
@@ -150,25 +188,24 @@ const CybersecurityIncident = () => {
       });
 
       if (response.ok) {
-        toastRef.current.showToast("Email sent successfully!", "success");
+        toastRef.current?.showToast("Email sent successfully!", "success");
         setFormState(defaultFormState);
-        setAttachment(null);
+        setAttachment([]);
         setBtnText("Submitted");
       } else {
         const errorData = await response.json();
-        toastRef.current.showToast(`Error: ${errorData.message}`);
+        toastRef.current?.showToast(`Error: ${errorData.message}`);
         setBtnText("Submit");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toastRef.current.showToast(
+      toastRef.current?.showToast(
         "An error occurred while sending the email.",
         "error"
       );
       setBtnText("Submit");
     }
   };
-
   return (
     <>
       <ToastComponent ref={toastRef} />
@@ -612,7 +649,6 @@ const CybersecurityIncident = () => {
                 name="additionalDetails"
                 onChange={handleFormChange}
                 value={formState.additionalDetails}
-                rows="4"
                 className="w-full font-inter text-[12px] text-[#021327] bg-transparent border border-[#ABABAB] outline-0 pl-3 pr-3 rounded-md"
               />
             </div>

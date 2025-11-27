@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import DesktopNav from "./ForDesktop";
 import MobileNav from "./ForMobile";
+import { TbMarquee } from "react-icons/tb";
 
-const Header = () => {
+const Header: React.FC = () => {
   // const [offset, setOffset] = useState();
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const announcementStorageKey = "orientation-marquee";
@@ -33,10 +34,10 @@ const Header = () => {
         <div className="bg-primary-orange text-white">
           <div className="container mx-auto px-5 py-2 flex items-center gap-4">
             <div className="flex-1 flex items-center justify-center text-center overflow-hidden">
-              <marquee className="text-sm font-semibold">
+              <TbMarquee className="text-sm font-semibold">
                 S3 2025 orientation date details: 03 December at 10:00 AM to
                 02:30 PM
-              </marquee>
+              </TbMarquee>
             </div>
             <button
               type="button"

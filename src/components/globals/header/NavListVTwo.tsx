@@ -5,9 +5,36 @@ import TopInfo from "./TopInfo";
 import { navItems } from "@/constDatas/navItems";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components";
+
 import { FetchCourseData } from "@/components/utils/apiQueries";
-const NavListVTwo = ({
+import { Button } from "@/components/ui/button";
+
+interface NavItem {
+  title: string;
+  slug: string;
+  Catagories?: any[];
+  headerDesc?: string;
+}
+
+interface SubItem {
+  slug: string;
+  menuTitle?: string;
+  course_name?: string;
+  headerIcon?: string;
+  icon?: string;
+  redirectLink?: string;
+  link?: string;
+  headerDesc?: string;
+}
+
+interface NavListVTwoProps {
+  style?: string;
+  isDropdownActive: boolean;
+  handleOnclickA: () => void;
+  handleOnclick?: () => void;
+}
+
+const NavListVTwo: React.FC<NavListVTwoProps> = ({
   style,
   isDropdownActive,
   handleOnclickA,
@@ -53,20 +80,16 @@ const NavListVTwo = ({
       </div> */}
 
       <ul className={`${style ? style : ""}`}>
-        {navItems?.map((item, index) => {
+        {navItems?.map((item: NavItem, index: number) => {
           const isActive =
             (pathname.includes(item?.slug) && item?.slug?.length > 1) ||
             pathname === item?.slug;
           const hasSubcategories =
-            item?.Catagories?.length > 0
-              ? true
-              : item.slug === "courses"
-                ? true
-                : false;
+            (item?.Catagories && item.Catagories.length > 0) ||
+            item.slug === "courses";
 
-          const mapData =
-            item.slug === "courses" ? coursesData : item.Catagories;
-
+          const mapData: any[] =
+            item.slug === "courses" ? coursesData : item.Catagories || [];
           return (
             <div key={index}>
               {hasSubcategories ? (
@@ -96,22 +119,23 @@ const NavListVTwo = ({
                           </p>
 
                           <Link href={`/${item.slug}`}>
-                            <Button btnName="Learn More" />
+                            <Button>Learn More</Button>
                           </Link>
                         </div>
                         <div className="flex-[78%]">
                           <ul className="h-[110px] md:h-auto overflow-y-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2">
                             {mapData.map((subItem, index) => (
                               <Link
-                                target={`${subItem?.redirectLink ? "_blank" : ""
-                                  }`}
+                                target={`${
+                                  subItem?.redirectLink ? "_blank" : ""
+                                }`}
                                 key={index}
                                 href={
                                   subItem?.redirectLink
                                     ? subItem?.redirectLink
                                     : subItem?.link
-                                      ? subItem?.link
-                                      : `/${item.slug}/${subItem.slug}`
+                                    ? subItem?.link
+                                    : `/${item.slug}/${subItem.slug}`
                                 }
                                 className="w-full h-full lg:max-h-[6rem] flex"
                               >
@@ -121,8 +145,9 @@ const NavListVTwo = ({
                                 >
                                   <div className="w-10 h-10 bg-[#eb9320]/20 rounded-full grid place-items-center">
                                     <i
-                                      className={`${subItem.headerIcon || subItem.icon
-                                        } m-0 flex items-center `}
+                                      className={`${
+                                        subItem.headerIcon || subItem.icon
+                                      } m-0 flex items-center `}
                                     />
                                   </div>
 
@@ -146,8 +171,9 @@ const NavListVTwo = ({
               ) : (
                 <Link href={``}>
                   <li
-                    className={`flex gap-1 items-center ${isActive && "text-[#eb9320]"
-                      }  cursor-pointer pb-5`}
+                    className={`flex gap-1 items-center ${
+                      isActive && "text-[#eb9320]"
+                    }  cursor-pointer pb-5`}
                   >
                     <p className="hover:text-[#eb9320]">{item?.title}</p>
                   </li>
@@ -157,7 +183,10 @@ const NavListVTwo = ({
           );
         })}
         <li>
-          <Link href="/emergency-contact" className="flex gap-1 items-center cursor-pointer text-red-600 hover:text-[#eb9320]">
+          <Link
+            href="/emergency-contact"
+            className="flex gap-1 items-center cursor-pointer text-red-600 hover:text-[#eb9320]"
+          >
             <span>Emergency Contacts</span>
           </Link>
         </li>

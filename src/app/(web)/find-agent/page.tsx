@@ -9,8 +9,14 @@ import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import { Button } from "@/components/ui/button";
 import Loading from "@/components/globals/Loading";
 import DataNotFound from "@/components/globals/DataNotFound";
+import { TAgentUser } from "@/constDatas/AgentUserData";
 
-function formatText(text) {
+interface FilterType {
+  addressSearch: string;
+  nameSearch: string;
+}
+
+function formatText(text: string | undefined | null): string {
   return text ? text.toLowerCase().trim() : "";
 }
 
@@ -20,11 +26,11 @@ const defaultFilter = {
 };
 
 const Page = () => {
-  const [pageData, setPageData] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
+  const [pageData, setPageData] = useState<TAgentUser[] | null>(null);
+  const [filteredData, setFilteredData] = useState<TAgentUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
-  const [filter, setFilter] = useState(defaultFilter);
+  const [filter, setFilter] = useState<FilterType>(defaultFilter);
 
   useEffect(() => {
     async function getData() {
@@ -47,11 +53,19 @@ const Page = () => {
     if (pageData) {
       const filtered = pageData.filter(
         (item) =>
-          formatText(item?.address || "").includes(formatText(searchText)) ||
-          formatText(item?.name || "").includes(formatText(searchText)) ||
-          formatText(item?.phone || "").includes(formatText(searchText)) ||
-          formatText(item?.email || "").includes(formatText(searchText)) ||
-          formatText(item?.agent_name || "").includes(formatText(searchText))
+          formatText(item?.BillingStreet).includes(formatText(searchText)) ||
+          formatText(item?.Billingcity).includes(formatText(searchText)) ||
+          formatText(item?.BillingState).includes(formatText(searchText)) ||
+          formatText(item?.Phone).includes(formatText(searchText)) ||
+          formatText(item?.RecruitmentAgencyEmail).includes(
+            formatText(searchText)
+          ) ||
+          formatText(item?.RecruitmentAgentName).includes(
+            formatText(searchText)
+          ) ||
+          formatText(item?.RepresentativeContactName).includes(
+            formatText(searchText)
+          )
       );
       setFilteredData(filtered);
     }
@@ -67,34 +81,24 @@ const Page = () => {
       const filtered = pageData.filter((agent) => {
         const addressMatch =
           !filter.addressSearch ||
-          formatText(agent?.address || "").includes(
+          formatText(agent?.BillingStreet).includes(
             formatText(filter.addressSearch)
           ) ||
-          formatText(agent?.BillingStreet || "").includes(
+          formatText(agent?.Billingcity).includes(
             formatText(filter.addressSearch)
           ) ||
-          formatText(agent?.Billingcity || "").includes(
-            formatText(filter.addressSearch)
-          ) ||
-          formatText(agent?.BillingState || "").includes(
+          formatText(agent?.BillingState).includes(
             formatText(filter.addressSearch)
           );
 
         const nameMatch =
           !filter.nameSearch ||
-          formatText(agent?.name || "").includes(
+          formatText(agent?.RecruitmentAgentName).includes(
             formatText(filter.nameSearch)
           ) ||
-          formatText(agent?.agent_name || "").includes(
-            formatText(filter.nameSearch)
-          ) ||
-          formatText(agent?.RecruitmentAgentName || "").includes(
-            formatText(filter.nameSearch)
-          ) ||
-          formatText(agent?.RepresentativeContactName || "").includes(
+          formatText(agent?.RepresentativeContactName).includes(
             formatText(filter.nameSearch)
           );
-
         return addressMatch && nameMatch;
       });
 
@@ -106,11 +110,19 @@ const Page = () => {
         setIsLoading(true); // Set loading when applying general search
         const filtered = pageData.filter(
           (item) =>
-            formatText(item?.address || "").includes(formatText(searchText)) ||
-            formatText(item?.name || "").includes(formatText(searchText)) ||
-            formatText(item?.phone || "").includes(formatText(searchText)) ||
-            formatText(item?.email || "").includes(formatText(searchText)) ||
-            formatText(item?.agent_name || "").includes(formatText(searchText))
+            formatText(item?.BillingStreet).includes(formatText(searchText)) ||
+            formatText(item?.Billingcity).includes(formatText(searchText)) ||
+            formatText(item?.BillingState).includes(formatText(searchText)) ||
+            formatText(item?.Phone).includes(formatText(searchText)) ||
+            formatText(item?.RecruitmentAgencyEmail).includes(
+              formatText(searchText)
+            ) ||
+            formatText(item?.RecruitmentAgentName).includes(
+              formatText(searchText)
+            ) ||
+            formatText(item?.RepresentativeContactName).includes(
+              formatText(searchText)
+            )
         );
         setFilteredData(filtered);
         setIsLoading(false); // Clear loading after filtering
@@ -120,7 +132,7 @@ const Page = () => {
     }
   }, [filter, pageData, searchText]);
 
-  const handleFilterChange = (e) => {
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, [e.target.name]: e.target.value });
   };
 
@@ -165,14 +177,9 @@ const Page = () => {
             />
 
             <div className="flex gap-2">
-              <Button
-                btnName={"Find an Educational Agent"}
-                icon={<FaSearch />}
-                styleA={"flex items-center gap-4"}
-                style={
-                  "border border-2 border-[#606060] font-semibold text-[14px] rounded-md px-4 py-3 bg-[#E59623] hover:bg-[#ff9700] transition duration-200 ease-in-out hover:scale-105"
-                }
-              />
+              <Button>
+                <FaSearch /> Find an Educational Agent
+              </Button>
             </div>
           </section>
 
@@ -187,7 +194,11 @@ const Page = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredData.map((item, i) => {
-                    const address = item?.address?.replace("/", " ");
+                    const address =
+                      `${item.BillingStreet}, ${item.Billingcity}, ${item.BillingState} ${item.BillingCode}`
+                        .replace(/,\s*,/g, ",")
+                        .replace(/^\s*,\s*|\s*,\s*$/g, "");
+
                     return (
                       <div
                         key={i}
@@ -197,13 +208,13 @@ const Page = () => {
                           {/* Name Section */}
                           <div>
                             <p className="text-lg font-bold text-gray-800">
-                              {item.name || "N/A"}
+                              {item.RecruitmentAgentName || "N/A"}
                             </p>
                             <p className="text-sm text-gray-600 mt-1">
                               <span className="font-semibold">
                                 Representative:
                               </span>{" "}
-                              {item?.agent_name || "N/A"}
+                              {item.RepresentativeContactName || "N/A"}
                             </p>
                           </div>
 
@@ -218,17 +229,15 @@ const Page = () => {
                                 </p>
                                 <a
                                   href={
-                                    item?.phone
-                                      ? `tel:${item.phone}`
-                                      : undefined
+                                    item.Phone ? `tel:${item.Phone}` : undefined
                                   }
                                   className={`text-sm ${
-                                    item?.phone
+                                    item.Phone
                                       ? "text-blue-600 hover:underline"
                                       : "text-gray-500"
                                   }`}
                                 >
-                                  {item?.phone || "N/A"}
+                                  {item.Phone || "N/A"}
                                 </a>
                               </div>
                             </div>
@@ -242,17 +251,17 @@ const Page = () => {
                                 </p>
                                 <a
                                   href={
-                                    item?.email
-                                      ? `mailto:${item.email}`
+                                    item.RecruitmentAgencyEmail
+                                      ? `mailto:${item.RecruitmentAgencyEmail}`
                                       : undefined
                                   }
                                   className={`text-sm ${
-                                    item?.email
+                                    item.RecruitmentAgencyEmail
                                       ? "text-blue-600 hover:underline"
                                       : "text-gray-500"
                                   }`}
                                 >
-                                  {item?.email || "N/A"}
+                                  {item.RecruitmentAgencyEmail || "N/A"}
                                 </a>
                               </div>
                             </div>
@@ -266,21 +275,23 @@ const Page = () => {
                                 </p>
                                 <a
                                   href={
-                                    item?.address
+                                    address && address !== ", , "
                                       ? `https://www.google.com/maps/search/${encodeURIComponent(
-                                          item.address
+                                          address
                                         )}`
                                       : undefined
                                   }
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className={`text-sm ${
-                                    item?.address
+                                    address && address !== ", , "
                                       ? "text-blue-600 hover:underline"
                                       : "text-gray-500"
                                   }`}
                                 >
-                                  {item?.address || "N/A"}
+                                  {address && address !== ", , "
+                                    ? address
+                                    : "N/A"}
                                 </a>
                               </div>
                             </div>
@@ -317,14 +328,9 @@ const Page = () => {
               target="_blank"
               className="w-max"
             >
-              <Button
-                btnName={"Fill Up A Quick Form"}
-                icon={<FaArrowRight />}
-                styleA={"flex items-center gap-1"}
-                style={
-                  "border border-2 border-[#606060] rounded-md px-4 py-3 bg-[#E59623] hover:text-black hover:bg-[#ff9700] transition duration-200 ease-in-out hover:scale-105"
-                }
-              />
+              <Button>
+                <FaArrowRight /> Fill Up A Quick Form
+              </Button>
             </Link>
           </div>
           <div className="flex-1 pb-48 md:flex-0">

@@ -7,14 +7,12 @@ import { useState } from "react";
 
 const GalleryPage = () => {
   const step = 9;
-  const [visibleImages, setVisibleImages] = useState(step);
-  const [loadedImages, setLoadedImages] = useState({});
-  const [isFullScreenShown, setIsFullScreenShown] = useState(false);
-  const [fullScreenImage, setFullScreenImage] = useState("");
-
-  const ImagesToShow = imagesslice(0, visibleImages);
-
-  const handleImageLoad = (index) => {
+  const [visibleImages, setVisibleImages] = useState<number>(step);
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  const [isFullScreenShown, setIsFullScreenShown] = useState<boolean>(false);
+  const [fullScreenImage, setFullScreenImage] = useState<string>("");
+  const ImagesToShow = images.slice(0, visibleImages);
+  const handleImageLoad = (index: number) => {
     setLoadedImages((prev) => ({ ...prev, [index]: true }));
   };
 

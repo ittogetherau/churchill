@@ -3,8 +3,13 @@ import Link from "next/link";
 import React from "react";
 import Button from "../button";
 import { FaArrowRight } from "react-icons/fa";
+interface AboutUsCardProps {
+  title: string;
+  link: string;
+  icon: string;
+}
 
-const AboutUsCard = ({ title, link, icon }) => {
+const AboutUsCard: React.FC<AboutUsCardProps> = ({ title, link, icon }) => {
   return (
     <div className="bg-[#FAF4F4] outline outline-0 hover:outline-2 hover:outline-[#606060] p-5 rounded-md">
       <div className="flex flex-col items-start gap-4">

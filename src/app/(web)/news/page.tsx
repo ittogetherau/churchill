@@ -1,7 +1,9 @@
 import NewsItemCard from "@/components/cards/NewsItemCard";
 import { NewsData } from "@/constDatas/NewsData";
-
-const NewsPage = ({ showAll = true }) => {
+interface NewsPageProps {
+  showAll?: boolean;
+}
+const NewsPage = ({ showAll = true }: NewsPageProps) => {
   return (
     <div className="mt-12">
       <div className="container mx-auto px-5">
@@ -13,7 +15,7 @@ const NewsPage = ({ showAll = true }) => {
                 key={index}
                 image={item?.image}
                 title={item?.title}
-                newsCategory={item?.newsCategory}
+                newsCategory={item?.newsCategory || ""}
                 date={item?.date}
                 description={item?.description}
                 slug={item?.slug}

@@ -1,7 +1,8 @@
 "use client";
 
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/sonner";  
 import { ReactNode } from "react";
+import { toast } from "sonner";
 
 interface CopyUrlProps {
   url?: string;
@@ -16,12 +17,13 @@ const CopyUrl: React.FC<CopyUrlProps> = ({ url, message, children }) => {
 
     await navigator.clipboard.writeText(textToCopy);
 
-    Toaster(message || "Copied...");
+    toast(message || "Copied...");
   };
 
   return (
     <div onClick={handleCopy} className="cursor-pointer">
       {children}
+      <Toaster />{" "}
     </div>
   );
 };

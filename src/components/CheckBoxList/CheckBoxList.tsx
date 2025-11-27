@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
 
-const CheckBoxList = ({ title, data }) => {
+interface CheckBoxListProps {
+  title: string;
+  data: { title: string }[];
+}
+
+const CheckBoxList: React.FC<CheckBoxListProps> = ({ title, data }) => {
   return (
     <>
       <div className="flex flex-col gap-3">

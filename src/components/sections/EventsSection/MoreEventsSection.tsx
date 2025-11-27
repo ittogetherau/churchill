@@ -3,9 +3,14 @@ import React, { useEffect, useState } from "react";
 
 import { FetchUpcomingKeyEventsData } from "@/components/utils/apiQueries";
 import { EventsCard } from "@/components/cards";
+import { EventsCardProps } from "@/components/cards/EventsCard";
 
-const MoreEventsSection = ({ slug }) => {
-  const [data, setData] = useState([]);
+interface MoreEventsSectionProps {
+  slug: string;
+}
+
+const MoreEventsSection: React.FC<MoreEventsSectionProps> = ({ slug }) => {
+  const [data, setData] = useState<EventsCardProps[]>([]);
 
   useEffect(() => {
     FetchUpcomingKeyEventsData()

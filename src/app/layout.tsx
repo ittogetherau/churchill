@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./css/globals.css";
-import { CookieBanner, Footer, Header } from "@/components";
 import { Toaster } from "@/components/ui/sonner";
+import Header from "@/components/globals/header";
+import CookieBanner from "@/components/globals/CookieBanner";
+import Footer from "@/components/globals/footer";
 
 export const metadata: Metadata = {
   title: "Churchill Institute of Higher Education",

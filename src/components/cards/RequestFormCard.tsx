@@ -3,6 +3,17 @@ import { FaArrowRight, FaIdCard } from "react-icons/fa";
 import Link from "next/link";
 import Button from "../button";
 
+interface RequestFormCardProps {
+  icon?: React.ReactNode;
+  menuTitle: string;
+  subTitle?: string;
+  link?: string;
+  slug?: string;
+  btnTitle: string;
+  target?: string;
+  iconStyles?: string;
+}
+
 const RequestFormCard = ({
   icon,
   menuTitle,
@@ -12,7 +23,7 @@ const RequestFormCard = ({
   btnTitle,
   target,
   iconStyles,
-}) => {
+}: RequestFormCardProps) => {
   return (
     <li className="px-4 py-3 hover:shadow-sm  bg-[#E9E9E9] rounded-md flex justify-between gap-2 items-center">
       <div className="flex gap-3 items-center">

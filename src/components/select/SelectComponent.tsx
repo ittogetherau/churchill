@@ -2,7 +2,13 @@
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 
-const SelectComponent = ({ title, data }) => {
+const SelectComponent = ({
+  title,
+  data,
+}: {
+  title: string;
+  data: Array<{ title: string }>;
+}) => {
   const [isActive, setIsActive] = useState(false);
 
   return (

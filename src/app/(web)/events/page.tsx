@@ -2,15 +2,23 @@ import EventsCard from "@/components/cards/EventsCard";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import FilterComponent from "@/components/filter/FilterComponent";
 import DataNotFound from "@/components/globals/DataNotFound";
+import { FetchUpcomingKeyEventsData } from "@/components/utils/apiQueries";
+import { TApiEvent } from "@/constDatas/eventsData";
 
-const EventsPage = async ({ searchParams }) => {
+interface EventsPageProps {
+  searchParams: { keyword?: string };
+}
+
+const EventsPage = async ({ searchParams }: EventsPageProps) => {
   const values = await searchParams;
   const keyword = values.keyword ?? "";
 
   const items = await FetchUpcomingKeyEventsData();
-  const data = await items.data;
+  const data: TApiEvent[] = await items.data;
   const filtered = keyword
-    ? data.filter((el) => el.title.toLowerCase().includes(keyword))
+    ? data.filter((el) =>
+        el.title.toLowerCase().includes(keyword.toLowerCase())
+      )
     : data;
 
   return (
@@ -23,13 +31,12 @@ const EventsPage = async ({ searchParams }) => {
         <div className="container mx-auto px-5 flex flex-col gap-[32px] lg:gap-[64px]">
           <div className="flex flex-col lg:flex-row gap-8 relative">
             <FilterComponent />
-
             <div className="flex-1">
               {filtered.length > 0 ? (
                 <div className="flex flex-col gap-8">
                   {filtered.map((item, index) => (
                     <EventsCard
-                      key={index}
+                      key={item.id || index}
                       id={item.id}
                       slug={item.slug}
                       image={item.image}

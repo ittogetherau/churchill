@@ -20,7 +20,7 @@ const page = () => {
                     ? subItem?.redirectLink
                     : subItem?.link
                     ? subItem?.link
-                    : `/${item.slug}/${subItem.slug}`
+                    : `/${data.slug}/${subItem.slug}`
                 }
                 className="w-full h-full"
               >

@@ -4,6 +4,16 @@ import Link from "next/link";
 import Button from "../button";
 import { FaArrowRight } from "react-icons/fa";
 
+interface NewsItemCardProps {
+  image: string;
+  title: string;
+  description: string;
+  slug: string;
+  newsCategory?: string[];
+  date: string;
+  catagories?: string[];
+}
+
 const monthArray = [
   "Jan",
   "Feb",
@@ -19,7 +29,7 @@ const monthArray = [
   "Dec",
 ];
 
-const NewsItemCard = ({
+const NewsItemCard: React.FC<NewsItemCardProps> = ({
   image,
   title,
   description,
@@ -74,14 +84,14 @@ const NewsItemCard = ({
         </Link>
 
         <div className="flex flex-row flex-wrap gap-2">
-          {catagories?.map((item, index) => (
+          {/* {catagories?.map((item, index) => (
             <p
               key={index}
               className="font-semibold bg-[#F2CF9C] text-[#2C2B4B] rounded-full text-[14px] px-3 py-1 h-fit"
             >
-              {item?.title}
+              {title}
             </p>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

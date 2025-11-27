@@ -1,53 +1,60 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+interface CountDownTime {
+  days: string | number;
+  hours: string | number;
+  minutes: string | number;
+  seconds: string | number;
+}
+
 const Timer = () => {
-  const [countDownTime, setCountDownTIme] = useState({
+  const [countDownTime, setCountDownTime] = useState<CountDownTime>({
     days: "00",
     hours: "00",
     minutes: "00",
     seconds: "00",
   });
 
-  const getTimeDifference = (countDownTime) => {
+  const getTimeDifference = useCallback((countDownTime: number) => {
     const currentTime = new Date().getTime();
-    const timeDiffrence = countDownTime - currentTime;
-    let days =
-      Math.floor(timeDiffrence / (24 * 60 * 60 * 1000)) >= 10
-        ? Math.floor(timeDiffrence / (24 * 60 * 60 * 1000))
-        : `0${Math.floor(timeDiffrence / (24 * 60 * 60 * 1000))}`;
-    const hours =
-      Math.floor((timeDiffrence % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)) >=
-      10
-        ? Math.floor((timeDiffrence % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60))
-        : `0${Math.floor(
-            (timeDiffrence % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)
-          )}`;
-    const minutes =
-      Math.floor((timeDiffrence % (60 * 60 * 1000)) / (1000 * 60)) >= 10
-        ? Math.floor((timeDiffrence % (60 * 60 * 1000)) / (1000 * 60))
-        : `0${Math.floor((timeDiffrence % (60 * 60 * 1000)) / (1000 * 60))}`;
-    const seconds =
-      Math.floor((timeDiffrence % (60 * 1000)) / 1000) >= 10
-        ? Math.floor((timeDiffrence % (60 * 1000)) / 1000)
-        : `0${Math.floor((timeDiffrence % (60 * 1000)) / 1000)}`;
-    if (timeDiffrence < 0) {
-      setCountDownTIme({
+    const timeDifference = countDownTime - currentTime;
+
+    let days: string | number = Math.floor(
+      timeDifference / (24 * 60 * 60 * 1000)
+    );
+    days = days >= 10 ? days : `0${days}`;
+
+    let hours: string | number = Math.floor(
+      (timeDifference % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)
+    );
+    hours = hours >= 10 ? hours : `0${hours}`;
+
+    let minutes: string | number = Math.floor(
+      (timeDifference % (60 * 60 * 1000)) / (1000 * 60)
+    );
+    minutes = minutes >= 10 ? minutes : `0${minutes}`;
+
+    let seconds: string | number = Math.floor(
+      (timeDifference % (60 * 1000)) / 1000
+    );
+    seconds = seconds >= 10 ? seconds : `0${seconds}`;
+
+    if (timeDifference < 0) {
+      setCountDownTime({
         days: "00",
         hours: "00",
         minutes: "00",
         seconds: "00",
       });
-
-      clearInterval();
     } else {
-      setCountDownTIme({
-        days: days,
-        hours: hours,
-        minutes: minutes,
-        seconds: seconds,
+      setCountDownTime({
+        days,
+        hours,
+        minutes,
+        seconds,
       });
     }
-  };
+  }, []);
 
   const startCountDown = useCallback(() => {
     const countDownDate = new Date("July 22, 2024 00:00:00").getTime();

@@ -1,32 +1,41 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { useEffect, useRef, useState } from "react";
+
 import { navItems } from "@/constDatas/navItems";
-import { usefulLinksData } from "@/constDatas/usefulLinksData";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+
 import AboutUsCard from "../cards/AboutUsCard";
-
 import FadeUpAnimation from "@/animations/FadeUp";
+import Slider from "react-slick";
 
-const AboutSlider = () => {
-  const aboutLists = navItems[0];
+interface CategoryItem {
+  headerIcon?: string;
+  menuTitle?: string;
+  slug?: string;
+}
+interface NavItem {
+  Catagories?: CategoryItem[];
+}
 
-  const sliderRef = useRef(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [totalSlides, setTotalSlides] = useState(0);
+const AboutSlider: React.FC = () => {
+  const aboutLists: NavItem = navItems[0] as NavItem;
+  const sliderRef = useRef<Slider | null>(null);
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [totalSlides, setTotalSlides] = useState<number>(0);
 
   useEffect(() => {
     const handleSliderUpdate = () => {
       if (sliderRef.current) {
-        setTotalSlides(sliderRef.current.props.children.length);
+        const slick = (sliderRef.current as any).innerSlider;
+        if (slick) {
+          setTotalSlides(slick.props.children.length);
+        }
       }
     };
 
-    if (sliderRef.current) {
-      handleSliderUpdate();
-    }
+    handleSliderUpdate();
   }, [currentSlide]);
 
   const settings = {
@@ -59,39 +68,37 @@ const AboutSlider = () => {
         },
       },
     ],
-    afterChange: (current) => setCurrentSlide(current),
+    afterChange: (current: number) => setCurrentSlide(current),
   };
 
-  const goToPreviousSlide = () => {
+  const goToPreviousSlide = (): void => {
     if (sliderRef.current) {
       sliderRef.current.slickPrev();
     }
   };
 
-  const goToNextSlide = () => {
+  const goToNextSlide = (): void => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
     }
   };
-  const serviceLocaton = navItems[2]?.Catagories;
+
+  const isAtEnd = currentSlide >= totalSlides - (settings.slidesToShow || 1);
 
   return (
     <div className="flex flex-col gap-4 lg:gap-[40px]">
       <Slider {...settings} ref={sliderRef}>
-        {aboutLists?.Catagories?.map((item, index) => {
-          return (
-            <FadeUpAnimation key={index} delay={0.1 * index}>
-              <div className="px-[11px] my-[11px]" key={index}>
-                <AboutUsCard
-                  icon={item?.headerIcon}
-                  title={item?.menuTitle}
-                  key={index}
-                  link={`/about-us/${item?.slug}`}
-                />
-              </div>
-            </FadeUpAnimation>
-          );
-        })}
+        {aboutLists?.Catagories?.map((item, index) => (
+          <FadeUpAnimation key={index} delay={0.1 * index}>
+            <div className="px-[11px] my-[11px]" key={index}>
+              <AboutUsCard
+                icon={item?.headerIcon || ""}
+                title={item?.menuTitle || ""}
+                link={`/about-us/${item?.slug || ""}`}
+              />
+            </div>
+          </FadeUpAnimation>
+        ))}
       </Slider>
       <div>
         <div className="flex flex-col lg:flex-row justify-between gap-4 items-center">

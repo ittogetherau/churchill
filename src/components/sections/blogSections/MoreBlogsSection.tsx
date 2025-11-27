@@ -11,7 +11,7 @@ interface Blog {
   title: string;
   image: string;
   date: string;
-  tags?: BlogTag[];
+  tags?: string[];
   description: string;
   subTitle?: string;
   index?: number;
@@ -46,12 +46,12 @@ const MoreBlogsSection = ({ slug }: MoreBlogsSectionProps) => {
               .slice(0, 3)
               .map((item, index) => (
                 <BlogItemCard
-                  key={index}
+                  key={item.slug}
                   slug={item.slug}
                   title={item.title}
                   image={item.image}
                   date={item.date}
-                  tags={item?.tags}
+                  tags={item.tags}
                   description={item.description}
                   subTitle={item.subTitle}
                   index={item.index}

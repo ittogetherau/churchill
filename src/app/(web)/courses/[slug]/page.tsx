@@ -4,7 +4,7 @@ import CoursesSlider from "@/components/sliders/CoursesSlider";
 import TabbedPane from "@/components/TabbedPane/TabbedPane";
 import { FetchCourseData } from "@/components/utils/apiQueries";
 
-const Page = async ({ params }) => {
+const Page = async ({ params }: { params: { slug: string } }) => {
   const { slug } = await params;
 
   const response = await FetchCourseData(slug);

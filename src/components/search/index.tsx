@@ -1,6 +1,15 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
+interface SearchProps {
+  placeholderText?: string;
+  icon?: React.ReactNode;
+  stylesInner?: string;
+  stylesOuter?: string;
+  text: string;
+  onSearchText: (value: string) => void;
+}
+
 const Search = ({
   placeholderText = "Type Here to Search",
   icon = <FaSearch />,
@@ -8,7 +17,7 @@ const Search = ({
   stylesOuter = "",
   text,
   onSearchText,
-}) => {
+}: SearchProps) => {
   return (
     <>
       <div

@@ -3,8 +3,12 @@ import Button from "../button";
 import { FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-
-const ApplyCard = ({ title, description, image }) => {
+interface ApplyCardProps {
+  title: string;
+  description: string;
+  image: string;
+}
+const ApplyCard = ({ title, description, image }: ApplyCardProps) => {
   return (
     <div
       className="rounded-md px-8 pt-[32px] lg:pb-0 pb-[32px] h-full flex flex-col gap-5 group translate-gradient overflow-hidden"

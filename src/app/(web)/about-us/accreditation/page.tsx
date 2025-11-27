@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const AccredentialSection = () => {
   const data = navItems[2];
-  console.log("dataaa", data);
+
   return (
     <div>
       <PatternBannerCard title="Accreditation" />

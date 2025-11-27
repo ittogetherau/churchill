@@ -4,7 +4,21 @@ import React from "react";
 import Button from "../button";
 import { FaArrowRight } from "react-icons/fa";
 
-const CoursesCard = ({ image, title, faculty, subTitle, link }) => {
+interface courseCardProp {
+  image: string;
+  title: string;
+  faculty: string;
+  subTitle: string;
+  link: string;
+}
+
+const CoursesCard = ({
+  image,
+  title,
+  faculty,
+  subTitle,
+  link,
+}: courseCardProp) => {
   return (
     <div className="rounded-md w-full">
       <div className="flex flex-col gap-8 group">

@@ -1,13 +1,31 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import FadeUpAnimation from "@/animations/FadeUp";
-import { CourseDetailsCard } from "@/components/cards";
 import DataNotFound from "@/components/globals/DataNotFound";
+import CourseDetailsCard from "@/components/cards/CourseDetailsCard";
 
-const CoursesFilterSection = ({ data }) => {
+interface Faculty {
+  faculty_name: string;
+}
+
+interface CourseItem {
+  id: string | number;
+  course_name: string;
+  description?: string;
+  slug: string;
+  course_details?: string;
+  faculty?: Faculty;
+}
+
+interface CoursesFilterSectionProps {
+  data: CourseItem[];
+}
+
+const CoursesFilterSection: React.FC<CoursesFilterSectionProps> = ({
+  data,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredArray, setFilteredArray] = useState(data);
+  const [filteredArray, setFilteredArray] = useState<CourseItem[]>(data);
 
   function handleFilter() {
     setFilteredArray(
@@ -18,10 +36,9 @@ const CoursesFilterSection = ({ data }) => {
       )
     );
   }
-
   useEffect(() => {
-    if (!searchQuery.length > 0) setFilteredArray(data);
-  }, [searchQuery]);
+    if (!searchQuery.length) setFilteredArray(data);
+  }, [searchQuery, data]);
 
   return (
     <div className="container mx-auto px-5 flex flex-col gap-[32px] lg:gap-[64px]">
@@ -45,11 +62,17 @@ const CoursesFilterSection = ({ data }) => {
               {filteredArray.map((item, index) => (
                 <FadeUpAnimation delay={index * 0.1} key={item.id}>
                   <CourseDetailsCard
-                    faculty={item?.faculty?.faculty_name}
-                    menuTitle={item?.course_name}
-                    subTitle={item?.description}
-                    slug={item?.slug}
-                    courseDetails={item?.course_details}
+                    faculty={item?.faculty?.faculty_name ?? ""}
+                    menuTitle={item?.course_name ?? ""}
+                    subTitle={item?.description ?? ""}
+                    slug={item?.slug ?? ""}
+                    courseDetails={
+                      item?.course_details
+                        ? typeof item.course_details === "string"
+                          ? JSON.parse(item.course_details)
+                          : item.course_details
+                        : []
+                    }
                   />
                 </FadeUpAnimation>
               ))}

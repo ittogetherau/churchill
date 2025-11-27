@@ -3,12 +3,12 @@ import Link from "next/link";
 import { FetchUpcomingKeyEventsData } from "@/components/utils/apiQueries";
 import Copyurl from "../../../../components/sections/blogSections/CopyUrl";
 import MoreEventsSection from "@/components/sections/EventsSection/MoreEventsSection";
+import { TEvent, TStaticEvent } from "@/constDatas/eventsData";
 
-const page = async ({ params }) => {
-  const { slug } = await params;
-  const items = await FetchUpcomingKeyEventsData(slug);
-  const data = await items.data;
-
+interface PageProps {
+  params: { slug: string };
+}
+const page = async ({ params }: PageProps) => {
   const monthArray = [
     "Jan",
     "Feb",
@@ -24,9 +24,20 @@ const page = async ({ params }) => {
     "Dec",
   ];
 
-  const eventDate = new Date(data?.start_time);
-  const readTime = Math.ceil(data?.rich_text?.length / 300);
-  const siteUrl = process.env.NEXT_PUBLIC_CHURCHILL_URL;
+  const isStaticEvent = (event: TEvent): event is TStaticEvent => {
+    return (event as TStaticEvent).author !== undefined;
+  };
+
+  const { slug } = params;
+  const items = await FetchUpcomingKeyEventsData(slug);
+  const data: TEvent = await items.data;
+  const eventDate = data.start_time ? new Date(data.start_time) : new Date();
+  const readTime = data.rich_text ? Math.ceil(data.rich_text.length / 300) : 0;
+  const siteUrl = process.env.NEXT_PUBLIC_CHURCHILL_URL || "";
+
+  const author = isStaticEvent(data) ? data.author : "admin";
+  const categories = isStaticEvent(data) ? data.catagories : [];
+  const image = data.image || "/assets/placeholder-event.png"; // fallback image
 
   return (
     <>
@@ -61,7 +72,7 @@ const page = async ({ params }) => {
                     <span>·</span>
 
                     <i className="fi fi-rr-circle-user flex" />
-                    <span>{data?.author ? data?.author : "admin"}</span>
+                    <span>{author}</span>
                     <span>·</span>
 
                     <i className="fi fi-rr-clock-three flex"></i>
@@ -73,7 +84,7 @@ const page = async ({ params }) => {
                   </h2>
 
                   <div
-                    dangerouslySetInnerHTML={{ __html: data?.description }}
+                    dangerouslySetInnerHTML={{ __html: data.description ?? "" }}
                   />
                 </div>
 
@@ -81,8 +92,8 @@ const page = async ({ params }) => {
                   <Image
                     width={2000}
                     height={1500}
-                    src={data?.image}
-                    alt={`event image for ${data?.title}`}
+                    src={image}
+                    alt={`event image for ${data.title}`}
                     className="w-full aspect-[1.78/1] lg:w-[75%] mx-auto object-cover rounded-md"
                   />
                 </div>
@@ -90,9 +101,7 @@ const page = async ({ params }) => {
                 <div className="container-blog">
                   <div
                     className="rich-text-container"
-                    dangerouslySetInnerHTML={{
-                      __html: data?.rich_text,
-                    }}
+                    dangerouslySetInnerHTML={{ __html: data.rich_text ?? "" }}
                   />
                 </div>
               </article>
@@ -101,7 +110,7 @@ const page = async ({ params }) => {
                 <hr className="border border-black/20" />
                 <div className="flex gap-4 md:items-center md:justify-between flex-col md:flex-row">
                   <div className="flex flex-row flex-wrap gap-2">
-                    {data?.catagories?.map((item, index) => (
+                    {categories?.map((item, index) => (
                       <p
                         key={index}
                         className="font-semibold bg-[#F2CF9C] text-[#2C2B4B] rounded-full text-[14px] px-3 py-1 h-fit"

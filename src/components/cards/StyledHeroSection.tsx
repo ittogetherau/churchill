@@ -3,7 +3,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Search from "../search";
 
- 
+interface StyledHeroCardProps {
+  title: string;
+  breadcrumbs?: string;
+  subTitle?: string;
+  showSearch?: boolean;
+  searchText?: string;
+  onSearchText?: (value: string) => void;
+}
+
 const StyledHeroCard = ({
   title,
   breadcrumbs,
@@ -11,7 +19,7 @@ const StyledHeroCard = ({
   onSearchText,
   showSearch = false,
   subTitle,
-}) => {
+}: StyledHeroCardProps) => {
   return (
     <section className="h-[50vh] md:h-[40vh] relative mt-8 md:mt-0">
       <Image
@@ -31,8 +39,8 @@ const StyledHeroCard = ({
         {showSearch && (
           <div className="w-full sm:w-1/3">
             <Search
-              text={searchText}
-              onSearchText={onSearchText}
+              text={searchText ?? ""}
+              onSearchText={onSearchText ?? (() => {})}
               placeholderText="Type Here to Search"
             />
           </div>

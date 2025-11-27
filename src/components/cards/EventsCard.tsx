@@ -3,6 +3,28 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../button";
 import { FaArrowRight } from "react-icons/fa";
+import { TEventTag } from "@/constDatas/eventsData";
+
+export interface EventsCardProps {
+  id?: string | number;
+  slug?: string;
+  image?: string;
+  title: string;
+  subTitle?: string;
+  day?: string | number;
+  month?: string;
+  time?: string;
+  date?: string;
+  link?: string;
+  catagories?: string[];
+  duration?: string;
+  description?: string;
+  rich_text?: string;
+  start_time?: string;
+  end_time?: string;
+  time_duration?: string;
+  tags?: Array<{ name: string }>;
+}
 
 var month = [
   "Jan",
@@ -19,27 +41,26 @@ var month = [
   "Dec",
 ];
 
-const EventsCard = ({
+const EventsCard: React.FC<EventsCardProps> = ({
   image,
   title,
   description,
-  rich_text,
   start_time,
-  end_time,
   slug,
   tags,
 }) => {
-  const dateOBJ = new Date(start_time);
+  const dateObj = start_time ? new Date(start_time) : new Date();
 
-  const formattedDate = `${dateOBJ.getDay()}${
-    dateOBJ.getDay() === 1
-      ? "st"
-      : dateOBJ.getDay() === 2
-      ? "nd"
-      : dateOBJ.getDay() === 3
-      ? "rd"
-      : "th"
-  } ${month[dateOBJ.getMonth()]}`;
+  const getDaySuffix = (day: number): string => {
+    if (day === 1 || day === 21 || day === 31) return "st";
+    if (day === 2 || day === 22) return "nd";
+    if (day === 3 || day === 23) return "rd";
+    return "th";
+  };
+
+  const formattedDate = `${dateObj.getDate()}${getDaySuffix(
+    dateObj.getDate()
+  )} ${month[dateObj.getMonth()]}`;
 
   return (
     <div className="group flex rounded-md border bg-neutral-50 border-gray-500/40 overflow-hidden flex-col md:flex-row gap-3">
@@ -65,10 +86,12 @@ const EventsCard = ({
           </h3>
         </Link>
 
-        <div
-          dangerouslySetInnerHTML={{ __html: description }}
-          className="line-clamp-3"
-        />
+        {description && (
+          <div
+            dangerouslySetInnerHTML={{ __html: description }}
+            className="line-clamp-3"
+          />
+        )}
 
         <Link href={`/events/${slug}`} className="w-fit">
           <Button

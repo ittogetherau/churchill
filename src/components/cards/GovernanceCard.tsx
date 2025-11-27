@@ -1,10 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Button from "../button";
 import { FaArrowRight } from "react-icons/fa";
+import { Button } from "../ui/button";
+interface GovernanceData {
+  image?: string;
+  title: string;
+  subTitle?: string;
+  description?: string;
+  slug?: string;
+}
 
-const GovernanceCard = ({ data }) => {
+interface GovernanceCardProps {
+  data: GovernanceData;
+}
+
+const GovernanceCard: React.FC<GovernanceCardProps> = ({ data }) => {
   const { image, title, subTitle, description, slug } = data;
 
   return (
@@ -27,21 +38,20 @@ const GovernanceCard = ({ data }) => {
         <p className="font-bold text-[16px] text-[#302f36]transition-all ">
           {subTitle}
         </p>
-        <div
-          className="clamp-3"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+        {description && (
+          <div
+            className="clamp-3"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        )}
+
         <Link
           className="w-fit group-hover:text-white"
           href={`/about-us/teams/${slug}`}
         >
-          <Button
-            btnName={"Learn More"}
-            icon={<FaArrowRight />}
-            styleA={"flex items-center gap-1"}
-            styleType="tertiary"
-            style={"group-hover:text-white"}
-          />
+          <Button>
+            <FaArrowRight /> Learn More
+          </Button>
         </Link>
       </div>
     </div>

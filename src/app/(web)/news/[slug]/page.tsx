@@ -1,6 +1,11 @@
+import { NewsCategory } from "@/constDatas/NewsCategory";
 import { NewsData } from "@/constDatas/NewsData";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
+interface PageProps {
+  params: { slug: string };
+}
 const monthArray = [
   "January",
   "February",
@@ -15,12 +20,13 @@ const monthArray = [
   "November",
   "December",
 ];
-
-const page = ({ params }) => {
+const page = ({ params }: PageProps) => {
   const { slug } = params;
 
   const item = NewsData?.find((item) => item.slug === slug);
-
+  if (!item) {
+    notFound();
+  }
   const wordCount = item?.description.length;
   const readTime = Math.round(wordCount / 300);
 
@@ -76,7 +82,6 @@ const page = ({ params }) => {
               alt={item.title}
               className="w-full aspect-video rounded-md object-cover"
             />
-
             <div
               className="rich-text-container"
               dangerouslySetInnerHTML={{ __html: item.description }}
@@ -97,7 +102,7 @@ const page = ({ params }) => {
                       >
                         <div className=" flex items-start gap-[2px] rounded-md overflow-hidden hover:bg-slate-100 hover:shadow transition-all">
                           <Image
-                          alt="image"
+                            alt="image"
                             src={item?.image}
                             width={300}
                             height={300}

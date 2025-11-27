@@ -9,24 +9,44 @@ import { navItems } from "@/constDatas/navItems";
 import FadeUpAnimation from "@/animations/FadeUp";
 import YoutubeSliderCard from "../cards/YoutubeSliderCard";
 
+interface YoutubeItem {
+  title: string;
+  videoId: string;
+}
 const YoutubeSlider = () => {
   const aboutLists = navItems[0];
 
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<Slider>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
 
-  useEffect(() => {
-    const handleSliderUpdate = () => {
-      if (sliderRef.current) {
-        setTotalSlides(sliderRef.current.props.children.length);
-      }
-    };
+  // useEffect(() => {
+  //   const handleSliderUpdate = () => {
+  //     if (sliderRef.current) {
+  //       setTotalSlides(sliderRef.current.props.children.length);
+  //     }
+  //   };
 
-    if (sliderRef.current) {
-      handleSliderUpdate();
-    }
-  }, [currentSlide]);
+  //   if (sliderRef.current) {
+  //     handleSliderUpdate();
+  //   }
+  // }, [currentSlide]);
+
+    useEffect(() => {
+      const handleSliderUpdate = () => {
+        if (sliderRef.current && sliderRef.current.props.children) {
+          const children = Array.isArray(sliderRef.current.props.children)
+            ? sliderRef.current.props.children
+            : [sliderRef.current.props.children];
+          setTotalSlides(children.length);
+        }
+      };
+
+      if (sliderRef.current) {
+        handleSliderUpdate();
+      }
+    }, [currentSlide]);
+
 
   const settings = {
     dots: false,
@@ -58,7 +78,7 @@ const YoutubeSlider = () => {
         },
       },
     ],
-    afterChange: (current) => setCurrentSlide(current),
+    afterChange: (current: number) => setCurrentSlide(current),
   };
 
   const goToPreviousSlide = () => {

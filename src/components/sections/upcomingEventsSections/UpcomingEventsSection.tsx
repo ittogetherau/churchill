@@ -1,6 +1,6 @@
 import React from "react";
-import { eventsData } from "@/constDatas/eventsData";
-import { EventsCard, TopBannerCard } from "@/components";
+import { eventsData, TEvent, TStaticEvent } from "@/constDatas/eventsData";
+import { EventsCard, TopBannerCard } from "@/components/cards";
 
 const UpcomingKeyDatesSection = () => {
   return (
@@ -14,7 +14,7 @@ const UpcomingKeyDatesSection = () => {
         />
       </div>
       <div className="container mx-auto px-5">
-        <div className="flex flex-col gap-[32px] lg:gap-[64px]">
+        {/* <div className="flex flex-col gap-[32px] lg:gap-[64px]">
           <div className="flex flex-col gap-5">
             {eventsData?.map((item, index) => (
               <EventsCard
@@ -33,7 +33,7 @@ const UpcomingKeyDatesSection = () => {
               />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

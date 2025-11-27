@@ -3,13 +3,25 @@ import Button from "@/components/button";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
+interface courseDetails {
+  icon: string;
+  title: string;
+  description: string;
+}
+interface CourseDetailsProp {
+  menuTitle: string;
+  subTitle: string;
+  slug: string;
+  faculty: string;
+  courseDetails: courseDetails[];
+}
 const CourseDetailsCard = ({
   menuTitle,
   subTitle,
   slug,
   faculty,
   courseDetails,
-}) => {
+}: CourseDetailsProp) => {
   return (
     <div className="bg-[#FAF4F4] flex flex-col gap-4 md:gap-3 md:flex-row md:items-center p-4 rounded-md">
       <div className="flex-1 flex flex-col gap-3">
@@ -59,7 +71,6 @@ const CourseDetailsCard = ({
             styleA={"flex items-center gap-1"}
             style="w-full"
             styleType="secondary"
-
           />
         </Link>
       </div>

@@ -2,15 +2,35 @@
 import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaSearch } from "react-icons/fa";
 import TopInfo from "./TopInfo";
-import { navItems } from "@/constDatas/navItems";
+import { NavItem, navItems } from "@/constDatas/navItems";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components";
+
 import { FetchCourseData } from "@/components/utils/apiQueries";
+interface NavListProps {
+  style?: string;
+  isDropdownActive: boolean;
+  handleOnclickA: () => void;
+  handleOnclick: () => void;
+}
+export interface Course {
+  slug: string;
+  course_name: string;
+  menuTitle?: string;
+  headerDesc?: string;
+  icon?: string;
+  headerIcon?: string;
+  link?: string;
+  redirectLink?: string;
+  faculty: {
+    faculty_name: string;
+  };
+}
+
 const NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL =
   process.env.NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL;
 
-const NavList = ({
+const NavList: React.FC<NavListProps> = ({
   style,
   isDropdownActive,
   handleOnclickA,
@@ -20,20 +40,25 @@ const NavList = ({
   const [openSearch, setOpenSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    if (openSearch) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = "https://cse.google.com/cse.js?cx=820c819b7996d4c87";
-      document.body.appendChild(script);
 
-      return () => document.body.removeChild(script);
-    }
-  }, [openSearch]);
 
-  const [coursesData, setCoursesData] = useState([]);
+    useEffect(() => {
+      if (openSearch) {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://cse.google.com/cse.js?cx=820c819b7996d4c87";
+        document.body.appendChild(script);
+
+        return () => {
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+        };
+      }
+    }, [openSearch]);
+
+  const [coursesData, setCoursesData] = useState<Course[]>([]);
   const [isCoursesLoading, setIsCoursesLoading] = useState(true);
-
   useEffect(() => {
     setIsCoursesLoading(true);
     FetchCourseData()
@@ -44,37 +69,29 @@ const NavList = ({
       .catch((err) => console.error(err));
   }, []);
 
-  const groupedCourses = coursesData.reduce((acc, course) => {
-    const facultyName = course.faculty.faculty_name;
-    if (!acc[facultyName]) {
-      acc[facultyName] = [];
-    }
-    acc[facultyName].push(course);
-    return acc;
-  }, {});
-
+  const groupedCourses: Record<string, Course[]> = coursesData.reduce(
+    (acc, course) => {
+      const facultyName = course.faculty.faculty_name;
+      if (!acc[facultyName]) acc[facultyName] = [];
+      acc[facultyName].push(course);
+      return acc;
+    },
+    {} as Record<string, Course[]>
+  );
   return (
     <div className="w-full flex flex-col gap-2 z-40">
-      {/* <div className="hidden lg:block">
-        <div className="flex justify-end">
-          <TopInfo />
-        </div>
-      </div> */}
-
       <ul className={`${style ? style : ""}`}>
-        {navItems?.map((item, index) => {
+        {navItems?.map((item: NavItem, index: number) => {
           const isActive =
             (pathname.includes(item?.slug) && item?.slug?.length > 1) ||
             pathname === item?.slug;
-          const hasSubcategories =
-            item?.Catagories?.length > 0
-              ? true
-              : item.slug === "courses"
-              ? true
-              : false;
 
-          const mapData =
-            item.slug === "courses" ? coursesData : item.Catagories;
+          const hasSubcategories =
+            (item?.Catagories && item.Catagories.length > 0) ||
+            item.slug === "courses";
+
+          const mapData: any[] =
+            item.slug === "courses" ? coursesData : item.Catagories || [];
 
           return (
             <div key={index}>
@@ -238,7 +255,7 @@ const NavList = ({
 
         <li className="sm-py-10 py-[30px]">
           <Link
-            href={NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL}
+            href={NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL || "#"}
             className="flex gap-1 items-center cursor-pointer hover:text-[#eb9320] text-[12px] custom-1280-text"
           >
             <span>Agent Hub</span>

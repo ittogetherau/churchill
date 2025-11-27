@@ -1,7 +1,16 @@
 "use client";
 import React, { useState } from "react";
 
-const TabbedPane = ({ data }) => {
+interface TabItem {
+  title: string;
+  rich_text: string;
+}
+
+interface TabbedPaneProps {
+  data: TabItem[];
+}
+
+const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (

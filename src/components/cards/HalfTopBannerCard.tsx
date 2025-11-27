@@ -6,7 +6,23 @@ import { FaArrowRight } from "react-icons/fa";
 
 import FadeUpAnimation from "@/animations/FadeUp";
 
-const HalfTopBannerCard = ({
+interface HalfTopBannerCardProps {
+  image: string;
+  title: string;
+  subTitle: string;
+  titleSpan: string;
+  imageA?: string;
+  BtnAText: string;
+  BtnBText: string;
+  link: string;
+  linkA: string;
+  beforeTitle?: string;
+  imageAStyle?: React.CSSProperties;
+  courseCode?: string;
+  handleRightBtn: () => void;
+}
+
+const HalfTopBannerCard: React.FC<HalfTopBannerCardProps> = ({
   image,
   title,
   subTitle,
@@ -44,7 +60,7 @@ const HalfTopBannerCard = ({
             {courseCode && (
               <FadeUpAnimation delay={0.15}>
                 <p className="text-white underline-[#2C2B4B] pb-1 px-[2px] mt-5 text-xl font-extrabold w-fit">
-                  CRICOS Course Code:{' '}
+                  CRICOS Course Code:{" "}
                   <span className="relative before:absolute before:w-full before:h-1 before:bg-[#E59623] before:bottom-0 before:left-0">
                     {courseCode}
                   </span>
@@ -83,7 +99,7 @@ const HalfTopBannerCard = ({
               </div>
             </div>
 
-            {titleSpan === 'Major in Accounting' && (
+            {titleSpan === "Major in Accounting" && (
               <Image
                 src={`/assets/accredit.png`}
                 alt=""

@@ -2,7 +2,19 @@ import Button from "@/components/button";
 import Image from "next/image";
 import Link from "next/link";
 
-const SplitHero = ({ image, description, title, cta }) => {
+interface SplitHeroProps {
+  image: string;
+  description: string;
+  title: string;
+  cta?: {
+    href: string;
+    external?: boolean;
+    text: string;
+    icon?: React.ReactNode;
+  };
+}
+
+const SplitHero = ({ image, description, title, cta }: SplitHeroProps) => {
   return (
     <section className="container mx-auto flex flex-col md:flex-row items-center justify-between mb-20 p-5">
       <div className="w-full md:w-1/2 mb-6 md:mb-0">

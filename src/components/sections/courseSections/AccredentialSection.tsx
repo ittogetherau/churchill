@@ -3,7 +3,7 @@ import Image from "next/image";
 import { navItems } from "@/constDatas/navItems";
 import { PatternBannerCard } from "@/components/cards";
 
-const AccredentialSection = ({ slug }) => {
+const AccredentialSection = () => {
   const data = navItems[2];
 
   return (
@@ -38,10 +38,10 @@ const AccredentialSection = ({ slug }) => {
                   </div>
 
                   <h2 className="flex items-center justify-center md:gap-8 flex-wrap">
-                    {item.accredited.map((item, index) => (
+                    {(item.accredited || []).map((logo, index) => (
                       <Image
-                        src={item}
-                        alt={item}
+                        src={logo}
+                        alt={logo}
                         key={index}
                         width={100}
                         height={100}

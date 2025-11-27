@@ -2,10 +2,19 @@
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-const AccordionComponent = ({ data }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+interface AccordionItem {
+  title: string;
+  description: string;
+}
 
-  const handleToggle = (index) => {
+interface AccordionComponentProps {
+  data: AccordionItem[];
+}
+
+const AccordionComponent: React.FC<AccordionComponentProps> = ({ data }) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
+
+  const handleToggle = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 

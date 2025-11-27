@@ -5,8 +5,18 @@ import { FetchCourseData } from "@/components/utils/apiQueries";
 import { useEffect, useState } from "react";
 import CoursesCard from "../cards/CoursesCard";
 
+interface CourseItem {
+  heroImage: string;
+  faculty: {
+    faculty_name: string;
+  };
+  course_name: string;
+  description: string;
+  slug: string;
+}
+
 const CoursesSlider = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<CourseItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const page = () => {
       }}
     >
       <div className="mx-auto w-[80px] h-[80px] rounded-full grid place-items-center border-8 border-primary-orange">
-        <i class="fi fi-br-check flex text-4xl text-primary-orange"></i>
+        <i className="fi fi-br-check flex text-4xl text-primary-orange"></i>
       </div>
       <h2 className="text-3xl lg:text-5xl font-bold w-fit mx-auto">
         Thankyou For Submitting Ticket to Our Churchill Representative.
@@ -25,7 +25,7 @@ const page = () => {
       </p>
 
       <a href="/" className="w-fit mx-auto block">
-        <Button btnName={"Return To Home page"} />
+        <Button>Return To Home page</Button>
       </a>
     </div>
   );

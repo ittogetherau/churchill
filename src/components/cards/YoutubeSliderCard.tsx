@@ -3,7 +3,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const YoutubeSliderCard = ({ videoId, title }) => {
+type Props = {
+  videoId?: string;
+  title?: string;
+};
+
+const YoutubeSliderCard: React.FC<Props> = ({ videoId, title }) => {
   return (
     <Link target="_blank" href={`https://www.youtube.com/watch?v=${videoId}`}>
       <div className="group">

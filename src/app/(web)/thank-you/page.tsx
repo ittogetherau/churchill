@@ -24,7 +24,7 @@ const page = () => {
       </p>
 
       <a href="/" className="w-fit mx-auto block">
-        <Button btnName={"Return To Home page"} />
+        <Button>Return To Home page</Button>
       </a>
     </div>
   );

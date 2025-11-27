@@ -8,8 +8,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
+interface BlogItem {
+  slug: string;
+  title: string;
+  image: string;
+  date: string;
+  tags?: string[];
+  description?: string;
+}
 function BlogSection() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<BlogItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -17,17 +25,18 @@ function BlogSection() {
 
     FetchBlogData()
       .then((res) => {
-        const sorted = res.data.sort((prev, next) => {
-          const prevDate = new Date(prev.date);
-          const nextDate = new Date(next.date);
-          return nextDate - prevDate;
-        });
+        const sorted: BlogItem[] = res.data.sort(
+          (prev: BlogItem, next: BlogItem) => {
+            const prevDate = new Date(prev.date);
+            const nextDate = new Date(next.date);
+            return nextDate.getTime() - prevDate.getTime();
+          }
+        );
         setData(sorted);
         setIsLoading(false);
       })
       .catch((err) => console.error(err));
   }, []);
-
   return (
     <>
       {!isLoading && (
@@ -53,7 +62,7 @@ function BlogSection() {
                       image={item?.image}
                       date={formattedDate}
                       tags={item?.tags}
-                      description={item?.description}
+                      description={item?.description ?? ""}
                       index={index}
                     />
                   </FadeUpAnimation>

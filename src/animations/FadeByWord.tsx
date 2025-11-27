@@ -1,10 +1,24 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+interface FadeByWordProps {
+  children: string;
+}
 
-const FadeByWordAnimation = ({ children }) => {
-  const element = useRef(null);
+interface WordProps {
+  children: string;
+  range: [number, number];
+  progress: MotionValue<number>;
+}
 
+interface CharacterProps {
+  children: string;
+  range: [number, number];
+  progress: MotionValue<number>;
+}
+
+const FadeByWordAnimation = ({ children }: FadeByWordProps) => {
+  const element = useRef<HTMLParagraphElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: element,
     offset: ["start .8", "start .3"],
@@ -28,7 +42,7 @@ const FadeByWordAnimation = ({ children }) => {
   );
 };
 
-const Word = ({ children, range, progress }) => {
+const Word = ({ children, range, progress }: WordProps) => {
   const characters = children.split("");
   const amount = range[1] - range[0];
   const step = amount / children.length;
@@ -49,7 +63,7 @@ const Word = ({ children, range, progress }) => {
   );
 };
 
-const Character = ({ children, range, progress }) => {
+const Character = ({ children, range, progress }: CharacterProps) => {
   const opacity = useTransform(progress, range, [0, 1]);
   return (
     <span className="relative">

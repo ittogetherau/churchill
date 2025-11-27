@@ -1,8 +1,18 @@
 import React from "react";
-import { Button } from "@/components";
-import { FaArrowRight } from "react-icons/fa";
-// import Image from "next/image";
-// import Link from "next/link";
+
+export interface AgentInfoProp {
+  RecruitmentAgentOwner?: string;
+  RecruitmentAgentName?: string;
+  Phone?: string;
+  Website?: string;
+  BillingStreet?: string;
+  Billingcity?: string;
+  BillingState?: string;
+  BillingCode?: string;
+  Description?: string;
+  RecruitmentAgencyEmail?: string;
+  RepresentativeContactName?: string;
+}
 
 const AgentInfoCard = ({
   RecruitmentAgentOwner,
@@ -16,7 +26,7 @@ const AgentInfoCard = ({
   Description,
   RecruitmentAgencyEmail,
   RepresentativeContactName,
-}) => {
+}: AgentInfoProp) => {
   return (
     <div className="bg-light-grey p-4 rounded-md">
       <a

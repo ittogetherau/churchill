@@ -1,10 +1,10 @@
 import { navItems } from "@/constDatas/navItems";
 import Image from "next/image";
 
-const page = () => {
-  const info = navItems[0]?.Catagories.filter(
+const page = ({ params }: { params: { slug: string } }) => {
+  const info = navItems[0]?.Catagories?.filter(
     (item) => item?.slug.toLowerCase() === "governance-and-leadership"
-  )[0].CatagoriesItem.find((item) => item.slug === slug);
+  )[0]?.CatagoriesItem?.find((item) => item.slug === params.slug);
   const data = info;
 
   return (

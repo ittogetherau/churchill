@@ -1,7 +1,20 @@
 import Image from "next/image";
 import React from "react";
 
-const PopUpDetailsCard = ({ data, handlePopUpClose }) => {
+interface PopUpDetailsCardProps {
+  data: {
+    title: string;
+    subTitle: string;
+    image: string;
+    description: string;
+  };
+  handlePopUpClose: () => void;
+}
+
+const PopUpDetailsCard: React.FC<PopUpDetailsCardProps> = ({
+  data,
+  handlePopUpClose,
+}) => {
   const { title, subTitle, image, description } = data;
   return (
     <div className="z-50 fixed top-0 left-0 right-0 bottom-0 bg-black/75">

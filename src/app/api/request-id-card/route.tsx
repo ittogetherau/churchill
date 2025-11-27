@@ -1,17 +1,50 @@
 import axios from "axios";
-import fs from "fs";
-import path from "path";
+import { NextRequest, NextResponse } from "next/server";
 
-let currentAccessToken = null;
+interface TokenResponse {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+}
+
+interface Contact {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+interface TicketData {
+  departmentId: string;
+  contact: Contact;
+  cf: {
+    cf_student_id: string;
+  };
+  subject: string;
+  status: "Open" | "Closed" | "On Hold" | "In Progress";
+}
+
+interface ZohoError {
+  errorCode: string;
+  message: string;
+}
+
+interface CreateTicketResponse {
+  id: string;
+  ticketNumber: string;
+  subject: string;
+  [key: string]: any;
+}
+
+let currentAccessToken: string | null = null;
 
 // Function to read access token from a file
-function readAccessToken() {
+function readAccessToken(): string | null {
   const token = process.env.ACCESS_TOKEN;
-  return token;
+  return token || null;
 }
 
 // Function to write access token to a file
-function writeAccessToken(token) {
+function writeAccessToken(token: string): void {
   process.env.ACCESS_TOKEN = token;
   currentAccessToken = token;
 }
@@ -19,11 +52,11 @@ function writeAccessToken(token) {
 // Initialize access token from the file (or set to null if file doesn't exist)
 currentAccessToken = readAccessToken();
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   const { firstName, lastName, email, id, subject } = await request.json();
 
-  async function getNewAccessToken() {
-    const response = await axios.post(
+  async function getNewAccessToken(): Promise<string> {
+    const response = await axios.post<TokenResponse>(
       "https://accounts.zoho.com.au/oauth/v2/token",
       null,
       {
@@ -42,9 +75,9 @@ export async function POST(request) {
     return newAccessToken;
   }
 
-  async function createTicket(accessToken) {
+  async function createTicket(accessToken: string): Promise<NextResponse> {
     try {
-      const response = await axios.post(
+      const response = await axios.post<CreateTicketResponse>(
         "https://desk.zoho.com.au/api/v1/tickets",
         {
           departmentId: process.env.STUDENT_SUPPORT_TEAM_DEPARTMENT,
@@ -68,16 +101,26 @@ export async function POST(request) {
         }
       );
 
-      return new Response(JSON.stringify(response.data), { status: 200 });
+      return NextResponse.json(response.data, { status: 200 });
     } catch (error) {
-      if (error.response && error.response.data.errorCode === "INVALID_OAUTH") {
-        const newAccessToken = await getNewAccessToken();
-        return await createTicket(newAccessToken);
-      } else {
-        return new Response(JSON.stringify(error.response.data), {
-          status: error.response.status,
-        });
+      if (axios.isAxiosError(error) && error.response) {
+        const zohoError = error.response.data as ZohoError;
+
+        if (zohoError.errorCode === "INVALID_OAUTH") {
+          const newAccessToken = await getNewAccessToken();
+          return await createTicket(newAccessToken);
+        } else {
+          return NextResponse.json(zohoError, {
+            status: error.response.status,
+          });
+        }
       }
+
+      // Return a generic error response for non-Axios errors
+      return NextResponse.json(
+        { errorCode: "UNKNOWN_ERROR", message: "An unknown error occurred" },
+        { status: 500 }
+      );
     }
   }
 

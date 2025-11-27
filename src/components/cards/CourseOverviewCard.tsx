@@ -1,7 +1,18 @@
 import React from "react";
 import FadeUpAnimation from "@/animations/FadeUp";
+interface OverviewItem {
+  icon?: string;
+  title?: string;
+  description?: string;
+}
 
-const CourseOverviewSection = ({ overviewData }) => {
+interface CourseOverviewSectionProps {
+  overviewData?: OverviewItem[];
+}
+
+const CourseOverviewSection = ({
+  overviewData,
+}: CourseOverviewSectionProps) => {
   return (
     <>
       <div className="container mx-auto px-5">
@@ -16,16 +27,20 @@ const CourseOverviewSection = ({ overviewData }) => {
                 </div>
 
                 <div className="">
-                  <h3
-                    className="text-[#2C2B4B] font-bold text-lg"
-                    dangerouslySetInnerHTML={{ __html: item?.description }}
-                  >
-                    {/* {item?.description} */}
-                  </h3>
-                  <div
-                    className="text-[#2C2B4B]"
-                    dangerouslySetInnerHTML={{ __html: item?.title }}
-                  ></div>
+                  {item.description && (
+                    <h3
+                      className="text-[#2C2B4B] font-bold text-lg"
+                      dangerouslySetInnerHTML={{ __html: item?.description }}
+                    >
+                      {/* {item?.description} */}
+                    </h3>
+                  )}
+                  {item.title && (
+                    <div
+                      className="text-[#2C2B4B]"
+                      dangerouslySetInnerHTML={{ __html: item?.title }}
+                    ></div>
+                  )}
                 </div>
               </div>
             </FadeUpAnimation>

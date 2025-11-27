@@ -9,7 +9,7 @@ interface BlogItemCardProps {
   title: string;
   image: string;
   date: string;
-  tags?: BlogTag[];
+  tags?: BlogTag[] | string[];
   description: string;
   subTitle?: string;
   index?: number;

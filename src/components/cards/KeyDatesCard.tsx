@@ -15,7 +15,16 @@ const monthArray = [
   "Nov",
   "Dec",
 ];
-const KeyDatesCard = ({
+interface KeyDatesCardProps {
+  title: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  category: string[];
+  audience: string[];
+}
+
+const KeyDatesCard: React.FC<KeyDatesCardProps> = ({
   title,
   description,
   start_date,
@@ -25,8 +34,9 @@ const KeyDatesCard = ({
 }) => {
   const dateObj = new Date(start_date);
 
-
-  const formattedDate = `${dateObj.getDate()} ${monthArray[dateObj.getMonth()]}`;
+  const formattedDate = `${dateObj.getDate()} ${
+    monthArray[dateObj.getMonth()]
+  }`;
 
   return (
     <>

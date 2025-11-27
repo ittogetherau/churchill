@@ -19,10 +19,9 @@ const stepTitles = [
 
 const Page = () => {
   const [isIDFormShown, setIsIDFormShown] = useState(false);
-  const [activeId, setActiveId] = useState(1);
-
-  const handleToggle = (id) => {
-    setActiveId(activeId === id ? null : id);
+  const [activeId, setActiveId] = useState<number | null>(1);
+  const handleToggle = (id: number) => {
+    setActiveId((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -136,14 +135,14 @@ const Page = () => {
                             href="/assets/docs/Churchill-USI-Instruction-guide.pdf"
                             target="_blank"
                           >
-                            <Button btnName={"Download Guide"} />
+                            <Button>Download Guide</Button>
                           </a>
                           <a
                             className="w-fit"
                             href="https://www.usi.gov.au/students/get-a-usi"
                             target="_blank"
                           >
-                            <Button btnName={"Sign Up Now"} />
+                            <Button>Sign Up Now</Button>
                           </a>
                         </div>
                       </div>

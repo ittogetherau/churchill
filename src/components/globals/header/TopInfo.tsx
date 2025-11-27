@@ -6,7 +6,14 @@ const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL =
 const NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL =
   process.env.NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL;
 
-const links = [
+interface LinkItem {
+  href: string;
+  text: string;
+  iconClass: string;
+  external?: boolean;
+}
+
+const links: LinkItem[] = [
   // {
   //   href: "https://elearning.churchill.nsw.edu.au/",
   //   text: "Learning Management System (LMS)",

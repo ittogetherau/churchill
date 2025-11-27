@@ -7,25 +7,43 @@ import React, {
 } from "react";
 import { motion } from "framer-motion";
 
-const icons = {
+export type ToastType = "information" | "success" | "error";
+
+export interface ToastProps {
+  timeout?: number;
+}
+
+export interface ToastRef {
+  showToast: (message: string, type: ToastType, customFavicon?: string) => void;
+}
+
+interface ToastInfo {
+  message: string;
+  type: ToastType | "";
+  customFavicon?: string;
+}
+
+const icons: Record<ToastType, string> = {
   information: "fi fi-rr-exclamation",
   success: "fi fi-rr-check-circle",
   error: "fi fi-rr-cross-circle",
 };
 
-const colors = {
+const colors: Record<ToastType, string> = {
   information: "#E59623",
   success: "#9EE11E",
   error: "#E10500",
 };
 
-const ToastComponent = ({ timeout = 2000 }, ref) => {
+const ToastComponent = (
+  { timeout = 2000 }: ToastProps,
+  ref: React.Ref<ToastRef>
+) => {
   const [isShown, setIsShown] = useState(false);
 
-  const [toastInfo, setToastInfo] = useState({
+  const [toastInfo, setToastInfo] = useState<ToastInfo>({
     message: "",
     type: "",
-    customFavicon: "",
   });
 
   useImperativeHandle(ref, () => ({
@@ -67,7 +85,11 @@ const ToastComponent = ({ timeout = 2000 }, ref) => {
           duration: 0.5,
           ease: [0, 0.71, 0.2, 1.01],
         }}
-        style={{ border: `${colors[toastInfo.type]} 2px solid` }}
+        style={{
+          border: `${
+            toastInfo.type ? colors[toastInfo.type] : "#fff"
+          } 2px solid`,
+        }}
         onClick={() => setIsShown(false)}
         className={`bg-primary-orange border shadow-xl shadow-primary-orange/10 rounded-md overflow-hidden cursor-pointer`}
       >
@@ -83,10 +105,11 @@ const ToastComponent = ({ timeout = 2000 }, ref) => {
             className={`${
               toastInfo.customFavicon
                 ? toastInfo.customFavicon
-                : icons[toastInfo.type]
-            } w-12 h-12  bg-white aspect-square rounded-full grid place-items-center  text-2xl`}
+                : toastInfo.type
+                ? icons[toastInfo.type]
+                : ""
+            } w-12 h-12 bg-white aspect-square rounded-full grid place-items-center text-2xl`}
           />
-
           <span className="font-semibold text-white w-[20rem]">
             {toastInfo.message}
           </span>

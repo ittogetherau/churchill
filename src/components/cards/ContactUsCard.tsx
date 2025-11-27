@@ -1,13 +1,27 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+import React from "react";
 
+interface SocialLink {
+  url: string;
+  icon: React.ReactNode;
+  title: string;
+}
+
+interface ContactUsProp {
+  title?: string;
+  description?: string;
+  iconUrl: string | StaticImageData;
+  redirect?: string;
+  socialLinks?: SocialLink[];
+}
 const ContactUsCard = ({
   title,
   description,
   iconUrl,
   redirect,
   socialLinks,
-}) => {
+}: ContactUsProp) => {
   return (
     <>
       <div className="bg-[#E9E9E9] h-full p-4 md:p-6 rounded-md flex flex-col gap-4 hover:outline hover:outline-neutral-900/20">

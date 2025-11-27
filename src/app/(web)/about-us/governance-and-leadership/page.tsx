@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 const slug = "governance-and-leadership";
 
 const GovernancePageSection = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     const info = navItems[0]?.Catagories?.find((item) => item?.slug === slug);
-    setData(info?.CatagoriesItem);
+    setData(info?.CatagoriesItem ?? []);
   }, [slug]);
 
   return (

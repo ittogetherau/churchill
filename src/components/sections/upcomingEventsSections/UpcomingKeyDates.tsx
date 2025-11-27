@@ -20,11 +20,24 @@ const monthsList = [
   "December",
 ];
 
+interface EventItem {
+  id: string;
+  title: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  category: string[];
+  audience: string[];
+}
+
+interface OrganizedData {
+  [year: string]: EventItem[][];
+}
 const UpcomingKeyDates = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<OrganizedData>({});
   const [isLoading, setIsLoading] = useState(true);
-  const [expandedMonth, setExpandedMonth] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(null);
+  const [expandedMonth, setExpandedMonth] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [noDataFound, setNoDataFound] = useState(false);
 
   useEffect(() => {
@@ -36,11 +49,11 @@ const UpcomingKeyDates = () => {
           return;
         }
 
-        const organizedData = {};
+        const organizedData: OrganizedData = {};
         const currentYear = new Date().getFullYear();
         const currentMonth = new Date().getMonth();
 
-        res.data.forEach((item) => {
+        res.data.forEach((item: EventItem) => {
           const eventDate = new Date(item.start_date);
           const year = eventDate.getFullYear();
           const month = eventDate.getMonth();
@@ -87,7 +100,7 @@ const UpcomingKeyDates = () => {
       });
   }, []);
 
-  const toggleMonth = (year, month) => {
+  const toggleMonth = (year: string, month: number) => {
     const key = `${year}-${month}`;
     setExpandedMonth((prev) => (prev === key ? null : key));
   };
@@ -110,7 +123,7 @@ const UpcomingKeyDates = () => {
       <div>
         <div className="flex flex-wrap gap-2 mb-6 items-center">
           {Object.keys(data)
-            .sort((a, b) => a - b)
+            .sort((a, b) => Number(a) - Number(b))
             .map((year) => (
               <button
                 key={year}
@@ -163,7 +176,6 @@ const UpcomingKeyDates = () => {
                             end_date={item?.end_date}
                             category={item?.category}
                             audience={item?.audience}
-                            isFullwidth={true}
                           />
                         ))
                       ) : (

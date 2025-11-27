@@ -2,9 +2,16 @@
 import React, { useState, useRef } from "react";
 import { FaArrowRight, FaIdCard } from "react-icons/fa";
 import Button from "../button";
-import { ToastComponent } from '@/components';
+import ToastComponent, { ToastRef } from "@/components/toast/Toast";
+interface FormData {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+}
 
-const defaultFormState = {
+const defaultFormState: FormData = {
   id: "",
   firstName: "",
   lastName: "",
@@ -13,14 +20,13 @@ const defaultFormState = {
 };
 
 const RequestIDCardForm = () => {
-  const [formData, setFormData] = useState(defaultFormState);
-
-  const handleFormChange = (e) => {
+  const [formData, setFormData] = useState<FormData>(defaultFormState);
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -36,16 +42,16 @@ const RequestIDCardForm = () => {
 
       const data = await response.json();
 
-      if (data.errorCode) throw error(err);
+      if (data.errorCode) throw new Error("Error submitting form");
 
       setFormData(defaultFormState);
-      toastRef.current.showToast("Form Submitted successfully!", "success");
+      toastRef.current?.showToast("Form Submitted successfully!", "success");
     } catch (error) {
-      toastRef.current.showToast("An error Occoured", "error");
+      toastRef.current?.showToast("An error Occoured", "error");
     }
   };
 
-  const toastRef = useRef();
+  const toastRef = useRef<ToastRef>(null);
 
   return (
     <>

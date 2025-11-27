@@ -1,6 +1,7 @@
 import React from "react";
 import { NewsData } from "@/constDatas/NewsData";
-import { NewsItemCard } from "@/components";
+import { NewsItemCard } from "@/components/cards";
+
 const NewsletterSection = ({ showAll = true }) => {
   return (
     <div className="container mx-auto px-5">

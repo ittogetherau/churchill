@@ -63,7 +63,6 @@ const Page = () => {
             minWidth: "100%",
             maxWidth: "800px",
           }}
-          allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
