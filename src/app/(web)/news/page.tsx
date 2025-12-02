@@ -1,0 +1,33 @@
+import { PatternBannerCard } from "@/components/cards";
+import NewsItemCard from "@/components/cards/NewsItemCard";
+import { NewsData } from "@/constDatas/NewsData";
+import ContainerLayout from "@/layouts/container-layout";
+interface NewsPageProps {
+  showAll?: boolean;
+}
+const NewsPage = ({ showAll = true }: NewsPageProps) => {
+  return (
+    <>
+      <PatternBannerCard title="News" />
+      <ContainerLayout>
+        <div className="flex flex-col gap-4 ">
+          {NewsData?.slice(0, showAll ? NewsData.length : 2)?.map(
+            (item, index) => (
+              <NewsItemCard
+                key={index}
+                image={item?.image}
+                title={item?.title}
+                newsCategory={item?.newsCategory || ""}
+                date={item?.date}
+                description={item?.description}
+                slug={item?.slug}
+              />
+            )
+          )}
+        </div>
+      </ContainerLayout>
+    </>
+  );
+};
+
+export default NewsPage;

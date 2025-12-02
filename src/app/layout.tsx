@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import {
-  CookieBanner,
-  Footer,
-  EmergencyContactFloater,
-  Header,
-} from "@/components";
+import "./css/globals.css";
+import { Toaster } from "@/components/ui/sonner";
+import Header from "@/components/globals/header";
+import CookieBanner from "@/components/globals/CookieBanner";
+import Footer from "@/components/globals/footer";
 
 export const metadata: Metadata = {
   title: "Churchill Institute of Higher Education",
@@ -106,11 +104,13 @@ export default function RootLayout({
           href="https://cdn-uicons.flaticon.com/2.4.0/uicons-brands/css/uicons-brands.css"
         ></link>
       </head>
-      <body>
+      <body className="relative">
         <Header />
         {children}
-        {/* <EmergencyContactFloater /> */}
+
+        <Toaster />
         <CookieBanner />
+
         <Footer />
       </body>
     </html>
