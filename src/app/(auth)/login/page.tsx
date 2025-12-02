@@ -1,16 +1,18 @@
 import FadeUpAnimation from "@/animations/FadeUp";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import { navItems } from "@/constDatas/navItems";
+import ContainerLayout from "@/layouts/container-layout";
+import SpacingLayout from "@/layouts/spacing-layout";
 import Link from "next/link";
 
 const page = () => {
   const loginData = navItems[3];
 
   return (
-    <div>
+    <SpacingLayout>
       <PatternBannerCard title="Login" />
 
-      <div className="container mx-auto px-5 mb-[32px]">
+      <ContainerLayout>
         <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
           {loginData.Catagories?.map((item, index) => (
             <FadeUpAnimation delay={0.1 * index} key={index}>
@@ -37,8 +39,8 @@ const page = () => {
             </FadeUpAnimation>
           ))}
         </div>
-      </div>
-    </div>
+      </ContainerLayout>
+    </SpacingLayout>
   );
 };
 

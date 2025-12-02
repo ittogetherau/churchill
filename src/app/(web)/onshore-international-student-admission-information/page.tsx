@@ -1,6 +1,8 @@
+import ContainerLayout from "@/layouts/container-layout";
+
 const Page = () => {
   return (
-    <div className="container-blog px-4 py-12">
+    <ContainerLayout size="sm" className="mt-16">
       <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
         Onshore International Student and Domestic Student Admission Information{" "}
       </h1>
@@ -377,7 +379,7 @@ const Page = () => {
         </ol>
         {/*  */}
       </main>
-    </div>
+    </ContainerLayout>
   );
 };
 

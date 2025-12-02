@@ -73,9 +73,9 @@ const TopBannerCard = ({
             )}
 
             <FadeUpAnimation delay={0}>
-              <h2 className="text-4xl font-extrabold md:text-[70px] leading-8 md:leading-[72px] text-[#ffffff]">
+              <h1 className="text-4xl font-extrabold md:text-[70px] leading-8 md:leading-[72px] text-[#ffffff]">
                 {titleSpan} {title}
-              </h2>
+              </h1>
             </FadeUpAnimation>
 
             {courseCode && (

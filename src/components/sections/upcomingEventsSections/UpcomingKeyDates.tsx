@@ -4,6 +4,7 @@ import { FetchUpcomingKeyDate } from "@/components/utils/apiQueries";
 import Spiner from "@/components/spiner";
 import DataNotFound from "@/components/globals/DataNotFound";
 import { KeyDatesCard } from "@/components/cards";
+import ContainerLayout from "@/layouts/container-layout";
 
 const monthsList = [
   "January",
@@ -115,7 +116,7 @@ const UpcomingKeyDates = () => {
     );
 
   return (
-    <div className="flex flex-col gap-[32px] lg:gap-[64px] container mx-auto px-5">
+    <ContainerLayout>
       <h2 className="font-bold text-[36px] text-center mx-auto text-[#2C2B4B]">
         Key Dates
       </h2>
@@ -191,7 +192,7 @@ const UpcomingKeyDates = () => {
           </div>
         )}
       </div>
-    </div>
+    </ContainerLayout>
   );
 };
 

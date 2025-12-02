@@ -1,7 +1,9 @@
+import ContainerLayout from "@/layouts/container-layout";
+
 const page = () => {
   return (
-    <div className="bg-gray-50 py-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mt-16">
+      <ContainerLayout>
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
             Advanced Standing
@@ -204,7 +206,7 @@ const page = () => {
                 viewBox="0 0 24 24"
               >
                 <path
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M5 13l4 4L19 7"
@@ -346,7 +348,7 @@ const page = () => {
             <span>Download Application Form</span>
           </a>
         </div> */}
-      </div>
+      </ContainerLayout>
     </div>
   );
 };

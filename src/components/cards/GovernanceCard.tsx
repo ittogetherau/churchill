@@ -1,8 +1,9 @@
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
 import { Button } from "../ui/button";
+
 interface GovernanceData {
   image?: string;
   title: string;
@@ -31,7 +32,7 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({ data }) => {
           />
         </div>
       </div>
-      <div className="-translate-y-8 group-hover:-translate-y-12 flex flex-col gap-3 p-6 md:mx-4 bg-[#f5f3ef] group-hover:bg-primary-orange  transition-all rounded-lg">
+      <div className="-translate-y-8 group-hover:-translate-y-12 flex flex-col gap-3 p-6 md:mx-4 bg-[#f5f3ef] group-hover:bg-alt-background  transition-all rounded-lg">
         <h3 className="font-bold text-2xl text-[#302f36] transition-all">
           {title}
         </h3>
@@ -40,7 +41,7 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({ data }) => {
         </p>
         {description && (
           <div
-            className="clamp-3"
+            className="line-clamp-3"
             dangerouslySetInnerHTML={{ __html: description }}
           />
         )}
@@ -50,7 +51,7 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({ data }) => {
           href={`/about-us/teams/${slug}`}
         >
           <Button>
-            <FaArrowRight /> Learn More
+            <ArrowRight /> Learn More
           </Button>
         </Link>
       </div>

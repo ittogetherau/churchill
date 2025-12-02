@@ -100,7 +100,7 @@ const page = async ({ params }: PageProps) => {
 
                 <div className="container-blog">
                   <div
-                    className="rich-text-container"
+                    className="rich_text_container"
                     dangerouslySetInnerHTML={{ __html: data.rich_text ?? "" }}
                   />
                 </div>

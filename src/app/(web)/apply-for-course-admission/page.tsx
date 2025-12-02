@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
+import ContainerLayout from "@/layouts/container-layout";
 import Link from "next/link";
 
 const page = () => {
   return (
     <>
-      <main className="container-blog my-16">
+      <ContainerLayout className="mt-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
             Admission Information
@@ -42,7 +43,7 @@ const page = () => {
             </Link>
           </div>
         </section>
-      </main>
+      </ContainerLayout>
     </>
   );
 };

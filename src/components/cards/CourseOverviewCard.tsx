@@ -1,5 +1,6 @@
 import React from "react";
 import FadeUpAnimation from "@/animations/FadeUp";
+import ContainerLayout from "@/layouts/container-layout";
 interface OverviewItem {
   icon?: string;
   title?: string;
@@ -15,8 +16,8 @@ const CourseOverviewSection = ({
 }: CourseOverviewSectionProps) => {
   return (
     <>
-      <div className="container mx-auto px-5">
-        <div className="rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6">
+      <ContainerLayout>
+        <div className="rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {overviewData?.map((item, index) => (
             <FadeUpAnimation delay={0.1 * index} key={index}>
               <div className="flex flex-row gap-3" key={index}>
@@ -46,7 +47,7 @@ const CourseOverviewSection = ({
             </FadeUpAnimation>
           ))}
         </div>
-      </div>
+      </ContainerLayout>
     </>
   );
 };

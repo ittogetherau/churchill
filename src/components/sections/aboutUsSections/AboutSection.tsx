@@ -18,7 +18,7 @@ const AboutSection = () => {
                 {item?.title}
               </h2>
               <div
-                className="rich-text-container"
+                className="rich_text_container"
                 dangerouslySetInnerHTML={{ __html: item?.description }}
               />
             </div>

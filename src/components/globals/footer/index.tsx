@@ -7,6 +7,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FetchCourseData } from "@/components/utils/apiQueries";
 import { navItems } from "@/constDatas/navItems";
+import ContainerLayout from "@/layouts/container-layout";
 
 interface Course {
   faculty: { faculty_name: string };
@@ -86,7 +87,7 @@ const Footer: React.FC = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="mx-auto container px-5">
+        <ContainerLayout>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col items-center lg:flex-row justify-between gap-4">
               <Link href="/">
@@ -341,10 +342,10 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </ContainerLayout>
       </div>
       <div className="bg-[#E59623] pt-8 pb-4">
-        <div className="container mx-auto px-5 space-y-4">
+        <ContainerLayout>
           <div className="flex flex-col items-center justify-between gap-5">
             <div className="flex gap-3 items-center">
               <Image
@@ -376,7 +377,7 @@ const Footer: React.FC = () => {
             612 507 141) t/as Churchill Institute of Higher Education (ABN: 91
             612 507 141).
           </p>
-        </div>
+        </ContainerLayout>
       </div>
     </div>
   );

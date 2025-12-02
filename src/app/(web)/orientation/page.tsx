@@ -3,6 +3,7 @@
 import RequestIDCardForm from "@/components/forms/RequestIDCardForm";
 import Timer from "@/components/timer/Timer";
 import { Button } from "@/components/ui/button";
+import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
@@ -37,7 +38,7 @@ const Page = () => {
         }}
         className="py-[72px] items-center"
       >
-        <div className="container flex flex-col gap-[52px]  mx-auto px-5">
+        <ContainerLayout>
           <h2 className="text-3xl md:text-5xl font-bold text-center text-[#eb9320] capitalize">
             Welcome to Churchill Institute of Higher Education Orientation
           </h2>
@@ -55,10 +56,10 @@ const Page = () => {
             alt="hero image"
             className="mix-blend-multiply mx-auto"
           />
-        </div>
+        </ContainerLayout>
       </header>
 
-      <div className="container mx-auto px-5 flex flex-col gap-[52px] ">
+      <ContainerLayout>
         <section className="flex flex-col py-4 md:px-10 rounded-md bg-primary-orange/10 border border-primary-orange/50">
           {stepTitles.map((item) => {
             const isActive = activeId === item.id;
@@ -220,7 +221,7 @@ const Page = () => {
         </section>
 
         {/* last element */}
-      </div>
+      </ContainerLayout>
       <div className="my-[64px]"></div>
 
       {isIDFormShown && (

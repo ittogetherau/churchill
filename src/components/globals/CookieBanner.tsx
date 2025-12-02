@@ -1,60 +1,75 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { Button } from "../ui/button";
+
+const COOKIE_NAME = "has-allowed-cookies";
+const AUTO_HIDE_DELAY = 60000;
+const INITIAL_SHOW_DELAY = 800;
 
 const CookieBanner = () => {
-  const [isVisible, setIsVisible] = useState("translate-y-[150%]");
-  const [cookies, setCookie] = useCookies(["hasAllowedCookie"]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [cookies, setCookie] = useCookies([COOKIE_NAME]);
 
   useEffect(() => {
-    if (!cookies.hasAllowedCookie) {
-      setTimeout(() => {
-        setIsVisible("translate-y-0");
-      }, 800);
-    }
+    if (cookies[COOKIE_NAME]) return;
 
-    setTimeout(() => {
-      setIsVisible("translate-y-[200%]");
-    }, 60 * 1000);
-  }, [cookies.hasAllowedCookie]);
+    const showTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, INITIAL_SHOW_DELAY);
 
-  function handleClick() {
-    setIsVisible("translate-y-[200%]");
-  }
+    const hideTimer = setTimeout(() => {
+      setIsVisible(false);
+    }, AUTO_HIDE_DELAY);
 
-  function handleAllowCookie() {
-    setCookie("hasAllowedCookie", true);
-  }
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [cookies]);
+
+  const handleAccept = () => {
+    setCookie(COOKIE_NAME, true, { path: "/" });
+    setIsVisible(false);
+  };
+
+  const handleDecline = () => {
+    setIsVisible(false);
+  };
+
+  if (!isVisible) return null;
 
   return (
-    <CookiesProvider>
-      <div
-        onClick={() => handleClick()}
-        className={`w-full md:w-[80vw] fixed bottom-0 md:bottom-8 z-[9999] left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#ffffff] p-3 md:px-8 md:py-4 rounded-2xl shadow-2xl border border-neutral-900/20 duration-1000 gap-4 md:gap-2 ${isVisible}`}
-      >
-        <div className="flex items-end gap-3">
-          <h2 className="text-lg">
-            This website uses cookies to ensure you get the best experience on
-            our website.
-            <Link href="/cookie-policy" className="text-[#E59623]">
-              Learn More.
-            </Link>
-          </h2>
-        </div>
-        <div className="flex lg:items-center gap-4">
-          <button className="text-[#E59623] border border-[#E59623] px-4 py-2 rounded-xl font-normal">
-            Decline
-          </button>
-          <button
-            className="px-4 py-2 bg-[#E59623] font-bold rounded-xl"
-            onClick={() => handleAllowCookie()}
-          >
-            Allow Cookies
-          </button>
-        </div>
+    <div
+      className={`
+        fixed bottom-0 left-1/2 z-[9999] w-full -translate-x-1/2
+        md:bottom-8 md:w-[80vw]
+        flex flex-col items-center justify-between gap-4
+        md:flex-row md:gap-2
+        rounded-2xl border border-neutral-900/20 bg-white p-2 shadow-2xl
+        md:px-5 md:py-3
+        transition-transform duration-1000
+        ${isVisible ? "translate-y-0" : "translate-y-[200%]"}
+      `}
+    >
+      <div className="flex items-end gap-3">
+        <p className="">
+          This website uses cookies to ensure you get the best experience on our
+          website.
+          <Link href="/cookie-policy">
+            <Button variant={"link"}>Learn More</Button>
+          </Link>
+        </p>
       </div>
-    </CookiesProvider>
+
+      <div className="flex gap-2 lg:items-center">
+        <Button variant={"outline"} onClick={handleDecline}>
+          Decline
+        </Button>
+        <Button onClick={handleAccept}>Allow Cookies</Button>
+      </div>
+    </div>
   );
 };
 

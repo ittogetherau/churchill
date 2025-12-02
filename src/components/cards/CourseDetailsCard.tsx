@@ -33,10 +33,10 @@ const CourseDetailsCard = ({
           {menuTitle}
         </h2>
 
-        <p
+        <div
           dangerouslySetInnerHTML={{ __html: subTitle }}
           className="md:max-h-[4.5rem] overflow-hidden"
-        ></p>
+        ></div>
 
         <div className="flex flex-col lg:flex-row justify-around md:justify-start gap-5 md:gap-12">
           {courseDetails?.slice(0, 3)?.map((item, index) => (

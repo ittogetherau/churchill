@@ -2,7 +2,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Button from "../button";
 
 interface props {
-  title?: string;
+  title: string;
   description?: string;
   BtnALink?: string;
   BtnAText?: string;

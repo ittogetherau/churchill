@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
 import Button from "@/components/button";
 import Animation from "@/constDatas/animations/PageNotFound.json";
-
+import ContainerLayout from "@/layouts/container-layout";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function NotFound() {
@@ -20,7 +20,7 @@ export default function NotFound() {
         backgroundPosition: "center",
       }}
     >
-      <div className="container mx-auto px-5">
+      <ContainerLayout>
         <div className="flex flex-col items-center justify-center gap-5">
           {<Lottie className="w-1/2" animationData={Animation} loop={true} />}
 
@@ -39,7 +39,7 @@ export default function NotFound() {
             />
           </Link>
         </div>
-      </div>
+      </ContainerLayout>
     </div>
   );
 }

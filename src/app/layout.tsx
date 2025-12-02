@@ -107,7 +107,7 @@ export default function RootLayout({
       <body className="relative">
         <Header />
         {children}
-        {/* <EmergencyContactFloater /> */}
+
         <Toaster />
         <CookieBanner />
 

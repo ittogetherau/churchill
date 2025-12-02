@@ -1,4 +1,5 @@
 import Button from "@/components/button";
+import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,7 +17,7 @@ interface SplitHeroProps {
 
 const SplitHero = ({ image, description, title, cta }: SplitHeroProps) => {
   return (
-    <section className="container mx-auto flex flex-col md:flex-row items-center justify-between mb-20 p-5">
+    <ContainerLayout className="flex flex-col md:flex-row items-center justify-between">
       <div className="w-full md:w-1/2 mb-6 md:mb-0">
         <Image
           width={500}
@@ -47,7 +48,7 @@ const SplitHero = ({ image, description, title, cta }: SplitHeroProps) => {
           </Link>
         )}
       </div>
-    </section>
+    </ContainerLayout>
   );
 };
 

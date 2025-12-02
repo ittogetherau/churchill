@@ -42,7 +42,7 @@ const AccordionComponent: React.FC<AccordionComponentProps> = ({ data }) => {
             </h2>
             {activeIndex === index && (
               <div
-                className="px-4 py-2 rich-text-container"
+                className="px-4 py-2 rich_text_container"
                 dangerouslySetInnerHTML={{ __html: item.description }}
               />
             )}

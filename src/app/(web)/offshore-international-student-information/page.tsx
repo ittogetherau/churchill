@@ -1,6 +1,8 @@
+import ContainerLayout from "@/layouts/container-layout";
+
 const Page = () => {
   return (
-    <div className="px-5 flex flex-col gap-[32px] md:gap-[64px] max-w-[1600px] mx-auto">
+    <ContainerLayout size="sm" className="mt-16">
       <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
         Offshore International Student Information
       </h1>
@@ -660,7 +662,7 @@ const Page = () => {
           </li>
         </ol>
       </main>
-    </div>
+    </ContainerLayout>
   );
 };
 

@@ -1,7 +1,9 @@
+import { PatternBannerCard } from "@/components/cards";
 import BlogItemCard from "@/components/cards/BlogItemCard";
 import DataNotFound from "@/components/globals/DataNotFound";
 import { FetchBlogData } from "@/components/utils/apiQueries";
 import { TBlogPost } from "@/constDatas/BlogData";
+import ContainerLayout from "@/layouts/container-layout";
 
 const BlogsPage = async () => {
   const items = await FetchBlogData();
@@ -9,15 +11,9 @@ const BlogsPage = async () => {
 
   return (
     <>
-      <div className="container mx-auto px-5 flex flex-col gap-[32px] lg:gap-[64px] mb-[48px] mt-[48px]">
-        <div className="container mx-auto px-5 flex flex-col gap-[32px] lg:gap-[64px] mb-[48px] mt-[48px]">
-          <section>
-            <h3 className="text-2xl font-bold">
-              Search for blogs you want to explore.
-            </h3>
-          </section>
-        </div>
+      <PatternBannerCard title="Blogs" />
 
+      <ContainerLayout>
         {data.length > 0 ? (
           <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-[3rem] gap-4">
             {data.map((item, index) => (
@@ -38,7 +34,7 @@ const BlogsPage = async () => {
             <DataNotFound />
           </div>
         )}
-      </div>
+      </ContainerLayout>
     </>
   );
 };

@@ -3,6 +3,7 @@ import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import SplitHero from "@/components/split-hero";
 import { checklist } from "@/constDatas/contactData";
 import features from "@/constDatas/features";
+import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 
 const Page = () => {
@@ -23,7 +24,7 @@ const Page = () => {
           icon: "",
         }}
       />
-      <div className="container mx-auto px-5 mb-20">
+      <ContainerLayout>
         <h3 className="text-xl  mb-4 p-0 sm:p-10 text-center">
           Australia remains a leading study destination globally with over
           1000,000 international students studying in Australia in 2025, who
@@ -48,8 +49,9 @@ const Page = () => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="container mx-auto px-5 mb-20">
+      </ContainerLayout>
+
+      <ContainerLayout>
         <h3 className="text-xl font-bold mb-10 p-0 sm:p-10 text-center">
           The below map of Australia shows the states and location of the
           national capital (Canberra) and state capitals (capital cities):
@@ -66,8 +68,9 @@ const Page = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
-      </div>
-      <div className="container mx-auto px-5 mb-20">
+      </ContainerLayout>
+
+      <ContainerLayout>
         <h3 className="text-2xl font-bold p-5 text-center">
           Information about Sydney
         </h3>
@@ -148,9 +151,9 @@ const Page = () => {
             </div>
           </div>
         </section>
-      </div>
+      </ContainerLayout>
 
-      <div className="container mx-auto px-5 mb-10">
+      <ContainerLayout>
         <h3 className="text-2xl font-bold p-5 text-center">
           Pre-Departure Information and about Living in Australia
         </h3>
@@ -164,7 +167,7 @@ const Page = () => {
         </p>
 
         <AccordionComponent data={checklist} />
-      </div>
+      </ContainerLayout>
     </>
   );
 };

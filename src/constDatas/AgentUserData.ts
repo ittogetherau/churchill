@@ -41,6 +41,14 @@ export interface TAgentUser {
   ReasonForFailedValidation: string;
   WorkdriveFolderId: string;
 }
+export interface IAgentResponse {
+  name: string;
+  phone: string;
+  email: string;
+  agent_name: string;
+  address: string;
+  zoho_id: string;
+}
 
 export const AgentUserData: TAgentUser[] = [
   {

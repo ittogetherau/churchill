@@ -1,133 +1,94 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-
-import { navItems } from "@/constDatas/navItems";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
-
-import AboutUsCard from "../cards/AboutUsCard";
 import FadeUpAnimation from "@/animations/FadeUp";
-import Slider from "react-slick";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import { navItems } from "@/constDatas/navItems";
+import { useEffect, useState } from "react";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import AboutUsCard from "../cards/AboutUsCard";
+import { Button } from "../ui/button";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface CategoryItem {
   headerIcon?: string;
   menuTitle?: string;
   slug?: string;
 }
+
 interface NavItem {
   Catagories?: CategoryItem[];
 }
 
 const AboutSlider: React.FC = () => {
   const aboutLists: NavItem = navItems[0] as NavItem;
-  const sliderRef = useRef<Slider | null>(null);
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [totalSlides, setTotalSlides] = useState<number>(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const handleSliderUpdate = () => {
-      if (sliderRef.current) {
-        const slick = (sliderRef.current as any).innerSlider;
-        if (slick) {
-          setTotalSlides(slick.props.children.length);
-        }
-      }
-    };
-
-    handleSliderUpdate();
-  }, [currentSlide]);
-
-  const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-    afterChange: (current: number) => setCurrentSlide(current),
-  };
-
-  const goToPreviousSlide = (): void => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
+    if (!api) {
+      return;
     }
-  };
 
-  const goToNextSlide = (): void => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
-    }
-  };
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
 
-  const isAtEnd = currentSlide >= totalSlides - (settings.slidesToShow || 1);
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  const canScrollPrev = api?.canScrollPrev() ?? false;
+  const canScrollNext = api?.canScrollNext() ?? false;
 
   return (
-    <div className="flex flex-col gap-4 lg:gap-[40px]">
-      <Slider {...settings} ref={sliderRef}>
-        {aboutLists?.Catagories?.map((item, index) => (
-          <FadeUpAnimation key={index} delay={0.1 * index}>
-            <div className="px-[11px] my-[11px]" key={index}>
-              <AboutUsCard
-                icon={item?.headerIcon || ""}
-                title={item?.menuTitle || ""}
-                link={`/about-us/${item?.slug || ""}`}
-              />
-            </div>
-          </FadeUpAnimation>
-        ))}
-      </Slider>
-      <div>
-        <div className="flex flex-col lg:flex-row justify-between gap-4 items-center">
-          <div></div>
-          <div className="">
-            <div className="flex gap-[24px]">
-              <button
-                className={`rounded-md w-[54px] h-[54px] flex items-center justify-center ${
-                  currentSlide === 0
-                    ? "bg-[#848484] text-white border border-[#848484]"
-                    : "hover:bg-[#848484] hover:text-white bg-transparent text-[#202917] border border-[#202917]"
-                }`}
-                onClick={goToPreviousSlide}
-              >
-                <BiChevronLeft className="text-[24px]" />
-              </button>
-              <button
-                className={`rounded-md w-[54px] h-[54px] flex items-center justify-center ${
-                  currentSlide === totalSlides - 1
-                    ? "bg-[#848484] text-white border border-[#848484]"
-                    : "hover:bg-[#848484] hover:text-white bg-transparent text-[#202917] border border-[#202917]"
-                }`}
-                onClick={goToNextSlide}
-              >
-                <BiChevronRight className="text-[24px]" />
-              </button>
-            </div>
-          </div>
-        </div>
+    <div>
+      <Carousel
+        setApi={setApi}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent>
+          {aboutLists?.Catagories?.map((item, index) => (
+            <CarouselItem
+              key={index}
+              className="md:basis-1/2 lg:basis-1/4 px-3 py-2"
+            >
+              <FadeUpAnimation delay={0.1 * index} className="px-2 h-full">
+                <AboutUsCard
+                  icon={item?.headerIcon || ""}
+                  title={item?.menuTitle || ""}
+                  link={`/about-us/${item?.slug || ""}`}
+                />
+              </FadeUpAnimation>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+
+      <div className="flex gap-4 items-center justify-end mt-8">
+        <Button
+          onClick={() => api?.scrollPrev()}
+          disabled={!canScrollPrev}
+          variant={"outline"}
+        >
+          <ArrowLeft />
+        </Button>
+
+        <Button
+          onClick={() => api?.scrollNext()}
+          disabled={!canScrollNext}
+          variant={"outline"}
+        >
+          <ArrowRight />
+        </Button>
       </div>
     </div>
   );

@@ -1,13 +1,15 @@
+import { PatternBannerCard } from "@/components/cards";
 import NewsItemCard from "@/components/cards/NewsItemCard";
 import { NewsData } from "@/constDatas/NewsData";
+import ContainerLayout from "@/layouts/container-layout";
 interface NewsPageProps {
   showAll?: boolean;
 }
 const NewsPage = ({ showAll = true }: NewsPageProps) => {
   return (
-    <div className="mt-12">
-      <div className="container mx-auto px-5">
-        <h2 className="text-3xl font-bold mb-12">Browse Latest News</h2>
+    <>
+      <PatternBannerCard title="News" />
+      <ContainerLayout>
         <div className="flex flex-col gap-4 ">
           {NewsData?.slice(0, showAll ? NewsData.length : 2)?.map(
             (item, index) => (
@@ -23,8 +25,8 @@ const NewsPage = ({ showAll = true }: NewsPageProps) => {
             )
           )}
         </div>
-      </div>
-    </div>
+      </ContainerLayout>
+    </>
   );
 };
 

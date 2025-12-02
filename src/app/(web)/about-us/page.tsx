@@ -3,10 +3,12 @@ import AboutSection from "@/components/sections/aboutUsSections/AboutSection";
 import CoreValuesSection from "@/components/sections/aboutUsSections/CoreValuesSection";
 import MissionVisionsection from "@/components/sections/aboutUsSections/MissionVisionsection";
 import RelatedSection from "@/components/sections/aboutUsSections/RelatedSection";
+import ContainerLayout from "@/layouts/container-layout";
+import SpacingLayout from "@/layouts/spacing-layout";
 
 const Page = () => {
   return (
-    <div className="flex flex-col gap-[32px] lg:gap-[64px]">
+    <SpacingLayout>
       <TopBannerCard
         image={"/assets/churchill-team.jpg"}
         titleSpan={
@@ -23,16 +25,19 @@ const Page = () => {
         BtnAText={"Explore Our Courses"}
         BtnBText={"Apply Now"}
       />
-
-      <div className="container mx-auto px-5">
-        <div className="flex flex-col gap-[32px] lg:gap-[64px]">
-          <MissionVisionsection />
-          <CoreValuesSection />
-          <AboutSection />
-          <RelatedSection />
-        </div>
-      </div>
-    </div>
+      <ContainerLayout>
+        <MissionVisionsection />
+      </ContainerLayout>
+      <ContainerLayout>
+        <CoreValuesSection />
+      </ContainerLayout>
+      <ContainerLayout>
+        <AboutSection />
+      </ContainerLayout>
+      <ContainerLayout>
+        <RelatedSection />
+      </ContainerLayout>
+    </SpacingLayout>
   );
 };
 

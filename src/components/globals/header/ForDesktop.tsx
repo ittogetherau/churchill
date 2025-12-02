@@ -5,11 +5,12 @@ import NavList from "./NavList";
 import TopInfo from "./TopInfo";
 
 import NavListVTwo from "./NavListVTwo";
+import ContainerLayout from "@/layouts/container-layout";
 
 const DesktopNav = () => {
   return (
-    <div className="container mx-auto px-5">
-      <div className="flex justify-between items-center gap-4 ">
+    <ContainerLayout>
+      <div className="flex justify-between items-center gap-4">
         <Link className="block" href="/">
           <Image
             src={`/assets/logo.svg`}
@@ -21,7 +22,7 @@ const DesktopNav = () => {
           />
         </Link>
 
-        <div className="">
+        <div>
           <NavList
             style={
               "flex gap-5 md:gap-3 text-[16px] font-inter font-bold text-[#2C2B4B]"
@@ -32,7 +33,7 @@ const DesktopNav = () => {
           />
         </div>
       </div>
-    </div>
+    </ContainerLayout>
   );
 };
 

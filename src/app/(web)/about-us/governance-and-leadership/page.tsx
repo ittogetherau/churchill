@@ -4,6 +4,7 @@ import GovernanceCard from "@/components/cards/GovernanceCard";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 
 import { navItems } from "@/constDatas/navItems";
+import ContainerLayout from "@/layouts/container-layout";
 import { useEffect, useState } from "react";
 
 const slug = "governance-and-leadership";
@@ -23,21 +24,15 @@ const GovernancePageSection = () => {
         description="Churchill's senior leaders guide our institution towards big goals, focusing on excellence and innovative teaching to help our community, country, and the world."
       />
 
-      <div className="flex flex-col gap-[32px] lg:gap-[64px]">
-        <div className="container mx-auto px-5 mt-[48px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-            {data?.map((item, index) => (
-              <FadeUpAnimation
-                key={index}
-                delay={index * 0.1}
-                className="h-full"
-              >
-                <GovernanceCard data={item} key={index} />
-              </FadeUpAnimation>
-            ))}
-          </div>
+      <ContainerLayout>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          {data?.map((item, index) => (
+            <FadeUpAnimation key={index} delay={index * 0.1} className="h-full">
+              <GovernanceCard data={item} key={index} />
+            </FadeUpAnimation>
+          ))}
         </div>
-      </div>
+      </ContainerLayout>
     </>
   );
 };
