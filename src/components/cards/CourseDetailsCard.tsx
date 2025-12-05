@@ -2,21 +2,17 @@ import React from "react";
 import Button from "@/components/button";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
+import { IProgramDetail } from "@/graphql/types";
 
-interface courseDetails {
-  icon: string;
-  title: string;
-  description: string;
-}
 interface CourseDetailsProp {
-  menuTitle: string;
+  title: string;
   subTitle: string;
   slug: string;
   faculty: string;
-  courseDetails: courseDetails[];
+  courseDetails: IProgramDetail[];
 }
 const CourseDetailsCard = ({
-  menuTitle,
+  title,
   subTitle,
   slug,
   faculty,
@@ -30,7 +26,7 @@ const CourseDetailsCard = ({
         </span>
 
         <h2 className="font-extrabold text-2xl lg:text-3xl text-matte-purple">
-          {menuTitle}
+          {title}
         </h2>
 
         <div
@@ -47,9 +43,9 @@ const CourseDetailsCard = ({
 
               <div className="">
                 <h3 className="text-[#2C2B4B] font-bold text-lg">
-                  {item?.description}
+                  {item?.value}
                 </h3>
-                <p className="text-[#2C2B4B]">{item?.title}</p>
+                <p className="text-[#2C2B4B]">{item?.label}</p>
               </div>
             </div>
           ))}

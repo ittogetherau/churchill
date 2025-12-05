@@ -1,14 +1,10 @@
 "use client";
+import { ICourseStructure } from "@/graphql/types";
 import ContainerLayout from "@/layouts/container-layout";
 import React, { useState } from "react";
 
-interface TabItem {
-  title: string;
-  rich_text: string;
-}
-
 interface TabbedPaneProps {
-  data: TabItem[];
+  data: ICourseStructure[];
 }
 
 const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {

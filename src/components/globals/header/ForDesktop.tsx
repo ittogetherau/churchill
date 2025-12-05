@@ -1,11 +1,8 @@
+import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import NavList from "./NavList";
-import TopInfo from "./TopInfo";
-
-import NavListVTwo from "./NavListVTwo";
-import ContainerLayout from "@/layouts/container-layout";
 
 const DesktopNav = () => {
   return (

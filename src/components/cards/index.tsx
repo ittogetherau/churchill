@@ -17,6 +17,7 @@ import EventsCard from "@/components/cards/EventsCard";
 import KeyDatesCard from "@/components/cards/KeyDatesCard";
 import NewsItemCard from "@/components/cards/NewsItemCard";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
+
 export {
   AboutUsCard,
   AgentInfoCard,
