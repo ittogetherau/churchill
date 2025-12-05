@@ -2,14 +2,18 @@ import React from "react";
 import Button from "@/components/button";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
-import { IProgramDetail } from "@/graphql/types";
+import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
+
+type ProgramDetail = NonNullable<
+  CourseDetailFieldsFragment["program_details"]
+>[number];
 
 interface CourseDetailsProp {
   title: string;
   subTitle: string;
   slug: string;
   faculty: string;
-  courseDetails: IProgramDetail[];
+  courseDetails: ProgramDetail[];
 }
 const CourseDetailsCard = ({
   title,
@@ -35,20 +39,23 @@ const CourseDetailsCard = ({
         ></div>
 
         <div className="flex flex-col lg:flex-row justify-around md:justify-start gap-5 md:gap-12">
-          {courseDetails?.slice(0, 3)?.map((item, index) => (
-            <div className="flex flex-row gap-3 items-center" key={index}>
-              <div className="w-12 h-12 grid place-items-center bg-white rounded-full text-2xl">
-                <i className={`text-[#E59623] flex ${item?.icon}`}></i>
-              </div>
+          {courseDetails
+            ?.filter((detail): detail is ProgramDetail => Boolean(detail))
+            ?.slice(0, 3)
+            ?.map((item, index) => (
+              <div className="flex flex-row gap-3 items-center" key={index}>
+                <div className="w-12 h-12 grid place-items-center bg-white rounded-full text-2xl">
+                  <i className={`text-[#E59623] flex ${item?.icon ?? ""}`}></i>
+                </div>
 
-              <div className="">
-                <h3 className="text-[#2C2B4B] font-bold text-lg">
-                  {item?.value}
-                </h3>
-                <p className="text-[#2C2B4B]">{item?.label}</p>
+                <div className="">
+                  <h3 className="text-[#2C2B4B] font-bold text-lg">
+                    {item?.value ?? ""}
+                  </h3>
+                  <p className="text-[#2C2B4B]">{item?.label ?? ""}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
       <div className="max-w-fit flex flex-col gap-3">

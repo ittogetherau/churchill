@@ -1,23 +1,10 @@
 "use client";
 
-import { FetchCourseData } from "@/components/utils/apiQueries";
-import { useEffect, useState } from "react";
 import CoursesCard from "../cards/CoursesCard";
-import Loading from "../globals/Loading";
-import { ICourse } from "@/graphql/types";
+import { type CourseSummaryFieldsFragment } from "@/graphql/generated/graphql";
 import { resolveFileLink } from "@/graphql/graphql";
 
-interface CourseItem {
-  heroImage: string;
-  faculty: {
-    faculty_name: string;
-  };
-  course_name: string;
-  description: string;
-  slug: string;
-}
-
-const CoursesSlider = ({ data }: { data: ICourse[] }) => {
+const CoursesSlider = ({ data }: { data: CourseSummaryFieldsFragment[] }) => {
   if (!data || data.length === 0) return;
 
   return (
@@ -26,10 +13,10 @@ const CoursesSlider = ({ data }: { data: ICourse[] }) => {
         <CoursesCard
           key={index}
           image={resolveFileLink(item.hero_image)}
-          faculty={item.degree.title}
-          title={item.title}
-          subTitle={item.description}
-          link={`/courses/${item?.slug}`}
+          faculty={item.degree?.title ?? ""}
+          title={item.title ?? ""}
+          subTitle={item.description ?? ""}
+          link={`/courses/${item?.slug ?? ""}`}
         />
       ))}
     </div>

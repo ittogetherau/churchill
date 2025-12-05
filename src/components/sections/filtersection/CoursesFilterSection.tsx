@@ -1,11 +1,11 @@
 import CourseDetailsCard from "@/components/cards/CourseDetailsCard";
 import DataNotFound from "@/components/globals/DataNotFound";
-import { ICourse } from "@/graphql/types";
+import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import React from "react";
 
 interface prosp {
-  data: ICourse[];
+  data: CourseDetailFieldsFragment[];
 }
 
 const CoursesFilterSection: React.FC<prosp> = ({ data }) => {
@@ -17,11 +17,11 @@ const CoursesFilterSection: React.FC<prosp> = ({ data }) => {
         {data.map((el, i) => (
           <CourseDetailsCard
             key={i}
-            subTitle={el.description}
-            faculty={el.degree.title}
-            title={el.title}
-            slug={el.slug}
-            courseDetails={el.program_details}
+            subTitle={el.description ?? ""}
+            faculty={el.degree?.title ?? ""}
+            title={el.title ?? ""}
+            slug={el.slug ?? ""}
+            courseDetails={el.program_details ?? []}
           />
         ))}
       </div>

@@ -25,17 +25,17 @@ const Page = () => {
         BtnAText={"Explore Our Courses"}
         BtnBText={"Apply Now"}
       />
+
       <ContainerLayout>
-        <MissionVisionsection />
-      </ContainerLayout>
-      <ContainerLayout>
-        <CoreValuesSection />
-      </ContainerLayout>
-      <ContainerLayout>
-        <AboutSection />
-      </ContainerLayout>
-      <ContainerLayout>
-        <RelatedSection />
+        <SpacingLayout>
+          <MissionVisionsection />
+
+          <CoreValuesSection />
+
+          <AboutSection />
+
+          <RelatedSection />
+        </SpacingLayout>
       </ContainerLayout>
     </SpacingLayout>
   );

@@ -1,0 +1,8 @@
+query CoursePage {
+  degree {
+    ...DegreeFields
+  }
+  courses {
+    ...CourseDetailFields
+  }
+}

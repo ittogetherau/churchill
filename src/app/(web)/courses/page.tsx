@@ -1,38 +1,16 @@
 import TopBannerCard from "@/components/cards/TopBannerCard";
 import CoursesFilterSection from "@/components/sections/filtersection/CoursesFilterSection";
-import { fetchGraphQL } from "@/graphql/graphql";
-import { ICourse } from "@/graphql/types";
+import { CoursePageDocument } from "@/graphql/generated/graphql";
+import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import Link from "next/link";
 
-const query = `
-  query {
-    degree {
-      title
-      short_title
-      course_code
-      summary
-      learning_outcomes
-    }
-    courses {
-      slug 
-      title description
-      hero_image { id filename_download }
-      icon_string
-      course_structure { title rich_text }
-      program_details { icon label value }
-      degree { title course_code }
-    }
-  }
-`;
-
 const Courses = async () => {
-  const response = await fetchGraphQL(query);
-  const data = response.data;
+  const data = await runQuery(CoursePageDocument);
 
-  const degreeData = data.degree[0] ?? {};
-  const coursesData = (data.courses as ICourse[]) ?? [];
+  const degreeData = data?.degree?.[0];
+  const coursesData = data?.courses ?? [];
 
   return (
     <SpacingLayout>
@@ -54,9 +32,9 @@ const Courses = async () => {
       <ContainerLayout>
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
-            {degreeData.title} ({degreeData.short_title})
+            {degreeData?.title ?? ""} ({degreeData?.short_title ?? ""})
           </h2>
-          {degreeData.course_code && (
+          {degreeData?.course_code && (
             <>
               <p className="text-lg text-gray-600">
                 CRICOS Course Code:&nbsp;
@@ -73,19 +51,23 @@ const Courses = async () => {
         </div>
       </ContainerLayout>
 
-      <ContainerLayout size="sm">
-        <div
-          className="rich_text_container"
-          dangerouslySetInnerHTML={{ __html: degreeData.summary }}
-        ></div>
-      </ContainerLayout>
+      {degreeData?.summary && (
+        <ContainerLayout size="sm">
+          <div
+            className="rich_text_container"
+            dangerouslySetInnerHTML={{ __html: degreeData.summary }}
+          ></div>
+        </ContainerLayout>
+      )}
 
-      <ContainerLayout size="sm">
-        <div
-          className="rich_text_container ul_design"
-          dangerouslySetInnerHTML={{ __html: degreeData.learning_outcomes }}
-        ></div>
-      </ContainerLayout>
+      {degreeData?.learning_outcomes && (
+        <ContainerLayout size="sm">
+          <div
+            className="rich_text_container ul_design"
+            dangerouslySetInnerHTML={{ __html: degreeData.learning_outcomes }}
+          ></div>
+        </ContainerLayout>
+      )}
 
       <span id="scrollToCourse" />
 

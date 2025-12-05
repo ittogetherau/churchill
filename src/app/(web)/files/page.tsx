@@ -63,8 +63,8 @@ const getFileTypeColor = (type: string): string => {
 };
 
 const Page = async () => {
-  const response = await fetchGraphQL(query);
-  const data: FileItem[] = response.data.files;
+  const response = await fetchGraphQL<{ files: FileItem[] }>(query);
+  const data: FileItem[] = response?.files ?? [];
 
   if (!data || data.length === 0) return null;
 

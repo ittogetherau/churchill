@@ -1,150 +1,163 @@
 import { FetchBlogData } from "@/components/utils/apiQueries";
 import Image from "next/image";
 import Link from "next/link";
-import Copyurl from "../../../../components/sections/blogSections/CopyUrl";
+import Copyurl from "@/components/sections/blogSections/CopyUrl";
 import MoreBlogsSection from "@/components/sections/blogSections/MoreBlogsSection";
 import ContainerLayout from "@/layouts/container-layout";
+import { resolveFileLink, runQuery } from "@/graphql/graphql";
+import { BlogDetailDocument } from "@/graphql/generated/graphql";
+import BlogSection from "@/components/sections/blogSections/BlogSection";
 
-const formatDate = (dateString: string) => {
+const formatDate = (dateString?: string) => {
   if (!dateString) return "";
-  const date = new Date(dateString);
   return new Intl.DateTimeFormat("en-AU", {
     year: "numeric",
     month: "long",
     day: "numeric",
-  }).format(date);
+  }).format(new Date(dateString));
 };
 
-const page = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = await params;
-  const res = await FetchBlogData(slug);
-  const data = await res.data;
-
-  const siteUrl = process.env.NEXT_PUBLIC_CHURCHILL_URL || "";
-
-  const cleanText = (data?.rich_text || "")
+const calculateReadingTime = (text?: string) => {
+  if (!text) return 0;
+  const cleanText = text
     .replace(/<[^>]+>/g, "")
     .replace(/\s+/g, " ")
     .trim();
-  const wordCount = cleanText.split(" ").length;
-  const readingTime = Math.ceil(wordCount / 200);
+  return Math.ceil(cleanText.split(" ").length / 200);
+};
+
+const SocialShare = ({ url }: { url: string }) => {
+  const shareLinks = [
+    {
+      href: `mailto:?subject=Check this out&body=Here's the link: ${url}`,
+      icon: "fi fi-rr-envelope",
+      label: "Email",
+    },
+    {
+      href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      icon: "fi fi-brands-facebook",
+      label: "Facebook",
+    },
+    {
+      href: `https://twitter.com/intent/tweet?url=${url}`,
+      icon: "fi fi-brands-twitter-alt",
+      label: "Twitter",
+    },
+    {
+      href: `https://www.linkedin.com/shareArticle?mini=true&url=${url}`,
+      icon: "fi fi-brands-linkedin",
+      label: "LinkedIn",
+    },
+    {
+      href: `https://api.whatsapp.com/send?text=Check this out: ${url}`,
+      icon: "fi fi-brands-whatsapp",
+      label: "WhatsApp",
+    },
+    {
+      href: `fb-messenger://share/?link=${url}`,
+      icon: "fi fi-brands-facebook-messenger",
+      label: "Messenger",
+    },
+  ];
+
+  return (
+    <div className="flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+      <p>Share To:</p>
+      <div className="flex gap-2 text-2xl flex-wrap">
+        {shareLinks.map(({ href, icon, label }) => (
+          <Link
+            key={label}
+            href={href}
+            target="_blank"
+            className="hover:text-primary-orange transition-all social-button"
+          >
+            <i className={`flex ${icon}`} />
+          </Link>
+        ))}
+        <Copyurl url={url}>
+          <div className="hover:text-primary-orange transition-all social-button copy-link">
+            <i className="fi fi-rr-copy-alt" />
+          </div>
+        </Copyurl>
+      </div>
+    </div>
+  );
+};
+
+const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
+  const res = await runQuery(BlogDetailDocument, { slug });
+  const blog = res.blog[0];
+  const otherBlogs = res.otherBlogs ?? [];
+
+  if (!blog) return null;
+
+  const siteUrl = `https://churchill.nsw.edu.au/blogs/${slug}`;
+  const readingTime = calculateReadingTime(blog.rich_text ?? "");
 
   return (
     <>
-      <ContainerLayout>
-        <div className="flex flex-col gap-5">
-          <nav className="font-semibold flex flex-wrap text-wrap gap-1">
-            <Link className="hover:text-primary-orange transition-all" href="/">
-              Home /
-            </Link>
-            <Link
-              className="hover:text-primary-orange transition-all"
-              href="/blogs"
-            >
-              Blogs /
-            </Link>
-            {data?.title}
-          </nav>
-          <hr className="border-2 w-[60px]  border-primary-orange" />
+      <ContainerLayout size="sm" className="mt-8">
+        <nav className="font-semibold flex flex-wrap gap-1 text-wrap">
+          <Link className="hover:text-primary-orange transition-all" href="/">
+            Home /
+          </Link>
+          <Link
+            className="hover:text-primary-orange transition-all"
+            href="/blogs"
+          >
+            Blogs /
+          </Link>
 
-          <div className="flex flex-wrap flex-row items-center gap-1">
-            <i className="fi fi-rr-calendar-day flex" />
-            <span>{formatDate(data?.date)}</span>
-            <span>·</span>
+          {blog.title}
+        </nav>
 
-            <i className="fi fi-rr-circle-user flex" />
-            <span>{data?.author ? data?.author : "Admin"}</span>
-            <span>·</span>
+        <hr className="border-2 w-[60px] border-primary-orange" />
 
-            <i className="fi fi-rr-clock-three flex"></i>
-            <>{readingTime} mins read</>
-          </div>
-
-          <h2 className="text-4xl leading-[40px] lg:text-6xl lg:leading-[62px] font-bold">
-            {data?.title}
-          </h2>
+        <div className="flex flex-wrap items-center gap-1 mt-4">
+          <i className="fi fi-rr-calendar-day" />
+          <span>{formatDate(blog.date_created)}</span>
+          {/* <span>·</span> <i className="fi fi-rr-circle-user" /> <span>{"Admin"}</span> */}
+          <span>·</span>
+          <i className="fi fi-rr-clock-three" />
+          <span>{readingTime} mins read</span>
         </div>
 
-        <article className="flex flex-col gap-6 mt-12">
-          <div className="container mx-auto">
-            <Image
-              width={2000}
-              height={1500}
-              src={data?.image}
-              alt={`event image for ${data?.title}`}
-              className="w-full aspect-[1.75/1] mx-auto object-cover rounded-md"
-            />
-          </div>
+        <h2 className="text-4xl lg:text-6xl leading-[40px] lg:leading-[62px] font-bold mt-4">
+          {blog.title}
+        </h2>
+      </ContainerLayout>
 
-          <div className="container-blog">
+      <ContainerLayout>
+        <Image
+          width={2000}
+          height={1500}
+          src={resolveFileLink(blog.hero_image)}
+          alt={`Blog image for ${blog.title}`}
+          className="w-full aspect-[1.75/1] mx-auto object-cover rounded-md"
+        />
+      </ContainerLayout>
+
+      <ContainerLayout size="sm">
+        <article>
+          {blog?.rich_text && (
             <div
               className="rich_text_container"
-              dangerouslySetInnerHTML={{ __html: data?.rich_text }}
+              dangerouslySetInnerHTML={{ __html: blog.rich_text }}
             />
-          </div>
+          )}
         </article>
 
         <hr className="border border-black/20 my-4" />
 
-        <div className="flex gap-4 md:items-center md:justify-between flex-col md:flex-row">
-          <div className="flex flex-col md:flex-row gap-2">
-            <p>Share To:</p>
-            <div className="flex gap-2 text-2xl flex-wrap">
-              <a
-                href={`mailto:?subject=Check this out&body=Here's the link: ${siteUrl}`}
-                className="hover:text-primary-orange transition-all social-button email"
-              >
-                <i className="flex fi fi-rr-envelope"></i>
-              </a>
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${siteUrl}`}
-                target="_blank"
-                className="hover:text-primary-orange transition-all social-button facebook"
-              >
-                <i className="flex fi fi-brands-facebook"></i>
-              </a>
-              <a
-                href={`https://twitter.com/intent/tweet?url=${siteUrl}`}
-                target="_blank"
-                className="hover:text-primary-orange transition-all social-button twitter"
-              >
-                <i className="flex fi fi-brands-twitter-alt"></i>
-              </a>
-              <a
-                href={`https://www.linkedin.com/shareArticle?mini=true&url=${siteUrl}`}
-                target="_blank"
-                className="hover:text-primary-orange transition-all social-button linkedin"
-              >
-                <i className="flex fi fi-brands-linkedin"></i>
-              </a>
-              <a
-                href={`https://api.whatsapp.com/send?text=Check this out: ${siteUrl}`}
-                target="_blank"
-                className="hover:text-primary-orange transition-all social-button whatsapp"
-              >
-                <i className="flex fi fi-brands-whatsapp"></i>
-              </a>
-              <a
-                href={`fb-messenger://share/?link=${siteUrl}`}
-                target="_blank"
-                className="hover:text-primary-orange transition-all social-button messenger"
-              >
-                <i className="flex fi fi-brands-facebook-messenger"></i>
-              </a>
-              <Copyurl url={siteUrl} message={`Copied: ${siteUrl}`}>
-                <div className="hover:text-primary-orange transition-all social-button copy-link">
-                  <i className="fi fi-rr-copy-alt"></i>
-                </div>
-              </Copyurl>
-            </div>
-          </div>
-        </div>
+        <SocialShare url={siteUrl} />
       </ContainerLayout>
+
       <ContainerLayout>
-        <MoreBlogsSection slug={slug} />
+        <BlogSection blogs={otherBlogs} />
       </ContainerLayout>
     </>
   );
 };
 
-export default page;
+export default BlogPage;

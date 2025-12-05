@@ -1,0 +1,5 @@
+query TeamMembers {
+  team_members {
+    ...TeamMemberSummaryFields
+  }
+}

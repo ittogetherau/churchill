@@ -1,0 +1,8 @@
+query CourseDetail($slug: String!) {
+  courses(filter: { slug: { _eq: $slug } }) {
+    ...CourseDetailFields
+  }
+  otherCourses: courses(filter: { slug: { _neq: $slug } }) {
+    ...CourseSummaryFields
+  }
+}

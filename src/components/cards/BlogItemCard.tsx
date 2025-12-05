@@ -4,7 +4,7 @@ import Link from "next/link";
 import Button from "@/components/button";
 import { BlogTag } from "@/constDatas/BlogData";
 
-interface BlogItemCardProps {
+interface props {
   slug: string;
   title: string;
   image: string;
@@ -23,11 +23,16 @@ const BlogItemCard = ({
   tags,
   description,
   index,
-}: BlogItemCardProps) => {
+}: props) => {
+  const itemDate = new Date(date)
+    .toISOString()
+    .split("T")[0]
+    .replaceAll("-", "/");
+
   return (
     <div key={index} className="rounded-md overflow-hidden group">
       <div className="overflow-hidden rounded-md">
-        <Link href={`/blogs/${slug}`}>
+        <Link href={`/blogs/${slug.trim()}`}>
           <Image
             width={400}
             height={400}
@@ -42,7 +47,7 @@ const BlogItemCard = ({
         <div className="pt-5 flex items-center justify-between">
           <p className="flex items-center gap-2">
             <i className="fi fi-rr-calendar-day flex text-xl"></i>
-            <span>{date}</span>
+            <span>{itemDate}</span>
           </p>
 
           <p className="text-md flex items-center gap-2">

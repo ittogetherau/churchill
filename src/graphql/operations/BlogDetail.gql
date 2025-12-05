@@ -1,0 +1,9 @@
+query BlogDetail($slug: String!) {
+  blog(filter: { slug: { _eq: $slug } }) {
+    ...BlogFields
+    rich_text
+  }
+  otherBlogs: blog(filter: { slug: { _neq: $slug } }, limit: 3) {
+    ...BlogFields
+  }
+}

@@ -10,6 +10,7 @@ const page = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
             Admission Information
           </h1>
+
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Join Churchill’s vibrant community! Discover how to apply for our
             courses as a domestic or international student.

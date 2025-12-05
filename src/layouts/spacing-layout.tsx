@@ -4,7 +4,7 @@ interface Props extends React.HtmlHTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 const SpacingLayout = ({ children, className, ...props }: Props) => {
-  const classes = `${className} md:space-y-32 md:mb-32 space-y-20 mb-20`;
+  const classes = `${className} md:space-y-22 md:mb-22 space-y-16 mb-16`;
   return (
     <div {...props} className={classes}>
       {children}

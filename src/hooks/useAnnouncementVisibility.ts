@@ -4,7 +4,7 @@ export const useAnnouncementVisibility = (storageKey: string) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const hasDismissed = localStorage.getItem(storageKey);
+    const hasDismissed = sessionStorage.getItem(storageKey);
     if (hasDismissed === "true") {
       setIsVisible(false);
     }
@@ -12,7 +12,7 @@ export const useAnnouncementVisibility = (storageKey: string) => {
 
   const dismiss = useCallback(() => {
     setIsVisible(false);
-    localStorage.setItem(storageKey, "true");
+    sessionStorage.setItem(storageKey, "true");
   }, [storageKey]);
 
   return { isVisible, dismiss };

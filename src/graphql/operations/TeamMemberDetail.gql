@@ -1,0 +1,5 @@
+query TeamMemberDetail($slug: String!) {
+  team_members(filter: { slug: { _eq: $slug } }) {
+    ...TeamMemberDetailFields
+  }
+}
