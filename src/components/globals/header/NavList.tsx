@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { FetchCourseData } from "@/components/utils/apiQueries";
+import { siteConfig } from "@/config/siteConfig";
 interface NavListProps {
   style?: string;
   isDropdownActive: boolean;
@@ -27,8 +28,7 @@ export interface Course {
   };
 }
 
-const NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL =
-  process.env.NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL;
+const NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL = siteConfig.agentHubUrl;
 
 const NavList: React.FC<NavListProps> = ({
   style,
@@ -40,22 +40,20 @@ const NavList: React.FC<NavListProps> = ({
   const [openSearch, setOpenSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  useEffect(() => {
+    if (openSearch) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://cse.google.com/cse.js?cx=820c819b7996d4c87";
+      document.body.appendChild(script);
 
-
-    useEffect(() => {
-      if (openSearch) {
-        const script = document.createElement("script");
-        script.async = true;
-        script.src = "https://cse.google.com/cse.js?cx=820c819b7996d4c87";
-        document.body.appendChild(script);
-
-        return () => {
-          if (document.body.contains(script)) {
-            document.body.removeChild(script);
-          }
-        };
-      }
-    }, [openSearch]);
+      return () => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    }
+  }, [openSearch]);
 
   const [coursesData, setCoursesData] = useState<Course[]>([]);
   const [isCoursesLoading, setIsCoursesLoading] = useState(true);
@@ -161,10 +159,10 @@ const NavList: React.FC<NavListProps> = ({
                                             className="w-full flex"
                                           >
                                             <li
-                                              className="hover:bg-[#eb9320]/20 transition-all rounded-md flex flex-1 items-center gap-2 px-2 py-1"
+                                              className="transition-all rounded-md flex flex-1 items-center gap-2 px-2 py-1"
                                               key={index}
                                             >
-                                              <div className="w-10 h-10 bg-[#eb9320]/20 rounded-full grid place-items-center">
+                                              <div className="w-10 h-10 bg-background rounded-full grid place-items-center">
                                                 <i
                                                   className={`${
                                                     subItem.headerIcon ||
@@ -173,14 +171,8 @@ const NavList: React.FC<NavListProps> = ({
                                                 />
                                               </div>
                                               <div className="flex flex-1 flex-col gap-1">
-                                                <h3 className="leading-5 text-xs md:text-lg">
-                                                  {subItem.menuTitle ||
-                                                    subItem.course_name}
-                                                </h3>
-                                                {/* <p
-                                              className="text-sm font-[500]"
-                                              dangerouslySetInnerHTML={{ __html: subItem.headerDesc || subItem.description }}
-                                            /> */}
+                                                {subItem.menuTitle ||
+                                                  subItem.course_name}
                                               </div>
                                             </li>
                                           </Link>
@@ -288,6 +280,7 @@ const NavList: React.FC<NavListProps> = ({
             <FaSearch />
           </div>
         </li>
+
         {openSearch && (
           <div className="z-50 fixed top-0 left-0 right-0 bottom-0 bg-black/75">
             <div className="lg:mt-[15%] mt-[50%]">

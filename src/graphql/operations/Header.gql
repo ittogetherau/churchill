@@ -1,0 +1,8 @@
+query Header {
+  courses {
+    ...CourseCoreFields
+  }
+  announcements {
+    announcement_text
+  }
+}

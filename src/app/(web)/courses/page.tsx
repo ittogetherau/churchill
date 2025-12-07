@@ -30,8 +30,8 @@ const Courses = async () => {
       />
 
       <ContainerLayout>
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+        <div className="mb-10 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-5xl">
             {degreeData?.title ?? ""} ({degreeData?.short_title ?? ""})
           </h2>
           {degreeData?.course_code && (
@@ -39,7 +39,7 @@ const Courses = async () => {
               <p className="text-lg text-gray-600">
                 CRICOS Course Code:&nbsp;
                 <Link
-                  className="text-orange-600 font-medium hover:underline"
+                  className="font-medium text-orange-600 hover:underline"
                   href={`https://cricos.education.gov.au/Course/CourseDetails.aspx?CourseId=${degreeData.course_code}`}
                   target="_blank"
                 >

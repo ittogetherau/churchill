@@ -2,14 +2,13 @@ import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import Button from "@/components/button";
-import { BlogTag } from "@/constDatas/BlogData";
 
 interface props {
   slug: string;
   title: string;
   image: string;
   date: string;
-  tags?: BlogTag[] | string[];
+  tags?: string[];
   description: string;
   subTitle?: string;
   index?: number;
@@ -30,7 +29,7 @@ const BlogItemCard = ({
     .replaceAll("-", "/");
 
   return (
-    <div key={index} className="rounded-md overflow-hidden group">
+    <div key={index} className="group overflow-hidden rounded-md">
       <div className="overflow-hidden rounded-md">
         <Link href={`/blogs/${slug.trim()}`}>
           <Image
@@ -38,13 +37,13 @@ const BlogItemCard = ({
             height={400}
             alt={`Image for ${title}`}
             src={image}
-            className="w-full aspect-[3/2] object-cover group-hover:scale-105 transition-all"
+            className="aspect-[3/2] w-full object-cover transition-all group-hover:scale-105"
           />
         </Link>
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="pt-5 flex items-center justify-between">
+        <div className="flex items-center justify-between pt-5">
           <p className="flex items-center gap-2">
             <i className="fi fi-rr-calendar-day flex text-xl"></i>
             <span>{itemDate}</span>
@@ -57,7 +56,7 @@ const BlogItemCard = ({
         </div>
 
         <Link href={`/blogs/${slug}`} className="w-fit">
-          <h4 className="font-bold text-2xl leading-7 line-clamp-2 text-matte-purple hover:text-primary-orange transition-all">
+          <h4 className="text-matte-purple hover:text-primary-orange line-clamp-2 text-2xl leading-7 font-bold transition-all">
             {title}
           </h4>
         </Link>

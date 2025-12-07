@@ -229,5 +229,9 @@
 }
 
 .ul_design ul > li {
-  @apply list-none p-0 m-0 px-3 py-2 rounded-lg border-l-4 bg-alt-background border-l-primary-orange;
+  @apply bg-alt-background border-l-primary-orange m-0 list-none rounded-lg border-l-4 p-0 px-3 py-2;
 }
+
+/* .border > * {
+  outline: 1px solid red;
+} */

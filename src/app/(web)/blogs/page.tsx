@@ -1,8 +1,6 @@
 import { PatternBannerCard } from "@/components/cards";
 import BlogItemCard from "@/components/cards/BlogItemCard";
 import DataNotFound from "@/components/globals/DataNotFound";
-import { FetchBlogData } from "@/components/utils/apiQueries";
-import { TBlogPost } from "@/constDatas/BlogData";
 import { BlogPageDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -17,7 +15,7 @@ const BlogsPage = async () => {
 
       <ContainerLayout>
         {blogs.length > 0 ? (
-          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-[3rem] gap-4">
+          <section className="grid grid-cols-1 gap-4 gap-y-[3rem] md:grid-cols-2 xl:grid-cols-3">
             {blogs.map((item, index) => (
               <BlogItemCard
                 key={index}
@@ -31,7 +29,7 @@ const BlogsPage = async () => {
             ))}
           </section>
         ) : (
-          <div className="md:w-1/2 md:mx-auto">
+          <div className="md:mx-auto md:w-1/2">
             <DataNotFound />
           </div>
         )}

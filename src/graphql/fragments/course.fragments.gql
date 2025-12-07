@@ -1,6 +1,11 @@
-fragment CourseSummaryFields on courses {
+fragment CourseCoreFields on courses {
   slug
   title
+  icon_string
+}
+
+fragment CourseSummaryFields on courses {
+  ...CourseCoreFields
   description
   hero_image {
     id
@@ -22,7 +27,6 @@ fragment CourseListFields on courses {
 
 fragment CourseDetailFields on courses {
   ...CourseListFields
-  icon_string
   course_structure {
     title
     rich_text

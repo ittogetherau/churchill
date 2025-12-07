@@ -4,6 +4,7 @@ import { FetchUpcomingKeyEventsData } from "@/components/utils/apiQueries";
 import Copyurl from "../../../../components/sections/blogSections/CopyUrl";
 import MoreEventsSection from "@/components/sections/EventsSection/MoreEventsSection";
 import { TEvent, TStaticEvent } from "@/constDatas/eventsData";
+import { siteConfig } from "@/config/siteConfig";
 
 interface PageProps {
   params: { slug: string };
@@ -33,7 +34,7 @@ const page = async ({ params }: PageProps) => {
   const data: TEvent = await items.data;
   const eventDate = data.start_time ? new Date(data.start_time) : new Date();
   const readTime = data.rich_text ? Math.ceil(data.rich_text.length / 300) : 0;
-  const siteUrl = process.env.NEXT_PUBLIC_CHURCHILL_URL || "";
+  const siteUrl = siteConfig.churchillUrl;
 
   const author = isStaticEvent(data) ? data.author : "admin";
   const categories = isStaticEvent(data) ? data.catagories : [];

@@ -1,12 +1,12 @@
 import FadeUpAnimation from "@/animations/FadeUp";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/config/siteConfig";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 const AIHelpSection = () => {
-  const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL =
-    process.env.NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL;
+  const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL = siteConfig.studentHubUrl;
   return (
     <div className="container mx-auto px-5">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

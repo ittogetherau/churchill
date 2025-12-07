@@ -7,50 +7,50 @@ type GraphQLDoc<TData, TVariables> =
   | string
   | TypedDocumentNode<TData, TVariables>;
 
+const retry = async <T>(fn: () => Promise<T>, attempts = 3) => {
+  let err;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      err = e;
+      await new Promise((r) => setTimeout(r, 300 * (i + 1)));
+    }
+  }
+  throw err;
+};
+
 export const fetchGraphQL = async <TData, TVariables = {}>(
   query: GraphQLDoc<TData, TVariables>,
-  variables?: TVariables
-) => {
-  try {
+  variables?: TVariables,
+) =>
+  retry(async () => {
     const queryString = typeof query === "string" ? query : print(query);
 
     const res = await fetch(`${BASE_STRING}/graphql`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: queryString, variables }),
       next: { revalidate: 60 },
     });
 
-    console.log("Response status:", res.status);
-    if (!res.ok) {
-      const errorText = await res.text();
-      throw new Error(errorText);
-    }
+    if (!res.ok) throw new Error(await res.text());
 
     const json = await res.json();
-    if (json.errors) {
-      console.error("GraphQL errors:", json.errors);
-      throw new Error("GraphQL request failed");
-    }
+    if (json.errors) throw new Error(JSON.stringify(json.errors));
 
     return json.data as TData;
-  } catch (error) {
-    console.error("Fetch error:", error);
-    throw error;
-  }
-};
+  });
 
 type ExtractDocData<TDoc extends TypedDocumentNode<any, any>> =
   TDoc extends TypedDocumentNode<infer TData, any> ? TData : never;
+
 type ExtractDocVars<TDoc extends TypedDocumentNode<any, any>> =
   TDoc extends TypedDocumentNode<any, infer TVars> ? TVars : never;
 
-// Small helper so callers only pass the generated document + vars.
 export const runQuery = async <TDoc extends TypedDocumentNode<any, any>>(
   doc: TDoc,
-  variables?: ExtractDocVars<TDoc>
+  variables?: ExtractDocVars<TDoc>,
 ) => fetchGraphQL<ExtractDocData<TDoc>, ExtractDocVars<TDoc>>(doc, variables);
 
 export const resolveFileLink = (file?: any) => {

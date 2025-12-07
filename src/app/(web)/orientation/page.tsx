@@ -7,9 +7,9 @@ import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { siteConfig } from "@/config/siteConfig";
 
-const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL =
-  process.env.NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL;
+const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL = siteConfig.studentHubUrl;
 
 const stepTitles = [
   { id: 1, title: "Create Your USI ID" },

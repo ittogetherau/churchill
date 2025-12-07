@@ -1,7 +1,6 @@
-// `import React from "react";
-// import Image from "next/image";
+// import PatternBannerCard from "@/components/cards/PatternBannerCard";
 // import { navItems } from "@/constDatas/navItems";
-// import { PatternBannerCard } from "@/components/cards";
+// import Image from "next/image";
 
 // const AccredentialSection = () => {
 //   const data = navItems[2];
@@ -11,41 +10,41 @@
 //       <PatternBannerCard title="Accreditation" />
 
 //       <div className="container-blog mx-auto px-5">
-//         <div className="flex flex-col gap-8 mb-[48px]">
+//         <div className="mb-[48px] flex flex-col gap-8">
 //           {data?.Catagories?.map((item, index) => {
 //             if (item.isAccredited)
 //               return (
 //                 <div
 //                   key={index}
-//                   className="bg-light-grey p-4 py-8 rounded-md flex flex-col gap-3"
+//                   className="bg-light-grey flex flex-col gap-3 rounded-md p-4 py-8"
 //                 >
 //                   <div>
-//                     <p className="text-4xl font-bold text-center w-fit mx-auto">
+//                     <p className="mx-auto w-fit text-center text-4xl font-bold">
 //                       {item.faculty}
 //                     </p>
-//                     <p className="text-4xl font-bold text-center w-fit mx-auto">
+//                     <p className="mx-auto w-fit text-center text-4xl font-bold">
 //                       {item.menuTitle}
 //                     </p>
 //                   </div>
 
 //                   <div>
-//                     <p className="text-2xl font-bold text-center w-fit mx-auto">
+//                     <p className="mx-auto w-fit text-center text-2xl font-bold">
 //                       CRICOS Course Code: ({item.courseCode})
 //                     </p>
-//                     <p className="text-center w-fit mx-auto text-xl font-semibold">
+//                     <p className="mx-auto w-fit text-center text-xl font-semibold">
 //                       is Accrediated By
 //                     </p>
 //                   </div>
 
-//                   <h2 className="flex items-center justify-center md:gap-8 flex-wrap">
-//                     {(item.accredited || []).map((logo, index) => (
+//                   <h2 className="flex flex-wrap items-center justify-center md:gap-8">
+//                     {item.accredited?.map((item: string, index: number) => (
 //                       <Image
-//                         src={logo}
-//                         alt={logo}
+//                         src={item}
+//                         alt={item}
 //                         key={index}
 //                         width={100}
 //                         height={100}
-//                         className="w-[12rem] aspect-square object-cover"
+//                         className="aspect-square w-[12rem] object-cover"
 //                       />
 //                     ))}
 //                   </h2>

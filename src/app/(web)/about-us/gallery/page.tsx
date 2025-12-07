@@ -1,3 +1,4 @@
+import { PatternBannerCard } from "@/components/cards";
 import GallerySection from "@/components/sections/aboutUsSections/GallerySection";
 import { GalleryDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
@@ -9,6 +10,8 @@ const GalleryPage = async () => {
 
   return (
     <SpacingLayout>
+      <PatternBannerCard title="Gallery" />
+
       <GallerySection images={images} />
     </SpacingLayout>
   );

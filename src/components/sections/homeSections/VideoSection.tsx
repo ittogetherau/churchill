@@ -16,11 +16,11 @@ const VideoSection = ({ data }: { data: ExploreContent | null }) => {
 
   return (
     <ContainerLayout>
-      <h2 className="text-3xl font-bold mb-12 text-center">
+      <h2 className="mb-12 text-center text-3xl font-bold">
         {data.section_title}
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {videos.map((file, index) => {
           const videoUrl = resolveFileLink(file);
 
@@ -35,7 +35,7 @@ const VideoSection = ({ data }: { data: ExploreContent | null }) => {
                 muted
                 loop
                 preload="metadata"
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
           );

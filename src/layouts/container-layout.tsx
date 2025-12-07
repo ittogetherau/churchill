@@ -9,7 +9,7 @@ export interface Props {
 }
 
 const ContainerLayout: React.FC<Props> = ({
-  size = "md",
+  size = "base",
   isCenter = true,
   children,
   pad = true,
@@ -20,8 +20,8 @@ const ContainerLayout: React.FC<Props> = ({
       size === "sm"
         ? "container-sm"
         : size === "md"
-        ? "container-md"
-        : "container"
+          ? "container-md"
+          : "container"
     } ${isCenter ? "mx-auto" : ""} ${pad ? "px-4" : ""} ${className} `}
   >
     {children}

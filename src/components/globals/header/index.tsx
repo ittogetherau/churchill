@@ -1,26 +1,57 @@
 "use client";
-import React from "react";
-import DesktopNav from "./ForDesktop";
-import MobileNav from "./ForMobile";
+import ContainerLayout from "@/layouts/container-layout";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import AnnouncementBar from "./AnnouncementBar";
-
-const ANNOUNCEMENT_TEXT =
-  "S3 2025 orientation date details: 03 December at 10:00 AM to 02:30 PM";
+import MobileNavigation from "./MobileNavigation";
+import NavigationItems from "./NavigationItems";
+import { useHeaderStore } from "@/store/headerStore";
+import { HeaderQuery } from "@/graphql/generated/graphql";
 
 const Header: React.FC = () => {
+  const { courses, setCourses } = useHeaderStore();
+  const [data, setData] = useState<HeaderQuery | null>(null);
+
+  const announcements = data?.announcements ?? {};
+
+  useEffect(() => {
+    async function fetchHeader() {
+      const response = await fetch("/api/header");
+      const data = await response.json();
+      setData(data);
+      setCourses(data?.courses ?? []);
+    }
+
+    fetchHeader();
+  }, [setCourses]);
+
   return (
-    <div className="header z-40 sticky top-0 left-0 w-full bg-white shadow-sm/5">
-      <AnnouncementBar text={ANNOUNCEMENT_TEXT} />
+    <div className="header sticky top-0 left-0 z-40 w-full bg-white shadow-sm/5">
+      <AnnouncementBar text={announcements.announcement_text ?? ""} />
 
-      <div className={`z-40 bg-white hidden lg:block shadow-sm/5`}>
-        <div className="hidden lg:block relative">
-          <DesktopNav />
+      <ContainerLayout>
+        <div className="flex items-center justify-between gap-4 py-1">
+          <Link className="block" href="/">
+            <Image
+              src={`/assets/logo.svg`}
+              width={400}
+              height={400}
+              alt="Main Logo"
+              className="h-auto w-[240px] object-contain"
+              priority
+            />
+          </Link>
+
+          <div className="hidden md:block">
+            <NavigationItems courses={courses} onLinkClick={() => {}} />
+          </div>
+
+          <div className="block md:hidden">
+            <MobileNavigation courses={courses} />
+          </div>
         </div>
-      </div>
-
-      <div className="block lg:hidden">
-        <MobileNav />
-      </div>
+      </ContainerLayout>
     </div>
   );
 };

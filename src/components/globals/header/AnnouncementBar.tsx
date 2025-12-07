@@ -9,7 +9,7 @@ type props = {
   text: string;
 };
 
-const ANNOUNCEMENT_KEY = "show-announcement-header";
+const ANNOUNCEMENT_KEY = "SHOW-ANNOUNCEMENT-HEADER";
 
 const AnnouncementBar: React.FC<props> = ({ text }) => {
   const { isVisible, dismiss } = useAnnouncementVisibility(ANNOUNCEMENT_KEY);
@@ -20,7 +20,7 @@ const AnnouncementBar: React.FC<props> = ({ text }) => {
         <ContainerLayout className="flex items-center">
           <Marquee>
             <MarqueeContent>
-              <p className="px-12 text-sm font-semibold text-background">
+              <p className="text-background px-12 text-sm font-semibold">
                 {text}
               </p>
             </MarqueeContent>
@@ -30,7 +30,7 @@ const AnnouncementBar: React.FC<props> = ({ text }) => {
             variant={"ghost"}
             onClick={dismiss}
             size={"icon"}
-            className="text-white hover:text-alt-background"
+            className="hover:text-alt-background text-white"
           >
             <i className="fi fi-rr-cross-small flex"></i>
           </Button>
