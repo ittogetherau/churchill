@@ -8,8 +8,7 @@ fragment CourseSummaryFields on courses {
   ...CourseCoreFields
   description
   hero_image {
-    id
-    filename_download
+    ...FileFields
   }
   degree {
     ...DegreeCompactFields

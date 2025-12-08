@@ -20,7 +20,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ images }) => {
       (images ?? [])
         .map((img) => img?.directus_files_id)
         .filter((file) => Boolean(file)),
-    [images]
+    [images],
   );
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -28,7 +28,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ images }) => {
 
   return (
     <ContainerLayout className="space-y-6">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
         {files.map((file, idx) => {
           if (!file) return;
 
@@ -39,7 +39,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ images }) => {
           return (
             <button
               key={`${file.id}-${idx}`}
-              className="relative aspect-square overflow-hidden rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-orange"
+              className="focus:ring-primary-orange relative aspect-square overflow-hidden rounded-md bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:outline-none"
               onClick={() => setActiveIndex(idx)}
             >
               <Image
@@ -59,23 +59,23 @@ const GallerySection: React.FC<GallerySectionProps> = ({ images }) => {
 
       {activeIndex !== null && files[activeIndex] && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
           onClick={() => setActiveIndex(null)}
         >
           <button
             aria-label="Close"
-            className="absolute top-4 right-4 text-white text-2xl"
+            className="absolute top-4 right-4 text-2xl text-white"
             onClick={() => setActiveIndex(null)}
           >
             <X />
           </button>
           <button
             aria-label="Previous"
-            className="absolute left-4 text-white text-2xl"
+            className="absolute left-4 text-2xl text-white"
             onClick={(e) => {
               e.stopPropagation();
               setActiveIndex((prev) =>
-                prev === null ? null : (prev - 1 + files.length) % files.length
+                prev === null ? null : (prev - 1 + files.length) % files.length,
               );
             }}
           >
@@ -83,17 +83,17 @@ const GallerySection: React.FC<GallerySectionProps> = ({ images }) => {
           </button>
           <button
             aria-label="Next"
-            className="absolute right-4 text-white text-2xl"
+            className="absolute right-4 text-2xl text-white"
             onClick={(e) => {
               e.stopPropagation();
               setActiveIndex((prev) =>
-                prev === null ? null : (prev + 1) % files.length
+                prev === null ? null : (prev + 1) % files.length,
               );
             }}
           >
             <ChevronRight />
           </button>
-          <div className="relative w-full max-w-4xl aspect-video">
+          <div className="relative aspect-video w-full max-w-4xl">
             <Image
               src={resolveFileLink({
                 id: files[activeIndex].id,

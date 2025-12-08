@@ -23,33 +23,33 @@ const CourseDetailsCard = ({
   courseDetails,
 }: CourseDetailsProp) => {
   return (
-    <div className="bg-[#FAF4F4] flex flex-col gap-4 md:gap-3 md:flex-row md:items-center p-4 rounded-md">
-      <div className="flex-1 flex flex-col gap-3">
-        <span className="bg-[#F2CF9C] px-3 py-1 text-sm rounded-md capitalize w-fit">
+    <div className="flex flex-col gap-4 rounded-md bg-[#FAF4F4] p-4 md:flex-row md:items-center md:gap-3">
+      <div className="flex flex-1 flex-col gap-3">
+        <span className="w-fit rounded-md bg-[#F2CF9C] px-3 py-1 text-sm capitalize">
           {faculty}
         </span>
 
-        <h2 className="font-extrabold text-2xl lg:text-3xl text-matte-purple">
+        <h2 className="text-matte-purple text-2xl font-extrabold lg:text-3xl">
           {title}
         </h2>
 
         <div
           dangerouslySetInnerHTML={{ __html: subTitle }}
-          className="md:max-h-[4.5rem] overflow-hidden"
+          className="overflow-hidden md:max-h-[4.5rem]"
         ></div>
 
-        <div className="flex flex-col lg:flex-row justify-around md:justify-start gap-5 md:gap-12">
+        <div className="flex flex-col justify-around gap-4 md:justify-start md:gap-12 lg:flex-row">
           {courseDetails
             ?.filter((detail): detail is ProgramDetail => Boolean(detail))
             ?.slice(0, 3)
             ?.map((item, index) => (
-              <div className="flex flex-row gap-3 items-center" key={index}>
-                <div className="w-12 h-12 grid place-items-center bg-white rounded-full text-2xl">
-                  <i className={`text-[#E59623] flex ${item?.icon ?? ""}`}></i>
+              <div className="flex flex-row items-center gap-3" key={index}>
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-white text-2xl">
+                  <i className={`flex text-[#E59623] ${item?.icon ?? ""}`}></i>
                 </div>
 
                 <div className="">
-                  <h3 className="text-[#2C2B4B] font-bold text-lg">
+                  <h3 className="text-lg font-bold text-[#2C2B4B]">
                     {item?.value ?? ""}
                   </h3>
                   <p className="text-[#2C2B4B]">{item?.label ?? ""}</p>
@@ -58,7 +58,7 @@ const CourseDetailsCard = ({
             ))}
         </div>
       </div>
-      <div className="max-w-fit flex flex-col gap-3">
+      <div className="flex max-w-fit flex-col gap-3">
         <Link href={`/courses/${slug}`} className="w-full flex-1">
           <Button
             btnName="Learn More"

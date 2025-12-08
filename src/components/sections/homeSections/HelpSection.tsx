@@ -11,8 +11,8 @@ const HelpSection = () => {
 
   return (
     <div className="container mx-auto px-5">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[32px]">
-        <div className="bg-[#F3E4E4] rounded-md">
+      <div className="grid grid-cols-1 gap-[32px] lg:grid-cols-2">
+        <div className="rounded-md bg-[#F3E4E4]">
           <HelpCard
             image={"/assets/help.webp"}
             title={"Need Help?"}
@@ -21,10 +21,10 @@ const HelpSection = () => {
             }
           />
         </div>
-        <div className="bg-[#F3E4E4] rounded-md flex flex-col">
-          <div className=" px-8 py-[32px] flex flex-col gap-5">
-            <div className="flex justify-between gap-4 flex-col lg:flex-row items-center">
-              <h2 className="font-bold text-[36px] text-[#2C2B4B]">
+        <div className="flex flex-col rounded-md bg-[#F3E4E4]">
+          <div className="flex flex-col gap-4 px-8 py-[32px]">
+            <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
+              <h2 className="text-[36px] font-bold text-[#2C2B4B]">
                 How to Guide?
               </h2>
             </div>

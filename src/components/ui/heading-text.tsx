@@ -9,13 +9,13 @@ interface Props extends HTMLAttributes<HTMLHeadingElement | HTMLDivElement> {
 }
 
 const sizeClass: Record<number, string> = {
-  0: "text-sm md:text-base leading-relaxed",
-  1: "text-4xl md:text-5xl leading-tight",
-  2: "text-3xl md:text-4xl leading-tight",
-  3: "text-2xl md:text-3xl leading-snug",
-  4: "text-xl md:text-2xl leading-snug",
-  5: "text-lg md:text-xl leading-normal",
-  6: "text-base md:text-lg leading-normal",
+  0: "text-base leading-relaxed",
+  1: "text-5xl sm:text-6xl leading-[1.1] tracking-tight",
+  2: "text-4xl sm:text-5xl leading-[1.2] tracking-tight",
+  3: "text-3xl sm:text-4xl leading-snug",
+  4: "text-2xl sm:text-3xl leading-snug",
+  5: "text-xl sm:text-2xl leading-normal",
+  6: "text-lg sm:text-xl leading-normal",
 };
 
 const HeadingText = ({
@@ -26,12 +26,10 @@ const HeadingText = ({
   ...props
 }: Props) => {
   const baseStyles = "font-secondary font-bold text-[#2C2B4B]";
-
   const validLevel = (level in sizeClass ? level : 2) as keyof typeof sizeClass;
   const validHeading = (heading ?? level) as keyof typeof sizeClass;
-
   const size = sizeClass[validLevel];
-  const combinedClassName = clsx(className, baseStyles, size);
+  const combinedClassName = clsx(baseStyles, size, className);
 
   const Tag = (validHeading === 0 ? "div" : `h${validHeading}`) as
     | "h1"

@@ -40,6 +40,10 @@ export type Query = {
   campus_locations_aggregated: Array<Campus_Locations_Aggregated>;
   campus_locations_by_id?: Maybe<Campus_Locations>;
   campus_locations_by_version?: Maybe<Version_Campus_Locations>;
+  columns: Array<Columns>;
+  columns_aggregated: Array<Columns_Aggregated>;
+  columns_by_id?: Maybe<Columns>;
+  columns_by_version?: Maybe<Version_Columns>;
   courses: Array<Courses>;
   courses_aggregated: Array<Courses_Aggregated>;
   courses_by_id?: Maybe<Courses>;
@@ -62,10 +66,6 @@ export type Query = {
   files_aggregated: Array<Files_Aggregated>;
   files_by_id?: Maybe<Files>;
   files_by_version?: Maybe<Version_Files>;
-  files_files: Array<Files_Files>;
-  files_files_aggregated: Array<Files_Files_Aggregated>;
-  files_files_by_id?: Maybe<Files_Files>;
-  files_files_by_version?: Maybe<Version_Files_Files>;
   how_to_guide: Array<How_To_Guide>;
   how_to_guide_aggregated: Array<How_To_Guide_Aggregated>;
   how_to_guide_by_id?: Maybe<How_To_Guide>;
@@ -88,6 +88,14 @@ export type Query = {
   news_aggregated: Array<News_Aggregated>;
   news_by_id?: Maybe<News>;
   news_by_version?: Maybe<Version_News>;
+  pages: Array<Pages>;
+  pages_aggregated: Array<Pages_Aggregated>;
+  pages_by_id?: Maybe<Pages>;
+  pages_by_version?: Maybe<Version_Pages>;
+  pages_sections: Array<Pages_Sections>;
+  pages_sections_aggregated: Array<Pages_Sections_Aggregated>;
+  pages_sections_by_id?: Maybe<Pages_Sections>;
+  pages_sections_by_version?: Maybe<Version_Pages_Sections>;
   policies: Array<Policies>;
   policies_aggregated: Array<Policies_Aggregated>;
   policies_by_id?: Maybe<Policies>;
@@ -96,6 +104,14 @@ export type Query = {
   request_form_aggregated: Array<Request_Form_Aggregated>;
   request_form_by_id?: Maybe<Request_Form>;
   request_form_by_version?: Maybe<Version_Request_Form>;
+  sections: Array<Sections>;
+  sections_aggregated: Array<Sections_Aggregated>;
+  sections_by_id?: Maybe<Sections>;
+  sections_by_version?: Maybe<Version_Sections>;
+  sections_columns: Array<Sections_Columns>;
+  sections_columns_aggregated: Array<Sections_Columns_Aggregated>;
+  sections_columns_by_id?: Maybe<Sections_Columns>;
+  sections_columns_by_version?: Maybe<Version_Sections_Columns>;
   staff_department: Array<Staff_Department>;
   staff_department_aggregated: Array<Staff_Department_Aggregated>;
   staff_department_by_id?: Maybe<Staff_Department>;
@@ -227,6 +243,39 @@ export type QueryCampus_Locations_By_IdArgs = {
 
 
 export type QueryCampus_Locations_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
+export type QueryColumnsArgs = {
+  filter?: InputMaybe<Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryColumns_AggregatedArgs = {
+  filter?: InputMaybe<Columns_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryColumns_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryColumns_By_VersionArgs = {
   id: Scalars['ID']['input'];
   version: Scalars['String']['input'];
 };
@@ -407,39 +456,6 @@ export type QueryFiles_By_VersionArgs = {
 };
 
 
-export type QueryFiles_FilesArgs = {
-  filter?: InputMaybe<Files_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryFiles_Files_AggregatedArgs = {
-  filter?: InputMaybe<Files_Files_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryFiles_Files_By_IdArgs = {
-  id: Scalars['ID']['input'];
-  version?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryFiles_Files_By_VersionArgs = {
-  id: Scalars['ID']['input'];
-  version: Scalars['String']['input'];
-};
-
-
 export type QueryHow_To_GuideArgs = {
   filter?: InputMaybe<How_To_Guide_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -615,6 +631,72 @@ export type QueryNews_By_VersionArgs = {
 };
 
 
+export type QueryPagesArgs = {
+  filter?: InputMaybe<Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPages_AggregatedArgs = {
+  filter?: InputMaybe<Pages_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPages_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryPages_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
+export type QueryPages_SectionsArgs = {
+  filter?: InputMaybe<Pages_Sections_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPages_Sections_AggregatedArgs = {
+  filter?: InputMaybe<Pages_Sections_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPages_Sections_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryPages_Sections_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
 export type QueryPoliciesArgs = {
   filter?: InputMaybe<Policies_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -676,6 +758,72 @@ export type QueryRequest_Form_By_IdArgs = {
 
 
 export type QueryRequest_Form_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
+export type QuerySectionsArgs = {
+  filter?: InputMaybe<Sections_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySections_AggregatedArgs = {
+  filter?: InputMaybe<Sections_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySections_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySections_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
+export type QuerySections_ColumnsArgs = {
+  filter?: InputMaybe<Sections_Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySections_Columns_AggregatedArgs = {
+  filter?: InputMaybe<Sections_Columns_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySections_Columns_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySections_Columns_By_VersionArgs = {
   id: Scalars['ID']['input'];
   version: Scalars['String']['input'];
 };
@@ -883,13 +1031,13 @@ export type Subscription = {
   announcements_mutated?: Maybe<Announcements_Mutated>;
   blog_mutated?: Maybe<Blog_Mutated>;
   campus_locations_mutated?: Maybe<Campus_Locations_Mutated>;
+  columns_mutated?: Maybe<Columns_Mutated>;
   courses_mutated?: Maybe<Courses_Mutated>;
   degree_mutated?: Maybe<Degree_Mutated>;
   directus_files_mutated?: Maybe<Directus_Files_Mutated>;
   events_mutated?: Maybe<Events_Mutated>;
   explore_churchill_files_mutated?: Maybe<Explore_Churchill_Files_Mutated>;
   explore_churchill_mutated?: Maybe<Explore_Churchill_Mutated>;
-  files_files_mutated?: Maybe<Files_Files_Mutated>;
   files_mutated?: Maybe<Files_Mutated>;
   how_to_guide_mutated?: Maybe<How_To_Guide_Mutated>;
   image_gallery_files_mutated?: Maybe<Image_Gallery_Files_Mutated>;
@@ -897,8 +1045,12 @@ export type Subscription = {
   info_item_mutated?: Maybe<Info_Item_Mutated>;
   key_dates_mutated?: Maybe<Key_Dates_Mutated>;
   news_mutated?: Maybe<News_Mutated>;
+  pages_mutated?: Maybe<Pages_Mutated>;
+  pages_sections_mutated?: Maybe<Pages_Sections_Mutated>;
   policies_mutated?: Maybe<Policies_Mutated>;
   request_form_mutated?: Maybe<Request_Form_Mutated>;
+  sections_columns_mutated?: Maybe<Sections_Columns_Mutated>;
+  sections_mutated?: Maybe<Sections_Mutated>;
   staff_department_mutated?: Maybe<Staff_Department_Mutated>;
   staff_directory_mutated?: Maybe<Staff_Directory_Mutated>;
   tabbed_pane_mutated?: Maybe<Tabbed_Pane_Mutated>;
@@ -924,6 +1076,11 @@ export type SubscriptionBlog_MutatedArgs = {
 
 
 export type SubscriptionCampus_Locations_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionColumns_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -954,11 +1111,6 @@ export type SubscriptionExplore_Churchill_Files_MutatedArgs = {
 
 
 export type SubscriptionExplore_Churchill_MutatedArgs = {
-  event?: InputMaybe<EventEnum>;
-};
-
-
-export type SubscriptionFiles_Files_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -998,12 +1150,32 @@ export type SubscriptionNews_MutatedArgs = {
 };
 
 
+export type SubscriptionPages_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionPages_Sections_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
 export type SubscriptionPolicies_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
 
 export type SubscriptionRequest_Form_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionSections_Columns_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionSections_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -1282,6 +1454,91 @@ export type Campus_Locations_Filter = {
 
 export type Campus_Locations_Mutated = {
   data?: Maybe<Campus_Locations>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Columns = {
+  button_label?: Maybe<Scalars['String']['output']>;
+  button_url?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Directus_Files>;
+  is_card?: Maybe<Scalars['Boolean']['output']>;
+  open_in_new_tab?: Maybe<Scalars['Boolean']['output']>;
+  parent?: Maybe<Sections>;
+  rich_text?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ColumnsImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ColumnsParentArgs = {
+  filter?: InputMaybe<Sections_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Columns_Aggregated = {
+  avg?: Maybe<Columns_Aggregated_Fields>;
+  avgDistinct?: Maybe<Columns_Aggregated_Fields>;
+  count?: Maybe<Columns_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Columns_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Columns_Aggregated_Fields>;
+  min?: Maybe<Columns_Aggregated_Fields>;
+  sum?: Maybe<Columns_Aggregated_Fields>;
+  sumDistinct?: Maybe<Columns_Aggregated_Fields>;
+};
+
+export type Columns_Aggregated_Count = {
+  button_label?: Maybe<Scalars['Int']['output']>;
+  button_url?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  image?: Maybe<Scalars['Int']['output']>;
+  is_card?: Maybe<Scalars['Int']['output']>;
+  open_in_new_tab?: Maybe<Scalars['Int']['output']>;
+  parent?: Maybe<Scalars['Int']['output']>;
+  rich_text?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Columns_Aggregated_Fields = {
+  id?: Maybe<Scalars['Float']['output']>;
+  parent?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Columns_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Columns_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Columns_Filter>>>;
+  button_label?: InputMaybe<String_Filter_Operators>;
+  button_url?: InputMaybe<String_Filter_Operators>;
+  description?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  image?: InputMaybe<Directus_Files_Filter>;
+  is_card?: InputMaybe<Boolean_Filter_Operators>;
+  open_in_new_tab?: InputMaybe<Boolean_Filter_Operators>;
+  parent?: InputMaybe<Sections_Filter>;
+  rich_text?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Columns_Mutated = {
+  data?: Maybe<Columns>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -1796,15 +2053,17 @@ export type Explore_Churchill_Mutated = {
 };
 
 export type Files = {
-  files?: Maybe<Array<Maybe<Files_Files>>>;
-  files_func?: Maybe<Count_Functions>;
+  description?: Maybe<Scalars['String']['output']>;
+  file?: Maybe<Directus_Files>;
   id: Scalars['ID']['output'];
   slug?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 
-export type FilesFilesArgs = {
-  filter?: InputMaybe<Files_Files_Filter>;
+export type FilesFileArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1826,96 +2085,28 @@ export type Files_Aggregated = {
 };
 
 export type Files_Aggregated_Count = {
-  files?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['Int']['output']>;
+  file?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Files_Aggregated_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Files_Files = {
-  directus_files_id?: Maybe<Directus_Files>;
-  files_id?: Maybe<Files>;
-  id: Scalars['ID']['output'];
-};
-
-
-export type Files_FilesDirectus_Files_IdArgs = {
-  filter?: InputMaybe<Directus_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Files_FilesFiles_IdArgs = {
-  filter?: InputMaybe<Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Files_Files_Aggregated = {
-  avg?: Maybe<Files_Files_Aggregated_Fields>;
-  avgDistinct?: Maybe<Files_Files_Aggregated_Fields>;
-  count?: Maybe<Files_Files_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Files_Files_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Files_Files_Aggregated_Fields>;
-  min?: Maybe<Files_Files_Aggregated_Fields>;
-  sum?: Maybe<Files_Files_Aggregated_Fields>;
-  sumDistinct?: Maybe<Files_Files_Aggregated_Fields>;
-};
-
-export type Files_Files_Aggregated_Count = {
-  directus_files_id?: Maybe<Scalars['Int']['output']>;
-  files_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Files_Files_Aggregated_Fields = {
-  files_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Files_Files_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Files_Files_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Files_Files_Filter>>>;
-  directus_files_id?: InputMaybe<Directus_Files_Filter>;
-  files_id?: InputMaybe<Files_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
-};
-
-export type Files_Files_Mutated = {
-  data?: Maybe<Files_Files>;
-  event?: Maybe<EventEnum>;
-  key: Scalars['ID']['output'];
-};
-
-export type Files_Files_Quantifier_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Files_Files_Filter>>>;
-  _none?: InputMaybe<Files_Files_Filter>;
-  _or?: InputMaybe<Array<InputMaybe<Files_Files_Filter>>>;
-  _some?: InputMaybe<Files_Files_Filter>;
-  directus_files_id?: InputMaybe<Directus_Files_Filter>;
-  files_id?: InputMaybe<Files_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Files_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Files_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Files_Filter>>>;
-  files?: InputMaybe<Files_Files_Quantifier_Filter>;
-  files_func?: InputMaybe<Count_Function_Filter_Operators>;
+  description?: InputMaybe<String_Filter_Operators>;
+  file?: InputMaybe<Directus_Files_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Files_Mutated = {
@@ -2360,11 +2551,153 @@ export type Number_Filter_Operators = {
   _null?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type Pages = {
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  sections?: Maybe<Array<Maybe<Pages_Sections>>>;
+  sections_func?: Maybe<Count_Functions>;
+  /** Auto generated; Enter if you want custom slug */
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  view_title_in_banner?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+export type PagesSectionsArgs = {
+  filter?: InputMaybe<Pages_Sections_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Pages_Aggregated = {
+  avg?: Maybe<Pages_Aggregated_Fields>;
+  avgDistinct?: Maybe<Pages_Aggregated_Fields>;
+  count?: Maybe<Pages_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Pages_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Pages_Aggregated_Fields>;
+  min?: Maybe<Pages_Aggregated_Fields>;
+  sum?: Maybe<Pages_Aggregated_Fields>;
+  sumDistinct?: Maybe<Pages_Aggregated_Fields>;
+};
+
+export type Pages_Aggregated_Count = {
+  description?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sections?: Maybe<Scalars['Int']['output']>;
+  /** Auto generated; Enter if you want custom slug */
+  slug?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+  view_title_in_banner?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Pages_Aggregated_Fields = {
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Pages_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Pages_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Pages_Filter>>>;
+  description?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sections?: InputMaybe<Pages_Sections_Quantifier_Filter>;
+  sections_func?: InputMaybe<Count_Function_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+  view_title_in_banner?: InputMaybe<Boolean_Filter_Operators>;
+};
+
+export type Pages_Mutated = {
+  data?: Maybe<Pages>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Pages_Sections = {
+  id: Scalars['ID']['output'];
+  pages_id?: Maybe<Pages>;
+  sections_id?: Maybe<Sections>;
+};
+
+
+export type Pages_SectionsPages_IdArgs = {
+  filter?: InputMaybe<Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Pages_SectionsSections_IdArgs = {
+  filter?: InputMaybe<Sections_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Pages_Sections_Aggregated = {
+  avg?: Maybe<Pages_Sections_Aggregated_Fields>;
+  avgDistinct?: Maybe<Pages_Sections_Aggregated_Fields>;
+  count?: Maybe<Pages_Sections_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Pages_Sections_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Pages_Sections_Aggregated_Fields>;
+  min?: Maybe<Pages_Sections_Aggregated_Fields>;
+  sum?: Maybe<Pages_Sections_Aggregated_Fields>;
+  sumDistinct?: Maybe<Pages_Sections_Aggregated_Fields>;
+};
+
+export type Pages_Sections_Aggregated_Count = {
+  id?: Maybe<Scalars['Int']['output']>;
+  pages_id?: Maybe<Scalars['Int']['output']>;
+  sections_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Pages_Sections_Aggregated_Fields = {
+  id?: Maybe<Scalars['Float']['output']>;
+  pages_id?: Maybe<Scalars['Float']['output']>;
+  sections_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Pages_Sections_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Pages_Sections_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Pages_Sections_Filter>>>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  pages_id?: InputMaybe<Pages_Filter>;
+  sections_id?: InputMaybe<Sections_Filter>;
+};
+
+export type Pages_Sections_Mutated = {
+  data?: Maybe<Pages_Sections>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Pages_Sections_Quantifier_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Pages_Sections_Filter>>>;
+  _none?: InputMaybe<Pages_Sections_Filter>;
+  _or?: InputMaybe<Array<InputMaybe<Pages_Sections_Filter>>>;
+  _some?: InputMaybe<Pages_Sections_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  pages_id?: InputMaybe<Pages_Filter>;
+  sections_id?: InputMaybe<Sections_Filter>;
+};
+
 export type Policies = {
   description?: Maybe<Scalars['String']['output']>;
   file?: Maybe<Directus_Files>;
   icon_string?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -2397,6 +2730,7 @@ export type Policies_Aggregated_Count = {
   file?: Maybe<Scalars['Int']['output']>;
   icon_string?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
 };
@@ -2413,6 +2747,7 @@ export type Policies_Filter = {
   file?: InputMaybe<Directus_Files_Filter>;
   icon_string?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
 };
@@ -2477,6 +2812,145 @@ export type Request_Form_Filter = {
 
 export type Request_Form_Mutated = {
   data?: Maybe<Request_Form>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Sections = {
+  column_count?: Maybe<Scalars['String']['output']>;
+  columns?: Maybe<Array<Maybe<Sections_Columns>>>;
+  columns_func?: Maybe<Count_Functions>;
+  id: Scalars['ID']['output'];
+  is_card?: Maybe<Scalars['Boolean']['output']>;
+  rich_text?: Maybe<Scalars['String']['output']>;
+  section_title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type SectionsColumnsArgs = {
+  filter?: InputMaybe<Sections_Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Sections_Aggregated = {
+  avg?: Maybe<Sections_Aggregated_Fields>;
+  avgDistinct?: Maybe<Sections_Aggregated_Fields>;
+  count?: Maybe<Sections_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Sections_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Sections_Aggregated_Fields>;
+  min?: Maybe<Sections_Aggregated_Fields>;
+  sum?: Maybe<Sections_Aggregated_Fields>;
+  sumDistinct?: Maybe<Sections_Aggregated_Fields>;
+};
+
+export type Sections_Aggregated_Count = {
+  column_count?: Maybe<Scalars['Int']['output']>;
+  columns?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  is_card?: Maybe<Scalars['Int']['output']>;
+  rich_text?: Maybe<Scalars['Int']['output']>;
+  section_title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Sections_Aggregated_Fields = {
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Sections_Columns = {
+  columns_id?: Maybe<Columns>;
+  id: Scalars['ID']['output'];
+  sections_id?: Maybe<Sections>;
+};
+
+
+export type Sections_ColumnsColumns_IdArgs = {
+  filter?: InputMaybe<Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Sections_ColumnsSections_IdArgs = {
+  filter?: InputMaybe<Sections_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Sections_Columns_Aggregated = {
+  avg?: Maybe<Sections_Columns_Aggregated_Fields>;
+  avgDistinct?: Maybe<Sections_Columns_Aggregated_Fields>;
+  count?: Maybe<Sections_Columns_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Sections_Columns_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Sections_Columns_Aggregated_Fields>;
+  min?: Maybe<Sections_Columns_Aggregated_Fields>;
+  sum?: Maybe<Sections_Columns_Aggregated_Fields>;
+  sumDistinct?: Maybe<Sections_Columns_Aggregated_Fields>;
+};
+
+export type Sections_Columns_Aggregated_Count = {
+  columns_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sections_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Sections_Columns_Aggregated_Fields = {
+  columns_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sections_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Sections_Columns_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Sections_Columns_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Sections_Columns_Filter>>>;
+  columns_id?: InputMaybe<Columns_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sections_id?: InputMaybe<Sections_Filter>;
+};
+
+export type Sections_Columns_Mutated = {
+  data?: Maybe<Sections_Columns>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Sections_Columns_Quantifier_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Sections_Columns_Filter>>>;
+  _none?: InputMaybe<Sections_Columns_Filter>;
+  _or?: InputMaybe<Array<InputMaybe<Sections_Columns_Filter>>>;
+  _some?: InputMaybe<Sections_Columns_Filter>;
+  columns_id?: InputMaybe<Columns_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sections_id?: InputMaybe<Sections_Filter>;
+};
+
+export type Sections_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Sections_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Sections_Filter>>>;
+  column_count?: InputMaybe<String_Filter_Operators>;
+  columns?: InputMaybe<Sections_Columns_Quantifier_Filter>;
+  columns_func?: InputMaybe<Count_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  is_card?: InputMaybe<Boolean_Filter_Operators>;
+  rich_text?: InputMaybe<String_Filter_Operators>;
+  section_title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Sections_Mutated = {
+  data?: Maybe<Sections>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -2897,6 +3371,19 @@ export type Version_Campus_Locations = {
   website?: Maybe<Scalars['String']['output']>;
 };
 
+export type Version_Columns = {
+  button_label?: Maybe<Scalars['String']['output']>;
+  button_url?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Scalars['JSON']['output']>;
+  is_card?: Maybe<Scalars['Boolean']['output']>;
+  open_in_new_tab?: Maybe<Scalars['Boolean']['output']>;
+  parent?: Maybe<Scalars['JSON']['output']>;
+  rich_text?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type Version_Courses = {
   course_code?: Maybe<Scalars['String']['output']>;
   course_structure?: Maybe<Scalars['JSON']['output']>;
@@ -2959,16 +3446,12 @@ export type Version_Explore_Churchill_Files = {
 };
 
 export type Version_Files = {
-  files?: Maybe<Scalars['JSON']['output']>;
-  files_func?: Maybe<Count_Functions>;
+  description?: Maybe<Scalars['String']['output']>;
+  file?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   slug?: Maybe<Scalars['String']['output']>;
-};
-
-export type Version_Files_Files = {
-  directus_files_id?: Maybe<Scalars['JSON']['output']>;
-  files_id?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type Version_How_To_Guide = {
@@ -3035,11 +3518,29 @@ export type Version_News = {
   user_updated?: Maybe<Scalars['String']['output']>;
 };
 
+export type Version_Pages = {
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  sections?: Maybe<Scalars['JSON']['output']>;
+  sections_func?: Maybe<Count_Functions>;
+  /** Auto generated; Enter if you want custom slug */
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  view_title_in_banner?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type Version_Pages_Sections = {
+  id: Scalars['ID']['output'];
+  pages_id?: Maybe<Scalars['JSON']['output']>;
+  sections_id?: Maybe<Scalars['JSON']['output']>;
+};
+
 export type Version_Policies = {
   description?: Maybe<Scalars['String']['output']>;
   file?: Maybe<Scalars['JSON']['output']>;
   icon_string?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -3053,6 +3554,22 @@ export type Version_Request_Form = {
   redirect_url?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+};
+
+export type Version_Sections = {
+  column_count?: Maybe<Scalars['String']['output']>;
+  columns?: Maybe<Scalars['JSON']['output']>;
+  columns_func?: Maybe<Count_Functions>;
+  id: Scalars['ID']['output'];
+  is_card?: Maybe<Scalars['Boolean']['output']>;
+  rich_text?: Maybe<Scalars['String']['output']>;
+  section_title?: Maybe<Scalars['String']['output']>;
+};
+
+export type Version_Sections_Columns = {
+  columns_id?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  sections_id?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type Version_Staff_Department = {
@@ -3113,9 +3630,15 @@ export type CourseListFieldsFragment = { description?: string | null, slug: stri
 
 export type CourseDetailFieldsFragment = { description?: string | null, slug: string, title?: string | null, icon_string?: string | null, course_structure?: Array<{ title?: string | null, rich_text?: string | null } | null> | null, program_details?: Array<{ icon?: string | null, label?: string | null, value?: string | null } | null> | null, hero_image?: { id: string, filename_download: string } | null, degree?: { title?: string | null, short_title?: string | null, course_code?: string | null, description?: string | null } | null };
 
+export type ColumnFieldsFragment = { columns_id?: { title?: string | null, description?: string | null, rich_text?: string | null, button_url?: string | null, button_label?: string | null, open_in_new_tab?: boolean | null, is_card?: boolean | null, image?: { id: string, filename_download: string } | null } | null };
+
+export type SectionFieldsFragment = { sections_id?: { section_title?: string | null, rich_text?: string | null, column_count?: string | null, is_card?: boolean | null, columns?: Array<{ columns_id?: { title?: string | null, description?: string | null, rich_text?: string | null, button_url?: string | null, button_label?: string | null, open_in_new_tab?: boolean | null, is_card?: boolean | null, image?: { id: string, filename_download: string } | null } | null } | null> | null } | null };
+
 export type DegreeFieldsFragment = { title?: string | null, short_title?: string | null, course_code?: string | null, summary?: string | null, learning_outcomes?: string | null };
 
 export type DegreeCompactFieldsFragment = { title?: string | null, short_title?: string | null, course_code?: string | null, description?: string | null };
+
+export type FileFieldsFragment = { id: string, filename_download: string };
 
 export type KeyDatesFieldsFragment = { id: string, title?: string | null, start_date?: any | null, end_date?: any | null };
 
@@ -3152,6 +3675,29 @@ export type CourseDetailQueryVariables = Exact<{
 
 export type CourseDetailQuery = { courses: Array<{ description?: string | null, slug: string, title?: string | null, icon_string?: string | null, course_structure?: Array<{ title?: string | null, rich_text?: string | null } | null> | null, program_details?: Array<{ icon?: string | null, label?: string | null, value?: string | null } | null> | null, hero_image?: { id: string, filename_download: string } | null, degree?: { title?: string | null, short_title?: string | null, course_code?: string | null, description?: string | null } | null }>, otherCourses: Array<{ description?: string | null, slug: string, title?: string | null, icon_string?: string | null, hero_image?: { id: string, filename_download: string } | null, degree?: { title?: string | null, short_title?: string | null, course_code?: string | null, description?: string | null } | null }> };
 
+export type CustomPageQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CustomPageQuery = { pages: Array<{ view_title_in_banner?: boolean | null, slug?: string | null, title?: string | null, description?: string | null, sections?: Array<{ sections_id?: { section_title?: string | null, rich_text?: string | null, column_count?: string | null, is_card?: boolean | null, columns?: Array<{ columns_id?: { title?: string | null, description?: string | null, rich_text?: string | null, button_url?: string | null, button_label?: string | null, open_in_new_tab?: boolean | null, is_card?: boolean | null, image?: { id: string, filename_download: string } | null } | null } | null> | null } | null } | null> | null }> };
+
+export type FileItemFragment = { slug?: string | null, title?: string | null, file?: { id: string, filename_download: string } | null };
+
+export type PolicyItemFragment = { slug?: string | null, title?: string | null, file?: { id: string, filename_download: string } | null };
+
+export type FilesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FilesQuery = { files: Array<{ slug?: string | null, title?: string | null, file?: { id: string, filename_download: string } | null }>, policies: Array<{ slug?: string | null, title?: string | null, file?: { id: string, filename_download: string } | null }> };
+
+export type FileBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type FileBySlugQuery = { files: Array<{ slug?: string | null, title?: string | null, file?: { id: string, filename_download: string } | null }>, policies: Array<{ slug?: string | null, title?: string | null, file?: { id: string, filename_download: string } | null }> };
+
 export type GalleryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3179,23 +3725,31 @@ export type TeamMembersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeamMembersQuery = { team_members: Array<{ slug?: string | null, name?: string | null, post?: string | null, photo?: { id: string, filename_download: string } | null }> };
 
-export const BlogFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]} as unknown as DocumentNode<BlogFieldsFragment, unknown>;
+export const FileFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<FileFieldsFragment, unknown>;
+export const BlogFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<BlogFieldsFragment, unknown>;
 export const CourseCoreFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}}]} as unknown as DocumentNode<CourseCoreFieldsFragment, unknown>;
 export const DegreeCompactFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]} as unknown as DocumentNode<DegreeCompactFieldsFragment, unknown>;
-export const CourseSummaryFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]} as unknown as DocumentNode<CourseSummaryFieldsFragment, unknown>;
-export const CourseListFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}}]} as unknown as DocumentNode<CourseListFieldsFragment, unknown>;
-export const CourseDetailFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseListFields"}},{"kind":"Field","name":{"kind":"Name","value":"course_structure"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]} as unknown as DocumentNode<CourseDetailFieldsFragment, unknown>;
+export const CourseSummaryFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]} as unknown as DocumentNode<CourseSummaryFieldsFragment, unknown>;
+export const CourseListFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}}]} as unknown as DocumentNode<CourseListFieldsFragment, unknown>;
+export const CourseDetailFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseListFields"}},{"kind":"Field","name":{"kind":"Name","value":"course_structure"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]} as unknown as DocumentNode<CourseDetailFieldsFragment, unknown>;
+export const ColumnFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ColumnFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"sections_columns"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"columns_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}},{"kind":"Field","name":{"kind":"Name","value":"button_url"}},{"kind":"Field","name":{"kind":"Name","value":"button_label"}},{"kind":"Field","name":{"kind":"Name","value":"open_in_new_tab"}},{"kind":"Field","name":{"kind":"Name","value":"is_card"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<ColumnFieldsFragment, unknown>;
+export const SectionFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SectionFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"pages_sections"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sections_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"section_title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}},{"kind":"Field","name":{"kind":"Name","value":"column_count"}},{"kind":"Field","name":{"kind":"Name","value":"is_card"}},{"kind":"Field","name":{"kind":"Name","value":"columns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ColumnFields"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ColumnFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"sections_columns"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"columns_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}},{"kind":"Field","name":{"kind":"Name","value":"button_url"}},{"kind":"Field","name":{"kind":"Name","value":"button_label"}},{"kind":"Field","name":{"kind":"Name","value":"open_in_new_tab"}},{"kind":"Field","name":{"kind":"Name","value":"is_card"}}]}}]}}]} as unknown as DocumentNode<SectionFieldsFragment, unknown>;
 export const DegreeFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"learning_outcomes"}}]}}]} as unknown as DocumentNode<DegreeFieldsFragment, unknown>;
 export const KeyDatesFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"KeyDatesFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"key_dates"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"start_date"}},{"kind":"Field","name":{"kind":"Name","value":"end_date"}}]}}]} as unknown as DocumentNode<KeyDatesFieldsFragment, unknown>;
-export const TeamMemberSummaryFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]} as unknown as DocumentNode<TeamMemberSummaryFieldsFragment, unknown>;
-export const TeamMemberDetailFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]} as unknown as DocumentNode<TeamMemberDetailFieldsFragment, unknown>;
-export const BlogDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"otherBlogs"},"name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_neq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]} as unknown as DocumentNode<BlogDetailQuery, BlogDetailQueryVariables>;
-export const BlogPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"date_created","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]} as unknown as DocumentNode<BlogPageQuery, BlogPageQueryVariables>;
+export const TeamMemberSummaryFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<TeamMemberSummaryFieldsFragment, unknown>;
+export const TeamMemberDetailFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<TeamMemberDetailFieldsFragment, unknown>;
+export const FileItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<FileItemFragment, unknown>;
+export const PolicyItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PolicyItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"policies"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<PolicyItemFragment, unknown>;
+export const BlogDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"otherBlogs"},"name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_neq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<BlogDetailQuery, BlogDetailQueryVariables>;
+export const BlogPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"date_created","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<BlogPageQuery, BlogPageQueryVariables>;
 export const CampusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Campus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campus_locations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"location_url"}},{"kind":"Field","name":{"kind":"Name","value":"location_badge"}}]}}]}}]} as unknown as DocumentNode<CampusQuery, CampusQueryVariables>;
-export const CoursePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CoursePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"courses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseDetailFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"learning_outcomes"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseListFields"}},{"kind":"Field","name":{"kind":"Name","value":"course_structure"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}}]}}]} as unknown as DocumentNode<CoursePageQuery, CoursePageQueryVariables>;
-export const CourseDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CourseDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"courses"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseDetailFields"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"otherCourses"},"name":{"kind":"Name","value":"courses"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_neq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseListFields"}},{"kind":"Field","name":{"kind":"Name","value":"course_structure"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}}]}}]} as unknown as DocumentNode<CourseDetailQuery, CourseDetailQueryVariables>;
+export const CoursePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CoursePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"courses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseDetailFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"learning_outcomes"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseListFields"}},{"kind":"Field","name":{"kind":"Name","value":"course_structure"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}}]}}]} as unknown as DocumentNode<CoursePageQuery, CoursePageQueryVariables>;
+export const CourseDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CourseDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"courses"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseDetailFields"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"otherCourses"},"name":{"kind":"Name","value":"courses"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_neq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseListFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"program_details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseListFields"}},{"kind":"Field","name":{"kind":"Name","value":"course_structure"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}}]}}]} as unknown as DocumentNode<CourseDetailQuery, CourseDetailQueryVariables>;
+export const CustomPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CustomPage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"view_title_in_banner"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"sections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SectionFields"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ColumnFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"sections_columns"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"columns_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}},{"kind":"Field","name":{"kind":"Name","value":"button_url"}},{"kind":"Field","name":{"kind":"Name","value":"button_label"}},{"kind":"Field","name":{"kind":"Name","value":"open_in_new_tab"}},{"kind":"Field","name":{"kind":"Name","value":"is_card"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SectionFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"pages_sections"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sections_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"section_title"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}},{"kind":"Field","name":{"kind":"Name","value":"column_count"}},{"kind":"Field","name":{"kind":"Name","value":"is_card"}},{"kind":"Field","name":{"kind":"Name","value":"columns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ColumnFields"}}]}}]}}]}}]} as unknown as DocumentNode<CustomPageQuery, CustomPageQueryVariables>;
+export const FilesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Files"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"files"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileItem"}}]}},{"kind":"Field","name":{"kind":"Name","value":"policies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PolicyItem"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PolicyItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"policies"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<FilesQuery, FilesQueryVariables>;
+export const FileBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FileBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"files"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileItem"}}]}},{"kind":"Field","name":{"kind":"Name","value":"policies"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PolicyItem"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PolicyItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"policies"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<FileBySlugQuery, FileBySlugQueryVariables>;
 export const GalleryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image_gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"directus_files_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GalleryQuery, GalleryQueryVariables>;
 export const HeaderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"courses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"announcements"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"announcement_text"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}}]} as unknown as DocumentNode<HeaderQuery, HeaderQueryVariables>;
-export const HomepageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Homepage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"courses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"key_dates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"KeyDatesFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"explore_churchill"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"section_title"}},{"kind":"Field","name":{"kind":"Name","value":"videos"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"directus_files_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"KeyDatesFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"key_dates"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"start_date"}},{"kind":"Field","name":{"kind":"Name","value":"end_date"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]} as unknown as DocumentNode<HomepageQuery, HomepageQueryVariables>;
-export const TeamMemberDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TeamMemberDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_members"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberDetailFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]} as unknown as DocumentNode<TeamMemberDetailQuery, TeamMemberDetailQueryVariables>;
-export const TeamMembersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TeamMembers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_members"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberSummaryFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]} as unknown as DocumentNode<TeamMembersQuery, TeamMembersQueryVariables>;
+export const HomepageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Homepage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"courses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseSummaryFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"key_dates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"KeyDatesFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"explore_churchill"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"section_title"}},{"kind":"Field","name":{"kind":"Name","value":"videos"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"directus_files_id"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseCoreFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"icon_string"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DegreeCompactFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"degree"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"short_title"}},{"kind":"Field","name":{"kind":"Name","value":"course_code"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CourseSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"courses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CourseCoreFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"degree"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DegreeCompactFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"KeyDatesFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"key_dates"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"start_date"}},{"kind":"Field","name":{"kind":"Name","value":"end_date"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<HomepageQuery, HomepageQueryVariables>;
+export const TeamMemberDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TeamMemberDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_members"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberDetailFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]} as unknown as DocumentNode<TeamMemberDetailQuery, TeamMemberDetailQueryVariables>;
+export const TeamMembersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TeamMembers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_members"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberSummaryFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<TeamMembersQuery, TeamMembersQueryVariables>;

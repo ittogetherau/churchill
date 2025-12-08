@@ -1,0 +1,33 @@
+fragment FileItem on files {
+  slug
+  title
+  file {
+    ...FileFields
+  }
+}
+
+fragment PolicyItem on policies {
+  slug
+  title
+  file {
+    ...FileFields
+  }
+}
+
+query Files {
+  files {
+    ...FileItem
+  }
+  policies {
+    ...PolicyItem
+  }
+}
+
+query FileBySlug($slug: String!) {
+  files(filter: { slug: { _eq: $slug } }) {
+    ...FileItem
+  }
+  policies(filter: { slug: { _eq: $slug } }) {
+    ...PolicyItem
+  }
+}

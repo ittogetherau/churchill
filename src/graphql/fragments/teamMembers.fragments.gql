@@ -3,8 +3,7 @@ fragment TeamMemberSummaryFields on team_members {
   name
   post
   photo {
-    id
-    filename_download
+    ...FileFields
   }
 }
 

@@ -1,0 +1,26 @@
+fragment ColumnFields on sections_columns {
+  columns_id {
+    image {
+      ...FileFields
+    }
+    title
+    description
+    rich_text
+    button_url
+    button_label
+    open_in_new_tab
+    is_card
+  }
+}
+
+fragment SectionFields on pages_sections {
+  sections_id {
+    section_title
+    rich_text
+    column_count
+    is_card
+    columns {
+      ...ColumnFields
+    }
+  }
+}

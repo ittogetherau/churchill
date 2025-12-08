@@ -1,7 +1,7 @@
 "use client";
 
 import { BlogItemCard } from "@/components/cards";
-import { FetchBlogData } from "@/components/utils/apiQueries";
+import { FetchBlogData } from "@/utils/apiQueries";
 import { useEffect, useState } from "react";
 
 interface Blog {

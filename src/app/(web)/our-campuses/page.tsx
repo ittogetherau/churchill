@@ -36,7 +36,7 @@ const Page = async () => {
           {data.map((campus, i) => (
             <article
               key={`${campus.title}-${i}`}
-              className="flex flex-col gap-5 rounded-2xl border border-zinc-100 bg-gradient-to-b from-zinc-50 to-white p-6 shadow-[0_25px_60px_rgba(26,31,55,0.08)] md:p-8"
+              className="flex flex-col gap-4 rounded-2xl border border-zinc-100 bg-gradient-to-b from-zinc-50 to-white p-6 shadow-[0_25px_60px_rgba(26,31,55,0.08)] md:p-8"
             >
               <span className="text-md text-primary-orange font-semibold tracking-[0.2em] uppercase">
                 {campus.location_badge}

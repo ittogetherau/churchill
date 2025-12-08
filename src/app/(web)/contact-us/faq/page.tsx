@@ -1,7 +1,6 @@
- 
 import AccordionComponent from "@/components/accordion/AccordionComponent";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import { FetchFaqData } from "@/components/utils/apiQueries";
+import { FetchFaqData } from "@/utils/apiQueries";
 
 const ContactUsFAQ = async () => {
   const items = await FetchFaqData();

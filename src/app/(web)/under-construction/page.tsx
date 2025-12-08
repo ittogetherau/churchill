@@ -18,8 +18,8 @@ const UnderConstruction = () => {
         isEqual={true}
         className="mt-24"
       >
-        <div className="flex flex-col justify-center gap-5">
-          <h3 className="font-bold text-[36px] text-[#2C2B4B]">
+        <div className="flex flex-col justify-center gap-4">
+          <h3 className="text-[36px] font-bold text-[#2C2B4B]">
             Sorry! This page is under construction.
           </h3>
 

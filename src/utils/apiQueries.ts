@@ -1,15 +1,15 @@
-import axiosBaseURL from "../../../baseUrl";
+import axiosBaseURL from "../../baseUrl";
 
 export const FetchBlogData = (slug?: string) => {
   const data = axiosBaseURL.get(
-    `/api/v1/edu_hub/blog${slug ? `/${slug}` : ""}`
+    `/api/v1/edu_hub/blog${slug ? `/${slug}` : ""}`,
   );
   return data;
 };
 
 export const FetchUpcomingKeyEventsData = (slug?: string) => {
   const data = axiosBaseURL.get(
-    `/api/v1/edu_hub/upcoming-key-events${slug ? `/${slug}` : ""}`
+    `/api/v1/edu_hub/upcoming-key-events${slug ? `/${slug}` : ""}`,
   );
   return data;
 };
@@ -26,7 +26,7 @@ export const FetchFaqData = () => {
 
 export const FetchCourseData = (slug?: string) => {
   const data = axiosBaseURL.get(
-    `/api/v1/edu_hub/courses${slug ? `/${slug}` : ""}`
+    `/api/v1/edu_hub/courses${slug ? `/${slug}` : ""}`,
   );
 
   return data;

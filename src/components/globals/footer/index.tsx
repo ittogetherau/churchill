@@ -110,7 +110,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             {/* First Row: About Us, Courses, Future Students */}
-            <div className="grid grid-cols-1 gap-5 text-white md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 text-white md:grid-cols-2 lg:grid-cols-3">
               <div>
                 <h3 className="pb-4 text-[16px]">
                   <strong>About Us</strong>
@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             {/* Second Row: Current Students, Login, Quick Links */}
-            <div className="grid grid-cols-1 gap-5 text-white md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 text-white md:grid-cols-2 lg:grid-cols-3">
               <div>
                 <h3 className="pb-4 text-[16px]">
                   <strong>Current Students</strong>
@@ -316,7 +316,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="bg-[#E59623] pt-8 pb-4">
         <ContainerLayout>
-          <div className="flex flex-col items-center justify-between gap-5">
+          <div className="flex flex-col items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Image
                 src="/assets/flag-a.png"

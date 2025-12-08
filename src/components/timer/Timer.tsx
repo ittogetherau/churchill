@@ -20,22 +20,22 @@ const Timer = () => {
     const timeDifference = countDownTime - currentTime;
 
     let days: string | number = Math.floor(
-      timeDifference / (24 * 60 * 60 * 1000)
+      timeDifference / (24 * 60 * 60 * 1000),
     );
     days = days >= 10 ? days : `0${days}`;
 
     let hours: string | number = Math.floor(
-      (timeDifference % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)
+      (timeDifference % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60),
     );
     hours = hours >= 10 ? hours : `0${hours}`;
 
     let minutes: string | number = Math.floor(
-      (timeDifference % (60 * 60 * 1000)) / (1000 * 60)
+      (timeDifference % (60 * 60 * 1000)) / (1000 * 60),
     );
     minutes = minutes >= 10 ? minutes : `0${minutes}`;
 
     let seconds: string | number = Math.floor(
-      (timeDifference % (60 * 1000)) / 1000
+      (timeDifference % (60 * 1000)) / 1000,
     );
     seconds = seconds >= 10 ? seconds : `0${seconds}`;
 
@@ -66,53 +66,53 @@ const Timer = () => {
     startCountDown();
   }, [startCountDown]);
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full gap-8 sm:gap-12">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-8 sm:gap-12">
       <div className="flex justify-center gap-3 sm:gap-8">
-        <div className="flex flex-col gap-5 relative">
-          <div className="h-12 w-12 sm:w-32 sm:h-32 lg:w-24 lg:h-24 flex justify-between items-center bg-white border-2 border-primary-orange rounded-lg">
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 !-left-[6px] rounded-full bg-primary-orange"></div>
-            <span className="lg:text-5xl sm:text-4xl text-3xl font-semiboldtext-matte-purple">
+        <div className="relative flex flex-col gap-4">
+          <div className="border-primary-orange flex h-12 w-12 items-center justify-between rounded-lg border-2 bg-white sm:h-32 sm:w-32 lg:h-24 lg:w-24">
+            <div className="bg-primary-orange relative !-left-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
+            <span className="font-semiboldtext-matte-purple text-3xl sm:text-4xl lg:text-5xl">
               {countDownTime?.days}
             </span>
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 -right-[6px] rounded-full bg-primary-orange"></div>
+            <div className="bg-primary-orange relative -right-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
           </div>
-          <span className="text-matte-purple text-xs sm:text-2xl text-center capitalize">
+          <span className="text-matte-purple text-center text-xs capitalize sm:text-2xl">
             {countDownTime?.days == 1 ? "Day" : "Days"}
           </span>
         </div>
-        <div className="flex flex-col gap-5 relative">
-          <div className="h-12 w-12 sm:w-32 sm:h-32 lg:w-24 lg:h-24 flex justify-between items-center bg-white border-2 border-primary-orange rounded-lg">
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 !-left-[6px] rounded-full bg-primary-orange"></div>
-            <span className="lg:text-5xl sm:text-4xl text-3xl font-semiboldtext-matte-purple">
+        <div className="relative flex flex-col gap-4">
+          <div className="border-primary-orange flex h-12 w-12 items-center justify-between rounded-lg border-2 bg-white sm:h-32 sm:w-32 lg:h-24 lg:w-24">
+            <div className="bg-primary-orange relative !-left-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
+            <span className="font-semiboldtext-matte-purple text-3xl sm:text-4xl lg:text-5xl">
               {countDownTime?.hours}
             </span>
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 -right-[6px] rounded-full bg-primary-orange"></div>
+            <div className="bg-primary-orange relative -right-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
           </div>
-          <span className="text-matte-purple text-xs sm:text-2xl text-center font-medium">
+          <span className="text-matte-purple text-center text-xs font-medium sm:text-2xl">
             {countDownTime?.hours == 1 ? "Hour" : "Hours"}
           </span>
         </div>
-        <div className="flex flex-col gap-5 relative">
-          <div className="h-12 w-12 sm:w-32 sm:h-32 lg:w-24 lg:h-24 flex justify-between items-center bg-white border-2 border-primary-orange rounded-lg">
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 !-left-[6px] rounded-full bg-primary-orange"></div>
-            <span className="lg:text-5xl sm:text-4xl text-3xl font-semiboldtext-matte-purple">
+        <div className="relative flex flex-col gap-4">
+          <div className="border-primary-orange flex h-12 w-12 items-center justify-between rounded-lg border-2 bg-white sm:h-32 sm:w-32 lg:h-24 lg:w-24">
+            <div className="bg-primary-orange relative !-left-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
+            <span className="font-semiboldtext-matte-purple text-3xl sm:text-4xl lg:text-5xl">
               {countDownTime?.minutes}
             </span>
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 -right-[6px] rounded-full bg-primary-orange"></div>
+            <div className="bg-primary-orange relative -right-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
           </div>
-          <span className="text-matte-purple text-xs sm:text-2xl text-center capitalize">
+          <span className="text-matte-purple text-center text-xs capitalize sm:text-2xl">
             {countDownTime?.minutes == 1 ? "Minute" : "Minutes"}
           </span>
         </div>
-        <div className="flex flex-col gap-5 relative">
-          <div className="h-12 w-12 sm:w-32 sm:h-32 lg:w-24 lg:h-24 flex justify-between items-center bg-white border-2 border-primary-orange rounded-lg">
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 !-left-[6px] rounded-full bg-primary-orange"></div>
-            <span className="lg:text-5xl sm:text-4xl text-3xl font-semiboldtext-matte-purple">
+        <div className="relative flex flex-col gap-4">
+          <div className="border-primary-orange flex h-12 w-12 items-center justify-between rounded-lg border-2 bg-white sm:h-32 sm:w-32 lg:h-24 lg:w-24">
+            <div className="bg-primary-orange relative !-left-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
+            <span className="font-semiboldtext-matte-purple text-3xl sm:text-4xl lg:text-5xl">
               {countDownTime?.seconds}
             </span>
-            <div className="relative h-2.5 w-2.5 sm:h-3 sm:w-3 -right-[6px] rounded-full bg-primary-orange"></div>
+            <div className="bg-primary-orange relative -right-[6px] h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"></div>
           </div>
-          <span className="text-matte-purple text-xs sm:text-2xl text-center capitalize">
+          <span className="text-matte-purple text-center text-xs capitalize sm:text-2xl">
             {countDownTime?.seconds == 1 ? "Second" : "Seconds"}
           </span>
         </div>

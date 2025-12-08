@@ -15,7 +15,7 @@ const UpcomingKeyDatesSection = () => {
       </div>
       <div className="container mx-auto px-5">
         {/* <div className="flex flex-col gap-[32px] lg:gap-[64px]">
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4">
             {eventsData?.map((item, index) => (
               <EventsCard
                 key={index}

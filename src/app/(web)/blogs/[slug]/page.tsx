@@ -1,4 +1,4 @@
-import { FetchBlogData } from "@/components/utils/apiQueries";
+import { FetchBlogData } from "@/utils/apiQueries";
 import Image from "next/image";
 import Link from "next/link";
 import Copyurl from "@/components/sections/blogSections/CopyUrl";
@@ -61,21 +61,21 @@ const SocialShare = ({ url }: { url: string }) => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
       <p>Share To:</p>
-      <div className="flex gap-2 text-2xl flex-wrap">
+      <div className="flex flex-wrap gap-2 text-2xl">
         {shareLinks.map(({ href, icon, label }) => (
           <Link
             key={label}
             href={href}
             target="_blank"
-            className="hover:text-primary-orange transition-all social-button"
+            className="hover:text-primary-orange social-button transition-all"
           >
             <i className={`flex ${icon}`} />
           </Link>
         ))}
         <Copyurl url={url}>
-          <div className="hover:text-primary-orange transition-all social-button copy-link">
+          <div className="hover:text-primary-orange social-button copy-link transition-all">
             <i className="fi fi-rr-copy-alt" />
           </div>
         </Copyurl>
@@ -98,7 +98,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   return (
     <>
       <ContainerLayout size="sm" className="mt-8">
-        <nav className="font-semibold flex flex-wrap gap-1 text-wrap">
+        <nav className="flex flex-wrap gap-1 font-semibold text-wrap">
           <Link className="hover:text-primary-orange transition-all" href="/">
             Home /
           </Link>
@@ -112,9 +112,9 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           {blog.title}
         </nav>
 
-        <hr className="border-2 w-[60px] border-primary-orange" />
+        <hr className="border-primary-orange w-[60px] border-2" />
 
-        <div className="flex flex-wrap items-center gap-1 mt-4">
+        <div className="mt-4 flex flex-wrap items-center gap-1">
           <i className="fi fi-rr-calendar-day" />
           <span>{formatDate(blog.date_created)}</span>
           {/* <span>·</span> <i className="fi fi-rr-circle-user" /> <span>{"Admin"}</span> */}
@@ -123,7 +123,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           <span>{readingTime} mins read</span>
         </div>
 
-        <h2 className="text-4xl lg:text-6xl leading-[40px] lg:leading-[62px] font-bold mt-4">
+        <h2 className="mt-4 text-4xl leading-[40px] font-bold lg:text-6xl lg:leading-[62px]">
           {blog.title}
         </h2>
       </ContainerLayout>
@@ -134,7 +134,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           height={1500}
           src={resolveFileLink(blog.hero_image)}
           alt={`Blog image for ${blog.title}`}
-          className="w-full aspect-[1.75/1] mx-auto object-cover rounded-md"
+          className="mx-auto aspect-[1.75/1] w-full rounded-md object-cover"
         />
       </ContainerLayout>
 
@@ -148,7 +148,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           )}
         </article>
 
-        <hr className="border border-black/20 my-4" />
+        <hr className="my-4 border border-black/20" />
 
         <SocialShare url={siteUrl} />
       </ContainerLayout>

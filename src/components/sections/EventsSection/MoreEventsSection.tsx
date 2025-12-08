@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-import { FetchUpcomingKeyEventsData } from "@/components/utils/apiQueries";
+import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
 import { EventsCard } from "@/components/cards";
 import { EventsCardProps } from "@/components/cards/EventsCard";
 
@@ -26,7 +26,7 @@ const MoreEventsSection: React.FC<MoreEventsSectionProps> = ({ slug }) => {
     <>
       {data.length >= 2 && (
         <div className="container mx-auto px-5">
-          <h3 className="font-bold text-2xl mb-8">More Events</h3>
+          <h3 className="mb-8 text-2xl font-bold">More Events</h3>
 
           {data?.slice(0, 3)?.map((item, index) => {
             if (item.slug != slug)

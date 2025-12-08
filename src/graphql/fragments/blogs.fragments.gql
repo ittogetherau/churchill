@@ -4,7 +4,6 @@ fragment BlogFields on blog {
   description
   date_created
   hero_image {
-    id
-    filename_download
+    ...FileFields
   }
 }

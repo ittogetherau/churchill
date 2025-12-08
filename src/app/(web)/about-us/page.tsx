@@ -2,7 +2,7 @@ import TopBannerCard from "@/components/cards/TopBannerCard";
 import AboutSection from "@/components/sections/aboutUsSections/AboutSection";
 import CoreValuesSection from "@/components/sections/aboutUsSections/CoreValuesSection";
 import MissionVisionsection from "@/components/sections/aboutUsSections/MissionVisionsection";
-import RelatedSection from "@/components/sections/aboutUsSections/RelatedSection";
+import AboutSlider from "@/components/sliders/AboutSlider";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 
@@ -34,7 +34,12 @@ const Page = () => {
 
           <AboutSection />
 
-          <RelatedSection />
+          <div className="flex flex-col gap-[32px] lg:gap-[44px]">
+            <h2 className="text-center text-[36px] font-bold text-[#2C2B4B]">
+              Find Out More
+            </h2>
+            <AboutSlider />
+          </div>
         </SpacingLayout>
       </ContainerLayout>
     </SpacingLayout>

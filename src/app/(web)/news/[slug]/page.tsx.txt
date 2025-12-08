@@ -90,7 +90,7 @@ const page = async ({ params }: PageProps) => {
         </article>
 
         <aside className="lg:col-span-2 w-full h-fit sticky top-28 left-0 flex flex-col gap-10">
-          <div className="flex flex-col gap-5 bg-neutral-50 p-4 shadow rounded-md">
+          <div className="flex flex-col gap-4 bg-neutral-50 p-4 shadow rounded-md">
             <h4 className="text-xl font-bold highlight">Other News</h4>
             <div className="flex flex-col gap-4 mt-4">
               {NewsData?.slice(0, 3)?.map((item, index) => {
@@ -129,7 +129,7 @@ const page = async ({ params }: PageProps) => {
               })}
             </div>
           </div>
-          <div className="flex flex-col gap-5 bg-neutral-50 p-4 shadow rounded-md">
+          <div className="flex flex-col gap-4 bg-neutral-50 p-4 shadow rounded-md">
             <h4 className="text-xl font-bold highlight">Browse Categories</h4>
             <div className="flex gap-3 flex-wrap">
               {NewsCategory.map((item, index) => (

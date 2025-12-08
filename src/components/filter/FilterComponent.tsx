@@ -11,7 +11,6 @@ interface FilterComponentProps {
   placeholderText?: string;
 }
 
-
 const FilterComponent: React.FC<FilterComponentProps> = ({
   children,
   placeholderText,
@@ -26,9 +25,9 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
   };
 
   return (
-    <div className="p-4 rounded-xl bg-[#FAF4F4] lg:w-[21rem] h-fit flex flex-col gap-5">
-      <h1 className="font-extrabold text-xl lg:text-2xl w-fit flex gap-3 items-center">
-        <span className="bg-[#E59623] rounded-full w-12 h-12 text-white grid place-items-center">
+    <div className="flex h-fit flex-col gap-4 rounded-xl bg-[#FAF4F4] p-4 lg:w-[21rem]">
+      <h1 className="flex w-fit items-center gap-3 text-xl font-extrabold lg:text-2xl">
+        <span className="grid h-12 w-12 place-items-center rounded-full bg-[#E59623] text-white">
           <LuSettings2 />
         </span>
         <span>Filters</span>
@@ -43,10 +42,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
       {children}
 
       <div onClick={handleSearch} className="">
-        <Button
-         
-          
-     >Filter</Button>
+        <Button>Filter</Button>
       </div>
     </div>
   );
