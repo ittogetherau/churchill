@@ -1,0 +1,6 @@
+query FaqPage {
+  faqs {
+    title
+    rich_text
+  }
+}

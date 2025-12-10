@@ -1,7 +1,7 @@
 import DataNotFound from "@/components/globals/DataNotFound";
 import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
-import FileRedirect from "@/components/utils/FileRedirect";
+import ClientRedirect from "@/components/utils/FileRedirect";
 import { FileBySlugDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -25,7 +25,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   return (
     <>
-      <FileRedirect url={fileUrl} />
+      <ClientRedirect url={fileUrl} />
 
       <ContainerLayout size="sm" className="my-32">
         <div className="">

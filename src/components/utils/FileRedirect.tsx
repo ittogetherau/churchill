@@ -1,9 +1,15 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-const FileRedirect = ({ url }: { url: string }) => {
-  redirect(url);
+const ClientRedirect = ({ url }: { url: string }) => {
+  const { replace } = useRouter();
+
+  useEffect(() => {
+    replace(url);
+  }, []);
+
   return null;
 };
-export default FileRedirect;
+export default ClientRedirect;
