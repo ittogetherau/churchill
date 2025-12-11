@@ -46,7 +46,7 @@ const AboutSlider: React.FC = () => {
   const canScrollNext = api?.canScrollNext() ?? false;
 
   return (
-    <div>
+    <>
       <Carousel
         setApi={setApi}
         opts={{
@@ -59,9 +59,9 @@ const AboutSlider: React.FC = () => {
           {aboutLists?.Catagories?.map((item, index) => (
             <CarouselItem
               key={index}
-              className="md:basis-1/2 lg:basis-1/4 px-3 py-2"
+              className="px-3 py-2 md:basis-1/2 lg:basis-1/4"
             >
-              <FadeUpAnimation delay={0.1 * index} className="px-2 h-full">
+              <FadeUpAnimation delay={0.1 * index} className="h-full px-2">
                 <AboutUsCard
                   icon={item?.headerIcon || ""}
                   title={item?.menuTitle || ""}
@@ -73,7 +73,7 @@ const AboutSlider: React.FC = () => {
         </CarouselContent>
       </Carousel>
 
-      <div className="flex gap-4 items-center justify-end mt-8">
+      <div className="mt-8 flex items-center justify-end gap-4">
         <Button
           onClick={() => api?.scrollPrev()}
           disabled={!canScrollPrev}
@@ -90,7 +90,7 @@ const AboutSlider: React.FC = () => {
           <ArrowRight />
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 

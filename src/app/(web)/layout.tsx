@@ -2,16 +2,24 @@ import type { ReactNode } from "react";
 import NewsletterSection from "@/components/sections/commonSections/NewsletterSection";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import SpacingLayout from "@/layouts/spacing-layout";
+import Header from "@/components/globals/header";
+import Footer from "@/components/globals/footer";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <SpacingLayout>
-      {children}
+    <>
+      <Header />
 
-      <EnquirySection />
+      <SpacingLayout>
+        {children}
 
-      <NewsletterSection />
-    </SpacingLayout>
+        <EnquirySection />
+
+        <NewsletterSection />
+      </SpacingLayout>
+
+      <Footer />
+    </>
   );
 };
 

@@ -1,20 +1,20 @@
 import FadeUpAnimation from "@/animations/FadeUp";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/config/siteConfig";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 const AIHelpSection = () => {
-  const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL =
-    process.env.NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL;
+  const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL = siteConfig.studentHubUrl;
   return (
     <div className="container mx-auto px-5">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div className=" row-span-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="row-span-2">
           <FadeUpAnimation>
-            <div className="bg-light-grey hover-shadow transition-all rounded-md flex flex-col justify-between">
-              <div className=" flex flex-col px-6 py-5  gap-5">
-                <h2 className="font-bold text-[36px] text-matte-purple">
+            <div className="bg-light-grey hover-shadow flex flex-col justify-between rounded-md transition-all">
+              <div className="flex flex-col gap-4 px-6 py-5">
+                <h2 className="text-matte-purple text-[36px] font-bold">
                   How should I and shouldn't use AI as a student
                 </h2>
                 <p>
@@ -33,7 +33,7 @@ const AIHelpSection = () => {
                   </Button>
                 </Link>
               </div>
-              <div className="flex items-center px-4 justify-end">
+              <div className="flex items-center justify-end px-4">
                 <Image
                   src="/assets/AI-image.webp"
                   width={600}
@@ -47,22 +47,22 @@ const AIHelpSection = () => {
         </div>
 
         <FadeUpAnimation delay={0.3}>
-          <div className="bg-light-grey rounded-md p-4 gap-4 flex flex-col">
-            <h2 className="font-bold text-[36px] text-matte-purple">
+          <div className="bg-light-grey flex flex-col gap-4 rounded-md p-4">
+            <h2 className="text-matte-purple text-[36px] font-bold">
               Understanding AI
             </h2>
 
-            <div className="flex flex-col gap-4 ">
+            <div className="flex flex-col gap-4">
               {linksData.map((item, index) => (
                 <Link
                   key={index}
                   href={item.link}
                   target="_blank"
-                  className="w-full h-full"
+                  className="h-full w-full"
                 >
-                  <div className="bg-white hover-shadow group rounded-md px-6 py-3 font-lg flex items-center justify-between ">
+                  <div className="hover-shadow group font-lg flex items-center justify-between rounded-md bg-white px-6 py-3">
                     <p className="">{item.title}</p>
-                    <span className="group-hover:text-primary-orange group-hover:translate-x-2 transition-all">
+                    <span className="group-hover:text-primary-orange transition-all group-hover:translate-x-2">
                       <FaArrowRight />
                     </span>
                   </div>
@@ -74,8 +74,8 @@ const AIHelpSection = () => {
         {/*  */}
 
         <FadeUpAnimation delay={0.6}>
-          <div className="bg-light-grey rounded-md h-full p-6 flex flex-col gap-3">
-            <h2 className="font-bold text-[36px] text-matte-purple">
+          <div className="bg-light-grey flex h-full flex-col gap-3 rounded-md p-6">
+            <h2 className="text-matte-purple text-[36px] font-bold">
               Student Support Policy
             </h2>
             <p>

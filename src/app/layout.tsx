@@ -15,9 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  interface LayoutProps {
-    children: React.ReactNode;
-  }
   return (
     <html lang="en">
       <head>
@@ -105,13 +102,10 @@ export default function RootLayout({
         ></link>
       </head>
       <body className="relative">
-        <Header />
         {children}
 
         <Toaster />
         <CookieBanner />
-
-        <Footer />
       </body>
     </html>
   );

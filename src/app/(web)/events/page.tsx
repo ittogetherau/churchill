@@ -2,7 +2,7 @@ import EventsCard from "@/components/cards/EventsCard";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import FilterComponent from "@/components/filter/FilterComponent";
 import DataNotFound from "@/components/globals/DataNotFound";
-import { FetchUpcomingKeyEventsData } from "@/components/utils/apiQueries";
+import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
 import { TApiEvent } from "@/constDatas/eventsData";
 
 interface EventsPageProps {
@@ -17,7 +17,7 @@ const EventsPage = async ({ searchParams }: EventsPageProps) => {
   const data: TApiEvent[] = await items.data;
   const filtered = keyword
     ? data.filter((el) =>
-        el.title.toLowerCase().includes(keyword.toLowerCase())
+        el.title.toLowerCase().includes(keyword.toLowerCase()),
       )
     : data;
 
@@ -28,8 +28,8 @@ const EventsPage = async ({ searchParams }: EventsPageProps) => {
           title={"Churchill Institute of Higher Education Events"}
         />
 
-        <div className="container mx-auto px-5 flex flex-col gap-[32px] lg:gap-[64px]">
-          <div className="flex flex-col lg:flex-row gap-8 relative">
+        <div className="container mx-auto flex flex-col gap-[32px] px-5 lg:gap-[64px]">
+          <div className="relative flex flex-col gap-8 lg:flex-row">
             <FilterComponent />
             <div className="flex-1">
               {filtered.length > 0 ? (

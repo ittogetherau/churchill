@@ -6,7 +6,8 @@ import { NavItem, navItems } from "@/constDatas/navItems";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { FetchCourseData } from "@/components/utils/apiQueries";
+import { FetchCourseData } from "@/utils/apiQueries";
+import { siteConfig } from "@/config/siteConfig";
 interface NavListProps {
   style?: string;
   isDropdownActive: boolean;
@@ -27,8 +28,7 @@ export interface Course {
   };
 }
 
-const NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL =
-  process.env.NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL;
+const NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL = siteConfig.agentHubUrl;
 
 const NavList: React.FC<NavListProps> = ({
   style,
@@ -40,22 +40,20 @@ const NavList: React.FC<NavListProps> = ({
   const [openSearch, setOpenSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  useEffect(() => {
+    if (openSearch) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://cse.google.com/cse.js?cx=820c819b7996d4c87";
+      document.body.appendChild(script);
 
-
-    useEffect(() => {
-      if (openSearch) {
-        const script = document.createElement("script");
-        script.async = true;
-        script.src = "https://cse.google.com/cse.js?cx=820c819b7996d4c87";
-        document.body.appendChild(script);
-
-        return () => {
-          if (document.body.contains(script)) {
-            document.body.removeChild(script);
-          }
-        };
-      }
-    }, [openSearch]);
+      return () => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    }
+  }, [openSearch]);
 
   const [coursesData, setCoursesData] = useState<Course[]>([]);
   const [isCoursesLoading, setIsCoursesLoading] = useState(true);
@@ -76,10 +74,10 @@ const NavList: React.FC<NavListProps> = ({
       acc[facultyName].push(course);
       return acc;
     },
-    {} as Record<string, Course[]>
+    {} as Record<string, Course[]>,
   );
   return (
-    <div className="w-full flex flex-col gap-2 z-40">
+    <div className="z-40 flex w-full flex-col gap-2">
       <ul className={`${style ? style : ""}`}>
         {navItems?.map((item: NavItem, index: number) => {
           const isActive =
@@ -97,26 +95,26 @@ const NavList: React.FC<NavListProps> = ({
             <div key={index}>
               {hasSubcategories ? (
                 <li
-                  className="group relative lg:static sm-py-10 py-[30px]"
+                  className="group sm-py-10 relative py-[30px] lg:static"
                   onClick={() => {
                     handleOnclickA();
                   }}
                 >
-                  <div className="flex gap-1 items-center group cursor-pointer">
-                    <p className="hover:text-[#eb9320] text-[12px] custom-1280-text">
+                  <div className="group flex cursor-pointer items-center gap-1">
+                    <p className="custom-1280-text text-[12px] hover:text-[#eb9320]">
                       {item?.title}
                     </p>
-                    <span className="rotate-180 group-hover:rotate-0 transition-all">
+                    <span className="rotate-180 transition-all group-hover:rotate-0">
                       <FaAngleDown />
                     </span>
                   </div>
 
                   {isDropdownActive && (
-                    <div className="z-20 hidden px-2 md:px-3 md:py-3 max-h-[18rem] lg:max-h-auto w-[80vw]  overflow-y-scroll lg:w-[100vw] border-t-4 border-t-[#eb9320] group-hover:block lg:absolute lg:left-0 top-[100%] shadow-xl whitespace-wrap transition delay-150 bg-white">
-                      <div className="flex flex-col lg:flex-row gap-2 container mx-auto py-2">
-                        <div className="flex-[20%] flex flex-col gap-2 md:flex-row lg:flex-col lg:gap-2 justify-between lg:justify-center">
+                    <div className="lg:max-h-auto whitespace-wrap top-[100%] z-20 hidden max-h-[18rem] w-[80vw] overflow-y-scroll border-t-4 border-t-[#eb9320] bg-white px-2 shadow-xl transition delay-150 group-hover:block md:px-3 md:py-3 lg:absolute lg:left-0 lg:w-[100vw]">
+                      <div className="container mx-auto flex flex-col gap-2 py-2 lg:flex-row">
+                        <div className="flex flex-[20%] flex-col justify-between gap-2 md:flex-row lg:flex-col lg:justify-center lg:gap-2">
                           <h2 className="text-lg md:text-xl">{item.title}</h2>
-                          <p className="font-[500] text-xs md:text-base pt-1 pb-2">
+                          <p className="pt-1 pb-2 text-xs font-[500] md:text-base">
                             {item.headerDesc}
                           </p>
                           {![
@@ -125,7 +123,7 @@ const NavList: React.FC<NavListProps> = ({
                             "login",
                           ].includes(item.slug) && (
                             <Link
-                              className="p-2 md:p-3 rounded-lg text-xs font-semibold text-white hover:bg-orange-300 md:text-base bg-primary-orange border-2 border-black w-fit transition-all"
+                              className="bg-primary-orange w-fit rounded-lg border-2 border-black p-2 text-xs font-semibold text-white transition-all hover:bg-orange-300 md:p-3 md:text-base"
                               href={`/${item.slug}`}
                             >
                               Learn More
@@ -138,10 +136,10 @@ const NavList: React.FC<NavListProps> = ({
                               {Object.keys(groupedCourses).map(
                                 (facultyName) => (
                                   <div key={facultyName}>
-                                    <h3 className="text-lg font-semibold mb-2">
+                                    <h3 className="mb-2 text-lg font-semibold">
                                       {facultyName}
                                     </h3>
-                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
                                       {groupedCourses[facultyName].map(
                                         (subItem, index) => (
                                           <Link
@@ -155,16 +153,16 @@ const NavList: React.FC<NavListProps> = ({
                                               subItem?.redirectLink
                                                 ? subItem?.redirectLink
                                                 : subItem?.link
-                                                ? subItem?.link
-                                                : `/${item.slug}/${subItem.slug}`
+                                                  ? subItem?.link
+                                                  : `/${item.slug}/${subItem.slug}`
                                             }
-                                            className="w-full flex"
+                                            className="flex w-full"
                                           >
                                             <li
-                                              className="hover:bg-[#eb9320]/20 transition-all rounded-md flex flex-1 items-center gap-2 px-2 py-1"
+                                              className="flex flex-1 items-center gap-2 rounded-md px-2 py-1 transition-all"
                                               key={index}
                                             >
-                                              <div className="w-10 h-10 bg-[#eb9320]/20 rounded-full grid place-items-center">
+                                              <div className="bg-background grid h-10 w-10 place-items-center rounded-full">
                                                 <i
                                                   className={`${
                                                     subItem.headerIcon ||
@@ -173,26 +171,20 @@ const NavList: React.FC<NavListProps> = ({
                                                 />
                                               </div>
                                               <div className="flex flex-1 flex-col gap-1">
-                                                <h3 className="leading-5 text-xs md:text-lg">
-                                                  {subItem.menuTitle ||
-                                                    subItem.course_name}
-                                                </h3>
-                                                {/* <p
-                                              className="text-sm font-[500]"
-                                              dangerouslySetInnerHTML={{ __html: subItem.headerDesc || subItem.description }}
-                                            /> */}
+                                                {subItem.menuTitle ||
+                                                  subItem.course_name}
                                               </div>
                                             </li>
                                           </Link>
-                                        )
+                                        ),
                                       )}
                                     </ul>
                                   </div>
-                                )
+                                ),
                               )}
                             </div>
                           ) : (
-                            <ul className="h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2">
+                            <ul className="grid h-auto grid-cols-1 gap-4 px-2 md:grid-cols-2 lg:grid-cols-3">
                               {mapData.map((subItem, index) => (
                                 <Link
                                   target={subItem?.redirectLink ? "_blank" : ""}
@@ -201,16 +193,16 @@ const NavList: React.FC<NavListProps> = ({
                                     subItem?.redirectLink
                                       ? subItem?.redirectLink
                                       : subItem?.link
-                                      ? subItem?.link
-                                      : `/${item.slug}/${subItem.slug}`
+                                        ? subItem?.link
+                                        : `/${item.slug}/${subItem.slug}`
                                   }
-                                  className="w-full h-full lg:max-h-[6rem] flex"
+                                  className="flex h-full w-full lg:max-h-[6rem]"
                                 >
                                   <li
-                                    className="hover:bg-[#eb9320]/20 transition-all rounded-md flex flex-1 items-center gap-2 px-2 py-1"
+                                    className="flex flex-1 items-center gap-2 rounded-md px-2 py-1 transition-all hover:bg-[#eb9320]/20"
                                     key={index}
                                   >
-                                    <div className="w-10 h-10 bg-[#eb9320]/20 rounded-full grid place-items-center">
+                                    <div className="grid h-10 w-10 place-items-center rounded-full bg-[#eb9320]/20">
                                       <i
                                         className={`${
                                           subItem.headerIcon || subItem.icon
@@ -218,7 +210,7 @@ const NavList: React.FC<NavListProps> = ({
                                       />
                                     </div>
                                     <div className="flex flex-1 flex-col gap-1">
-                                      <p className=" text-xs md:text-base">
+                                      <p className="text-xs md:text-base">
                                         {subItem.menuTitle ||
                                           subItem.course_name}
                                       </p>
@@ -239,11 +231,11 @@ const NavList: React.FC<NavListProps> = ({
               ) : (
                 <Link href={item?.slug || "#"}>
                   <li
-                    className={`flex gap-1 items-center ${
+                    className={`flex items-center gap-1 ${
                       isActive && "text-[#eb9320]"
                     } cursor-pointer pb-5`}
                   >
-                    <p className="hover:text-[#eb9320] text-[12px] custom-1280-text">
+                    <p className="custom-1280-text text-[12px] hover:text-[#eb9320]">
                       {item?.title}
                     </p>
                   </li>
@@ -256,7 +248,7 @@ const NavList: React.FC<NavListProps> = ({
         <li className="sm-py-10 py-[30px]">
           <Link
             href={NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL || "#"}
-            className="flex gap-1 items-center cursor-pointer hover:text-[#eb9320] text-[12px] custom-1280-text"
+            className="custom-1280-text flex cursor-pointer items-center gap-1 text-[12px] hover:text-[#eb9320]"
           >
             <span>Agent Hub</span>
           </Link>
@@ -264,7 +256,7 @@ const NavList: React.FC<NavListProps> = ({
         <li className="sm-py-10 py-[30px]">
           <Link
             href="/our-campuses"
-            className="flex gap-1 items-center cursor-pointer hover:text-[#eb9320] text-[12px] custom-1280-text"
+            className="custom-1280-text flex cursor-pointer items-center gap-1 text-[12px] hover:text-[#eb9320]"
           >
             <span>Our Campus</span>
           </Link>
@@ -272,33 +264,34 @@ const NavList: React.FC<NavListProps> = ({
         <li className="sm-py-10 py-[30px]">
           <Link
             href="/emergency-contact"
-            className="flex gap-1 items-center cursor-pointer text-red-600 hover:text-[#eb9320] text-[12px] custom-1280-text"
+            className="custom-1280-text flex cursor-pointer items-center gap-1 text-[12px] text-red-600 hover:text-[#eb9320]"
           >
             <span>Emergency</span>
           </Link>
         </li>
         <li
-          className="flex center sm-py-10 py-[30px]"
+          className="center sm-py-10 flex py-[30px]"
           onClick={() => {
             setOpenSearch(true);
           }}
         >
-          <div className="flex gap-1 items-center cursor-pointer hover:text-[#eb9320] text-[16px] custom-1280-text">
+          <div className="custom-1280-text flex cursor-pointer items-center gap-1 text-[16px] hover:text-[#eb9320]">
             <span className="hidden sm:block md:hidden lg:hidden">Search</span>{" "}
             <FaSearch />
           </div>
         </li>
+
         {openSearch && (
-          <div className="z-50 fixed top-0 left-0 right-0 bottom-0 bg-black/75">
-            <div className="lg:mt-[15%] mt-[50%]">
-              <div className="flex justify-center items-center">
-                <div className="w-[80%] lg:w-[50%] h-fit">
+          <div className="fixed top-0 right-0 bottom-0 left-0 z-50 bg-black/75">
+            <div className="mt-[50%] lg:mt-[15%]">
+              <div className="flex items-center justify-center">
+                <div className="h-fit w-[80%] lg:w-[50%]">
                   <div className="gcse-search"></div>
                 </div>
               </div>
             </div>
             <p
-              className="absolute top-8 right-8 text-[#FF0000] text-4xl cursor-pointer"
+              className="absolute top-8 right-8 cursor-pointer text-4xl text-[#FF0000]"
               onClick={() => {
                 setOpenSearch(false);
               }}

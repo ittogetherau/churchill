@@ -21,10 +21,10 @@ export default function NotFound() {
       }}
     >
       <ContainerLayout>
-        <div className="flex flex-col items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center gap-4">
           {<Lottie className="w-1/2" animationData={Animation} loop={true} />}
 
-          <h3 className="font-bold text-[36px] text-center text-[#2C2B4B]">
+          <h3 className="text-center text-[36px] font-bold text-[#2C2B4B]">
             Are You Lost?
           </h3>
           <p>The page you are looking for doesnt exist!</p>

@@ -1,0 +1,9 @@
+fragment BlogFields on blog {
+  slug
+  title
+  description
+  date_created
+  hero_image {
+    ...FileFields
+  }
+}

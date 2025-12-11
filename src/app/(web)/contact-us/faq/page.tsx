@@ -1,21 +1,32 @@
- 
 import AccordionComponent from "@/components/accordion/AccordionComponent";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import { FetchFaqData } from "@/components/utils/apiQueries";
+import { FaqPageDocument } from "@/graphql/generated/graphql";
+import { runQuery } from "@/graphql/graphql";
 
-const ContactUsFAQ = async () => {
-  const items = await FetchFaqData();
-  const data = await items.data;
+const Page = async () => {
+  const items = await runQuery(FaqPageDocument);
+  const data = items.faqs;
+
+  const accordionData =
+    data && data.length > 0
+      ? data
+          .filter((el) => el.title && el.rich_text)
+          .map((el) => ({
+            title: el.title ?? "",
+            description: el.rich_text ?? "",
+          }))
+      : [];
+
   return (
     <>
       <PatternBannerCard title="Frequently Asked Questions" />
 
       <div className="flex flex-col gap-[32px] lg:gap-[64px]">
         <div className="container mx-auto px-5">
-          <AccordionComponent data={data} />
+          <AccordionComponent data={accordionData} />
         </div>
       </div>
     </>
   );
 };
-export default ContactUsFAQ;
+export default Page;

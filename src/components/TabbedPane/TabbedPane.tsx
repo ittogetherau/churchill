@@ -1,23 +1,29 @@
 "use client";
+import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
-interface TabItem {
-  title: string;
-  rich_text: string;
-}
+type CourseStructure = NonNullable<
+  CourseDetailFieldsFragment["course_structure"]
+>[number];
 
 interface TabbedPaneProps {
-  data: TabItem[];
+  data?: CourseStructure[];
 }
 
 const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {
+  const tabData = useMemo(
+    () => data?.filter((item): item is CourseStructure => Boolean(item)) ?? [],
+    [data]
+  );
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  if (!tabData.length) return null;
 
   return (
     <ContainerLayout className="space-y-8">
       <div className="flex flex-col gap-3 lg:flex-row lg:justify-center lg:items-center">
-        {data?.map((item, index) => (
+        {tabData.map((item, index) => (
           <div
             className={`capitalize flex items-center justify-between px-2 py-2 border rounded-md border-primary-orange transition-all font-bold ${
               selectedIndex === index ? "bg-[#E59623]" : ""
@@ -29,7 +35,7 @@ const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {
             key={index}
             onClick={() => setSelectedIndex(index)}
           >
-            {item.title}
+            {item?.title ?? ""}
             <i
               className={`lg:hidden text-2xl fi fi-rr-cross-small flex transition-all ${
                 selectedIndex === index ? "rotate-0" : "rotate-[45deg]"
@@ -40,14 +46,14 @@ const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {
       </div>
 
       <div className="w-full lg:hidden bg-[#F3E4E4] px-4 py-3 mt-4 rounded-md">
-        {data?.map(
+        {tabData.map(
           (item, index) =>
             selectedIndex === index && (
               <div className="w-full rounded-md" key={index}>
                 <div
                   className="rich_text_container w-full overflow-x-scroll"
                   dangerouslySetInnerHTML={{
-                    __html: item.rich_text,
+                    __html: item?.rich_text ?? "",
                   }}
                 />
               </div>
@@ -56,13 +62,13 @@ const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {
       </div>
 
       <div className="w-full hidden lg:block bg-[#F3E4E4] px-6 py-3 mt-4 pb-10 rounded-md">
-        {data?.map(
+        {tabData.map(
           (item, index) =>
             selectedIndex === index && (
               <div className="w-full rounded-md" key={index}>
                 <div
                   className="rich_text_container"
-                  dangerouslySetInnerHTML={{ __html: item.rich_text }}
+                  dangerouslySetInnerHTML={{ __html: item?.rich_text ?? "" }}
                 />
               </div>
             )

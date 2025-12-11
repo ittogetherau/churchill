@@ -19,10 +19,10 @@ const AccreditationSection = () => {
                 </div> */}
               </div>
               <div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-[32px]">
-                  <div className="flex items-center ">
-                    <div className="flex flex-col items-center justify-center gap-5">
-                      <h3 className="font-bold text-[36px] text-center text-[#2C2B4B]">
+                <div className="grid grid-cols-1 gap-[32px] lg:grid-cols-2">
+                  <div className="flex items-center">
+                    <div className="flex flex-col items-center justify-center gap-4">
+                      <h3 className="text-center text-[36px] font-bold text-[#2C2B4B]">
                         Sorry! This page is under construction.
                       </h3>
                       <Link href={`/`} className="w-max">
@@ -38,13 +38,13 @@ const AccreditationSection = () => {
                     </div>
                   </div>
                   <div className="hidden lg:block">
-                    <div className="flex justify-center items-center">
+                    <div className="flex items-center justify-center">
                       <Image
                         src={`/assets/page-under-construction.png`}
                         alt={"use-links-icon-image"}
                         width={400}
                         height={400}
-                        className="w-full h-auto object-cover"
+                        className="h-auto w-full object-cover"
                       />
                     </div>
                   </div>

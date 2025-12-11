@@ -1,0 +1,13 @@
+fragment TeamMemberSummaryFields on team_members {
+  slug
+  name
+  post
+  photo {
+    ...FileFields
+  }
+}
+
+fragment TeamMemberDetailFields on team_members {
+  ...TeamMemberSummaryFields
+  description
+}

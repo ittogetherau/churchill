@@ -7,9 +7,9 @@ import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { siteConfig } from "@/config/siteConfig";
 
-const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL =
-  process.env.NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL;
+const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL = siteConfig.studentHubUrl;
 
 const stepTitles = [
   { id: 1, title: "Create Your USI ID" },
@@ -36,16 +36,16 @@ const Page = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className="py-[72px] items-center"
+        className="items-center py-[72px]"
       >
         <ContainerLayout>
-          <h2 className="text-3xl md:text-5xl font-bold text-center text-[#eb9320] capitalize">
+          <h2 className="text-center text-3xl font-bold text-[#eb9320] capitalize md:text-5xl">
             Welcome to Churchill Institute of Higher Education Orientation
           </h2>
 
           <Timer />
 
-          <p className="text-3xl text-center text-[#eb9320] capitalize">
+          <p className="text-center text-3xl text-[#eb9320] capitalize">
             Until next semester begins!
           </p>
 
@@ -54,25 +54,25 @@ const Page = () => {
             width={1000}
             height={400}
             alt="hero image"
-            className="mix-blend-multiply mx-auto"
+            className="mx-auto mix-blend-multiply"
           />
         </ContainerLayout>
       </header>
 
       <ContainerLayout>
-        <section className="flex flex-col py-4 md:px-10 rounded-md bg-primary-orange/10 border border-primary-orange/50">
+        <section className="bg-primary-orange/10 border-primary-orange/50 flex flex-col rounded-md border py-4 md:px-10">
           {stepTitles.map((item) => {
             const isActive = activeId === item.id;
 
             return (
               <div
                 key={item.id}
-                className="py-3 border-b border-b-neutral-800/25 last:border-none"
+                className="border-b border-b-neutral-800/25 py-3 last:border-none"
               >
                 <h2
                   onClick={() => handleToggle(item.id)}
-                  className={`text-lg md:text-2xl font-bold py-1 md:py-2 px-2 flex items-center justify-between cursor-pointer select-none hover:bg-zinc-200/20 ${
-                    isActive ? "border-b-neutral-800/25 border-b" : ""
+                  className={`flex cursor-pointer items-center justify-between px-2 py-1 text-lg font-bold select-none hover:bg-zinc-200/20 md:py-2 md:text-2xl ${
+                    isActive ? "border-b border-b-neutral-800/25" : ""
                   }`}
                 >
                   <span>
@@ -88,8 +88,8 @@ const Page = () => {
                 {isActive && (
                   <>
                     {item.id === 1 && (
-                      <div className="my-4 px-5 flex flex-col">
-                        <h3 className="text-xl font-bold  text-primary-orange pb-2">
+                      <div className="my-4 flex flex-col px-5">
+                        <h3 className="text-primary-orange pb-2 text-xl font-bold">
                           What is USI?
                         </h3>
                         <p>
@@ -99,7 +99,7 @@ const Page = () => {
                           enroll in vocational education and training (VET)
                           courses.
                         </p>
-                        <h3 className="text-xl font-bold  text-primary-orange pb-2 mt-6">
+                        <h3 className="text-primary-orange mt-6 pb-2 text-xl font-bold">
                           Why is it needed?
                         </h3>
                         <ul className="styled-ul">
@@ -130,7 +130,7 @@ const Page = () => {
                             participation and performance in VET courses.
                           </li>
                         </ul>
-                        <div className="flex flex-col gap-6 md:flex-row md:items-center mt-6">
+                        <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-center">
                           <a
                             className="w-fit"
                             href="/assets/docs/Churchill-USI-Instruction-guide.pdf"
@@ -150,7 +150,7 @@ const Page = () => {
                     )}
 
                     {item.id === 2 && (
-                      <div className="my-4 px-5 flex flex-col gap-5">
+                      <div className="my-4 flex flex-col gap-4 px-5">
                         <p>
                           Please Make sure that your full legal name, Australian
                           mobile number, Unique Student Identifier, Address
@@ -161,7 +161,7 @@ const Page = () => {
                           target="_blank"
                           href="https://creatorapp.zohopublic.com.au/s.lohani_churchill2/students-self-service/form-perma/Students_Self_Service/234r8B2z6wmhnpAnerZCs3yO9NshTyemXBTwbxmkXtFKa4NAE0w1fbWdHhz3x17qGq1A2vOh1S1n7Re5YgNr3bRJRCyR8n0pBErB"
                         >
-                          <button className="border-2 border-black px-6 py-3 bg-primary-orange rounded-md font-bold">
+                          <button className="bg-primary-orange rounded-md border-2 border-black px-6 py-3 font-bold">
                             Update Personal Records Here
                           </button>
                         </a>
@@ -169,14 +169,14 @@ const Page = () => {
                     )}
 
                     {item.id === 3 && (
-                      <div className="my-4 px-5 flex flex-col gap-5">
+                      <div className="my-4 flex flex-col gap-4 px-5">
                         <p>
                           Quickly Fill Out the Form and Your ID Card will Be
                           ready to be Picked Up at Churchill Institute of Higher
                           Education Reception Desk
                         </p>
                         <div onClick={() => setIsIDFormShown(!isIDFormShown)}>
-                          <button className="border-2 border-black px-6 py-3 bg-primary-orange rounded-md font-bold">
+                          <button className="bg-primary-orange rounded-md border-2 border-black px-6 py-3 font-bold">
                             Request ID Card
                           </button>
                         </div>
@@ -184,7 +184,7 @@ const Page = () => {
                     )}
 
                     {item.id === 4 && (
-                      <div className="my-4 px-5 flex flex-col gap-5">
+                      <div className="my-4 flex flex-col gap-4 px-5">
                         <p>
                           You will be Shortly Provided with Login Details For
                           Microsoft 365 by Churchill Institute of Higher
@@ -197,7 +197,7 @@ const Page = () => {
                           target="_blank"
                           href={`https://www.youtube.com/watch?v=xOUlxA-0u14`}
                         >
-                          <button className="border-2 border-black px-6 py-3 bg-primary-orange rounded-md font-bold">
+                          <button className="bg-primary-orange rounded-md border-2 border-black px-6 py-3 font-bold">
                             How to Access Student Email in Office 365
                           </button>
                         </a>
@@ -206,7 +206,7 @@ const Page = () => {
                           target="_blank"
                           href={`${NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL}/how-to-guide/how-to-install-Office-365-apps-in-personal-laptop-using-student-account`}
                         >
-                          <button className="border-2 border-black px-6 py-3 bg-primary-orange rounded-md font-bold">
+                          <button className="bg-primary-orange rounded-md border-2 border-black px-6 py-3 font-bold">
                             How to Download Office Apps in Laptop (Word, Excel,
                             Outlook etc)
                           </button>
@@ -225,15 +225,15 @@ const Page = () => {
       <div className="my-[64px]"></div>
 
       {isIDFormShown && (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-black/80 z-[10000] grid place-content-center">
+        <div className="fixed top-0 left-0 z-[10000] grid h-screen w-screen place-content-center bg-black/80">
           <div
             onClick={() => setIsIDFormShown(!isIDFormShown)}
-            className="absolute top-2 right-2 md:top-8 md:right-8 w-12 h-12 grid place-items-center text-white border-2 border-white rounded-full cursor-pointer"
+            className="absolute top-2 right-2 grid h-12 w-12 cursor-pointer place-items-center rounded-full border-2 border-white text-white md:top-8 md:right-8"
           >
             <i className="fi fi-br-cross flex"></i>
           </div>
 
-          <div className="w-screen px-2 md:p-0 md:w-[80vw] ">
+          <div className="w-screen px-2 md:w-[80vw] md:p-0">
             <RequestIDCardForm />
           </div>
         </div>

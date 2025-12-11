@@ -11,13 +11,13 @@ interface ApplyCardProps {
 const ApplyCard = ({ title, description, image }: ApplyCardProps) => {
   return (
     <div
-      className="rounded-md px-8 pt-[32px] lg:pb-0 pb-[32px] h-full flex flex-col gap-5 group translate-gradient overflow-hidden"
+      className="group translate-gradient flex h-full flex-col gap-4 overflow-hidden rounded-md px-8 pt-[32px] pb-[32px] lg:pb-0"
       style={{
         backgroundImage: `linear-gradient(to bottom right, rgb(187, 171, 223), rgb(187 171 223 / 43%) 100%)`,
       }}
     >
-      <div className="flex-1 flex flex-col gap-5 justify-between">
-        <h2 className="font-bold text-[36px] text-[#2C2B4B] leading-[38px]">
+      <div className="flex flex-1 flex-col justify-between gap-4">
+        <h2 className="text-[36px] leading-[38px] font-bold text-[#2C2B4B]">
           {title}
         </h2>
         <p>{description}</p>
@@ -32,13 +32,13 @@ const ApplyCard = ({ title, description, image }: ApplyCardProps) => {
         </div>
       </div>
       <div className="hidden lg:block lg:flex-1">
-        <div className="h-full flex justify-end items-end group-hover:scale-105 transition-all">
+        <div className="flex h-full items-end justify-end transition-all group-hover:scale-105">
           <Image
             src={`${image}`}
             alt={"use-links-icon-image"}
             width={500}
             height={370}
-            className="w-[280px] h-full object-cover"
+            className="h-full w-[280px] object-cover"
           />
         </div>
       </div>

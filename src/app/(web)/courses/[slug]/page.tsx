@@ -2,24 +2,31 @@ import CourseOverviewSection from "@/components/cards/CourseOverviewCard";
 import TopBannerCard from "@/components/cards/TopBannerCard";
 import CoursesSlider from "@/components/sliders/CoursesSlider";
 import TabbedPane from "@/components/TabbedPane/TabbedPane";
-import { FetchCourseData } from "@/components/utils/apiQueries";
+import { runQuery, resolveFileLink } from "@/graphql/graphql";
+import {
+  CourseDetailDocument,
+  type CourseDetailQuery,
+  type CourseDetailQueryVariables,
+} from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 
-const Page = async ({ params }: { params: { slug: string } }) => {
+const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
 
-  const response = await FetchCourseData(slug);
-  const data = await response?.data;
+  const data = await runQuery(CourseDetailDocument, { slug });
+
+  const course = data?.courses?.[0];
+  const otherCourses = data?.otherCourses ?? [];
 
   return (
     <SpacingLayout>
       <TopBannerCard
-        beforeTitle={data?.faculty?.faculty_name}
-        image={data?.heroImage}
-        titleSpan={data?.course_name}
-        courseCode={`${data?.course_code}`}
-        subTitle={data?.description}
+        beforeTitle={course?.degree?.title ?? ""}
+        image={resolveFileLink(course?.hero_image)}
+        titleSpan={course?.title ?? ""}
+        courseCode={course?.degree?.course_code ?? ""}
+        subTitle={course?.description ?? ""}
         BtnAText="Apply Now"
         BtnBText="Enquire Now"
         link={`/assets/apply-at-churchill.pdf`}
@@ -27,15 +34,15 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         imageAStyle={`lg:scale-[135%]`}
       />
 
-      <CourseOverviewSection overviewData={data?.course_details} />
+      <CourseOverviewSection data={course?.program_details ?? []} />
 
-      <TabbedPane data={data?.tabbed_pane} />
+      <TabbedPane data={course?.course_structure ?? []} />
 
       <ContainerLayout>
         <h2 className="font-bold leading-9 mb-6 text-[36px] text-[#2C2B4B]">
           Browse Other Majors
         </h2>
-        <CoursesSlider />
+        <CoursesSlider data={otherCourses} />
       </ContainerLayout>
     </SpacingLayout>
   );

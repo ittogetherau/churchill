@@ -1,0 +1,14 @@
+fragment DegreeFields on degree {
+  title
+  short_title
+  course_code
+  summary
+  learning_outcomes
+}
+
+fragment DegreeCompactFields on degree {
+  title
+  short_title
+  course_code
+  description
+}

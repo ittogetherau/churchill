@@ -1,0 +1,6 @@
+fragment KeyDatesFields on key_dates {
+  id
+  title
+  start_date
+  end_date
+}

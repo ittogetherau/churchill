@@ -1,0 +1,4 @@
+fragment FileFields on directus_files {
+  id
+  filename_download
+}

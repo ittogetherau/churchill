@@ -1,0 +1,23 @@
+query Homepage {
+  degree {
+    ...DegreeCompactFields
+  }
+  courses {
+    ...CourseSummaryFields
+  }
+  key_dates {
+    ...KeyDatesFields
+  }
+  blog(limit: 3) {
+    ...BlogFields
+  }
+  explore_churchill {
+    section_title
+    videos {
+      directus_files_id {
+        id
+        filename_download
+      }
+    }
+  }
+}

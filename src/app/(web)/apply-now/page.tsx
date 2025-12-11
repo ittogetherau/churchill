@@ -1,13 +1,12 @@
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import { Button } from "@/components/ui/button";
+import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import Link from "next/link";
 
-//   Improve in heare  <PatternBannerCard>
-const page = () => {
+const Page = () => {
   return (
-    // <PatternBannerCard>
-    <div className="container-small">
+    <ContainerLayout>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6 items-center">
         <div className="flex flex-col gap-6">
           <h1 className="text-4xl lg:text-7xl font-bold">How to Apply?</h1>
@@ -23,6 +22,7 @@ const page = () => {
             </Link>
           </div>
         </div>
+
         <div className="grid place-items-center">
           <Image
             src="/assets/apply-card.png"
@@ -33,9 +33,8 @@ const page = () => {
           />
         </div>
       </div>
-    </div>
-    // </PatternBannerCard>
+    </ContainerLayout>
   );
 };
 
-export default page;
+export default Page;

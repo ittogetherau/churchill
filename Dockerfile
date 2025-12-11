@@ -1,26 +1,37 @@
-FROM node:18-alpine AS builder
+# ---- Base builder image ----
+FROM node:20-alpine AS builder
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json, yarn.lock (if exists), and other necessary files
-COPY package.json yarn.lock* ./
+# Install pnpm
+RUN npm install -g pnpm
 
-# Install Yarn globally
+# Copy dependency files
+COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies using Yarn
+# Install dependencies
+RUN pnpm install --frozen-lockfile
 
-
-# Copy the rest of the application code
+# Copy the rest of the app
 COPY . .
-RUN yarn install
-# Build your application (if necessary)
-RUN yarn build
 
-# Expose port app runs on
-EXPOSE 3000
+# Build the Next.js app
+RUN pnpm build
 
-# Command to run the app
-CMD ["yarn", "start"]
+# ---- Production runner image ----
+FROM node:20-alpine AS runner
 
+WORKDIR /app
 
+ENV NODE_ENV=production
+# Next.js will read this and listen on this port
+ENV PORT=3901
+
+# Copy built app and node_modules from builder
+COPY --from=builder /app ./
+
+# Expose the port the app will run on
+EXPOSE 3901
+
+# Start the app (uses "start": "next start" from package.json)
+CMD ["pnpm", "start"]

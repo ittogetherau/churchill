@@ -1,0 +1,11 @@
+query CustomPage($slug: String!) {
+  pages(filter: { slug: { _eq: $slug } }) {
+    view_title_in_banner
+    slug
+    title
+    description
+    sections {
+      ...SectionFields
+    }
+  }
+}

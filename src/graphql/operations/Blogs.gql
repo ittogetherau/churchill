@@ -1,0 +1,5 @@
+query BlogPage {
+  blog(sort: "date_created") {
+    ...BlogFields
+  }
+}

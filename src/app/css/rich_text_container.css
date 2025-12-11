@@ -36,8 +36,12 @@
 }
 
 .rich_text_container a {
-  color: #3b82f6;
+  color: #e59623;
   text-decoration: underline;
+}
+
+.rich_text_container a:hover {
+  color: #9e6919;
 }
 
 .rich_text_container strong,

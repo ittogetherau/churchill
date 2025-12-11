@@ -1,0 +1,6 @@
+query Redirect($slug: String!) {
+  short_urls(filter: { slug: { _eq: $slug } }) {
+    slug
+    link
+  }
+}

@@ -1,0 +1,16 @@
+query Campus {
+  campus_locations {
+    title
+    summary
+    image {
+      id
+      filename_download
+    }
+    address
+    website
+    phone
+    email
+    location_url
+    location_badge
+  }
+}

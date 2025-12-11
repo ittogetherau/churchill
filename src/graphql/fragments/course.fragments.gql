@@ -1,0 +1,33 @@
+fragment CourseCoreFields on courses {
+  slug
+  title
+  icon_string
+}
+
+fragment CourseSummaryFields on courses {
+  ...CourseCoreFields
+  description
+  hero_image {
+    ...FileFields
+  }
+  degree {
+    ...DegreeCompactFields
+  }
+}
+
+fragment CourseListFields on courses {
+  ...CourseSummaryFields
+  program_details {
+    icon
+    label
+    value
+  }
+}
+
+fragment CourseDetailFields on courses {
+  ...CourseListFields
+  course_structure {
+    title
+    rich_text
+  }
+}

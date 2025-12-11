@@ -1,6 +1,6 @@
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import NewsletterSection from "@/components/sections/commonSections/NewsletterSection";
-import { FetchAgents } from "@/components/utils/apiQueries";
+import { FetchAgents } from "@/utils/apiQueries";
 import AgentSearch from "./_pages/agent-search";
 
 const Page = async () => {

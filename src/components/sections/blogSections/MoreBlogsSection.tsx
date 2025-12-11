@@ -1,9 +1,7 @@
 "use client";
 
 import { BlogItemCard } from "@/components/cards";
-import { FetchBlogData } from "@/components/utils/apiQueries";
-import { BlogTag } from "@/constDatas/BlogData";
-import { useParams } from "next/navigation";
+import { FetchBlogData } from "@/utils/apiQueries";
 import { useEffect, useState } from "react";
 
 interface Blog {
@@ -39,8 +37,8 @@ const MoreBlogsSection = ({ slug }: MoreBlogsSectionProps) => {
     <>
       {!isLoading && (
         <div className="container mx-auto px-5">
-          <h3 className="font-bold text-3xl mb-12">More Blogs</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <h3 className="mb-12 text-3xl font-bold">More Blogs</h3>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {data
               .filter((item) => item.slug !== slug)
               .slice(0, 3)

@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FetchUpcomingKeyDate } from "@/components/utils/apiQueries";
-import Spiner from "@/components/spiner";
 import DataNotFound from "@/components/globals/DataNotFound";
 import { KeyDatesCard } from "@/components/cards";
 import ContainerLayout from "@/layouts/container-layout";
+import { type KeyDatesFieldsFragment } from "@/graphql/generated/graphql";
 
 const monthsList = [
   "January",
@@ -21,99 +20,82 @@ const monthsList = [
   "December",
 ];
 
-interface EventItem {
-  id: string;
-  title: string;
-  description: string;
-  start_date: string;
-  end_date: string;
-  category: string[];
-  audience: string[];
-}
+type OrganizedData = Record<string, KeyDatesFieldsFragment[][]>;
 
-interface OrganizedData {
-  [year: string]: EventItem[][];
-}
-const UpcomingKeyDates = () => {
+const organizeByYearMonth = (items: KeyDatesFieldsFragment[]) => {
+  const organized: OrganizedData = {};
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+
+  items.forEach((item) => {
+    if (!item?.start_date) return;
+    const eventDate = new Date(item.start_date);
+    const year = eventDate.getFullYear();
+    const month = eventDate.getMonth();
+    if (!organized[year]) {
+      organized[year] = Array.from({ length: 12 }, () => []);
+    }
+    organized[year][month].push(item);
+  });
+
+  const years = Object.keys(organized)
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  if (!years.length) {
+    return { organized, defaultYear: null, defaultMonth: null };
+  }
+
+  const defaultYear = years.includes(currentYear) ? currentYear : years[0];
+
+  let defaultMonth = currentMonth;
+  const hasEventsThisMonth = organized[defaultYear]?.[currentMonth]?.length > 0;
+  if (!hasEventsThisMonth) {
+    const foundMonth = organized[defaultYear].findIndex((m) => m.length > 0);
+    defaultMonth = foundMonth >= 0 ? foundMonth : 0;
+  }
+
+  return { organized, defaultYear, defaultMonth };
+};
+
+const UpcomingKeyDates = ({
+  keyDates,
+}: {
+  keyDates: KeyDatesFieldsFragment[];
+}) => {
   const [data, setData] = useState<OrganizedData>({});
-  const [isLoading, setIsLoading] = useState(true);
   const [expandedMonth, setExpandedMonth] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
-  const [noDataFound, setNoDataFound] = useState(false);
 
   useEffect(() => {
-    FetchUpcomingKeyDate()
-      .then((res) => {
-        if (!res.data || res.data.length === 0) {
-          setNoDataFound(true);
-          setIsLoading(false);
-          return;
-        }
-
-        const organizedData: OrganizedData = {};
-        const currentYear = new Date().getFullYear();
-        const currentMonth = new Date().getMonth();
-
-        res.data.forEach((item: EventItem) => {
-          const eventDate = new Date(item.start_date);
-          const year = eventDate.getFullYear();
-          const month = eventDate.getMonth();
-
-          if (!organizedData[year]) {
-            organizedData[year] = Array.from({ length: 12 }, () => []);
-          }
-
-          organizedData[year][month].push(item);
-        });
-
-        setData(organizedData);
-
-        const years = Object.keys(organizedData)
-          .map(Number)
-          .sort((a, b) => a - b);
-
-        // Determine the default year
-        let defaultYear = years.includes(currentYear) ? currentYear : years[0];
-
-        // Determine the default month
-        let defaultMonth = currentMonth;
-        const hasEventsThisMonth =
-          organizedData[defaultYear]?.[currentMonth]?.length > 0;
-
-        if (!hasEventsThisMonth) {
-          // find the first month with events
-          const foundMonth = organizedData[defaultYear].findIndex(
-            (m) => m.length > 0
-          );
-          defaultMonth = foundMonth >= 0 ? foundMonth : 0;
-        }
-
-        setSelectedYear(defaultYear.toString());
-        setExpandedMonth(`${defaultYear}-${defaultMonth}`);
-
-        setNoDataFound(years.length === 0);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setNoDataFound(true);
-        setIsLoading(false);
-      });
-  }, []);
+    const { organized, defaultYear, defaultMonth } = organizeByYearMonth(
+      keyDates ?? []
+    );
+    setData(organized);
+    if (defaultYear !== null && defaultMonth !== null) {
+      setSelectedYear(defaultYear.toString());
+      setExpandedMonth(`${defaultYear}-${defaultMonth}`);
+    } else {
+      setSelectedYear(null);
+      setExpandedMonth(null);
+    }
+  }, [keyDates]);
 
   const toggleMonth = (year: string, month: number) => {
     const key = `${year}-${month}`;
     setExpandedMonth((prev) => (prev === key ? null : key));
   };
 
-  if (isLoading) return <Spiner />;
+  const hasData = selectedYear && Object.keys(data).length > 0;
 
-  if (noDataFound)
+  if (!hasData) {
     return (
       <div className="md:w-2/3 md:mx-auto">
         <DataNotFound />
       </div>
     );
+  }
 
   return (
     <ContainerLayout>
@@ -150,19 +132,24 @@ const UpcomingKeyDates = () => {
               return (
                 <div key={month} className="flex flex-col gap-2">
                   <div
-                    className={`w-full cursor-pointer px-4 py-2 rounded-md font-bold flex items-center justify-between border transition-all ${
-                      isActive
-                        ? "bg-primary-orange text-white"
-                        : "border-primary-orange"
-                    }`}
-                    onClick={() => toggleMonth(selectedYear, month)}
-                  >
-                    {monthsList[month]}
-                    <i
-                      className={`flex fi fi-br-${
-                        isActive ? "minus" : "plus"
-                      } ml-2`}
-                    ></i>
+                className={`w-full cursor-pointer px-4 py-2 rounded-md font-bold flex items-center justify-between border transition-all ${
+                  isActive
+                    ? "bg-primary-orange text-white"
+                    : "border-primary-orange"
+                }`}
+                onClick={() => toggleMonth(selectedYear, month)}
+              >
+                <span className="flex items-center gap-2">
+                  {monthsList[month]}
+                  <span className="text-xs font-normal px-2 py-1 rounded-full bg-white/20 text-white lg:text-primary-orange lg:bg-primary-orange/10">
+                    {events.length}
+                  </span>
+                </span>
+                <i
+                  className={`flex fi fi-br-${
+                    isActive ? "minus" : "plus"
+                  } ml-2`}
+                ></i>
                   </div>
 
                   {isActive && (
@@ -170,13 +157,15 @@ const UpcomingKeyDates = () => {
                       {events.length > 0 ? (
                         events.map((item) => (
                           <KeyDatesCard
-                            key={item.id}
-                            title={item?.title}
-                            description={item?.description}
-                            start_date={item?.start_date}
-                            end_date={item?.end_date}
-                            category={item?.category}
-                            audience={item?.audience}
+                            key={
+                              item?.id ?? `${item?.title}-${item?.start_date}`
+                            }
+                            title={`${item?.title}`}
+                            description={""}
+                            start_date={item?.start_date ?? ""}
+                            end_date={item?.end_date ?? ""}
+                            category={[]}
+                            audience={[]}
                           />
                         ))
                       ) : (

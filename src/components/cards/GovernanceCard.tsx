@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
 
-interface GovernanceData {
+interface GovernanceCardProps {
   image?: string;
   title: string;
   subTitle?: string;
@@ -12,13 +12,13 @@ interface GovernanceData {
   slug?: string;
 }
 
-interface GovernanceCardProps {
-  data: GovernanceData;
-}
-
-const GovernanceCard: React.FC<GovernanceCardProps> = ({ data }) => {
-  const { image, title, subTitle, description, slug } = data;
-
+const GovernanceCard: React.FC<GovernanceCardProps> = ({
+  image,
+  title,
+  subTitle,
+  description,
+  slug,
+}) => {
   return (
     <div className="h-full justify-between group">
       <div>

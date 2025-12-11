@@ -1,6 +1,6 @@
 "use client";
 
-import { Toaster } from "@/components/ui/sonner";  
+import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
 import { toast } from "sonner";
 
@@ -17,38 +17,15 @@ const CopyUrl: React.FC<CopyUrlProps> = ({ url, message, children }) => {
 
     await navigator.clipboard.writeText(textToCopy);
 
-    toast(message || "Copied...");
+    toast(message || "Link copied to clipboard!");
   };
 
   return (
     <div onClick={handleCopy} className="cursor-pointer">
       {children}
-      <Toaster />{" "}
+      <Toaster />
     </div>
   );
 };
 
 export default CopyUrl;
-
-// "use client";
-
-// import { toast } from "sonner";
-
-// function CopyUrl({ children }) {
-
-//   const handleCopy = async (e) => {
-//     e.preventDefault();
-
-//     await navigator.clipboard.writeText(window.location.href);
-
-//     toast("Copied...");
-//   };
-
-//   return (
-//     <div onClick={handleCopy} className="cursor-pointer">
-//       {children}
-//     </div>
-//   );
-// }
-
-// export default CopyUrl;

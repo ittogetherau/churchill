@@ -1,0 +1,10 @@
+query Gallery {
+  image_gallery {
+    images {
+      directus_files_id {
+        id
+        filename_download
+      }
+    }
+  }
+}

@@ -16,9 +16,9 @@ const ContactUs = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className=" h-[44vh]"
+        className="h-[44vh]"
       >
-        <div className="container mx-auto px-5 h-full flex flex-col items-center justify-center gap-5">
+        <div className="container mx-auto flex h-full flex-col items-center justify-center gap-4 px-5">
           <h2 className="text-[40px] leading-[48px] font-bold">Contact Us</h2>
           <p className="font-semibold">We are here to answer Your Query</p>
           <div className="flex gap-3">
@@ -30,7 +30,7 @@ const ContactUs = () => {
             >
               <Button
                 className={
-                  "border font-semibold text-[14px] border-2 border-[#606060] rounded-md px-6 md:px-8 py-3 bg-[#E59623] hover:bg-[#ff9700] transition duration-200  ease-in-out hover:scale-105"
+                  "rounded-md border border-2 border-[#606060] bg-[#E59623] px-6 py-3 text-[14px] font-semibold transition duration-200 ease-in-out hover:scale-105 hover:bg-[#ff9700] md:px-8"
                 }
               >
                 <FaArrowRight /> Ask Us
@@ -53,7 +53,7 @@ const ContactUs = () => {
       <div className="container mx-auto px-5">
         <div className="flex flex-col gap-[32px] lg:gap-[64px]">
           <section className="mt-[64px]">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {contactData?.map((item, index) => (
                 <div key={index}>
                   <ContactUsCard
