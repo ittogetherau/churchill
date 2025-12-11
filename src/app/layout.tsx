@@ -102,13 +102,10 @@ export default function RootLayout({
         ></link>
       </head>
       <body className="relative">
-        <Header />
         {children}
 
         <Toaster />
         <CookieBanner />
-
-        <Footer />
       </body>
     </html>
   );
