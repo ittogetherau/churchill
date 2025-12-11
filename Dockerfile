@@ -25,13 +25,13 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 # Next.js will read this and listen on this port
-ENV PORT=3005
+ENV PORT=3901
 
 # Copy built app and node_modules from builder
 COPY --from=builder /app ./
 
 # Expose the port the app will run on
-EXPOSE 3005
+EXPOSE 3901
 
 # Start the app (uses "start": "next start" from package.json)
 CMD ["pnpm", "start"]

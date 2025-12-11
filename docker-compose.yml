@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
-      - PORT=3005
+      - PORT=3901
     ports:
-      - "3005:3005"
+      - "3901:3901"
     restart: unless-stopped
     networks:
       - churchill_network
