@@ -9,8 +9,6 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { siteConfig } from "@/config/siteConfig";
 
-const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL = siteConfig.studentHubUrl;
-
 const stepTitles = [
   { id: 1, title: "Create Your USI ID" },
   { id: 2, title: "Update Your Personal Details" },
@@ -204,7 +202,7 @@ const Page = () => {
                         <a
                           className="w-fit"
                           target="_blank"
-                          href={`${NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL}/how-to-guide/how-to-install-Office-365-apps-in-personal-laptop-using-student-account`}
+                          href={`${siteConfig.studentHubUrl}/how-to-guide/how-to-install-Office-365-apps-in-personal-laptop-using-student-account`}
                         >
                           <button className="bg-primary-orange rounded-md border-2 border-black px-6 py-3 font-bold">
                             How to Download Office Apps in Laptop (Word, Excel,

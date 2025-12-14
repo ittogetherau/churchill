@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
-import Copyurl from "../../../../components/sections/blogSections/CopyUrl";
+import Copyurl from "@/components/sections/blogSections/CopyUrl";
 import MoreEventsSection from "@/components/sections/EventsSection/MoreEventsSection";
 import { TEvent, TStaticEvent } from "@/constDatas/eventsData";
 import { siteConfig } from "@/config/siteConfig";
@@ -165,7 +165,7 @@ const page = async ({ params }: PageProps) => {
                       >
                         <i className="fi fi-brands-facebook-messenger flex"></i>
                       </a>
-                      <Copyurl url={siteUrl} message={`Copied: ${siteUrl}`}>
+                      <Copyurl text={siteUrl}>
                         <div className="hover:text-primary-orange social-button copy-link transition-all">
                           <i className="fi fi-rr-copy-alt"></i>
                         </div>

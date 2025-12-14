@@ -6,7 +6,6 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 const AIHelpSection = () => {
-  const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL = siteConfig.studentHubUrl;
   return (
     <div className="container mx-auto px-5">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -85,7 +84,7 @@ const AIHelpSection = () => {
               successfully complete their studies at the Institute.
             </p>
             <Link
-              href={`${NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL}/assets/Policy-and-procedure/SupportforStudentsPolicy.pdf`}
+              href={`${siteConfig.studentHubUrl}/assets/Policy-and-procedure/SupportforStudentsPolicy.pdf`}
               className="w-fit"
               target="_blank"
             >

@@ -1,31 +1,26 @@
 "use client";
 
-import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
 import { toast } from "sonner";
 
-interface CopyUrlProps {
-  url?: string;
-  message?: string;
+interface CopyTextProps {
+  text: string;
   children: ReactNode;
 }
 
-const CopyUrl: React.FC<CopyUrlProps> = ({ url, message, children }) => {
-  const handleCopy = async (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const textToCopy = url || window.location.href;
-
-    await navigator.clipboard.writeText(textToCopy);
-
-    toast(message || "Link copied to clipboard!");
+export default function CopyUrl({ text, children }: CopyTextProps) {
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Copied text");
+    } catch (err) {
+      toast.error("Failed to copy");
+    }
   };
 
   return (
-    <div onClick={handleCopy} className="cursor-pointer">
+    <span onClick={handleCopy} style={{ cursor: "pointer" }}>
       {children}
-      <Toaster />
-    </div>
+    </span>
   );
-};
-
-export default CopyUrl;
+}

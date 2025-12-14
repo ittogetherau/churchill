@@ -1,5 +1,6 @@
 import BlogSection from "@/components/sections/blogSections/BlogSection";
 import Copyurl from "@/components/sections/blogSections/CopyUrl";
+import { siteConfig } from "@/config/siteConfig";
 import { BlogDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -72,7 +73,7 @@ const SocialShare = ({ url }: { url: string }) => {
             <i className={`flex ${icon}`} />
           </Link>
         ))}
-        <Copyurl url={url}>
+        <Copyurl text={url}>
           <div className="hover:text-primary-orange social-button copy-link transition-all">
             <i className="fi fi-rr-copy-alt" />
           </div>
@@ -90,7 +91,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   if (!blog) return null;
 
-  const siteUrl = `https://churchill.nsw.edu.au/blogs/${slug}`;
+  const siteUrl = `${siteConfig.churchillUrl}/blogs/${slug}`;
   const readingTime = calculateReadingTime(blog.rich_text ?? "");
 
   return (

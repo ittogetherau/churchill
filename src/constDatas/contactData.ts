@@ -474,7 +474,7 @@ export const checklist = [
     </li>
     <li class="text-base"></span>Student Support and Safety:</span>
       <ul class="list-disc ml-7">
-        <li class="text-base">Refer to the <a class="text-blue-500 hover:underline" href="https://churchill.nsw.edu.au/emergency-contact" target="_blank">Student Support and Safety page</a> for further contacts</li>
+        <li class="text-base">Refer to the <a class="text-blue-500 hover:underline" href="https://churchill.edu.au/emergency-contact" target="_blank">Student Support and Safety page</a> for further contacts</li>
       </ul>
     </li>
   </ul>`,

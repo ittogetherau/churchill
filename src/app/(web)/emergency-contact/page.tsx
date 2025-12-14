@@ -1,313 +1,206 @@
-const page = () => {
+"use client";
+
+import { PatternBannerCard } from "@/components/cards";
+import HeadingText from "@/components/ui/heading-text";
+import ContainerLayout from "@/layouts/container-layout";
+import SpacingLayout from "@/layouts/spacing-layout";
+import React from "react";
+
+type ContactType = "phone" | "mail" | "link";
+
+type Contact = {
+  label: string;
+  value: string;
+  type: ContactType;
+};
+
+type Service = {
+  title: string;
+  iconClass: string;
+  contacts: Contact[];
+};
+
+const services: Service[] = [
+  {
+    title: "24 Hour Emergency Contacts",
+    iconClass: "fi fi-rr-light-emergency-on",
+    contacts: [
+      {
+        label: "NSW Emergency (Police/Medical/Fire) Dial",
+        value: "000",
+        type: "phone",
+      },
+      { label: "Victims Access Line", value: "1800 633 063", type: "phone" },
+      { label: "Rape and Crisis Centre", value: "1800 424 017", type: "phone" },
+      { label: "Crime Stoppers", value: "1800 333 000", type: "phone" },
+    ],
+  },
+  {
+    title: "Mental Health Services (Free)",
+    iconClass: "fi fi-rr-brain",
+    contacts: [
+      { label: "NSW Mental Health Line", value: "1800 011 511", type: "phone" },
+      { label: "Lifeline", value: "131 114", type: "phone" },
+    ],
+  },
+  {
+    title: "Drug and Alcohol Counselling",
+    iconClass: "fi fi-rr-syringe",
+    contacts: [
+      {
+        label: "Alcoholics Anonymous NSW (24 hours)",
+        value: "02 9799 1199",
+        type: "phone",
+      },
+      { label: "Family Drug Support", value: "02 4782 9222", type: "phone" },
+      { label: "Family Drug Support", value: "1300 368 186", type: "phone" },
+    ],
+  },
+  {
+    title: "Victims of Crime Support",
+    iconClass: "fi fi-rr-street-view",
+    contacts: [
+      {
+        label: "24-hour information, support and referrals",
+        value: "02 9374 3000",
+        type: "phone",
+      },
+      { label: "Interpreting Services", value: "131 450", type: "phone" },
+    ],
+  },
+  {
+    title: "Rape & Domestic Violence",
+    iconClass: "fi fi-rr-sad-tear",
+    contacts: [
+      { label: "NSW Rape Crisis", value: "1800 424 017", type: "phone" },
+      {
+        label: "Sexual Assault Counselling Australia",
+        value: "1800 211 028",
+        type: "phone",
+      },
+      {
+        label: "Domestic Violence Impact Line",
+        value: "1800 943 539",
+        type: "phone",
+      },
+    ],
+  },
+  {
+    title: "NSW International Student Legal Service [Free]",
+    iconClass: "fi fi-rr-student",
+    contacts: [
+      {
+        label: "Website",
+        value: "https://rlc.org.au/do-you-need-legal-help",
+        type: "link",
+      },
+    ],
+  },
+  {
+    title: "Legal Aid",
+    iconClass: "fi fi-rr-legal",
+    contacts: [
+      { label: "LawAccess NSW", value: "1300 888 529", type: "phone" },
+    ],
+  },
+  {
+    title: "Cultural Support Services",
+    iconClass: "fi fi-rr-praying-hands",
+    contacts: [
+      {
+        label: "Anti-Discrimination NSW",
+        value: "1800 670 812",
+        type: "phone",
+      },
+    ],
+  },
+  {
+    title: "Aboriginal Legal Service",
+    iconClass: "fi fi-rr-house-user",
+    contacts: [
+      {
+        label: "For police and court matters",
+        value: "1800 765 767",
+        type: "phone",
+      },
+      {
+        label: "For care, protection and family matters",
+        value: "1800 733 233",
+        type: "phone",
+      },
+    ],
+  },
+];
+
+const formatContactHref = (contact: Contact) => {
+  switch (contact.type) {
+    case "phone":
+      return `tel:${contact.value.replace(/\s+/g, "")}`;
+    case "mail":
+      return `mailto:${contact.value}`;
+    case "link":
+      return contact.value;
+    default:
+      return "#";
+  }
+};
+
+const EmergencyServicesPage = () => {
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12">
-      <section className="fade-in">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Emergency Services
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Churchill Institute of Higher Education Students can call the
-            services below in the case of an emergency 24 Hours, 7 Days a week.
-          </p>
+    <SpacingLayout>
+      <PatternBannerCard
+        title="Emergency Services"
+        description="   Churchill Institute of Higher Education Students can call the
+            services below in the case of an emergency 24 Hours, 7 Days a week."
+      />
+
+      <ContainerLayout>
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, idx) => (
+            <div key={idx} className="bg-alt-background rounded-lg p-5">
+              <div className="bg-primary-orange/25 mb-5 grid aspect-square h-[70px] w-[70px] place-items-center rounded-full">
+                <i
+                  className={`${service.iconClass} m-0 grid h-[50px] w-[50px] place-items-center text-3xl`}
+                ></i>
+              </div>
+              <h3 className="mb-4 text-xl font-semibold">{service.title}</h3>
+              <ul className="space-y-3 text-gray-700">
+                {service.contacts.map((contact, i) => (
+                  <li key={i}>
+                    {contact.label}:{" "}
+                    <a
+                      href={formatContactHref(contact)}
+                      target={contact.type === "link" ? "_blank" : undefined}
+                      className="text-primary-orange font-semibold hover:underline"
+                    >
+                      {contact.value}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
+      </ContainerLayout>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-light-emergency-on w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              24 Hour Emergency Contacts
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                NSW Emergency (Police/Medical/Fire) Dial:{" "}
-                <a
-                  href="tel:000"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  000
-                </a>
-              </li>
-
-              <li>
-                Victims Access Line:{" "}
-                <a
-                  href="tel:1800633063"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 633 063
-                </a>
-              </li>
-              <li>
-                Rape and Crisis Centre:{" "}
-                <a
-                  href="tel:1800424017"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 424 017
-                </a>
-              </li>
-              <li>
-                Crime Stoppers:{" "}
-                <a
-                  href="tel:1800333000"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 333 000
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-brain w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              Mental Health Services (Free)
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                NSW Mental Health Line:{" "}
-                <a
-                  href="tel:1800011511"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 011 511
-                </a>
-              </li>
-              <li>
-                Lifeline:{" "}
-                <a
-                  href="tel:131114"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  131 114
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-syringe w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              Drug and Alcohol Counselling
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                Alcoholics Anonymous NSW (24 hours):{" "}
-                <a
-                  href="tel:0297991199"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  02 9799 1199
-                </a>
-              </li>
-              <li>
-                Family Drug Support:{" "}
-                <a
-                  href="tel:0247829222"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  02 4782 9222
-                </a>{" "}
-                or{" "}
-                <a
-                  href="tel:1300368186"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1300 368 186
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-street-view w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              Victims of Crime Support
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                24-hour information, support and referrals:{" "}
-                <a
-                  href="tel:0293743000"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  02 9374 3000
-                </a>
-              </li>
-              <li>
-                Interpreting Services:{" "}
-                <a
-                  href="tel:131450"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  131 450
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-sad-tear w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              Rape & Domestic Violence
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                NSW Rape Crisis:{" "}
-                <a
-                  href="tel:1800424017"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 424 017
-                </a>
-              </li>
-              <li>
-                Sexual Assault Counselling Australia:{" "}
-                <a
-                  href="tel:1800211028"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 211 028
-                </a>
-              </li>
-              <li>
-                Domestic Violence Impact Line:{" "}
-                <a
-                  href="tel:1800943539"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 943 539
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-student w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              NSW International Student Legal Service [Free]
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                <a
-                  href="https://rlc.org.au/do-you-need-legal-help"
-                  target="_blank"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  https://rlc.org.au/do-you-need-legal-help
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-legal w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              Legal Aid
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                LawAccess NSW:{" "}
-                <a
-                  href="tel:1300888529"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1300 888 529
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-praying-hands w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              Cultural Support Services
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                Anti-Discrimination NSW:{" "}
-                <a
-                  href="tel:1800670812"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 670 812
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="service-card bg-gray-50 rounded-lg shadow-lg p-6">
-            <div className=" aspect-square rounded-full bg-primary-orange/25 grid place-items-center w-[70px] h-[70px] mb-5">
-              <i className="fi fi-rr-house-user w-[50px] h-[50px] grid place-items-center m-0 text-3xl"></i>
-            </div>
-
-            <h3 className="text-xl font-semibold text-orange-600 mb-4">
-              Aboriginal Legal Service
-            </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                For police and court matters:{" "}
-                <a
-                  href="tel:1800765767"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 765 767
-                </a>
-              </li>
-              <li>
-                For care, protection and family matters:{" "}
-                <a
-                  href="tel:1800733233"
-                  className="text-orange-500 hover:underline font-semibold"
-                >
-                  1800 733 233
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-12 bg-orange-50 rounded-lg p-6 text-center">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">
+      <ContainerLayout size="sm">
+        <div className="mt-12 rounded-lg bg-orange-50 p-6 text-center">
+          <h3 className="mb-2 text-lg font-semibold text-gray-800">
             Need Immediate Help?
           </h3>
-          <p className="text-gray-600 mb-4">
+          <p className="mb-4 text-gray-600">
             Don’t hesitate to reach out to these services for support, 24/7.
           </p>
           <a
             href="tel:000"
-            className="inline-block bg-orange-500 text-white py-2 px-6 rounded-lg hover:bg-orange-600 transition-colors"
+            className="inline-block rounded-lg bg-orange-500 px-6 py-2 text-white transition-colors hover:bg-orange-600"
           >
             Call Emergency: 000
           </a>
         </div>
-      </section>
-    </main>
+      </ContainerLayout>
+    </SpacingLayout>
   );
 };
 
-export default page;
+export default EmergencyServicesPage;

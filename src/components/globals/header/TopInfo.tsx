@@ -1,9 +1,4 @@
-import React from "react";
 import Link from "next/link";
-import { siteConfig } from "@/config/siteConfig";
-
-const NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL = siteConfig.studentHubUrl;
-const NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL = siteConfig.agentHubUrl;
 
 interface LinkItem {
   href: string;
@@ -30,13 +25,13 @@ const links: LinkItem[] = [
   //   external: true,
   // },
   // {
-  //   href: NEXT_PUBLIC_CHURCHILL_STUDENT_HUB_URL,
+  //   href: siteConfig.studentHubUrl,
   //   text: "Student Support",
   //   iconClass: "fi fi-rr-student",
   //   external: true,
   // },
   // {
-  //   href: NEXT_PUBLIC_CHURCHILL_AGENT_HUB_URL,
+  //   href: siteConfig.agentHubUrl,
   //   text: "Agent Hub",
   //   iconClass: "fi fi-rs-employee-man-alt",
   //   external: true,

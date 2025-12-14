@@ -1,9 +1,11 @@
 "use client";
 
 import HeadingText from "@/components/ui/heading-text";
-import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Download, FileText, Search } from "lucide-react";
+import { Download, FileText, Search, Share2 } from "lucide-react";
+import CopyUrl from "@/components/sections/blogSections/CopyUrl";
+import Link from "next/link";
+import { siteConfig } from "@/config/siteConfig";
 
 type FileListItem = {
   slug?: string | null;
@@ -57,13 +59,14 @@ const FilesList = ({ items }: FilesListProps) => {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {filteredItems.length > 0
           ? filteredItems.map((el, index) => {
-              const key = el.slug ?? `${el.title ?? "file"}-${index}`;
+              const fileUrl = el.slug
+                ? `${siteConfig.churchillUrl}/f/${el.slug}`
+                : "";
 
               return (
-                <Link
-                  key={key}
-                  href={`/f/${el.slug}`}
-                  className="group flex items-center gap-3 rounded-lg border-2 border-gray-200 p-4 hover:border-gray-300"
+                <div
+                  key={`${el.slug}-${index}`}
+                  className="group border-border flex items-center gap-3 rounded-lg border-2 p-4"
                 >
                   <div className="bg-alt-background flex h-10 w-10 shrink-0 items-center justify-center rounded-full">
                     <FileText className="h-5 w-5 text-[#E59623]" />
@@ -78,11 +81,20 @@ const FilesList = ({ items }: FilesListProps) => {
                       </p>
                     )}
                   </div>
-                  <Download className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-[#E59623]" />
-                </Link>
+
+                  <div className="flex gap-3">
+                    <CopyUrl text={fileUrl}>
+                      <Share2 className="h-4 w-4 text-gray-400 hover:text-[#E59623]" />
+                    </CopyUrl>
+
+                    <Link href={fileUrl}>
+                      <Download className="h-4 w-4 shrink-0 text-gray-400 hover:text-[#E59623]" />
+                    </Link>
+                  </div>
+                </div>
               );
             })
-          : "No items matches your query!"}
+          : "No items match your query!"}
       </div>
 
       <span className="text-muted-foreground mt-4 block text-sm">
