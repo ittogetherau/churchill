@@ -5,8 +5,8 @@ export function proxy(request: NextRequest) {
   const token = request.cookies.get("auth-token");
   const isSignInPage = request.nextUrl.pathname.startsWith("/sign-in");
 
-  console.log("Token:", token);
-  console.log("Is sign-in page:", isSignInPage);
+  // console.log("Token:", token);
+  // console.log("Is sign-in page:", isSignInPage);
 
   if (!token && !isSignInPage) {
     console.log("Redirecting to /sign-in");
@@ -23,6 +23,6 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

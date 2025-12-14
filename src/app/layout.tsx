@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/globals/header";
 import CookieBanner from "@/components/globals/CookieBanner";
 import Footer from "@/components/globals/footer";
+import ChristmasHolidayPopup from "@/components/generic/ChristmasHolidayPopup";
 
 export const metadata: Metadata = {
   title: "Churchill Institute of Higher Education",
@@ -105,6 +106,7 @@ export default function RootLayout({
         {children}
 
         <Toaster />
+
         <CookieBanner />
       </body>
     </html>

@@ -40,13 +40,13 @@ const KeyDatesCard: React.FC<KeyDatesCardProps> = ({
 
   return (
     <>
-      <div className="bg-[#FAF4F4] rounded-md p-4 flex flex-col justify-between gap-6 transition-all hover-shadow hover:-translate-y-[6px]">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-          <div className="text-white bg-primary-orange w-32 py-2 px-3 rounded-md flex items-center gap-2 font-bold">
+      <div className="hover-shadow flex flex-col justify-between gap-6 rounded-md bg-[#FAF4F4] p-4 transition-all hover:-translate-y-[6px]">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <div className="bg-primary-orange flex max-w-32 items-center gap-2 rounded-md px-3 py-2 font-bold text-white">
             <i className="fi fi-rr-calendar-day flex text-2xl"></i>
-            <span>{formattedDate}</span>
+            <span className="text-nowrap">{formattedDate.trim()}</span>
           </div>
-          <h2 className="font-bold text-[22px] text-[#2C2B4B] leading-6">
+          <h2 className="text-[22px] leading-6 font-bold text-[#2C2B4B]">
             {title}
           </h2>
         </div>

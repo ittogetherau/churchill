@@ -1,0 +1,15 @@
+query Agent {
+  active_agents {
+    ...AgentFields
+  }
+}
+
+fragment AgentFields on active_agents {
+  name
+  phone
+  email
+  agent_name
+  address
+  zoho_id
+  account_name
+}

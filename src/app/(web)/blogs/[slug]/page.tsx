@@ -1,12 +1,10 @@
-import { FetchBlogData } from "@/utils/apiQueries";
+import BlogSection from "@/components/sections/blogSections/BlogSection";
+import Copyurl from "@/components/sections/blogSections/CopyUrl";
+import { BlogDetailDocument } from "@/graphql/generated/graphql";
+import { resolveFileLink, runQuery } from "@/graphql/graphql";
+import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import Link from "next/link";
-import Copyurl from "@/components/sections/blogSections/CopyUrl";
-import MoreBlogsSection from "@/components/sections/blogSections/MoreBlogsSection";
-import ContainerLayout from "@/layouts/container-layout";
-import { resolveFileLink, runQuery } from "@/graphql/graphql";
-import { BlogDetailDocument } from "@/graphql/generated/graphql";
-import BlogSection from "@/components/sections/blogSections/BlogSection";
 
 const formatDate = (dateString?: string) => {
   if (!dateString) return "";

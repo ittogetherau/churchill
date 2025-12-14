@@ -26,10 +26,10 @@ export enum EventEnum {
 }
 
 export type Query = {
-  agent_details: Array<Agent_Details>;
-  agent_details_aggregated: Array<Agent_Details_Aggregated>;
-  agent_details_by_id?: Maybe<Agent_Details>;
-  agent_details_by_version?: Maybe<Version_Agent_Details>;
+  active_agents: Array<Active_Agents>;
+  active_agents_aggregated: Array<Active_Agents_Aggregated>;
+  active_agents_by_id?: Maybe<Active_Agents>;
+  active_agents_by_version?: Maybe<Version_Active_Agents>;
   announcements?: Maybe<Announcements>;
   announcements_by_version?: Maybe<Version_Announcements>;
   blog: Array<Blog>;
@@ -80,6 +80,10 @@ export type Query = {
   image_gallery_files_aggregated: Array<Image_Gallery_Files_Aggregated>;
   image_gallery_files_by_id?: Maybe<Image_Gallery_Files>;
   image_gallery_files_by_version?: Maybe<Version_Image_Gallery_Files>;
+  induction_agents: Array<Induction_Agents>;
+  induction_agents_aggregated: Array<Induction_Agents_Aggregated>;
+  induction_agents_by_id?: Maybe<Induction_Agents>;
+  induction_agents_by_version?: Maybe<Version_Induction_Agents>;
   info_item: Array<Info_Item>;
   info_item_aggregated: Array<Info_Item_Aggregated>;
   info_item_by_id?: Maybe<Info_Item>;
@@ -88,6 +92,10 @@ export type Query = {
   key_dates_aggregated: Array<Key_Dates_Aggregated>;
   key_dates_by_id?: Maybe<Key_Dates>;
   key_dates_by_version?: Maybe<Version_Key_Dates>;
+  marketing_kit: Array<Marketing_Kit>;
+  marketing_kit_aggregated: Array<Marketing_Kit_Aggregated>;
+  marketing_kit_by_id?: Maybe<Marketing_Kit>;
+  marketing_kit_by_version?: Maybe<Version_Marketing_Kit>;
   news: Array<News>;
   news_aggregated: Array<News_Aggregated>;
   news_by_id?: Maybe<News>;
@@ -104,6 +112,10 @@ export type Query = {
   policies_aggregated: Array<Policies_Aggregated>;
   policies_by_id?: Maybe<Policies>;
   policies_by_version?: Maybe<Version_Policies>;
+  quick_links: Array<Quick_Links>;
+  quick_links_aggregated: Array<Quick_Links_Aggregated>;
+  quick_links_by_id?: Maybe<Quick_Links>;
+  quick_links_by_version?: Maybe<Version_Quick_Links>;
   request_form: Array<Request_Form>;
   request_form_aggregated: Array<Request_Form_Aggregated>;
   request_form_by_id?: Maybe<Request_Form>;
@@ -147,8 +159,8 @@ export type Query = {
 };
 
 
-export type QueryAgent_DetailsArgs = {
-  filter?: InputMaybe<Agent_Details_Filter>;
+export type QueryActive_AgentsArgs = {
+  filter?: InputMaybe<Active_Agents_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -157,8 +169,8 @@ export type QueryAgent_DetailsArgs = {
 };
 
 
-export type QueryAgent_Details_AggregatedArgs = {
-  filter?: InputMaybe<Agent_Details_Filter>;
+export type QueryActive_Agents_AggregatedArgs = {
+  filter?: InputMaybe<Active_Agents_Filter>;
   groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -168,13 +180,13 @@ export type QueryAgent_Details_AggregatedArgs = {
 };
 
 
-export type QueryAgent_Details_By_IdArgs = {
+export type QueryActive_Agents_By_IdArgs = {
   id: Scalars['ID']['input'];
   version?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryAgent_Details_By_VersionArgs = {
+export type QueryActive_Agents_By_VersionArgs = {
   id: Scalars['ID']['input'];
   version: Scalars['String']['input'];
 };
@@ -573,6 +585,39 @@ export type QueryImage_Gallery_Files_By_VersionArgs = {
 };
 
 
+export type QueryInduction_AgentsArgs = {
+  filter?: InputMaybe<Induction_Agents_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryInduction_Agents_AggregatedArgs = {
+  filter?: InputMaybe<Induction_Agents_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryInduction_Agents_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryInduction_Agents_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
 export type QueryInfo_ItemArgs = {
   filter?: InputMaybe<Info_Item_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -634,6 +679,39 @@ export type QueryKey_Dates_By_IdArgs = {
 
 
 export type QueryKey_Dates_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
+export type QueryMarketing_KitArgs = {
+  filter?: InputMaybe<Marketing_Kit_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryMarketing_Kit_AggregatedArgs = {
+  filter?: InputMaybe<Marketing_Kit_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryMarketing_Kit_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryMarketing_Kit_By_VersionArgs = {
   id: Scalars['ID']['input'];
   version: Scalars['String']['input'];
 };
@@ -766,6 +844,39 @@ export type QueryPolicies_By_IdArgs = {
 
 
 export type QueryPolicies_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
+export type QueryQuick_LinksArgs = {
+  filter?: InputMaybe<Quick_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryQuick_Links_AggregatedArgs = {
+  filter?: InputMaybe<Quick_Links_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryQuick_Links_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryQuick_Links_By_VersionArgs = {
   id: Scalars['ID']['input'];
   version: Scalars['String']['input'];
 };
@@ -1101,7 +1212,7 @@ export type QueryUseful_Links_By_VersionArgs = {
 };
 
 export type Subscription = {
-  agent_details_mutated?: Maybe<Agent_Details_Mutated>;
+  active_agents_mutated?: Maybe<Active_Agents_Mutated>;
   announcements_mutated?: Maybe<Announcements_Mutated>;
   blog_mutated?: Maybe<Blog_Mutated>;
   campus_locations_mutated?: Maybe<Campus_Locations_Mutated>;
@@ -1117,12 +1228,15 @@ export type Subscription = {
   how_to_guide_mutated?: Maybe<How_To_Guide_Mutated>;
   image_gallery_files_mutated?: Maybe<Image_Gallery_Files_Mutated>;
   image_gallery_mutated?: Maybe<Image_Gallery_Mutated>;
+  induction_agents_mutated?: Maybe<Induction_Agents_Mutated>;
   info_item_mutated?: Maybe<Info_Item_Mutated>;
   key_dates_mutated?: Maybe<Key_Dates_Mutated>;
+  marketing_kit_mutated?: Maybe<Marketing_Kit_Mutated>;
   news_mutated?: Maybe<News_Mutated>;
   pages_mutated?: Maybe<Pages_Mutated>;
   pages_sections_mutated?: Maybe<Pages_Sections_Mutated>;
   policies_mutated?: Maybe<Policies_Mutated>;
+  quick_links_mutated?: Maybe<Quick_Links_Mutated>;
   request_form_mutated?: Maybe<Request_Form_Mutated>;
   sections_columns_mutated?: Maybe<Sections_Columns_Mutated>;
   sections_mutated?: Maybe<Sections_Mutated>;
@@ -1136,7 +1250,7 @@ export type Subscription = {
 };
 
 
-export type SubscriptionAgent_Details_MutatedArgs = {
+export type SubscriptionActive_Agents_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -1216,12 +1330,22 @@ export type SubscriptionImage_Gallery_MutatedArgs = {
 };
 
 
+export type SubscriptionInduction_Agents_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
 export type SubscriptionInfo_Item_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
 
 export type SubscriptionKey_Dates_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionMarketing_Kit_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -1242,6 +1366,11 @@ export type SubscriptionPages_Sections_MutatedArgs = {
 
 
 export type SubscriptionPolicies_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionQuick_Links_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -1295,57 +1424,71 @@ export type SubscriptionUseful_Links_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
-export type Agent_Details = {
+export type Active_Agents = {
+  account_name?: Maybe<Scalars['String']['output']>;
   address?: Maybe<Scalars['String']['output']>;
+  agency_stage?: Maybe<Scalars['String']['output']>;
   agent_name?: Maybe<Scalars['String']['output']>;
+  created_date?: Maybe<Scalars['Date']['output']>;
+  created_date_func?: Maybe<Datetime_Functions>;
   email?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
   phone?: Maybe<Scalars['String']['output']>;
+  review_link?: Maybe<Scalars['String']['output']>;
   zoho_id?: Maybe<Scalars['String']['output']>;
 };
 
-export type Agent_Details_Aggregated = {
-  avg?: Maybe<Agent_Details_Aggregated_Fields>;
-  avgDistinct?: Maybe<Agent_Details_Aggregated_Fields>;
-  count?: Maybe<Agent_Details_Aggregated_Count>;
+export type Active_Agents_Aggregated = {
+  avg?: Maybe<Active_Agents_Aggregated_Fields>;
+  avgDistinct?: Maybe<Active_Agents_Aggregated_Fields>;
+  count?: Maybe<Active_Agents_Aggregated_Count>;
   countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Agent_Details_Aggregated_Count>;
+  countDistinct?: Maybe<Active_Agents_Aggregated_Count>;
   group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Agent_Details_Aggregated_Fields>;
-  min?: Maybe<Agent_Details_Aggregated_Fields>;
-  sum?: Maybe<Agent_Details_Aggregated_Fields>;
-  sumDistinct?: Maybe<Agent_Details_Aggregated_Fields>;
+  max?: Maybe<Active_Agents_Aggregated_Fields>;
+  min?: Maybe<Active_Agents_Aggregated_Fields>;
+  sum?: Maybe<Active_Agents_Aggregated_Fields>;
+  sumDistinct?: Maybe<Active_Agents_Aggregated_Fields>;
 };
 
-export type Agent_Details_Aggregated_Count = {
+export type Active_Agents_Aggregated_Count = {
+  account_name?: Maybe<Scalars['Int']['output']>;
   address?: Maybe<Scalars['Int']['output']>;
+  agency_stage?: Maybe<Scalars['Int']['output']>;
   agent_name?: Maybe<Scalars['Int']['output']>;
+  created_date?: Maybe<Scalars['Int']['output']>;
   email?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
   phone?: Maybe<Scalars['Int']['output']>;
+  review_link?: Maybe<Scalars['Int']['output']>;
   zoho_id?: Maybe<Scalars['Int']['output']>;
 };
 
-export type Agent_Details_Aggregated_Fields = {
+export type Active_Agents_Aggregated_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
-export type Agent_Details_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Agent_Details_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Agent_Details_Filter>>>;
+export type Active_Agents_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Active_Agents_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Active_Agents_Filter>>>;
+  account_name?: InputMaybe<String_Filter_Operators>;
   address?: InputMaybe<String_Filter_Operators>;
+  agency_stage?: InputMaybe<String_Filter_Operators>;
   agent_name?: InputMaybe<String_Filter_Operators>;
+  created_date?: InputMaybe<Date_Filter_Operators>;
+  created_date_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   email?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
   phone?: InputMaybe<String_Filter_Operators>;
+  review_link?: InputMaybe<String_Filter_Operators>;
   zoho_id?: InputMaybe<String_Filter_Operators>;
 };
 
-export type Agent_Details_Mutated = {
-  data?: Maybe<Agent_Details>;
+export type Active_Agents_Mutated = {
+  data?: Maybe<Active_Agents>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -2444,6 +2587,70 @@ export type Image_Gallery_Mutated = {
   key: Scalars['ID']['output'];
 };
 
+export type Induction_Agents = {
+  account_name?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  agency_stage?: Maybe<Scalars['String']['output']>;
+  agent_name?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  phone?: Maybe<Scalars['String']['output']>;
+  review_link?: Maybe<Scalars['String']['output']>;
+  zoho_id?: Maybe<Scalars['String']['output']>;
+};
+
+export type Induction_Agents_Aggregated = {
+  avg?: Maybe<Induction_Agents_Aggregated_Fields>;
+  avgDistinct?: Maybe<Induction_Agents_Aggregated_Fields>;
+  count?: Maybe<Induction_Agents_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Induction_Agents_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Induction_Agents_Aggregated_Fields>;
+  min?: Maybe<Induction_Agents_Aggregated_Fields>;
+  sum?: Maybe<Induction_Agents_Aggregated_Fields>;
+  sumDistinct?: Maybe<Induction_Agents_Aggregated_Fields>;
+};
+
+export type Induction_Agents_Aggregated_Count = {
+  account_name?: Maybe<Scalars['Int']['output']>;
+  address?: Maybe<Scalars['Int']['output']>;
+  agency_stage?: Maybe<Scalars['Int']['output']>;
+  agent_name?: Maybe<Scalars['Int']['output']>;
+  email?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  phone?: Maybe<Scalars['Int']['output']>;
+  review_link?: Maybe<Scalars['Int']['output']>;
+  zoho_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Induction_Agents_Aggregated_Fields = {
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Induction_Agents_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Induction_Agents_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Induction_Agents_Filter>>>;
+  account_name?: InputMaybe<String_Filter_Operators>;
+  address?: InputMaybe<String_Filter_Operators>;
+  agency_stage?: InputMaybe<String_Filter_Operators>;
+  agent_name?: InputMaybe<String_Filter_Operators>;
+  email?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  phone?: InputMaybe<String_Filter_Operators>;
+  review_link?: InputMaybe<String_Filter_Operators>;
+  zoho_id?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Induction_Agents_Mutated = {
+  data?: Maybe<Induction_Agents>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
 export type Info_Item = {
   course_key?: Maybe<Courses>;
   icon?: Maybe<Scalars['String']['output']>;
@@ -2526,6 +2733,7 @@ export type Key_Dates = {
   end_date?: Maybe<Scalars['Date']['output']>;
   end_date_func?: Maybe<Date_Functions>;
   id: Scalars['ID']['output'];
+  is_highlighted?: Maybe<Scalars['Boolean']['output']>;
   start_date?: Maybe<Scalars['Date']['output']>;
   start_date_func?: Maybe<Date_Functions>;
   status?: Maybe<Scalars['String']['output']>;
@@ -2551,6 +2759,7 @@ export type Key_Dates_Aggregated_Count = {
   description?: Maybe<Scalars['Int']['output']>;
   end_date?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  is_highlighted?: Maybe<Scalars['Int']['output']>;
   start_date?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
   tags?: Maybe<Scalars['Int']['output']>;
@@ -2568,6 +2777,7 @@ export type Key_Dates_Filter = {
   end_date?: InputMaybe<Date_Filter_Operators>;
   end_date_func?: InputMaybe<Date_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
+  is_highlighted?: InputMaybe<Boolean_Filter_Operators>;
   start_date?: InputMaybe<Date_Filter_Operators>;
   start_date_func?: InputMaybe<Date_Function_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
@@ -2578,6 +2788,52 @@ export type Key_Dates_Filter = {
 
 export type Key_Dates_Mutated = {
   data?: Maybe<Key_Dates>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Marketing_Kit = {
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  link?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type Marketing_Kit_Aggregated = {
+  avg?: Maybe<Marketing_Kit_Aggregated_Fields>;
+  avgDistinct?: Maybe<Marketing_Kit_Aggregated_Fields>;
+  count?: Maybe<Marketing_Kit_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Marketing_Kit_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Marketing_Kit_Aggregated_Fields>;
+  min?: Maybe<Marketing_Kit_Aggregated_Fields>;
+  sum?: Maybe<Marketing_Kit_Aggregated_Fields>;
+  sumDistinct?: Maybe<Marketing_Kit_Aggregated_Fields>;
+};
+
+export type Marketing_Kit_Aggregated_Count = {
+  icon?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  link?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Marketing_Kit_Aggregated_Fields = {
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Marketing_Kit_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Marketing_Kit_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Marketing_Kit_Filter>>>;
+  icon?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  link?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Marketing_Kit_Mutated = {
+  data?: Maybe<Marketing_Kit>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -2892,6 +3148,55 @@ export type Policies_Filter = {
 
 export type Policies_Mutated = {
   data?: Maybe<Policies>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Quick_Links = {
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  link?: Maybe<Scalars['String']['output']>;
+  redirect?: Maybe<Scalars['Boolean']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type Quick_Links_Aggregated = {
+  avg?: Maybe<Quick_Links_Aggregated_Fields>;
+  avgDistinct?: Maybe<Quick_Links_Aggregated_Fields>;
+  count?: Maybe<Quick_Links_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Quick_Links_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Quick_Links_Aggregated_Fields>;
+  min?: Maybe<Quick_Links_Aggregated_Fields>;
+  sum?: Maybe<Quick_Links_Aggregated_Fields>;
+  sumDistinct?: Maybe<Quick_Links_Aggregated_Fields>;
+};
+
+export type Quick_Links_Aggregated_Count = {
+  icon?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  link?: Maybe<Scalars['Int']['output']>;
+  redirect?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Quick_Links_Aggregated_Fields = {
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Quick_Links_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Quick_Links_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Quick_Links_Filter>>>;
+  icon?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  link?: InputMaybe<String_Filter_Operators>;
+  redirect?: InputMaybe<Boolean_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Quick_Links_Mutated = {
+  data?: Maybe<Quick_Links>;
   event?: Maybe<EventEnum>;
   key: Scalars['ID']['output'];
 };
@@ -3510,13 +3815,18 @@ export type Useful_Links_Mutated = {
   key: Scalars['ID']['output'];
 };
 
-export type Version_Agent_Details = {
+export type Version_Active_Agents = {
+  account_name?: Maybe<Scalars['String']['output']>;
   address?: Maybe<Scalars['String']['output']>;
+  agency_stage?: Maybe<Scalars['String']['output']>;
   agent_name?: Maybe<Scalars['String']['output']>;
+  created_date?: Maybe<Scalars['Date']['output']>;
+  created_date_func?: Maybe<Datetime_Functions>;
   email?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
   phone?: Maybe<Scalars['String']['output']>;
+  review_link?: Maybe<Scalars['String']['output']>;
   zoho_id?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3671,6 +3981,19 @@ export type Version_Image_Gallery_Files = {
   image_gallery_id?: Maybe<Scalars['JSON']['output']>;
 };
 
+export type Version_Induction_Agents = {
+  account_name?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  agency_stage?: Maybe<Scalars['String']['output']>;
+  agent_name?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  phone?: Maybe<Scalars['String']['output']>;
+  review_link?: Maybe<Scalars['String']['output']>;
+  zoho_id?: Maybe<Scalars['String']['output']>;
+};
+
 export type Version_Info_Item = {
   course_key?: Maybe<Scalars['JSON']['output']>;
   icon?: Maybe<Scalars['String']['output']>;
@@ -3685,11 +4008,19 @@ export type Version_Key_Dates = {
   end_date?: Maybe<Scalars['Date']['output']>;
   end_date_func?: Maybe<Date_Functions>;
   id: Scalars['ID']['output'];
+  is_highlighted?: Maybe<Scalars['Boolean']['output']>;
   start_date?: Maybe<Scalars['Date']['output']>;
   start_date_func?: Maybe<Date_Functions>;
   status?: Maybe<Scalars['String']['output']>;
   tags?: Maybe<Scalars['JSON']['output']>;
   tags_func?: Maybe<Count_Functions>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type Version_Marketing_Kit = {
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  link?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3737,6 +4068,14 @@ export type Version_Policies = {
   /** DO NOT CHANGE THIS AFTER CREATION; Auto generated; Enter if you want custom slug;  */
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type Version_Quick_Links = {
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  link?: Maybe<Scalars['String']['output']>;
+  redirect?: Maybe<Scalars['Boolean']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3849,6 +4188,13 @@ export type TeamMemberSummaryFieldsFragment = { slug?: string | null, name?: str
 
 export type TeamMemberDetailFieldsFragment = { description?: string | null, slug?: string | null, name?: string | null, post?: string | null, photo?: { id: string, filename_download: string } | null };
 
+export type AgentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AgentQuery = { active_agents: Array<{ name?: string | null, phone?: string | null, email?: string | null, agent_name?: string | null, address?: string | null, zoho_id?: string | null, account_name?: string | null }> };
+
+export type AgentFieldsFragment = { name?: string | null, phone?: string | null, email?: string | null, agent_name?: string | null, address?: string | null, zoho_id?: string | null, account_name?: string | null };
+
 export type BlogDetailQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
@@ -3953,8 +4299,10 @@ export const DegreeFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind"
 export const KeyDatesFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"KeyDatesFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"key_dates"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"start_date"}},{"kind":"Field","name":{"kind":"Name","value":"end_date"}}]}}]} as unknown as DocumentNode<KeyDatesFieldsFragment, unknown>;
 export const TeamMemberSummaryFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<TeamMemberSummaryFieldsFragment, unknown>;
 export const TeamMemberDetailFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberDetailFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TeamMemberSummaryFields"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TeamMemberSummaryFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"team_members"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<TeamMemberDetailFieldsFragment, unknown>;
+export const AgentFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AgentFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"active_agents"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"agent_name"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"zoho_id"}},{"kind":"Field","name":{"kind":"Name","value":"account_name"}}]}}]} as unknown as DocumentNode<AgentFieldsFragment, unknown>;
 export const FileItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<FileItemFragment, unknown>;
 export const PolicyItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PolicyItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"policies"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<PolicyItemFragment, unknown>;
+export const AgentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Agent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active_agents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"AgentFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AgentFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"active_agents"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"agent_name"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"zoho_id"}},{"kind":"Field","name":{"kind":"Name","value":"account_name"}}]}}]} as unknown as DocumentNode<AgentQuery, AgentQueryVariables>;
 export const BlogDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"otherBlogs"},"name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_neq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<BlogDetailQuery, BlogDetailQueryVariables>;
 export const BlogPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"date_created","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<BlogPageQuery, BlogPageQueryVariables>;
 export const CampusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Campus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campus_locations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"location_url"}},{"kind":"Field","name":{"kind":"Name","value":"location_badge"}}]}}]}}]} as unknown as DocumentNode<CampusQuery, CampusQueryVariables>;

@@ -13,10 +13,7 @@ export default function SignIn() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      email === "admin@churchill.nsw.edu.au" &&
-      password === "Churchill@2025#"
-    ) {
+    if (email === "admin@churchill.edu.au" && password === "Churchill@2025#") {
       document.cookie =
         "auth-token=authenticated; path=/; max-age=" + 60 * 60 * 24 * 7;
       toast.success("Logged in successfully");

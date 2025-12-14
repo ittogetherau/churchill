@@ -70,7 +70,7 @@ const UpcomingKeyDates = ({
 
   useEffect(() => {
     const { organized, defaultYear, defaultMonth } = organizeByYearMonth(
-      keyDates ?? []
+      keyDates ?? [],
     );
     setData(organized);
     if (defaultYear !== null && defaultMonth !== null) {
@@ -91,7 +91,7 @@ const UpcomingKeyDates = ({
 
   if (!hasData) {
     return (
-      <div className="md:w-2/3 md:mx-auto">
+      <div className="md:mx-auto md:w-2/3">
         <DataNotFound />
       </div>
     );
@@ -99,22 +99,22 @@ const UpcomingKeyDates = ({
 
   return (
     <ContainerLayout>
-      <h2 className="font-bold text-[36px] text-center mx-auto text-[#2C2B4B]">
+      <h2 className="mx-auto text-center text-[36px] font-bold text-[#2C2B4B]">
         Key Dates
       </h2>
 
       <div>
-        <div className="flex flex-wrap gap-2 mb-6 items-center">
+        <div className="mb-6 flex flex-wrap items-center gap-2">
           {Object.keys(data)
             .sort((a, b) => Number(a) - Number(b))
             .map((year) => (
               <button
                 key={year}
                 onClick={() => setSelectedYear(year)}
-                className={`px-4 py-2 rounded-full font-bold border transition-all ${
+                className={`rounded-full border px-4 py-2 font-bold transition-all ${
                   selectedYear === year
-                    ? "bg-primary-orange text-white border-primary-orange"
-                    : "bg-white text-primary-orange border-primary-orange"
+                    ? "bg-primary-orange border-primary-orange text-white"
+                    : "text-primary-orange border-primary-orange bg-white"
                 }`}
               >
                 {year}
@@ -132,24 +132,24 @@ const UpcomingKeyDates = ({
               return (
                 <div key={month} className="flex flex-col gap-2">
                   <div
-                className={`w-full cursor-pointer px-4 py-2 rounded-md font-bold flex items-center justify-between border transition-all ${
-                  isActive
-                    ? "bg-primary-orange text-white"
-                    : "border-primary-orange"
-                }`}
-                onClick={() => toggleMonth(selectedYear, month)}
-              >
-                <span className="flex items-center gap-2">
-                  {monthsList[month]}
-                  <span className="text-xs font-normal px-2 py-1 rounded-full bg-white/20 text-white lg:text-primary-orange lg:bg-primary-orange/10">
-                    {events.length}
-                  </span>
-                </span>
-                <i
-                  className={`flex fi fi-br-${
-                    isActive ? "minus" : "plus"
-                  } ml-2`}
-                ></i>
+                    className={`flex w-full cursor-pointer items-center justify-between rounded-md border px-4 py-2 font-bold transition-all ${
+                      isActive
+                        ? "bg-primary-orange text-white"
+                        : "border-primary-orange"
+                    }`}
+                    onClick={() => toggleMonth(selectedYear, month)}
+                  >
+                    <span className="flex items-center gap-2">
+                      {monthsList[month]}
+                      <span className="lg:text-primary-orange lg:bg-primary-orange/10 rounded-full bg-white/20 px-2 py-1 text-xs font-normal text-white">
+                        {events.length}
+                      </span>
+                    </span>
+                    <i
+                      className={`fi flex fi-br-${
+                        isActive ? "minus" : "plus"
+                      } ml-2`}
+                    ></i>
                   </div>
 
                   {isActive && (
@@ -169,7 +169,7 @@ const UpcomingKeyDates = ({
                           />
                         ))
                       ) : (
-                        <p className="text-sm italic text-gray-500 pl-2">
+                        <p className="pl-2 text-sm text-gray-500 italic">
                           No events in this month.
                         </p>
                       )}

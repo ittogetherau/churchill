@@ -1,10 +1,4 @@
-"use client";
-
-import { IAgentResponse, TAgentUser } from "@/constDatas/AgentUserData";
-
-interface AgentCardProps {
-  agent: IAgentResponse;
-}
+import { AgentFieldsFragment } from "@/graphql/generated/graphql";
 
 function hasValidAddress(address?: string | null) {
   if (!address) return false;
@@ -12,7 +6,7 @@ function hasValidAddress(address?: string | null) {
   return cleaned.length > 0;
 }
 
-const AgentCard = ({ agent }: AgentCardProps) => {
+const AgentCard = ({ agent }: { agent: AgentFieldsFragment }) => {
   const title = agent.name ?? "N/A";
   const representative = agent.agent_name ?? "N/A";
   const phone = agent.phone ?? null;
@@ -22,12 +16,12 @@ const AgentCard = ({ agent }: AgentCardProps) => {
   const addressValid = hasValidAddress(address);
 
   return (
-    <div className="p-6 bg-primary-orange/5 rounded-lg shadow-sm border border-gray-200">
+    <div className="bg-primary-orange/5 rounded-lg border border-gray-200 p-6 shadow-sm">
       <div className="flex flex-col gap-4">
         {/* Name Section */}
         <div>
           <p className="text-lg font-bold text-gray-800">{title}</p>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="mt-1 text-sm text-gray-600">
             <span className="font-semibold">Representative:</span>{" "}
             {representative}
           </p>
@@ -37,9 +31,9 @@ const AgentCard = ({ agent }: AgentCardProps) => {
         <div className="space-y-3">
           {/* Phone */}
           <div className="flex items-center gap-2">
-            <i className="fi fi-rr-phone-flip text-gray-500 text-lg" />
+            <i className="fi fi-rr-phone-flip text-lg text-gray-500" />
             <div>
-              <p className="text-xs text-gray-500 font-semibold">Phone</p>
+              <p className="text-xs font-semibold text-gray-500">Phone</p>
               <a
                 href={phone ? `tel:${phone}` : undefined}
                 className={`text-sm ${
@@ -53,9 +47,9 @@ const AgentCard = ({ agent }: AgentCardProps) => {
 
           {/* Email */}
           <div className="flex items-center gap-2">
-            <i className="fi fi-rr-envelope text-gray-500 text-lg" />
+            <i className="fi fi-rr-envelope text-lg text-gray-500" />
             <div>
-              <p className="text-xs text-gray-500 font-semibold">Email</p>
+              <p className="text-xs font-semibold text-gray-500">Email</p>
               <a
                 href={email ? `mailto:${email}` : undefined}
                 className={`text-sm ${
@@ -69,14 +63,14 @@ const AgentCard = ({ agent }: AgentCardProps) => {
 
           {/* Address */}
           <div className="flex items-start gap-2">
-            <i className="fi fi-rr-marker text-gray-500 text-lg" />
+            <i className="fi fi-rr-marker text-lg text-gray-500" />
             <div>
-              <p className="text-xs text-gray-500 font-semibold">Address</p>
+              <p className="text-xs font-semibold text-gray-500">Address</p>
               <a
                 href={
                   addressValid
                     ? `https://www.google.com/maps/search/${encodeURIComponent(
-                        address
+                        address,
                       )}`
                     : undefined
                 }

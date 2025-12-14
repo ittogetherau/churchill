@@ -1,17 +1,18 @@
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import NewsletterSection from "@/components/sections/commonSections/NewsletterSection";
-import { FetchAgents } from "@/utils/apiQueries";
 import AgentSearch from "./_pages/agent-search";
+import SpacingLayout from "@/layouts/spacing-layout";
+import { runQuery } from "@/graphql/graphql";
+import { AgentDocument } from "@/graphql/generated/graphql";
 
 const Page = async () => {
-  const res = await FetchAgents();
-  const agents = res?.data ?? [];
-  [];
+  const res = await runQuery(AgentDocument);
+  const data = res.active_agents ?? [];
 
   return (
-    <div>
+    <SpacingLayout>
       <PatternBannerCard
-        title="Find a Churchill Institute of Higher Education AGENT"
+        title="Find a CIHE AGENT"
         description="Get in touch with one of our official Churchill Institute of Higher Education agents."
         BtnAText="Find an Agent"
         BtnALink="#search-agent"
@@ -19,7 +20,7 @@ const Page = async () => {
         BtnBLink="https://zfrmz.com.au/JgLxavLkXBxSFGUch5E6"
       />
 
-      <AgentSearch agents={agents} />
+      <AgentSearch agents={data} />
 
       <NewsletterSection
         title="Interested in becoming an agent?"
@@ -27,7 +28,7 @@ const Page = async () => {
         linkUrl="https://forms.zohopublic.com.au/CIHE/form/duplicatedonottouchAgencyRequestApplicationForm/formperma/Z-cwJzbSBI4l1IJbFvia5ZwzHFxyNw2AoPgQAstZl80"
         linkText="Fill Up A Quick Form"
       />
-    </div>
+    </SpacingLayout>
   );
 };
 

@@ -1,8 +1,7 @@
-import React from "react";
 import Button from "@/components/button";
-import { FaArrowRight } from "react-icons/fa";
-import Link from "next/link";
 import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 type ProgramDetail = NonNullable<
   CourseDetailFieldsFragment["program_details"]

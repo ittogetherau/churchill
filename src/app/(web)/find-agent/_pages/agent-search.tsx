@@ -7,6 +7,7 @@ import DataNotFound from "@/components/globals/DataNotFound";
 import { IAgentResponse, TAgentUser } from "@/constDatas/AgentUserData";
 import AgentCard from "./agent-card";
 import ContainerLayout from "@/layouts/container-layout";
+import { AgentFieldsFragment } from "@/graphql/generated/graphql";
 
 interface FilterType {
   addressSearch: string;
@@ -22,11 +23,7 @@ function formatText(text: string | undefined | null): string {
   return text ? text.toLowerCase().trim() : "";
 }
 
-interface AgentSearchProps {
-  agents: IAgentResponse[];
-}
-
-const AgentSearch = ({ agents }: AgentSearchProps) => {
+const AgentSearch = ({ agents }: { agents: AgentFieldsFragment[] }) => {
   const [filter, setFilter] = useState<FilterType>(defaultFilter);
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,14 +59,14 @@ const AgentSearch = ({ agents }: AgentSearchProps) => {
 
   return (
     <ContainerLayout>
-      <section className="bg-alt-background flex flex-col md:flex-row md:items-center gap-4 px-4 py-4 rounded-md">
+      <section className="bg-alt-background flex flex-col gap-4 rounded-md px-4 py-4 md:flex-row md:items-center">
         <input
           type="text"
           name="addressSearch"
           placeholder="Search by street/city"
           value={filter.addressSearch}
           onChange={handleFilterChange}
-          className="rounded-md px-4 py-2 outline outline-neutral-900/20 flex-1 w-full lg:w-[280px]"
+          className="w-full flex-1 rounded-md px-4 py-2 outline outline-neutral-900/20 lg:w-[280px]"
         />
 
         <input
@@ -78,7 +75,7 @@ const AgentSearch = ({ agents }: AgentSearchProps) => {
           placeholder="Agent/Representative Name"
           value={filter.nameSearch}
           onChange={handleFilterChange}
-          className="rounded-md px-4 py-2 outline outline-neutral-900/20 flex-1 w-full lg:w-[280px]"
+          className="w-full flex-1 rounded-md px-4 py-2 outline outline-neutral-900/20 lg:w-[280px]"
         />
 
         <div className="flex gap-2">
@@ -102,7 +99,7 @@ const AgentSearch = ({ agents }: AgentSearchProps) => {
               Showing {filteredAgents.length} item
               {filteredAgents.length > 1 && "s"}
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {filteredAgents.map((agent) => (
                 <AgentCard
                   key={agent.zoho_id ?? `${agent.name}-${agent.email}`}
@@ -112,7 +109,7 @@ const AgentSearch = ({ agents }: AgentSearchProps) => {
             </div>
           </>
         ) : (
-          <div className="grid place-items-center md:w-1/2 mx-auto mt-8">
+          <div className="mx-auto mt-8 grid place-items-center md:w-1/2">
             <DataNotFound />
           </div>
         )}
