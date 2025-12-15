@@ -303,7 +303,7 @@ const Footer: React.FC = () => {
                     <Link href={studentHubUrl || "#"}>Student Support</Link>
                   </li>
                   <li>
-                    <Link href={agentHubUrl || "#"}>Agent Hub</Link>
+                    <Link href={agentHubUrl || "#"}>Education Agent Hub</Link>
                   </li>
                   <li>
                     <Link href="/contact-us">Contact Us</Link>

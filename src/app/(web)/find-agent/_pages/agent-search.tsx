@@ -1,13 +1,12 @@
 "use client";
 
+import DataNotFound from "@/components/globals/DataNotFound";
+import { Button } from "@/components/ui/button";
+import { AgentFieldsFragment } from "@/graphql/generated/graphql";
+import ContainerLayout from "@/layouts/container-layout";
 import { useMemo, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
-import DataNotFound from "@/components/globals/DataNotFound";
-import { IAgentResponse, TAgentUser } from "@/constDatas/AgentUserData";
 import AgentCard from "./agent-card";
-import ContainerLayout from "@/layouts/container-layout";
-import { AgentFieldsFragment } from "@/graphql/generated/graphql";
 
 interface FilterType {
   addressSearch: string;

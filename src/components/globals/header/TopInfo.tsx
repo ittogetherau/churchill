@@ -7,46 +7,7 @@ interface LinkItem {
   external?: boolean;
 }
 
-const links: LinkItem[] = [
-  // {
-  //   href: "https://elearning.churchill.nsw.edu.au/",
-  //   text: "Learning Management System (LMS)",
-  //   iconClass: "fi fi-rr-lesson",
-  // },
-  // {
-  //   href: "/find-agent",
-  //   text: "Find an Education Agent",
-  //   iconClass: "fi fi-rr-headphones",
-  // },
-  // {
-  //   href: "https://churchill.softlinkhosting.com.au/",
-  //   text: "Library",
-  //   iconClass: "fi fi-rr-book",
-  //   external: true,
-  // },
-  // {
-  //   href: siteConfig.studentHubUrl,
-  //   text: "Student Support",
-  //   iconClass: "fi fi-rr-student",
-  //   external: true,
-  // },
-  // {
-  //   href: siteConfig.agentHubUrl,
-  //   text: "Agent Hub",
-  //   iconClass: "fi fi-rs-employee-man-alt",
-  //   external: true,
-  // },
-  // {
-  //   href: "/contact-us",
-  //   text: "Contact Us",
-  //   iconClass: "fi fi-rr-phone-flip",
-  // },
-  // {
-  //   href: "/about-us/gallery",
-  //   text: "Gallery",
-  //   iconClass: "fi fi-rr-gallery",
-  // },
-];
+const links: LinkItem[] = [];
 
 const TopInfo = () => {
   return (

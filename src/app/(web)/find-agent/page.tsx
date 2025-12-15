@@ -12,11 +12,11 @@ const Page = async () => {
   return (
     <SpacingLayout>
       <PatternBannerCard
-        title="Find a CIHE AGENT"
+        title="Find a CIHE Education Agent"
         description="Get in touch with one of our official Churchill Institute of Higher Education agents."
-        BtnAText="Find an Agent"
+        BtnAText="Find an Education Agent"
         BtnALink="#search-agent"
-        BtnBText="Become an Agent"
+        BtnBText="Become an Education Agent"
         BtnBLink="https://zfrmz.com.au/JgLxavLkXBxSFGUch5E6"
       />
 
