@@ -1,15 +1,19 @@
-import type { Metadata } from "next";
-import "./css/globals.css";
-import { Toaster } from "@/components/ui/sonner";
-import Header from "@/components/globals/header";
 import CookieBanner from "@/components/globals/CookieBanner";
-import Footer from "@/components/globals/footer";
-import ChristmasHolidayPopup from "@/components/generic/ChristmasHolidayPopup";
+import { Toaster } from "@/components/ui/sonner";
+import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
+import "./css/globals.css";
 
 export const metadata: Metadata = {
   title: "Churchill Institute of Higher Education",
   description: "",
 };
+
+const fontPrimary = Montserrat({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: "variable",
+});
 
 export default function RootLayout({
   children,
@@ -17,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={fontPrimary.variable}>
       <head>
         <link
           rel="apple-touch-icon"
@@ -49,17 +53,9 @@ export default function RootLayout({
           sizes="16x16"
           href="/assets/favicon-16x16.png"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
-        />
-
-        {/* uicons  */}
         <link
           rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/2.4.0/uicons-regular-straight/css/uicons-regular-straight.css"
+          href="https://cdn-uiconss.flaticon.com/2.4.0/uicons-regular-straight/css/uicons-regular-straight.css"
         />
         <link
           rel="stylesheet"

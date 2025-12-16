@@ -54,6 +54,8 @@
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --font-display: var(--font-display);
 }
 
 :root {
@@ -64,7 +66,6 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  /* Primary color changed to orange (#e59623) */
   --primary: oklch(0.685 0.135 65.5);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.685 0.135 65.5);
@@ -76,7 +77,6 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
-  /* Ring color also changed to orange for focus states */
   --ring: oklch(0.685 0.135 65.5);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -85,7 +85,6 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
-  /* Sidebar primary also changed to orange */
   --sidebar-primary: oklch(0.685 0.135 65.5);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.967 0.001 286.375);
@@ -147,7 +146,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-display;
   }
 }
 
