@@ -49,7 +49,7 @@ const CourseDetailsCard = ({
 
                 <div className="">
                   <h3 className="text-lg font-bold text-[#2C2B4B]">
-                    {item?.value ?? ""}
+                    {item?.description ?? ""}
                   </h3>
                   <p className="text-[#2C2B4B]">{item?.label ?? ""}</p>
                 </div>

@@ -148,22 +148,29 @@ const formatContactHref = (contact: Contact) => {
 const EmergencyServicesPage = () => {
   return (
     <SpacingLayout>
-      <PatternBannerCard
-        title="Emergency Services"
-        description="   Churchill Institute of Higher Education Students can call the
-            services below in the case of an emergency 24 Hours, 7 Days a week."
-      />
+      <div className="mx-auto mb-8 w-fit max-w-2xl pt-9 text-center">
+        <HeadingText>Emergency Services</HeadingText>
+        <HeadingText level={6} className="font-normal">
+          Churchill Institute of Higher Education Students can call the services
+          below in the case of an emergency 24 Hours, 7 Days a week.
+        </HeadingText>
+      </div>
 
-      <ContainerLayout>
+      <ContainerLayout size="sm">
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, idx) => (
-            <div key={idx} className="bg-alt-background rounded-lg p-5">
+            <div
+              key={idx}
+              className="bg-alt-background/25 rounded-lg p-5 shadow"
+            >
               <div className="bg-primary-orange/25 mb-5 grid aspect-square h-[70px] w-[70px] place-items-center rounded-full">
                 <i
                   className={`${service.iconClass} m-0 grid h-[50px] w-[50px] place-items-center text-3xl`}
                 ></i>
               </div>
-              <h3 className="mb-4 text-xl font-semibold">{service.title}</h3>
+              <h3 className="mb-4 text-xl font-semibold text-orange-600">
+                {service.title}
+              </h3>
               <ul className="space-y-3 text-gray-700">
                 {service.contacts.map((contact, i) => (
                   <li key={i}>
@@ -171,7 +178,7 @@ const EmergencyServicesPage = () => {
                     <a
                       href={formatContactHref(contact)}
                       target={contact.type === "link" ? "_blank" : undefined}
-                      className="text-primary-orange font-semibold hover:underline"
+                      className="font-semibold text-orange-600 hover:underline"
                     >
                       {contact.value}
                     </a>

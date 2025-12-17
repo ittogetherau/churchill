@@ -121,7 +121,6 @@ export const navItems: NavItem[] = [
     slug: "future-students",
     headerDesc: "Quick access to access necessary links for our students. ",
     link: "",
-    gotoPageRedirect: true,
     Catagories: [
       {
         menuTitle: "Find an Education Agent",
@@ -194,7 +193,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-lesson",
         subTitle: "Access your timetable, results, trimester invoices.",
         slug: "agent-login",
-        redirectLink: "https://elearning.churchill.nsw.edu.au/",
+        redirectLink: "https://elearning.churchill.edu.au/",
         link: "",
         image: "/assets/hero-image.jpeg",
       },
@@ -265,6 +264,13 @@ export const navItems: NavItem[] = [
         link: "/student-enrolment-and-study-load-rules",
         image: "/assets/hero-image.jpeg",
       },
+      {
+        menuTitle: "Student Handbook",
+        headerIcon: "fi fi-rr-book-user",
+        slug: "",
+        subTitle: "",
+        link: "https://churchill.edu.au/f/student-handbook",
+      },
     ],
   },
   {
@@ -273,19 +279,18 @@ export const navItems: NavItem[] = [
     slug: "login",
     headerDesc:
       "Login to access the Student, Agent, Library, and Staff portals.",
-    gotoPageRedirect: true,
     Catagories: [
       {
         menuTitle: "Learning Management System (LMS)",
         headerIcon: "fi fi-rr-lesson",
         subTitle: "Access your timetable, results, trimester invoices.",
         slug: "agent-login",
-        redirectLink: "https://elearning.churchill.nsw.edu.au/",
+        redirectLink: "https://elearning.churchill.edu.au/",
         link: "",
         image: "/assets/hero-image.jpeg",
       },
       {
-        menuTitle: "Agent Portal",
+        menuTitle: "Education Agent Portal",
         headerIcon: "fi fi-rr-employee-man-alt",
         subTitle: "Access your timetable, results, trimester invoices.",
         slug: "agent-login",
@@ -307,7 +312,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-employee-man",
         subTitle: "Access your timetable, results, trimester invoices.",
         slug: "staff-login",
-        redirectLink: "http://staff.churchill.nsw.edu.au",
+        redirectLink: "http://staff.churchill.edu.au",
         link: "/",
         image: "/assets/hero-image.jpeg",
       },
@@ -316,13 +321,13 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-user-trust",
         subTitle: "Student attendance.",
         slug: "student-attendance",
-        redirectLink: "https://attendance.churchill.nsw.edu.au",
+        redirectLink: "https://attendance.churchill.edu.au",
         image: "/assets/hero-image.jpeg",
       },
     ],
   },
   {
-    title: "Agent Hub",
+    title: "Education Agent Hub",
     redirectLink: siteConfig.agentHubUrl,
     slug: "agent-hub",
   },

@@ -1,6 +1,7 @@
 import { TopBannerCard } from "@/components/cards";
 import BlogSection from "@/components/sections/blogSections/BlogSection";
 import CoursesSection from "@/components/sections/homeSections/CoursesSection";
+import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import VideoSection from "@/components/sections/homeSections/VideoSection";
 import UpcomingKeyDates from "@/components/sections/upcomingEventsSections/UpcomingKeyDates";
 import { Button } from "@/components/ui/button";
@@ -42,13 +43,15 @@ const Home = async () => {
             href={`https://student.churchill.edu.au/upcoming-key-dates`}
             target="_self"
           >
-            <Button>
+            <Button variant={"secondary"}>
               View All Key Dates
               <ChevronRight />
             </Button>
           </Link>
         </div>
       </div>
+
+      <EnquirySection />
 
       <BlogSection blogs={blogs} />
 

@@ -20,7 +20,7 @@ fragment CourseListFields on courses {
   program_details {
     icon
     label
-    value
+    description
   }
 }
 

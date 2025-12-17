@@ -1,5 +1,6 @@
 import TopBannerCard from "@/components/cards/TopBannerCard";
 import CoursesFilterSection from "@/components/sections/filtersection/CoursesFilterSection";
+import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import { CoursePageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -72,6 +73,8 @@ const Courses = async () => {
       <span id="scrollToCourse" />
 
       <CoursesFilterSection data={coursesData} />
+
+      <EnquirySection />
     </SpacingLayout>
   );
 };

@@ -75,7 +75,7 @@ const NavigationItems = ({ onLinkClick, courses = [] }: props) => {
                             onClick={onLinkClick}
                           >
                             <div className="bg-primary-orange/50 grid h-8 w-8 shrink-0 place-items-center rounded-full">
-                              <i className={`${el.headerIcon} text-sm`} />
+                              <i className={`${el.headerIcon} flex text-sm`} />
                             </div>
                             <p className="text-sm leading-tight font-bold">
                               {el.menuTitle}
@@ -104,7 +104,7 @@ const NavigationItems = ({ onLinkClick, courses = [] }: props) => {
                 title={item.title}
                 id={`nav-${item.slug}`}
               >
-                <ContainerLayout className="grid grid-cols-3 gap-4 py-4">
+                <ContainerLayout className="grid grid-cols-1 gap-4 py-4 xl:grid-cols-3">
                   <div>
                     <h2 className="text-lg font-bold md:text-xl">
                       {item.title}
@@ -147,7 +147,7 @@ const NavigationItems = ({ onLinkClick, courses = [] }: props) => {
                             className="hover:bg-alt-background flex items-center gap-2 rounded-md px-2 py-1 transition-all"
                           >
                             <div className="bg-primary-orange/50 grid h-10 w-10 place-items-center rounded-full">
-                              <i className={`${el.headerIcon}`} />
+                              <i className={`${el.headerIcon} flex`} />
                             </div>
                             <div className="flex flex-1 flex-col gap-1">
                               <p className="line-clamp-2 text-base leading-tight font-bold">

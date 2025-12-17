@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import DataNotFound from "@/components/globals/DataNotFound";
 import { KeyDatesCard } from "@/components/cards";
-import ContainerLayout from "@/layouts/container-layout";
+import DataNotFound from "@/components/globals/DataNotFound";
 import { type KeyDatesFieldsFragment } from "@/graphql/generated/graphql";
+import ContainerLayout from "@/layouts/container-layout";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const monthsList = [
   "January",
@@ -155,19 +156,39 @@ const UpcomingKeyDates = ({
                   {isActive && (
                     <div className="flex flex-col gap-4">
                       {events.length > 0 ? (
-                        events.map((item) => (
-                          <KeyDatesCard
-                            key={
-                              item?.id ?? `${item?.title}-${item?.start_date}`
-                            }
-                            title={`${item?.title}`}
-                            description={""}
-                            start_date={item?.start_date ?? ""}
-                            end_date={item?.end_date ?? ""}
-                            category={[]}
-                            audience={[]}
-                          />
-                        ))
+                        <>
+                          {events.map((item) => (
+                            <KeyDatesCard
+                              key={
+                                item?.id ?? `${item?.title}-${item?.start_date}`
+                              }
+                              title={`${item?.title}`}
+                              description={""}
+                              start_date={item?.start_date ?? ""}
+                              end_date={item?.end_date ?? ""}
+                              category={[]}
+                              audience={[]}
+                            />
+                          ))}
+
+                          {selectedYear === "2026" && month === 1 && (
+                            <p className="pl-2 text-sm italic">
+                              *This is an indicative timeframe only based on the
+                              Department of{" "}
+                              <Link
+                                href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/global-visa-processing-times"
+                                className="text-primary-orange hover:underline"
+                              >
+                                Home Affairs website (visa processing times)
+                              </Link>{" "}
+                              that is subject to change / may increase or
+                              decrease, at any time, without notice. Churchill
+                              institute has no authority / influence over
+                              student visa application assessment times and
+                              outcomes.
+                            </p>
+                          )}
+                        </>
                       ) : (
                         <p className="pl-2 text-sm text-gray-500 italic">
                           No events in this month.

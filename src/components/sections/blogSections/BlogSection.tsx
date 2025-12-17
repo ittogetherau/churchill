@@ -11,12 +11,12 @@ import { FaArrowRight } from "react-icons/fa";
 
 function BlogSection({ blogs }: { blogs: BlogFieldsFragment[] }) {
   return (
-    <ContainerLayout className="container mx-auto px-5 space-y-6">
-      <h2 className="font-bold text-[36px] text-center mx-auto text-[#2C2B4B]">
+    <ContainerLayout className="container mx-auto space-y-6 px-5">
+      <h2 className="mx-auto text-center text-[36px] font-bold text-[#2C2B4B]">
         Latest Blogs
       </h2>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 md:gap-4">
+      <section className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-4 xl:grid-cols-3">
         {blogs.map((item, index) => {
           const formattedDate = new Intl.DateTimeFormat("en-AU", {
             day: "2-digit",
@@ -42,7 +42,7 @@ function BlogSection({ blogs }: { blogs: BlogFieldsFragment[] }) {
 
       <div className="flex justify-center">
         <Link href={"/blogs"} className="w-max">
-          <Button>
+          <Button variant={"secondary"}>
             More Blogs
             <ArrowRight />
           </Button>

@@ -287,7 +287,7 @@ const Footer: React.FC = () => {
                     <Link href="/">Home</Link>
                   </li>
                   <li>
-                    <Link href="https://elearning.churchill.nsw.edu.au/">
+                    <Link href="https://elearning.churchill.edu.au/">
                       Learning Management System (LMS)
                     </Link>
                   </li>

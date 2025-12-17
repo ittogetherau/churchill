@@ -14,8 +14,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <SpacingLayout>
         {children}
 
-        <EnquirySection />
-
         <NewsletterSection />
       </SpacingLayout>
 

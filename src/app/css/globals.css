@@ -228,7 +228,7 @@
 }
 
 .ul_design ul > li {
-  @apply bg-alt-background border-l-primary-orange m-0 list-none rounded-lg border-l-4 p-0 px-3 py-2;
+  @apply bg-alt-background m-0 list-none rounded-lg border-l-4 border-l-[#fb923c] p-0 px-3 py-2;
 }
 
 /* .border > * {

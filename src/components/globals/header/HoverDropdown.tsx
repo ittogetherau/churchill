@@ -48,12 +48,12 @@ const HoverDropdown = ({
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild id={dropdownId}>
         <div
-          className="flex cursor-pointer items-center gap-1 text-xs font-bold"
+          className="flex cursor-pointer items-center gap-0.5 text-xs font-bold"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           tabIndex={0}
         >
-          <span>{title}</span>
+          <span className="text-center leading-3">{title}</span>
           <ChevronUp
             size={12}
             className={`${open ? "rotate-180" : ""} transition-all`}
