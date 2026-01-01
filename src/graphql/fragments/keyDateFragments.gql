@@ -3,4 +3,5 @@ fragment KeyDatesFields on key_dates {
   title
   start_date
   end_date
+  tags
 }

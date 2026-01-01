@@ -3,8 +3,8 @@ import BlogSection from "@/components/sections/blogSections/BlogSection";
 import CoursesSection from "@/components/sections/homeSections/CoursesSection";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import VideoSection from "@/components/sections/homeSections/VideoSection";
-import UpcomingKeyDates from "@/components/sections/upcomingEventsSections/UpcomingKeyDates";
 import { Button } from "@/components/ui/button";
+import UpcomingKeyDatesSection from "@/comps/key-dates/UpcomingKeyDatesSection";
 import { HomepageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import SpacingLayout from "@/layouts/spacing-layout";
@@ -18,6 +18,7 @@ const Home = async () => {
   const degreeData = data?.degree?.[0] ?? null;
   const keyDates = data?.key_dates ?? [];
   const blogs = data?.blog ?? [];
+  const highlightedDates = data.Highlighted ?? [];
   const videos = data?.explore_churchill ?? null;
 
   return (
@@ -35,20 +36,11 @@ const Home = async () => {
 
       <CoursesSection degree={degreeData} courses={coursesData} />
 
-      <div className="">
-        <UpcomingKeyDates keyDates={keyDates} />
-
-        <div className="mx-auto mt-6 w-fit">
-          <Link
-            href={`https://student.churchill.edu.au/upcoming-key-dates`}
-            target="_self"
-          >
-            <Button variant={"secondary"}>
-              View All Key Dates
-              <ChevronRight />
-            </Button>
-          </Link>
-        </div>
+      <div>
+        <UpcomingKeyDatesSection
+          keyDates={keyDates}
+          highlightedDates={highlightedDates}
+        />
       </div>
 
       <EnquirySection />

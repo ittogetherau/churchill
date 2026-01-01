@@ -8,6 +8,9 @@ query Homepage {
   key_dates {
     ...KeyDatesFields
   }
+  Highlighted: key_dates(filter: { is_highlighted: { _eq: true } }) {
+    ...KeyDatesFields
+  }
   blog(limit: 3) {
     ...BlogFields
   }
