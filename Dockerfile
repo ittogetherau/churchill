@@ -35,4 +35,4 @@ COPY --from=builder /app ./
 EXPOSE 3901
 
 # Start the app (uses "start": "next start" from package.json)
-CMD ["npm", 'run', "start"]
+CMD ["npm", "run", "start"]
