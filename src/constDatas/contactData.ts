@@ -43,9 +43,9 @@ export const contactData: TContactItem[] = [
   },
   {
     title: "Email Us",
-    description: "info@churchill.nsw.edu.au",
+    description: "info@churchill.edu.au",
     iconUrl: "/assets/email.svg",
-    redirect: "mailto:info@churchill.nsw.edu.au",
+    redirect: "mailto:info@churchill.edu.au",
   },
   {
     title: "lodge a complain",

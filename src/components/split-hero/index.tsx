@@ -17,21 +17,21 @@ interface SplitHeroProps {
 
 const SplitHero = ({ image, description, title, cta }: SplitHeroProps) => {
   return (
-    <ContainerLayout className="flex flex-col md:flex-row items-center justify-between">
-      <div className="w-full md:w-1/2 mb-6 md:mb-0">
+    <ContainerLayout className="flex flex-col items-center justify-between lg:flex-row">
+      <div className="mb-6 w-full md:mb-0 md:w-1/2">
         <Image
           width={500}
           height={500}
           src={image}
           alt="Hero"
-          className="w-full h-auto rounded-xl"
+          className="h-auto w-full rounded-xl"
         />
       </div>
 
-      <div className="w-full md:w-1/2 md:pl-10">
-        <h2 className="text-3xl font-bold mb-4">{title}</h2>
+      <div className="w-full lg:w-1/2 lg:pl-10">
+        <h2 className="mb-4 text-3xl font-bold">{title}</h2>
         <div
-          className="text-gray-800 prose prose-lg mb-5"
+          className="prose prose-lg mb-5 text-gray-800"
           dangerouslySetInnerHTML={{ __html: description }}
         />
 

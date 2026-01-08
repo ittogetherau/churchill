@@ -23,27 +23,27 @@ const PatternBannerCard = ({
   return (
     <div
       style={{
-        backgroundImage: `linear-gradient(to top, white, #00000000), url('/assets/hero-vector.svg')`,
+        backgroundImage: `linear-gradient(to top, white, #00000000, #00000000), url('/assets/hero-vector.svg')`,
         backgroundRepeat: "no-repeat",
         objectFit: "cover",
         width: "100%",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className="min-h-[30vh] flex flex-col items-center justify-center"
+      className="flex min-h-[22vh] flex-col items-center justify-center"
     >
       <div className="container mx-auto px-5">
         <div className="flex flex-col gap-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-center text-[#eb9320] capitalize">
+          <h2 className="text-center text-3xl font-bold text-[#eb9320] capitalize md:text-5xl">
             {title}
           </h2>
 
           {description && (
-            <p className="w-fit text-sm text-center mx-auto">{description}</p>
+            <p className="mx-auto w-fit text-center text-sm">{description}</p>
           )}
 
           {(BtnAText || BtnBText) && (
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
               {BtnAText && (
                 <a href={BtnALink}>
                   <Button

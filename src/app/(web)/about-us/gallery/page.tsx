@@ -11,8 +11,9 @@ const GalleryPage = async () => {
   return (
     <SpacingLayout>
       <PatternBannerCard title="Gallery" />
-
-      <GallerySection images={images} />
+      <div className="lg:-mt-8">
+        <GallerySection images={images} />
+      </div>
     </SpacingLayout>
   );
 };

@@ -50,8 +50,8 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   return (
     <ContainerLayout
       className={clsx(
-        "grid grid-cols-1 md:grid-cols-4 xl:grid-cols-6 gap-4 xl:gap-6 gap-y-10 relative",
-        className
+        "relative grid grid-cols-1 gap-4 gap-y-10 md:grid-cols-4 xl:grid-cols-6 xl:gap-6",
+        className,
       )}
     >
       {reversed ? (
@@ -70,4 +70,3 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
 };
 
 export default TwoColumnLayout;
-``;

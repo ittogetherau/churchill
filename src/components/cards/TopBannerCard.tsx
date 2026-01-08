@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { MouseEventHandler, ReactNode } from "react";
-import Button from "../button";
+import { ReactNode } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import Button from "../button";
 
 import FadeUpAnimation from "@/animations/FadeUp";
 
@@ -21,6 +21,7 @@ type Props = {
   courseCode?: string;
   handleRightBtn?: () => {};
   showBtnB?: boolean;
+  slug?: string;
 };
 
 const TopBannerCard = ({
@@ -38,6 +39,7 @@ const TopBannerCard = ({
   courseCode,
   handleRightBtn,
   showBtnB = true,
+  slug,
 }: Props) => {
   return (
     <div
@@ -49,10 +51,10 @@ const TopBannerCard = ({
         backgroundSize: "cover",
         backgroundPosition: "center top",
       }}
-      className="lg:h-[80vh] flex items-center justify-center fade-in-animation relative overflow-hidden"
+      className="fade-in-animation relative flex items-center justify-center overflow-hidden lg:h-[80vh]"
     >
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover"
         src="/assets/videos/sydney-city-in-australia.mp4"
         autoPlay
         muted
@@ -61,28 +63,28 @@ const TopBannerCard = ({
         poster={image}
       />
       <div className="absolute inset-0 bg-gradient-to-tr from-[#616060bd] via-transparent to-transparent" />
-      <div className="container relative z-10 mt-[84px] mb-[84px] lg:mt-4 lg:mb-4 mx-auto px-5">
-        <div className="grid items-center grid-cols-1 md:grid-cols-2">
-          <div className="py-6 flex flex-col gap-3">
+      <div className="relative z-10 container mx-auto mt-[84px] mb-[84px] px-5 lg:mt-4 lg:mb-4">
+        <div className="grid grid-cols-1 items-center md:grid-cols-2">
+          <div className="flex flex-col gap-3 py-6">
             {beforeTitle && (
               <FadeUpAnimation delay={0}>
-                <div className="text-white px-[2px] pt-[2px] pb-[1px] text-xl font-extrabold highlight w-fit">
+                <div className="highlight w-fit px-[2px] pt-[2px] pb-[1px] text-xl font-extrabold text-white">
                   {beforeTitle}
                 </div>
               </FadeUpAnimation>
             )}
 
             <FadeUpAnimation delay={0}>
-              <h1 className="text-4xl font-extrabold md:text-[70px] leading-8 md:leading-[72px] text-[#ffffff]">
+              <h1 className="text-4xl leading-8 font-extrabold text-[#ffffff] md:text-[70px] md:leading-[72px]">
                 {titleSpan} {title}
               </h1>
             </FadeUpAnimation>
 
             {courseCode && (
               <FadeUpAnimation delay={0.15}>
-                <p className="text-white underline-[#2C2B4B] pb-1 px-[2px] mt-5 text-xl font-extrabold w-fit ">
+                <p className="underline-[#2C2B4B] mt-5 w-fit px-[2px] pb-1 text-xl font-extrabold text-white">
                   CRICOS Course Code:{" "}
-                  <span className="relative before:absolute before:w-full before:h-1 before:bg-[#E59623] before:bottom-0 before:left-0">
+                  <span className="relative before:absolute before:bottom-0 before:left-0 before:h-1 before:w-full before:bg-[#E59623]">
                     {courseCode}
                   </span>
                 </p>
@@ -92,13 +94,13 @@ const TopBannerCard = ({
             {subTitle && (
               <FadeUpAnimation delay={0.2}>
                 <div
-                  className="font-semibold text-[#ffffff] text-md md:text-[22px]  line-clamp-3 leading-7"
+                  className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-[22px]"
                   dangerouslySetInnerHTML={{ __html: subTitle }}
                 ></div>
               </FadeUpAnimation>
             )}
 
-            <div className="flex gap-1 md:gap-3 flex-col md:flex-row">
+            <div className="flex flex-col gap-1 md:flex-row md:gap-3">
               <FadeUpAnimation delay={0.3}>
                 <Link href={`${link}`}>
                   <Button
@@ -122,26 +124,27 @@ const TopBannerCard = ({
                 </div>
               )}
             </div>
-            {titleSpan === "Major in Accounting" && (
+
+            {slug === "major-in-accounting" && (
               <Image
                 src={`/assets/accredit.png`}
                 alt=""
                 width={1000}
                 height={1000}
-                className="object-contain w-[300px]"
+                className="w-[300px] object-contain"
               />
             )}
           </div>
 
           {imageA && (
             <FadeUpAnimation delay={0.2}>
-              <div className="flex justify-center items-center">
+              <div className="flex items-center justify-center">
                 <Image
                   src={`${imageA}`}
                   alt=""
                   width={1000}
                   height={1000}
-                  className={` object-contain w-[450px] aspect-square ${imageAStyle}`}
+                  className={`aspect-square w-[450px] object-contain ${imageAStyle}`}
                 />
               </div>
             </FadeUpAnimation>

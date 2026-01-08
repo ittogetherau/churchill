@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
     // Prepare mail options
     let mailOptions = {
       from: process.env.SMTP_EMAIL,
-      to: "cyberincident@churchill.nsw.edu.au",
-      cc: "cyberincidents@churchill.nsw.edu.au",
+      to: "cyberincident@churchill.edu.au",
+      cc: "cyberincidents@churchill.edu.au",
       subject: `Cyber Incident Report by ${firstName} ${lastName}`, // Fixed the subject string
       html: `
 <table
@@ -327,7 +327,7 @@ export async function POST(req: NextRequest) {
                                           <tr>
                                             <td style="border-bottom: 1px solid #e59623;"><strong>Incident Type</strong>:</td>
                                             <td style="border-bottom: 1px solid #e59623;">${incidentType.join(
-                                              ", "
+                                              ", ",
                                             )}</td>
                                           </tr>
                                           <tr style="background: #ededeb;">
@@ -579,13 +579,13 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { message: "Email sent successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err) {
     console.error(err);
     return NextResponse.json(
       { message: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

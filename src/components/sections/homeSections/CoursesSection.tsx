@@ -21,18 +21,21 @@ const CoursesSection = ({
   return (
     <ContainerLayout className="space-y-12">
       <div className="text-center">
-        <HeadingText>Our Courses</HeadingText>
+        <HeadingText className="relative mx-auto w-fit">
+          Our Courses
+          <span className="bg-primary-orange absolute bottom-0 left-0 z-[-1] block h-1/4 w-full"></span>
+        </HeadingText>
 
         <HeadingText level={4}>
           {degreeTitle}
-          {degreeCode ? ` (${degreeCode})` : ""}
+          {degreeCode ? ` (${degree?.short_title})` : ""}
         </HeadingText>
 
         {degreeCode && (
           <HeadingText level={0}>CRICOS Course Code: {degreeCode}</HeadingText>
         )}
 
-        <p className="max-w-2xl mx-auto">{degree?.description}</p>
+        <p className="mx-auto max-w-2xl">{degree?.description}</p>
       </div>
 
       <CoursesSlider data={courses} />

@@ -22,7 +22,7 @@ const campusDetails: ICampusDetails[] = [
     address: "Level 1 16-18 Wentworth Street, Parramatta, NSW 2150, Australia",
     website: "https://www.churchill.edu.au",
     phone: "(02) 8856 2997",
-    email: "info@churchill.nsw.edu.au",
+    email: "info@churchill.edu.au",
     mapUrl: "https://maps.app.goo.gl/8atQGN3b8tx2uPAz6",
     ctaLabel: "Explore Parramatta Campus",
     image: "/assets/cihe-paramatta-campus.jpg",
@@ -36,7 +36,7 @@ const campusDetails: ICampusDetails[] = [
     address: "Level 8, 85 Queen Street, Melbourne, VIC 3000, Australia",
     website: "https://www.churchill.edu.au",
     phone: "(03) 8652 9393",
-    email: "info@churchill.nsw.edu.au",
+    email: "info@churchill.edu.au",
     mapUrl:
       "https://maps.google.com/?q=Level+8,+85+Queen+Street,+Melbourne+VIC+3000",
     ctaLabel: "Explore Melbourne Campus",

@@ -25,8 +25,15 @@ const Home = async () => {
     <SpacingLayout>
       <TopBannerCard
         image={`/assets/sydney-city-in-australia.jpg`}
-        titleSpan={<span>Empowering A Brighter</span>}
-        title={"Tomorrow"}
+        titleSpan={
+          <span>
+            Empowering A Brighter
+            <span className="relative inline-block">
+              <span className="bg-primary-orange absolute bottom-0 left-0 z-[-1] block h-1/4 w-full"></span>
+              Tomorrow
+            </span>
+          </span>
+        }
         subTitle={`<p className="my-4"> Explore our innovative programs and transform your career. </p>`}
         link={`/courses`}
         linkA={"/assets/apply-at-churchill.pdf"}

@@ -20,7 +20,7 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({
   slug,
 }) => {
   return (
-    <div className="h-full justify-between group">
+    <div className="group h-full justify-between">
       <div>
         <div className="relative overflow-hidden rounded-md">
           <Image
@@ -28,17 +28,18 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({
             alt={`Image of ${title}`}
             width={400}
             height={400}
-            className="object-cover w-full aspect-square group-hover:scale-105 transition-all duration-500"
+            className="aspect-square w-full object-cover transition-all duration-500 group-hover:scale-105"
           />
         </div>
       </div>
-      <div className="-translate-y-8 group-hover:-translate-y-12 flex flex-col gap-3 p-6 md:mx-4 bg-[#f5f3ef] group-hover:bg-alt-background  transition-all rounded-lg">
-        <h3 className="font-bold text-2xl text-[#302f36] transition-all">
+      <div className="group-hover:bg-alt-background flex -translate-y-8 flex-col gap-3 rounded-lg bg-[#f5f3ef] p-6 transition-all group-hover:-translate-y-12 md:mx-4">
+        <h3 className="text-2xl font-bold text-[#302f36] transition-all">
           {title}
         </h3>
-        <p className="font-bold text-[16px] text-[#302f36]transition-all ">
+        <p className="text-[#302f36]transition-all text-[16px] font-bold">
           {subTitle}
         </p>
+
         {description && (
           <div
             className="line-clamp-3"
@@ -50,8 +51,9 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({
           className="w-fit group-hover:text-white"
           href={`/about-us/teams/${slug}`}
         >
-          <Button>
-            <ArrowRight /> Learn More
+          <Button variant={"ghost"}>
+            Learn More
+            <ArrowRight />
           </Button>
         </Link>
       </div>

@@ -43,8 +43,8 @@ export default function ChurchillPrinterPortal() {
     }
 
     const paymentUrl = `https://cilantro.taco-tech.com/payments/412c3ac5-50b2-4e1d-b242-1b16c8e37e9d/${encodeURIComponent(
-      trimmedStudentId
-    )}@churchill.nsw.edu.au`;
+      trimmedStudentId,
+    )}@churchill.edu.au`;
 
     window.open(paymentUrl, "_blank");
     closeRechargeModal();
@@ -58,7 +58,7 @@ export default function ChurchillPrinterPortal() {
 
   const handleModalClick = (
     event: React.MouseEvent<HTMLDivElement>,
-    closeFunction: () => void
+    closeFunction: () => void,
   ) => {
     if (event.target === event.currentTarget) {
       closeFunction();
@@ -82,7 +82,8 @@ export default function ChurchillPrinterPortal() {
     <div className="min-h-screen bg-gray-50">
       <style jsx>{`
         .subtle-shadow {
-          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          box-shadow:
+            0 1px 3px 0 rgba(0, 0, 0, 0.1),
             0 1px 2px 0 rgba(0, 0, 0, 0.06);
         }
         .card-hover {
@@ -116,104 +117,104 @@ export default function ChurchillPrinterPortal() {
         }
       `}</style>
 
-      <header className="bg-white border-b border-gray-100 sticky top-0 z-40 backdrop-blur bg-white/95">
-        <div className="max-w-4xl mx-auto px-6 py-8">
-          <div className="text-center mx-auto flex items-center flex-col gap-3">
+      <header className="sticky top-0 z-40 border-b border-gray-100 bg-white bg-white/95 backdrop-blur">
+        <div className="mx-auto max-w-4xl px-6 py-8">
+          <div className="mx-auto flex flex-col items-center gap-3 text-center">
             <Image
               src={`/assets/logo.svg`}
               width={400}
               height={400}
               alt="Main Logo"
-              className="object-contain w-[200px]"
+              className="w-[200px] object-contain"
               priority
             />
-            <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+            <h1 className="mb-1 text-2xl font-semibold text-gray-900">
               Churchill Printer Portal
             </h1>
           </div>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto py-12">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-churchill/10 rounded-lg mb-6">
+      <main className="mx-auto max-w-4xl py-12">
+        <div className="mb-16 text-center">
+          <div className="bg-churchill/10 mb-6 inline-flex h-20 w-20 items-center justify-center rounded-lg">
             <img
               src="https://cdn-icons-png.flaticon.com/128/3917/3917119.png"
-              className="w-10 h-10 color-churchill"
+              className="color-churchill h-10 w-10"
               alt="Printer icon"
             />
           </div>
-          <h2 className="text-xl font-medium text-gray-900 mb-3">
+          <h2 className="mb-3 text-xl font-medium text-gray-900">
             Manage your printing account
           </h2>
-          <p className="text-gray-600 max-w-md mx-auto">
+          <p className="mx-auto max-w-md text-gray-600">
             Access your printer services, check balances, and manage your
             account in one place.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="card-hover bg-white rounded-xl subtle-shadow border border-gray-100 p-6">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-churchill/10 rounded-lg flex items-center justify-center mr-3">
+        <div className="grid gap-6 md:grid-cols-3">
+          <div className="card-hover subtle-shadow rounded-xl border border-gray-100 bg-white p-6">
+            <div className="mb-4 flex items-center">
+              <div className="bg-churchill/10 mr-3 flex h-12 w-12 items-center justify-center rounded-lg">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/7653/7653265.png"
-                  className="w-8 h-8 color-churchill"
+                  className="color-churchill h-8 w-8"
                   alt="Recharge icon"
                 />
               </div>
               <h3 className="font-medium text-gray-900">Recharge Account</h3>
             </div>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="mb-6 text-sm text-gray-600">
               Add credits to your account
             </p>
             <button
               onClick={handleRechargeForm}
-              className="w-full px-4 py-2 text-sm font-medium text-white bg-churchill hover:bg-churchill-dark rounded-lg transition-colors"
+              className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
             >
               Add Funds
             </button>
           </div>
 
-          <div className="card-hover bg-white rounded-xl subtle-shadow border border-gray-100 p-6">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-churchill/10 rounded-lg flex items-center justify-center mr-3">
+          <div className="card-hover subtle-shadow rounded-xl border border-gray-100 bg-white p-6">
+            <div className="mb-4 flex items-center">
+              <div className="bg-churchill/10 mr-3 flex h-12 w-12 items-center justify-center rounded-lg">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/15399/15399215.png"
-                  className="w-8 h-8 color-churchill"
+                  className="color-churchill h-8 w-8"
                   alt="Video guide icon"
                 />
               </div>
               <h3 className="font-medium text-gray-900">How to Print</h3>
             </div>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="mb-6 text-sm text-gray-600">
               Step-by-step printing guide
             </p>
             <button
               onClick={handleVideoGuide}
-              className="w-full px-4 py-2 text-sm font-medium text-white bg-churchill hover:bg-churchill-dark rounded-lg transition-colors"
+              className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
             >
               Watch Guide
             </button>
           </div>
 
-          <div className="card-hover bg-white rounded-xl subtle-shadow border border-gray-100 p-6">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-churchill/10 rounded-lg flex items-center justify-center mr-3">
+          <div className="card-hover subtle-shadow rounded-xl border border-gray-100 bg-white p-6">
+            <div className="mb-4 flex items-center">
+              <div className="bg-churchill/10 mr-3 flex h-12 w-12 items-center justify-center rounded-lg">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/7653/7653142.png"
-                  className="w-8 h-8 color-churchill"
+                  className="color-churchill h-8 w-8"
                   alt="Balance icon"
                 />
               </div>
               <h3 className="font-medium text-gray-900">Check Balance</h3>
             </div>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="mb-6 text-sm text-gray-600">
               View balance and usage history
             </p>
             <button
               onClick={handleBalanceCheck}
-              className="w-full px-4 py-2 text-sm font-medium text-white bg-churchill hover:bg-churchill-dark rounded-lg transition-colors"
+              className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
             >
               View Details
             </button>
@@ -224,15 +225,15 @@ export default function ChurchillPrinterPortal() {
       {/* Recharge Modal */}
       {showRechargeModal && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
           onClick={(e) => handleModalClick(e, closeRechargeModal)}
         >
-          <div className="bg-white rounded-2xl max-w-md w-full shadow-xl">
-            <div className="p-6 border-b border-gray-100">
+          <div className="w-full max-w-md rounded-2xl bg-white shadow-xl">
+            <div className="border-b border-gray-100 p-6">
               <h3 className="text-lg font-medium text-gray-900">
                 Recharge Your Account
               </h3>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="mt-1 text-sm text-gray-600">
                 Enter your Student ID to add credits
               </p>
             </div>
@@ -241,7 +242,7 @@ export default function ChurchillPrinterPortal() {
               <div className="mb-4">
                 <label
                   htmlFor="studentId"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="mb-2 block text-sm font-medium text-gray-700"
                 >
                   Student ID
                 </label>
@@ -252,14 +253,14 @@ export default function ChurchillPrinterPortal() {
                   onChange={(e) => setStudentId(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="CIHE123456"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-churchill/20 focus:border-churchill outline-none transition-colors text-sm"
+                  className="focus:ring-churchill/20 focus:border-churchill w-full rounded-lg border border-gray-300 px-3 py-2 text-sm transition-colors outline-none focus:ring-2"
                 />
               </div>
 
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-6">
+              <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-3">
                 <div className="flex">
                   <svg
-                    className="w-4 h-4 text-amber-600 mt-0.5 mr-2 flex-shrink-0"
+                    className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0 text-amber-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -275,7 +276,7 @@ export default function ChurchillPrinterPortal() {
                     <p className="text-xs font-medium text-amber-800">
                       Important
                     </p>
-                    <p className="text-xs text-amber-700 mt-0.5">
+                    <p className="mt-0.5 text-xs text-amber-700">
                       Double-check your Student ID. Incorrect entries may result
                       in lost credits.
                     </p>
@@ -284,16 +285,16 @@ export default function ChurchillPrinterPortal() {
               </div>
             </div>
 
-            <div className="p-6 pt-0 flex gap-3">
+            <div className="flex gap-3 p-6 pt-0">
               <button
                 onClick={closeRechargeModal}
-                className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                className="flex-1 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200"
               >
                 Cancel
               </button>
               <button
                 onClick={proceedPayment}
-                className="flex-1 px-4 py-2 text-sm font-medium text-white bg-churchill hover:bg-churchill-dark rounded-lg transition-colors"
+                className="bg-churchill hover:bg-churchill-dark flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
               >
                 Pay Now
               </button>
@@ -305,24 +306,24 @@ export default function ChurchillPrinterPortal() {
       {/* Video Modal */}
       {showVideoModal && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
           onClick={(e) => handleModalClick(e, closeVideoModal)}
         >
-          <div className="bg-white rounded-2xl max-w-lg w-full shadow-xl">
-            <div className="p-6 border-b border-gray-100">
+          <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl">
+            <div className="border-b border-gray-100 p-6">
               <h3 className="text-lg font-medium text-gray-900">
                 How to Print Guide
               </h3>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="mt-1 text-sm text-gray-600">
                 Learn how to use the printing system
               </p>
             </div>
 
             <div className="p-6">
-              <div className="bg-gray-50 rounded-lg p-8 text-center">
-                <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-3">
+              <div className="rounded-lg bg-gray-50 p-8 text-center">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-200">
                   <svg
-                    className="w-6 h-6 text-gray-500"
+                    className="h-6 w-6 text-gray-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -344,7 +345,7 @@ export default function ChurchillPrinterPortal() {
             <div className="p-6 pt-0">
               <button
                 onClick={closeVideoModal}
-                className="w-full px-4 py-2 text-sm font-medium text-white bg-churchill hover:bg-churchill-dark rounded-lg transition-colors"
+                className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
               >
                 Close
               </button>
@@ -356,24 +357,24 @@ export default function ChurchillPrinterPortal() {
       {/* Balance Modal */}
       {showBalanceModal && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
           onClick={(e) => handleModalClick(e, closeBalanceModal)}
         >
-          <div className="bg-white rounded-2xl max-w-md w-full shadow-xl">
-            <div className="p-6 border-b border-gray-100">
+          <div className="w-full max-w-md rounded-2xl bg-white shadow-xl">
+            <div className="border-b border-gray-100 p-6">
               <h3 className="text-lg font-medium text-gray-900">
                 Balance & Usage
               </h3>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="mt-1 text-sm text-gray-600">
                 View your account details
               </p>
             </div>
 
             <div className="p-6">
-              <div className="bg-gray-50 rounded-lg p-6 text-center">
-                <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-3">
+              <div className="rounded-lg bg-gray-50 p-6 text-center">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-200">
                   <svg
-                    className="w-6 h-6 text-gray-500"
+                    className="h-6 w-6 text-gray-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -395,7 +396,7 @@ export default function ChurchillPrinterPortal() {
             <div className="p-6 pt-0">
               <button
                 onClick={closeBalanceModal}
-                className="w-full px-4 py-2 text-sm font-medium text-white bg-churchill hover:bg-churchill-dark rounded-lg transition-colors"
+                className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
               >
                 Close
               </button>

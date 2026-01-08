@@ -75,13 +75,13 @@ const Footer: React.FC = () => {
                   +61 (02) 8856-2997
                 </Link>
                 <Link
-                  href="mailto:info@churchill.nsw.edu.au"
+                  href="mailto:info@churchill.edu.au"
                   className="flex items-center gap-2 text-[14px]"
                 >
                   <span>
                     <MdEmail />
                   </span>
-                  info@churchill.nsw.edu.au
+                  info@churchill.edu.au
                 </Link>
                 <Link
                   href="https://maps.app.goo.gl/h7FJyoQfasvUvck79"

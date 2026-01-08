@@ -21,17 +21,17 @@ const StyledHeroCard = ({
   subTitle,
 }: StyledHeroCardProps) => {
   return (
-    <section className="h-[50vh] md:h-[40vh] relative mt-8 md:mt-0">
+    <section className="relative mt-8 h-[50vh] md:mt-0 md:h-[40vh]">
       <Image
         width={30}
         height={30}
         src="/assets/hero-background.svg"
         alt="alt"
-        className="absolute w-full h-full -top-1/2 translate-y-1/2 left-0 object-cover z-0"
+        className="absolute -top-1/2 left-0 z-0 h-full w-full translate-y-1/2 object-cover"
       />
-      <div className="w-full h-full flex items-center justify-center flex-col gap-4 px-5 relative z-[2]">
+      <div className="relative z-[2] flex h-full w-full flex-col items-center justify-center gap-4 px-5">
         <p className="text-matte-purple text-center">{breadcrumbs}</p>
-        <h2 className="text-matte-purple capitalize text-2xl md:text-3xl font-bold text-center w-[90vw] md:w-[80vw] ">
+        <h2 className="text-matte-purple w-[90vw] text-center text-2xl font-bold capitalize md:w-[80vw] md:text-3xl">
           {title}
         </h2>
         {subTitle && <p>{subTitle}</p>}

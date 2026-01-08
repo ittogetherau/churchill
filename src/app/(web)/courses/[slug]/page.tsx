@@ -28,6 +28,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
         courseCode={course?.degree?.course_code ?? ""}
         subTitle={course?.description ?? ""}
         BtnAText="Apply Now"
+        slug={slug}
         BtnBText="Enquire Now"
         link={`/assets/apply-at-churchill.pdf`}
         linkA={`https://forms.zohopublic.com.au/CIHE/form/StudentHubEnquiry/formperma/XilFJje5kQ-h7f4saQYbSV4kJ-kAMiG7p1QNfWEvDXs`}
@@ -39,7 +40,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
       <TabbedPane data={course?.course_structure ?? []} />
 
       <ContainerLayout>
-        <h2 className="font-bold leading-9 mb-6 text-[36px] text-[#2C2B4B]">
+        <h2 className="mb-6 text-[36px] leading-9 font-bold text-[#2C2B4B]">
           Browse Other Majors
         </h2>
         <CoursesSlider data={otherCourses} />
