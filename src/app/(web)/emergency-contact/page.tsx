@@ -159,10 +159,7 @@ const EmergencyServicesPage = () => {
       <ContainerLayout size="sm">
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, idx) => (
-            <div
-              key={idx}
-              className="bg-alt-background/25 rounded-lg p-5 shadow"
-            >
+            <div key={idx} className="rounded-lg bg-gray-50 p-5 shadow">
               <div className="bg-primary-orange/25 mb-5 grid aspect-square h-[70px] w-[70px] place-items-center rounded-full">
                 <i
                   className={`${service.iconClass} m-0 grid h-[50px] w-[50px] place-items-center text-3xl`}

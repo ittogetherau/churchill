@@ -16,7 +16,7 @@ const UnderConstruction = () => {
       <TwoColumnLayout
         sidebar={<>{<Lottie animationData={Animation} loop={true} />}</>}
         isEqual={true}
-        className="mt-24"
+        className="mt-24 items-center"
       >
         <div className="flex flex-col justify-center gap-4">
           <h3 className="text-[36px] font-bold text-[#2C2B4B]">

@@ -188,7 +188,7 @@
   content: "";
   display: inline-block;
   height: 25%;
-  background-color: var(--primary-orange);
+  background-color: var(--color-primary-orange);
   position: absolute;
   width: 75%;
   left: 0;
@@ -220,15 +220,16 @@
 }
 
 /*  */
-.ul_design ul {
+.rich_text_container.ul_design ul {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   padding: 0px;
 }
 
-.ul_design ul > li {
-  @apply bg-alt-background m-0 list-none rounded-lg border-l-4 border-l-[#fb923c] p-0 px-3 py-2;
+.rich_text_container.ul_design ul > li {
+  @apply m-0 rounded-lg border-l-4 border-l-[#fb923c] bg-[#f8f8f8] px-3 py-3;
+  background-image: none !important;
 }
 
 /* .border > * {

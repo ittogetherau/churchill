@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
+import type { LucideIcon } from "lucide-react";
 
 interface SocialLink {
   url: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
   title: string;
 }
 
@@ -47,7 +48,7 @@ const ContactUsCard = ({
             {socialLinks?.map((item, index) => (
               <Link target="_blank" key={index} href={item.url}>
                 <div className=" flex flex-col items-center justify-center p-2 rounded-xl hover:bg-[#E5962310]">
-                  <p className="text-4xl text-[#E59623]">{item.icon}</p>
+                  <item.icon className="h-8 w-8 text-[#E59623]" />
                   <p>{item.title}</p>
                 </div>
               </Link>

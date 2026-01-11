@@ -14,7 +14,7 @@ const ANNOUNCEMENT_KEY = "SHOW-ANNOUNCEMENT-HEADER";
 const AnnouncementBar: React.FC<props> = ({ text }) => {
   const { isVisible, dismiss } = useAnnouncementVisibility(ANNOUNCEMENT_KEY);
 
-  if (isVisible)
+  if (isVisible && text)
     return (
       <div className="bg-primary">
         <ContainerLayout className="flex items-center">

@@ -1,13 +1,10 @@
 import CourseOverviewSection from "@/components/cards/CourseOverviewCard";
 import TopBannerCard from "@/components/cards/TopBannerCard";
+import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import CoursesSlider from "@/components/sliders/CoursesSlider";
 import TabbedPane from "@/components/TabbedPane/TabbedPane";
-import { runQuery, resolveFileLink } from "@/graphql/graphql";
-import {
-  CourseDetailDocument,
-  type CourseDetailQuery,
-  type CourseDetailQueryVariables,
-} from "@/graphql/generated/graphql";
+import { CourseDetailDocument } from "@/graphql/generated/graphql";
+import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 
@@ -38,6 +35,8 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
       <CourseOverviewSection data={course?.program_details ?? []} />
 
       <TabbedPane data={course?.course_structure ?? []} />
+
+      <EnquirySection />
 
       <ContainerLayout>
         <h2 className="mb-6 text-[36px] leading-9 font-bold text-[#2C2B4B]">

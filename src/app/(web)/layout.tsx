@@ -1,10 +1,8 @@
-import type { ReactNode } from "react";
-import NewsletterSection from "@/components/sections/commonSections/NewsletterSection";
-import EnquirySection from "@/components/sections/homeSections/EnquirySection";
-import SpacingLayout from "@/layouts/spacing-layout";
-import Header from "@/components/globals/header";
 import Footer from "@/components/globals/footer";
-import ChristmasHolidayPopup from "@/components/generic/ChristmasHolidayPopup";
+import Header from "@/components/globals/header";
+import NewsletterSectionGate from "@/components/sections/commonSections/NewsletterSectionGate";
+import SpacingLayout from "@/layouts/spacing-layout";
+import type { ReactNode } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -14,10 +12,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <SpacingLayout>
         {children}
 
-        <NewsletterSection />
+        <NewsletterSectionGate />
       </SpacingLayout>
 
-      <ChristmasHolidayPopup />
+      {/* <ChristmasHolidayPopup /> */}
 
       <Footer />
     </>

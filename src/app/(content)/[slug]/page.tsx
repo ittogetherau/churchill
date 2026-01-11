@@ -8,6 +8,7 @@ import {
 } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -66,7 +67,11 @@ function Column({ column }: { column: ColumnFieldsFragment["columns_id"] }) {
           className="mt-6 block w-fit"
           target={column.open_in_new_tab ? "_blank" : ""}
         >
-          <Button>{column.button_label}</Button>
+          <Button>
+            {column.button_label}
+
+            <ArrowRight />
+          </Button>
         </Link>
       )}
     </div>

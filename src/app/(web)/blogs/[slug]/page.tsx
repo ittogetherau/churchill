@@ -29,7 +29,7 @@ const SocialShare = ({ url }: { url: string }) => {
   const shareLinks = [
     {
       href: `mailto:?subject=Check this out&body=Here's the link: ${url}`,
-      icon: "fi fi-rr-envelope",
+      icon: "fi \r-envelope",
       label: "Email",
     },
     {
@@ -73,6 +73,7 @@ const SocialShare = ({ url }: { url: string }) => {
             <i className={`flex ${icon}`} />
           </Link>
         ))}
+
         <Copyurl text={url}>
           <div className="hover:text-primary-orange social-button copy-link transition-all">
             <i className="fi fi-rr-copy-alt" />
@@ -127,7 +128,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
         </h2>
       </ContainerLayout>
 
-      <ContainerLayout>
+      <ContainerLayout size="sm">
         <Image
           width={2000}
           height={1500}
@@ -146,15 +147,14 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
             />
           )}
         </article>
-
-        <hr className="my-4 border border-black/20" />
-
-        <SocialShare url={siteUrl} />
       </ContainerLayout>
 
       <ContainerLayout>
-        <BlogSection blogs={otherBlogs} />
+        <hr className="my-4 border border-black/20" />
+        <SocialShare url={siteUrl} />
       </ContainerLayout>
+
+      <BlogSection blogs={otherBlogs} />
     </>
   );
 };

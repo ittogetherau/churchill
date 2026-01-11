@@ -170,7 +170,7 @@ export default function ChurchillPrinterPortal() {
             </p>
             <button
               onClick={handleRechargeForm}
-              className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
+              className="bg-churchill hover:bg-churchill-dark w-full cursor-pointer rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
             >
               Add Funds
             </button>
@@ -192,7 +192,7 @@ export default function ChurchillPrinterPortal() {
             </p>
             <button
               onClick={handleVideoGuide}
-              className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
+              className="bg-churchill hover:bg-churchill-dark w-full cursor-pointer rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
             >
               Watch Guide
             </button>
@@ -214,7 +214,7 @@ export default function ChurchillPrinterPortal() {
             </p>
             <button
               onClick={handleBalanceCheck}
-              className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
+              className="bg-churchill hover:bg-churchill-dark w-full cursor-pointer rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
             >
               View Details
             </button>
@@ -345,7 +345,7 @@ export default function ChurchillPrinterPortal() {
             <div className="p-6 pt-0">
               <button
                 onClick={closeVideoModal}
-                className="bg-churchill hover:bg-churchill-dark w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
+                className="bg-churchill hover:bg-churchill-dark w-full cursor-pointer rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
               >
                 Close
               </button>

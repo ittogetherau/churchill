@@ -24,6 +24,9 @@ type Props = {
   slug?: string;
 };
 
+const HERO_VIDEO_URL =
+  "https://cms.churchill.edu.au/assets/a21094f6-fe55-4ff2-907b-6e0b09f2256f/hero-video.mp4";
+
 const TopBannerCard = ({
   image,
   title,
@@ -55,7 +58,7 @@ const TopBannerCard = ({
     >
       <video
         className="absolute inset-0 h-full w-full object-cover"
-        src="/assets/videos/sydney-city-in-australia.mp4"
+        src={HERO_VIDEO_URL}
         autoPlay
         muted
         loop

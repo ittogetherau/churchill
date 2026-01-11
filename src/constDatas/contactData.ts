@@ -1,12 +1,10 @@
-import { ReactElement } from "react";
-import { FaSquareInstagram } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+import type { LucideIcon } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 // Contact data types
 export interface TSocialLink {
   title: string;
-  icon: string | ReactElement;
+  icon: LucideIcon;
   url: string;
 }
 
@@ -60,17 +58,17 @@ export const contactData: TContactItem[] = [
     socialLinks: [
       {
         title: "Facebook",
-        icon: " <FaFacebook />",
+        icon: Facebook,
         url: "https://www.facebook.com/CIHEAustralia/",
       },
       {
         title: "LinkedIn",
-        icon: "<FaLinkedin />",
+        icon: Linkedin,
         url: "https://www.linkedin.com/company/churchill-institute-of-higher-education/",
       },
       {
         title: "Instagram",
-        icon: "<FaSquareInstagram />",
+        icon: Instagram,
         url: "https://www.instagram.com/ciheaustralia/",
       },
     ],

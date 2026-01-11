@@ -3,13 +3,10 @@ import BlogSection from "@/components/sections/blogSections/BlogSection";
 import CoursesSection from "@/components/sections/homeSections/CoursesSection";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import VideoSection from "@/components/sections/homeSections/VideoSection";
-import { Button } from "@/components/ui/button";
 import UpcomingKeyDatesSection from "@/comps/key-dates/UpcomingKeyDatesSection";
 import { HomepageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import SpacingLayout from "@/layouts/spacing-layout";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 
 const Home = async () => {
   const data = await runQuery(HomepageDocument);
@@ -28,10 +25,7 @@ const Home = async () => {
         titleSpan={
           <span>
             Empowering A Brighter
-            <span className="relative inline-block">
-              <span className="bg-primary-orange absolute bottom-0 left-0 z-[-1] block h-1/4 w-full"></span>
-              Tomorrow
-            </span>
+            <span className="highlight">Tomorrow</span>
           </span>
         }
         subTitle={`<p className="my-4"> Explore our innovative programs and transform your career. </p>`}

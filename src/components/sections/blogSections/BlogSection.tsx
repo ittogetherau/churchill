@@ -12,8 +12,8 @@ import { FaArrowRight } from "react-icons/fa";
 function BlogSection({ blogs }: { blogs: BlogFieldsFragment[] }) {
   return (
     <ContainerLayout className="container mx-auto space-y-6 px-5">
-      <h2 className="mx-auto text-center text-[36px] font-bold text-[#2C2B4B]">
-        Latest Blogs
+      <h2 className="mx-auto text-[36px] font-bold text-[#2C2B4B]">
+        More Blogs
       </h2>
 
       <section className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-4 xl:grid-cols-3">
