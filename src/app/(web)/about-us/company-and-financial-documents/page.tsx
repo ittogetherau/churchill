@@ -15,24 +15,27 @@ const enrollments = {
   semester: "Semester 2/2025",
 };
 
+const AUDITOR_DECLARATION_PDF =
+  "https://churchill.edu.au/f/2025-auditors-declaration";
+
 const GovernanceStructure = () => {
   return (
     <>
       <PatternBannerCard title="Financial Standing, TPS & Enrolment Summary" />
       <div className="container mx-auto px-5">
-        <main className="max-w-5xl mx-auto px-4 py-12 space-y-12">
-          <section className="bg-white rounded-lg border p-6 fade-in">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+        <main className="mx-auto max-w-5xl space-y-12 px-4 py-12">
+          <section className="fade-in rounded-lg border bg-white p-6">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-900">
               Financial Standing
             </h2>
-            <p className="text-gray-700 leading-relaxed mb-5">
-              Refer to the Financial Auditor's Declaration from the 2024
+            <p className="mb-5 leading-relaxed text-gray-700">
+              Refer to the Financial Auditor's Declaration from the 2025
               Financial Year Audit of CIHE's Accounts.
             </p>
             <Link
-              href={`/assets/docs/Auditor Declaration_FY_2024.pdf`}
+              href={AUDITOR_DECLARATION_PDF}
               target="_blank"
-              className="w-max "
+              className="w-max"
             >
               <Button
                 btnName={"View Report"}
@@ -45,11 +48,11 @@ const GovernanceStructure = () => {
             </Link>
           </section>
 
-          <section className="bg-white rounded-lg border p-6 fade-in">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          <section className="fade-in rounded-lg border bg-white p-6">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-900">
               Tuition Protection Service (TPS)
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="leading-relaxed text-gray-700">
               Churchill Institute of Higher Education financially contributes to
               the{" "}
               <a
@@ -69,19 +72,19 @@ const GovernanceStructure = () => {
             </p>
           </section>
 
-          <section className="bg-white rounded-lg border p-6 fade-in">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          <section className="fade-in rounded-lg border bg-white p-6">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-900">
               2025 Enrolments
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="leading-relaxed text-gray-700">
               Churchill Institute of Higher Education enrols approximately{" "}
               {enrollments.semester_enrollments.value}{" "}
               {enrollments.semester_enrollments.subtext} ({enrollments.semester}
               ) at an estimated {enrollments.EFTSL.subtext} of{" "}
               {enrollments.EFTSL.value} for this semester.
             </p>
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-orange-50 rounded-lg p-4 text-center">
+            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="rounded-lg bg-orange-50 p-4 text-center">
                 <p className="text-lg font-medium text-gray-800">
                   {enrollments.semester_enrollments.value}
                 </p>
@@ -90,7 +93,7 @@ const GovernanceStructure = () => {
                   {enrollments.semester})
                 </p>
               </div>
-              <div className="bg-orange-50 rounded-lg p-4 text-center">
+              <div className="rounded-lg bg-orange-50 p-4 text-center">
                 <p className="text-lg font-medium text-gray-800">
                   {enrollments.EFTSL.value}
                 </p>
