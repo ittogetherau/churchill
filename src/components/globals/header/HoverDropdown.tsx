@@ -63,7 +63,7 @@ const HoverDropdown = ({
 
       <DropdownMenuContent
         id={`${dropdownId}-content`}
-        className="border-t-primary-orange mt-[18px] w-screen rounded-none border-0 border-t-6 outline-none data-[state=closed]:animate-none data-[state=open]:animate-none"
+        className="border-t-primary-orange mt-[26px] w-screen rounded-none border-0 border-t-6 outline-none data-[state=closed]:animate-none data-[state=open]:animate-none"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         forceMount

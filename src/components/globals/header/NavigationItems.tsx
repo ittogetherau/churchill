@@ -36,7 +36,7 @@ const NavigationItems = ({ onLinkClick, courses = [] }: props) => {
 
   return (
     <nav className="relative max-h-screen overflow-y-auto">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
+      <div className="flex flex-col items-start gap-1 md:flex-row md:items-center xl:gap-4">
         {mergedNavItems.map((item) => {
           const hasSubItems = item.Catagories && item.Catagories.length > 0;
 
@@ -171,7 +171,7 @@ const NavigationItems = ({ onLinkClick, courses = [] }: props) => {
               onClick={onLinkClick}
             >
               <div
-                className={`hover:text-shadow-primary-orange text-xs font-bold ${item.isEmergency && "text-destructive"}`}
+                className={`hover:text-shadow-primary-orange text-center text-xs font-bold ${item.isEmergency && "text-destructive"}`}
               >
                 {item.title}
               </div>

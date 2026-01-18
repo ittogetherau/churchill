@@ -7,6 +7,7 @@ import { CourseDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
+import { notFound } from "next/navigation";
 
 const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -15,6 +16,8 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   const course = data?.courses?.[0];
   const otherCourses = data?.otherCourses ?? [];
+
+  if (!course) notFound();
 
   return (
     <SpacingLayout>

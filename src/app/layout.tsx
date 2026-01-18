@@ -1,4 +1,6 @@
 import CookieBanner from "@/components/globals/CookieBanner";
+import Footer from "@/components/globals/footer";
+import Header from "@/components/globals/header";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
@@ -99,7 +101,11 @@ export default function RootLayout({
         ></link>
       </head>
       <body className="relative">
+        <Header />
+
         {children}
+
+        <Footer />
 
         <Toaster />
 

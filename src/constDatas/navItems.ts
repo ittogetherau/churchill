@@ -131,6 +131,12 @@ export const navItems: NavItem[] = [
         redirectLink: "",
       },
       {
+        menuTitle: "Scholarships And Bursaries",
+        slug: "scholarships-and-bursaries",
+        link: "/scholarships-and-bursaries",
+        headerIcon: "fi fi-rr-student",
+      },
+      {
         menuTitle: "Pre-Departure Checklist & Life in Australia",
         slug: "future-students",
         headerIcon: "fi fi-rr-calendar",
@@ -162,7 +168,6 @@ export const navItems: NavItem[] = [
         link: "",
         redirectLink: `${siteConfig.studentHubUrl}/upcoming-key-dates`,
       },
-
       {
         menuTitle: "Blogs",
         slug: "blogs",
