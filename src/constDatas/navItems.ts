@@ -337,7 +337,7 @@ export const navItems: NavItem[] = [
     slug: "agent-hub",
   },
   {
-    title: "Our Campus",
+    title: "Our Campuses",
     slug: "our-campuses",
   },
   {
