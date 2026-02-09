@@ -3,7 +3,7 @@ import React, { ReactNode, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { useRouter } from "next/navigation";
-import Search from "../search";
+import Search from ".";
 import { Button } from "../ui/button";
 
 interface FilterComponentProps {

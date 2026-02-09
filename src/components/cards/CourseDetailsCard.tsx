@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/ui-elements/button";
 import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";

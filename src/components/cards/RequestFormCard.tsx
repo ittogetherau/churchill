@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowRight, FaIdCard } from "react-icons/fa";
 import Link from "next/link";
-import Button from "../button";
+import Button from "../ui-elements/button";
 
 interface RequestFormCardProps {
   icon?: React.ReactNode;
@@ -25,11 +25,11 @@ const RequestFormCard = ({
   iconStyles,
 }: RequestFormCardProps) => {
   return (
-    <li className="px-4 py-3 hover:shadow-sm  bg-[#E9E9E9] rounded-md flex justify-between gap-2 items-center">
-      <div className="flex gap-3 items-center">
-        <div className="bg-white rounded-full w-12 h-12 grid place-items-center">
+    <li className="flex items-center justify-between gap-2 rounded-md bg-[#E9E9E9] px-4 py-3 hover:shadow-sm">
+      <div className="flex items-center gap-3">
+        <div className="grid h-12 w-12 place-items-center rounded-full bg-white">
           <i
-            className={`text-2xl text-primary-orange translate-y-[2px] ${iconStyles}`}
+            className={`text-primary-orange translate-y-[2px] text-2xl ${iconStyles}`}
           />
           {/* <span className="text-[24px]">{icon}</span> */}
         </div>

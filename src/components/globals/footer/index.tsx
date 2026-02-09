@@ -1,28 +1,31 @@
 "use client";
+import { siteConfig } from "@/config/siteConfig";
+import { navItems } from "@/constDatas/navItems";
+import { HeaderQuery } from "@/graphql/generated/graphql";
+import ContainerLayout from "@/layouts/container-layout";
+import { useHeaderStore } from "@/store/headerStore";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
-import { navItems } from "@/constDatas/navItems";
-import ContainerLayout from "@/layouts/container-layout";
-import { useHeaderStore } from "@/store/headerStore";
-import { siteConfig } from "@/config/siteConfig";
 
-interface Course {
+type HeaderCourse = HeaderQuery["courses"][number] & {
   faculty?: { faculty_name?: string };
-  slug: string;
   menuTitle?: string;
   course_name?: string;
-  title?: string | null;
   redirectLink?: string;
-}
+};
+
+const EMPTY_COURSES: HeaderCourse[] = [];
 
 const Footer: React.FC = () => {
   const { studentHubUrl, agentHubUrl } = siteConfig;
 
-  const coursesData = useHeaderStore((state) => state.courses);
+  const coursesData = useHeaderStore(
+    (state) => (state.data?.courses ?? EMPTY_COURSES) as HeaderCourse[],
+  );
 
   const futureStudentsNavItem = navItems.find(
     (item) => item.slug === "future-students",

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import Button from "../button";
+import Button from "../ui-elements/button";
 
 import FadeUpAnimation from "@/animations/FadeUp";
 

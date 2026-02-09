@@ -2,7 +2,7 @@ import GuideCard from "@/components/cards/GuideCard";
 import HelpCard from "@/components/cards/ApplyCard";
 import React from "react";
 import { navItems } from "@/constDatas/navItems";
-import Button from "@/components/button";
+import Button from "@/components/ui-elements/button";
 import { FaArrowRight, FaSearch } from "react-icons/fa";
 import Link from "next/link";
 

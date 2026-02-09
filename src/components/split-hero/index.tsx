@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/ui-elements/button";
 import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import Link from "next/link";

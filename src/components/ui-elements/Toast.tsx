@@ -37,7 +37,7 @@ const colors: Record<ToastType, string> = {
 
 const ToastComponent = (
   { timeout = 2000 }: ToastProps,
-  ref: React.Ref<ToastRef>
+  ref: React.Ref<ToastRef>,
 ) => {
   const [isShown, setIsShown] = useState(false);
 
@@ -73,7 +73,7 @@ const ToastComponent = (
   if (!isShown) return null;
 
   return (
-    <div className="fixed z-[8000] w-full bottom-0 left-0 md:w-fit md:bottom-4 md:left-4 overflow-hidden">
+    <div className="fixed bottom-0 left-0 z-[8000] w-full overflow-hidden md:bottom-4 md:left-4 md:w-fit">
       <motion.div
         initial={{ opacity: 0, translateY: "100%" }}
         animate={
@@ -91,9 +91,9 @@ const ToastComponent = (
           } 2px solid`,
         }}
         onClick={() => setIsShown(false)}
-        className={`bg-primary-orange border shadow-xl shadow-primary-orange/10 rounded-md overflow-hidden cursor-pointer`}
+        className={`bg-primary-orange shadow-primary-orange/10 cursor-pointer overflow-hidden rounded-md border shadow-xl`}
       >
-        <div className="px-4 py-2 flex items-center gap-2">
+        <div className="flex items-center gap-2 px-4 py-2">
           <motion.i
             initial={{ rotate: "-45deg" }}
             animate={isShown ? { rotate: 0 } : { rotate: "-45deg" }}
@@ -106,11 +106,11 @@ const ToastComponent = (
               toastInfo.customFavicon
                 ? toastInfo.customFavicon
                 : toastInfo.type
-                ? icons[toastInfo.type]
-                : ""
-            } w-12 h-12 bg-white aspect-square rounded-full grid place-items-center text-2xl`}
+                  ? icons[toastInfo.type]
+                  : ""
+            } grid aspect-square h-12 w-12 place-items-center rounded-full bg-white text-2xl`}
           />
-          <span className="font-semibold text-white w-[20rem]">
+          <span className="w-[20rem] font-semibold text-white">
             {toastInfo.message}
           </span>
         </div>

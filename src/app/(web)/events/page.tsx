@@ -1,9 +1,9 @@
 import EventsCard from "@/components/cards/EventsCard";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import FilterComponent from "@/components/filter/FilterComponent";
 import DataNotFound from "@/components/globals/DataNotFound";
-import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
+import FilterComponent from "@/components/ui-elements/FilterComponent";
 import { TApiEvent } from "@/constDatas/eventsData";
+import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
 
 interface EventsPageProps {
   searchParams: { keyword?: string };

@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/button";
+import Button from "@/components/ui-elements/button";
 import Animation from "@/constDatas/animations/PageNotFound.json";
 import ContainerLayout from "@/layouts/container-layout";
 import dynamic from "next/dynamic";

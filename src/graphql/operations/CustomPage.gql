@@ -1,5 +1,9 @@
-query CustomPage($slug: String!) {
-  pages(filter: { slug: { _eq: $slug } }) {
+query CustomPage($slug: String!, $parent: String!) {
+  pages(
+    filter: {
+      _and: [{ slug: { _eq: $slug } }, { parent_directory: { _eq: $parent } }]
+    }
+  ) {
     view_title_in_banner
     slug
     title

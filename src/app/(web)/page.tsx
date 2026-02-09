@@ -3,6 +3,7 @@ import BlogSection from "@/components/sections/blogSections/BlogSection";
 import CoursesSection from "@/components/sections/homeSections/CoursesSection";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import VideoSection from "@/components/sections/homeSections/VideoSection";
+import StudentSatisfactionSection from "@/components/sections/student-satisfaction-section";
 import UpcomingKeyDatesSection from "@/comps/key-dates/UpcomingKeyDatesSection";
 import { HomepageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
@@ -47,6 +48,8 @@ const Home = async () => {
       <EnquirySection />
 
       <BlogSection blogs={blogs} />
+
+      <StudentSatisfactionSection />
 
       <VideoSection data={videos} />
       <div className=""></div>

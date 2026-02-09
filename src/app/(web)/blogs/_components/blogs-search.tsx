@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import BlogItemCard from "@/components/cards/BlogItemCard";
-import Button from "@/components/button";
+import Button from "@/components/ui-elements/button";
 import DataNotFound from "@/components/globals/DataNotFound";
-import Search from "@/components/search";
+import Search from "@/components/ui-elements";
 import { resolveFileLink } from "@/graphql/graphql";
 import type { BlogPageQuery } from "@/graphql/generated/graphql";
 

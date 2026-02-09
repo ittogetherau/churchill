@@ -1,4 +1,4 @@
-import AccordionComponent from "@/components/accordion/AccordionComponent";
+import AccordionComponent from "@/components/ui-elements/AccordionComponent";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import { FaqPageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";

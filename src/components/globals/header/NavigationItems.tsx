@@ -9,27 +9,55 @@ import GoogleSearch from "./GoogleSearch";
 import HoverDropdown from "./HoverDropdown";
 import { useMobile } from "@/hooks/useMobile";
 import { HeaderQuery } from "@/graphql/generated/graphql";
+import { parseJsonData } from "@/utils/parse-json-data";
 
 type props = {
   onLinkClick: () => void;
   courses?: HeaderQuery["courses"];
+  links?: unknown;
 };
 
-const NavigationItems = ({ onLinkClick, courses = [] }: props) => {
+type LoginLink = { title?: string; link?: string; icon?: string };
+
+const NavigationItems = ({ onLinkClick, courses = [], links }: props) => {
   const mergedNavItems = navItems.map((item) => {
-    if (item.slug !== "courses") return item;
+    if (item.slug === "courses") {
+      const courseCategories =
+        courses?.map((course) => ({
+          menuTitle: course.title ?? course.slug,
+          headerIcon: course.icon_string ?? "fi fi-rr-octagon-xmark flex",
+          slug: course.slug,
+        })) ?? [];
 
-    const courseCategories =
-      courses?.map((course) => ({
-        menuTitle: course.title ?? course.slug,
-        headerIcon: course.icon_string ?? "fi fi-rr-octagon-xmark flex",
-        slug: course.slug,
-      })) ?? [];
+      return {
+        ...item,
+        Catagories: [...(item.Catagories ?? []), ...courseCategories],
+      };
+    }
 
-    return {
-      ...item,
-      Catagories: [...(item.Catagories ?? []), ...courseCategories],
-    };
+    if (item.slug === "login") {
+      const loginLinks = parseJsonData<LoginLink>(links);
+
+      const loginCategories = loginLinks.map((el, i) => {
+        const title = el.title?.trim() || `Login link ${i + 1}`;
+        const redirectLink = el.link ?? "#";
+        const icon = el.icon?.trim() || "fi fi-rr-lesson";
+
+        return {
+          menuTitle: title,
+          redirectLink,
+          headerIcon: icon,
+          slug: `login-${i + 1}`,
+        };
+      });
+
+      return {
+        ...item,
+        Catagories: loginCategories.length ? loginCategories : item.Catagories,
+      };
+    }
+
+    return item;
   });
 
   const isMobile = useMobile();

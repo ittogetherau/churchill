@@ -1,30 +1,41 @@
 "use client";
+
+import { HeaderQuery } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
+import { useHeaderStore } from "@/store/headerStore";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import AnnouncementBar from "./AnnouncementBar";
 import MobileNavigation from "./MobileNavigation";
 import NavigationItems from "./NavigationItems";
-import { useHeaderStore } from "@/store/headerStore";
-import { HeaderQuery } from "@/graphql/generated/graphql";
+
+const HEADER_CACHE_TTL_MS = 5 * 60 * 1000;
 
 const Header: React.FC = () => {
-  const { courses, setCourses } = useHeaderStore();
-  const [data, setData] = useState<HeaderQuery | null>(null);
+  const data = useHeaderStore((state) => state.data);
+  const setData = useHeaderStore((state) => state.setData);
+  const lastFetchedAt = useHeaderStore((state) => state.lastFetchedAt);
+  const hasHydrated = useHeaderStore((state) => state.hasHydrated);
 
   const announcements = data?.announcements ?? {};
+  const links = data?.login_links?.links ?? [];
+  const courses = data?.courses ?? [];
 
   useEffect(() => {
     async function fetchHeader() {
-      const response = await fetch("/api/header");
-      const data = await response.json();
+      const response = await fetch("/api/header", { cache: "no-store" });
+      const data = (await response.json()) as HeaderQuery;
       setData(data);
-      setCourses(data?.courses ?? []);
     }
 
-    fetchHeader();
-  }, [setCourses]);
+    if (!hasHydrated) return;
+
+    const isStale =
+      !lastFetchedAt || Date.now() - lastFetchedAt > HEADER_CACHE_TTL_MS;
+
+    if (!data || isStale) fetchHeader();
+  }, [data, hasHydrated, lastFetchedAt, setData]);
 
   return (
     <div className="header sticky top-0 left-0 z-40 w-full bg-white shadow-sm/5">
@@ -32,7 +43,7 @@ const Header: React.FC = () => {
 
       <ContainerLayout>
         <div className="flex items-center justify-between gap-4 py-1">
-          <Link className="block" href="/">
+          <Link className="block max-h-32" href="/">
             <Image
               src={`/assets/logo.svg`}
               width={400}
@@ -44,11 +55,15 @@ const Header: React.FC = () => {
           </Link>
 
           <div className="hidden md:block">
-            <NavigationItems courses={courses} onLinkClick={() => {}} />
+            <NavigationItems
+              links={links}
+              courses={courses}
+              onLinkClick={() => {}}
+            />
           </div>
 
           <div className="block md:hidden">
-            <MobileNavigation courses={courses} />
+            <MobileNavigation links={links} courses={courses} />
           </div>
         </div>
       </ContainerLayout>

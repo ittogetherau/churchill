@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { FaArrowRight, FaIdCard } from "react-icons/fa";
-import Button from "../button";
-import ToastComponent, { ToastRef } from "@/components/toast/Toast";
+import Button from "../ui-elements/button";
+import ToastComponent, { ToastRef } from "@/components/ui-elements/Toast";
 interface FormData {
   id: string;
   firstName: string;
@@ -57,19 +57,19 @@ const RequestIDCardForm = () => {
     <>
       <ToastComponent ref={toastRef} />
 
-      <div className="mx-5 md:m-0 p-5 rounded-md bg-white ">
-        <h2 className="text-matte-purple text-3xl lg:text-5xl font-bold mb-6 text-center">
+      <div className="mx-5 rounded-md bg-white p-5 md:m-0">
+        <h2 className="text-matte-purple mb-6 text-center text-3xl font-bold lg:text-5xl">
           Request ID Card
         </h2>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8 ">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-matte-purple">
+              <label className="text-matte-purple font-semibold">
                 Student ID <span className="text-[#FF0000]">*</span>
               </label>
               <div className="relative">
-                <span className="absolute right-5 top-3">
+                <span className="absolute top-3 right-5">
                   <FaIdCard />
                 </span>
                 <input
@@ -77,16 +77,16 @@ const RequestIDCardForm = () => {
                   name="id"
                   onChange={handleFormChange}
                   value={formData.id}
-                  className="w-full h-auto font-inter text-[12px] text-[#021327] bg-transparent border border-[#ABABAB] outline-0 pl-8 pr-3 py-3 rounded-md"
+                  className="font-inter h-auto w-full rounded-md border border-[#ABABAB] bg-transparent py-3 pr-3 pl-8 text-[12px] text-[#021327] outline-0"
                 />
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-matte-purple">
+              <label className="text-matte-purple font-semibold">
                 First Name <span className="text-[#FF0000]">*</span>
               </label>
               <div className="relative">
-                <span className="absolute right-5 top-3">
+                <span className="absolute top-3 right-5">
                   <FaIdCard />
                 </span>
                 <input
@@ -94,17 +94,17 @@ const RequestIDCardForm = () => {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleFormChange}
-                  className="w-full h-auto font-inter text-[12px] text-[#021327] bg-transparent border border-[#ABABAB] outline-0 pl-8 pr-3 py-3 rounded-md"
+                  className="font-inter h-auto w-full rounded-md border border-[#ABABAB] bg-transparent py-3 pr-3 pl-8 text-[12px] text-[#021327] outline-0"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-matte-purple">
+              <label className="text-matte-purple font-semibold">
                 Last Name <span className="text-[#FF0000]">*</span>
               </label>
               <div className="relative">
-                <span className="absolute right-5 top-3">
+                <span className="absolute top-3 right-5">
                   <FaIdCard />
                 </span>
                 <input
@@ -112,17 +112,17 @@ const RequestIDCardForm = () => {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleFormChange}
-                  className="w-full h-auto font-inter text-[12px] text-[#021327] bg-transparent border border-[#ABABAB] outline-0 pl-8 pr-3 py-3 rounded-md"
+                  className="font-inter h-auto w-full rounded-md border border-[#ABABAB] bg-transparent py-3 pr-3 pl-8 text-[12px] text-[#021327] outline-0"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-matte-purple">
+              <label className="text-matte-purple font-semibold">
                 Email <span className="text-[#FF0000]">*</span>
               </label>
               <div className="relative">
-                <span className="absolute right-5 top-3">
+                <span className="absolute top-3 right-5">
                   <FaIdCard />
                 </span>
                 <input
@@ -131,7 +131,7 @@ const RequestIDCardForm = () => {
                   value={formData.email}
                   onChange={handleFormChange}
                   type="email"
-                  className="w-full h-auto font-inter text-[12px] text-[#021327] bg-transparent border border-[#ABABAB] outline-0 pl-8 pr-3 py-3 rounded-md"
+                  className="font-inter h-auto w-full rounded-md border border-[#ABABAB] bg-transparent py-3 pr-3 pl-8 text-[12px] text-[#021327] outline-0"
                 />
               </div>
             </div>

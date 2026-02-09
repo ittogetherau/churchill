@@ -1,0 +1,8 @@
+query HolidayPopup {
+  holiday_popup {
+    show_popup
+    title
+    dates
+    note
+  }
+}

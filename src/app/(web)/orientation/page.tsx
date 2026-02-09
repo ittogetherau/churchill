@@ -1,7 +1,7 @@
 "use client";
 
 import RequestIDCardForm from "@/components/forms/RequestIDCardForm";
-import Timer from "@/components/timer/Timer";
+import Timer from "@/components/ui-elements/Timer";
 import { Button } from "@/components/ui/button";
 import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";

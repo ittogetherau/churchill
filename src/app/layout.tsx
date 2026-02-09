@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./css/globals.css";
+import HolidayPopup from "@/components/globals/holiday-popup";
 
 export const metadata: Metadata = {
   title: "Churchill Institute of Higher Education",
@@ -108,6 +109,8 @@ export default function RootLayout({
         <Footer />
 
         <Toaster />
+
+        <HolidayPopup />
 
         <CookieBanner />
       </body>

@@ -22,9 +22,9 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   return (
     <ContainerLayout className="mt-8">
-      <div className="flex gap-2 flex-col-reverse lg:flex-row">
+      <div className="flex flex-col-reverse gap-2 lg:flex-row">
         <div className="flex flex-col gap-3">
-          <p className="text-xl font-semibold text-primary-orange">
+          <p className="text-primary-orange text-xl font-semibold">
             {member.post}
           </p>
           <HeadingText level={1}>{member.name}</HeadingText>
@@ -37,14 +37,14 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
           )}
         </div>
 
-        <div className="md:mx-auto flex flex-col justify-center md:justify-start">
-          <div className="md-hexagon md:w-[392px] md:h-[392px] grid place-items-center bg-primary-orange md:sticky top-36">
-            <div className="md-hexagon w-full aspect-square md:w-96 md:h-96 overflow-hidden">
+        <div className="flex flex-col justify-center md:mx-auto md:justify-start">
+          <div className="md-hexagon bg-primary-orange top-36 grid place-items-center md:sticky md:h-[392px] md:w-[392px]">
+            <div className="md-hexagon aspect-square w-full overflow-hidden md:h-96 md:w-96">
               <Image
                 src={photoUrl}
                 width={1000}
                 height={1000}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
                 alt={`Image for ${member.name}`}
               />
             </div>

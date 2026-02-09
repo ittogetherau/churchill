@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Button from "../button";
 import { FaArrowRight } from "react-icons/fa";
+import Button from "../ui-elements/button";
+
 interface AboutUsCardProps {
   title: string;
   link: string;
@@ -11,12 +11,12 @@ interface AboutUsCardProps {
 
 const AboutUsCard: React.FC<AboutUsCardProps> = ({ title, link, icon }) => {
   return (
-    <div className="bg-alt-background outline-0 hover:outline-2 hover:outline-[#606060] p-4 rounded-md">
+    <div className="bg-alt-background h-full rounded-md p-4 outline-0 hover:outline-2 hover:outline-[#606060]">
       <div className="flex flex-col items-start gap-4">
-        <div className="scale-[250%] bg-white ml-6 mt-6 mb-6 w-7 h-7 grid place-items-center rounded-md  py-3">
+        <div className="mt-6 mb-6 ml-6 grid h-7 w-7 scale-[250%] place-items-center rounded-md bg-white py-3">
           <i className={`-translate-y-2 ${icon}`} />
         </div>
-        <h3 className="font-bold text-[20px] clamp-1 text-foreground line-clamp-3">
+        <h3 className="clamp-1 text-foreground line-clamp-3 text-[20px] font-bold">
           {title}
         </h3>
 

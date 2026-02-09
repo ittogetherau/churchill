@@ -1,5 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
-import Button from "../button";
+import Button from "../ui-elements/button";
 
 interface props {
   title: string;

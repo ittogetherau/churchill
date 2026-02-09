@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Button from "@/components/button";
+import Button from "@/components/ui-elements/button";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 

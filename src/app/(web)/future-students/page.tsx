@@ -1,6 +1,6 @@
-import AccordionComponent from "@/components/accordion/AccordionComponent";
-import Button from "@/components/button";
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
+import AccordionComponent from "@/components/ui-elements/AccordionComponent";
+import Button from "@/components/ui-elements/button";
 import { checklist } from "@/constDatas/contactData";
 import features from "@/constDatas/features";
 import ContainerLayout from "@/layouts/container-layout";
@@ -11,7 +11,7 @@ import Link from "next/link";
 const Page = () => {
   const title = "Information about Australia";
   const description =
-    "<p>Australia is the world’s sixth largest country by land mass,  with an area of approximately 7,700,000 square kilometres . Australia’s population is 28,000 million (2024). Indigenous  Australians (Aboriginals and Torres Strait Inlanders)  are the First People of Australia, who have occupied the continent for over 65,000 years. </p></br><p>Seventy percent of Australia’s  population lives in its state capital cities, making Australia one of the world’s most urbanised countries; and thirty-three (33%) of the population was born abroad. The nation’s capital city and location of the Commonwealth (federal) parliament is Canberra  in the Australian Capital Territory (ACT).</p></br><p>More information about Australia and its culture is available on the Study Australia website.</p>";
+    "<p>Australia is the world’s sixth largest country by land mass,  with an area of approximately 7,700,000 square kilometres . Australia's population is 28,000 million (2024). Indigenous  Australians (Aboriginals and Torres Strait Inlanders)  are the First People of Australia, who have occupied the continent for over 65,000 years. </p></br><p>Seventy percent of Australia’s  population lives in its state capital cities, making Australia one of the world’s most urbanised countries; and thirty-three (33%) of the population was born abroad. The nation’s capital city and location of the Commonwealth (federal) parliament is Canberra  in the Australian Capital Territory (ACT).</p></br><p>More information about Australia and its culture is available on the Study Australia website.</p>";
   const cta = {
     text: "Visit Study Australia website",
     href: "https://www.studyaustralia.gov.au/en/why-australia",

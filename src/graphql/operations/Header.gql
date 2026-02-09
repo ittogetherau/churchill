@@ -5,4 +5,7 @@ query Header {
   announcements {
     announcement_text
   }
+  login_links {
+    links
+  }
 }

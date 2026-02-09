@@ -17,9 +17,10 @@ import { HeaderQuery } from "@/graphql/generated/graphql";
 
 type MobileNavigationProps = {
   courses?: HeaderQuery["courses"];
+  links?: any;
 };
 
-const MobileNavigation = ({ courses = [] }: MobileNavigationProps) => {
+const MobileNavigation = ({ courses = [], links }: MobileNavigationProps) => {
   const [open, setOpen] = useState(false);
   const isMobile = useMobile();
 
@@ -65,7 +66,9 @@ const MobileNavigation = ({ courses = [] }: MobileNavigationProps) => {
                   <X />
                 </Button>
               </div>
+
               <NavigationItems
+                links={links}
                 courses={courses}
                 onLinkClick={() => setOpen(false)}
               />

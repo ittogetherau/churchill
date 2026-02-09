@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Search from "../search";
+import Search from "../ui-elements";
 
 interface StyledHeroCardProps {
   title: string;

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../button";
+import Button from "../ui-elements/button";
 import { FaArrowRight } from "react-icons/fa";
 import { TEventTag } from "@/constDatas/eventsData";
 
@@ -59,29 +59,29 @@ const EventsCard: React.FC<EventsCardProps> = ({
   };
 
   const formattedDate = `${dateObj.getDate()}${getDaySuffix(
-    dateObj.getDate()
+    dateObj.getDate(),
   )} ${month[dateObj.getMonth()]}`;
 
   return (
-    <div className="group flex rounded-md border bg-neutral-50 border-gray-500/40 overflow-hidden flex-col md:flex-row gap-3">
+    <div className="group flex flex-col gap-3 overflow-hidden rounded-md border border-gray-500/40 bg-neutral-50 md:flex-row">
       <div className="relative">
-        <div className="aspect-[4/2] md:w-[20rem] overflow-hidden md:aspect-auto md:h-full">
+        <div className="aspect-[4/2] overflow-hidden md:aspect-auto md:h-full md:w-[20rem]">
           <Image
             src={`${image}`}
             alt={"use-links-icon-image"}
             width={600}
             height={600}
-            className="object-cover w-full h-full group-hover:scale-105 delay-75 transition-all"
+            className="h-full w-full object-cover transition-all delay-75 group-hover:scale-105"
           />
         </div>
-        <div className="absolute top-2 left-2 rounded-md flex gap-2 bg-primary-orange p-2 text-white font-bold">
+        <div className="bg-primary-orange absolute top-2 left-2 flex gap-2 rounded-md p-2 font-bold text-white">
           <span>{formattedDate}</span>
         </div>
       </div>
 
-      <div className="flex-1 py-4 md:py-6 px-4 flex flex-col justify-between gap-4">
+      <div className="flex flex-1 flex-col justify-between gap-4 px-4 py-4 md:py-6">
         <Link href={`/events/${slug}`} className="w-fit">
-          <h3 className="font-bold text-xl md:text-3xl text-[#2C2B4B] leading-[28px] line-clamp-3 transition-all hover:text-primary-orange">
+          <h3 className="hover:text-primary-orange line-clamp-3 text-xl leading-[28px] font-bold text-[#2C2B4B] transition-all md:text-3xl">
             {title}
           </h3>
         </Link>
@@ -106,7 +106,7 @@ const EventsCard: React.FC<EventsCardProps> = ({
           {tags?.map((item, index) => (
             <p
               key={index}
-              className="font-semibold bg-[#F2CF9C] text-[#2C2B4B] rounded-full text-[14px] px-3 py-1 h-fit"
+              className="h-fit rounded-full bg-[#F2CF9C] px-3 py-1 text-[14px] font-semibold text-[#2C2B4B]"
             >
               {item?.name}
             </p>

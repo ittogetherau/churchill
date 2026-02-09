@@ -2,20 +2,37 @@
 
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import { create } from "zustand";
-
-type HeaderCourse = HeaderQuery["courses"][number] & {
-  faculty?: { faculty_name?: string };
-  menuTitle?: string;
-  course_name?: string;
-  redirectLink?: string;
-};
+import { createJSONStorage, persist } from "zustand/middleware";
 
 type HeaderStore = {
-  courses: HeaderCourse[];
-  setCourses: (courses: HeaderCourse[]) => void;
+  data: HeaderQuery | null;
+  lastFetchedAt: number | null;
+  hasHydrated: boolean;
+
+  setData: (data: HeaderQuery) => void;
+  clear: () => void;
+  setHasHydrated: (hasHydrated: boolean) => void;
 };
 
-export const useHeaderStore = create<HeaderStore>((set) => ({
-  courses: [],
-  setCourses: (courses) => set({ courses }),
-}));
+export const useHeaderStore = create<HeaderStore>()(
+  persist(
+    (set) => ({
+      data: null,
+      lastFetchedAt: null,
+      hasHydrated: false,
+
+      setData: (data) => set({ data, lastFetchedAt: Date.now() }),
+      clear: () => set({ data: null, lastFetchedAt: null }),
+      setHasHydrated: (hasHydrated) => set({ hasHydrated }),
+    }),
+    {
+      name: "churchill-header-cache",
+      version: 1,
+      storage: createJSONStorage(() => localStorage),
+      partialize: ({ data, lastFetchedAt }) => ({ data, lastFetchedAt }),
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
+    },
+  ),
+);

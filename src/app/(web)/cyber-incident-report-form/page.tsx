@@ -1,5 +1,5 @@
 "use client";
-import ToastComponent from "@/components/toast/Toast";
+import ToastComponent from "@/components/ui-elements/Toast";
 import HeadingText from "@/components/ui/heading-text";
 import ContainerLayout from "@/layouts/container-layout";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";

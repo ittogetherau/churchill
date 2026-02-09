@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../button";
+import Button from "../ui-elements/button";
 import { FaArrowRight } from "react-icons/fa";
 
 interface NewsItemCardProps {
@@ -46,25 +46,25 @@ const NewsItemCard: React.FC<NewsItemCardProps> = ({
   } ${monthArray[newDate.getMonth()]}`;
 
   return (
-    <div className="group flex rounded-md border cursor-pointer bg-neutral-50 hover-shadow border-gray-500/40 overflow-hidden flex-col md:flex-row gap-3 ">
+    <div className="group hover-shadow flex cursor-pointer flex-col gap-3 overflow-hidden rounded-md border border-gray-500/40 bg-neutral-50 md:flex-row">
       <div className="relative">
-        <div className="aspect-[4/2] md:w-[16rem] overflow-hidden md:aspect-auto md:h-full">
+        <div className="aspect-[4/2] overflow-hidden md:aspect-auto md:h-full md:w-[16rem]">
           <Image
             src={`${image}`}
             alt={"use-links-icon-image"}
             width={600}
             height={600}
-            className="object-cover w-full h-full group-hover:scale-105 transition-all"
+            className="h-full w-full object-cover transition-all group-hover:scale-105"
           />
         </div>
-        <div className="absolute top-2 left-2 rounded-md flex gap-2 bg-primary-orange p-2 text-white font-bold ">
+        <div className="bg-primary-orange absolute top-2 left-2 flex gap-2 rounded-md p-2 font-bold text-white">
           <span>{formattedDate}</span>
         </div>
       </div>
 
-      <div className="flex-1 py-4 md:py-6 px-4 flex flex-col justify-between gap-4">
+      <div className="flex flex-1 flex-col justify-between gap-4 px-4 py-4 md:py-6">
         <Link href={`/news/${slug}`} className="w-fit">
-          <h3 className="font-bold text-xl md:text-3xl text-[#2C2B4B] leading-[28px] line-clamp-3 transition-all hover:text-primary-orange">
+          <h3 className="hover:text-primary-orange line-clamp-3 text-xl leading-[28px] font-bold text-[#2C2B4B] transition-all md:text-3xl">
             {title}
           </h3>
         </Link>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
-import Button from "@/components/button";
+import Button from "@/components/ui-elements/button";
 
 interface props {
   slug: string;
