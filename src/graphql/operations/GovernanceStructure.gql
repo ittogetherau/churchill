@@ -1,0 +1,10 @@
+query GovernanceStructure {
+  governance_structure {
+    governance_structure_membership {
+      ...FileFields
+    }
+    organisational_chart {
+      ...FileFields
+    }
+  }
+}

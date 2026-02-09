@@ -29,7 +29,7 @@ const SocialShare = ({ url }: { url: string }) => {
   const shareLinks = [
     {
       href: `mailto:?subject=Check this out&body=Here's the link: ${url}`,
-      icon: "fi \r-envelope",
+      icon: "fi fi-rr-envelope",
       label: "Email",
     },
     {
@@ -60,25 +60,27 @@ const SocialShare = ({ url }: { url: string }) => {
   ];
 
   return (
-    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-      <p>Share To:</p>
-      <div className="flex flex-wrap gap-2 text-2xl">
-        {shareLinks.map(({ href, icon, label }) => (
-          <Link
-            key={label}
-            href={href}
-            target="_blank"
-            className="hover:text-primary-orange social-button transition-all"
-          >
-            <i className={`flex ${icon}`} />
-          </Link>
-        ))}
+    <div className="">
+      <div className="flex flex-wrap items-center gap-2">
+        <p>Share To:</p>
+        <div className="flex flex-wrap gap-2 text-2xl">
+          {shareLinks.map(({ href, icon, label }) => (
+            <Link
+              key={label}
+              href={href}
+              target="_blank"
+              className="hover:text-primary-orange social-button transition-all"
+            >
+              <i className={`flex ${icon}`} />
+            </Link>
+          ))}
 
-        <Copyurl text={url}>
-          <div className="hover:text-primary-orange social-button copy-link transition-all">
-            <i className="fi fi-rr-copy-alt" />
-          </div>
-        </Copyurl>
+          <Copyurl text={url}>
+            <div className="hover:text-primary-orange social-button copy-link transition-all">
+              <i className="fi fi-rr-copy-alt" />
+            </div>
+          </Copyurl>
+        </div>
       </div>
     </div>
   );
@@ -154,7 +156,13 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
         <SocialShare url={siteUrl} />
       </ContainerLayout>
 
-      <BlogSection blogs={otherBlogs} />
+      <BlogSection
+        blogs={otherBlogs}
+        titleSectionData={{
+          title: "More Blogs",
+          isCenter: false,
+        }}
+      />
     </>
   );
 };

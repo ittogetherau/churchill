@@ -1,7 +1,7 @@
-export const BASE_STRING = `https://cms.churchill.edu.au`;
-
-import { print } from "graphql";
 import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
+import { print } from "graphql";
+
+export const BASE_STRING = `https://cms.churchill.edu.au`;
 
 type GraphQLDoc<TData, TVariables> =
   | string
@@ -54,7 +54,7 @@ export const runQuery = async <TDoc extends TypedDocumentNode<any, any>>(
 ) => fetchGraphQL<ExtractDocData<TDoc>, ExtractDocVars<TDoc>>(doc, variables);
 
 export const resolveFileLink = (file?: any) => {
-  if (!file) return "";
+  if (!file) return "/assets/fallback.png";
   if (typeof file === "string") return file;
   return file.id
     ? `${BASE_STRING}/assets/${file.id}${

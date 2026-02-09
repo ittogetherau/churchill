@@ -6,7 +6,7 @@ import { TApiEvent } from "@/constDatas/eventsData";
 import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
 
 interface EventsPageProps {
-  searchParams: { keyword?: string };
+  searchParams: Promise<{ keyword?: string }>;
 }
 
 const EventsPage = async ({ searchParams }: EventsPageProps) => {

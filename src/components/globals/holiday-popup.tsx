@@ -27,13 +27,15 @@ const HolidayPopup = () => {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch("/api/header");
-    const data = await response.json();
-    if (data.holiday_popup.show_popup) {
-      setPopupData(data.holiday_popup);
+    const response = await fetch("/api/holiday-data", { cache: "no-store" });
+    const data = (await response.json()) as HolidayPopupQuery;
+    const holidayPopup = data?.holiday_popup ?? null;
+
+    if (holidayPopup?.show_popup) {
+      setPopupData(holidayPopup);
       setOpen(true);
     } else {
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
+      setOpen(false);
     }
   };
 
@@ -46,7 +48,7 @@ const HolidayPopup = () => {
     }
   }, []);
 
-  if (!open || !popupData) return;
+  if (!open || !popupData) return null;
 
   const dates: dateType[] = parseJsonData<dateType>(popupData.dates);
   if (!dates || dates.length == 0) return;
