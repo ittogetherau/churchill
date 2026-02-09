@@ -4,9 +4,10 @@ import { navItems } from "@/constDatas/navItems";
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import { useHeaderStore } from "@/store/headerStore";
+import { parseJsonData } from "@/utils/parse-json-data";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
@@ -20,11 +21,24 @@ type HeaderCourse = HeaderQuery["courses"][number] & {
 
 const EMPTY_COURSES: HeaderCourse[] = [];
 
+type LoginLink = { title?: string; link?: string; icon?: string };
+type FooterLoginCategory = {
+  menuTitle: string;
+  slug: string;
+  link?: string;
+  redirectLink?: string;
+};
+
+const isNotNull = <T,>(value: T | null): value is T => value !== null;
+
 const Footer: React.FC = () => {
   const { studentHubUrl, agentHubUrl } = siteConfig;
 
   const coursesData = useHeaderStore(
     (state) => (state.data?.courses ?? EMPTY_COURSES) as HeaderCourse[],
+  );
+  const loginLinksRaw = useHeaderStore(
+    (state) => state.data?.login_links?.links,
   );
 
   const futureStudentsNavItem = navItems.find(
@@ -33,10 +47,26 @@ const Footer: React.FC = () => {
   const currentStudentsNavItem = navItems.find(
     (item) => item.slug === "current-students",
   );
-  const loginNavItem = navItems.find((item) => item.slug === "login");
   const futureStudentsCategories = futureStudentsNavItem?.Catagories || [];
   const currentStudentsCategories = currentStudentsNavItem?.Catagories || [];
-  const loginCategories = loginNavItem?.Catagories || [];
+
+  const loginCategories = useMemo<FooterLoginCategory[]>(() => {
+    const loginLinks = parseJsonData<LoginLink>(loginLinksRaw);
+
+    return loginLinks
+      .map((el, i) => {
+        const title = el.title?.trim() || `Login link ${i + 1}`;
+        const redirectLink = el.link?.trim();
+        if (!redirectLink) return null;
+
+        return {
+          menuTitle: title,
+          redirectLink,
+          slug: `login-${i + 1}`,
+        };
+      })
+      .filter(isNotNull);
+  }, [loginLinksRaw]);
 
   return (
     <div className="footer-bottom">
@@ -260,13 +290,7 @@ const Footer: React.FC = () => {
                     {loginCategories.map((item, index) => (
                       <li key={index}>
                         <Link
-                          href={
-                            item.redirectLink
-                              ? item.redirectLink
-                              : item.link
-                                ? item.link
-                                : `/login/${item.slug}`
-                          }
+                          href={item.redirectLink ? item.redirectLink : "#"}
                           target={item.redirectLink ? "_blank" : undefined}
                           rel={
                             item.redirectLink
