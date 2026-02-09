@@ -27,10 +27,10 @@ const CoursesCard = ({ image, title, faculty, subTitle, link }: props) => {
                 height={500}
                 className="relative aspect-[2/2] w-full object-cover transition-all group-hover:scale-105 md:aspect-[1/1]"
               />
-              <div className="bg-primary-orange/0 group-hover:bg-primary-orange/50 absolute top-0 left-0 z-[8] h-full w-full rounded-md transition-all" />
+              <div className="bg-primary-orange/0 group-hover:bg-primary-orange/30 absolute top-0 left-0 z-[8] h-full w-full rounded-md transition-all" />
             </div>
 
-            <p className="bg-primary text-primary-foreground absolute top-2 right-2 z-[10] rounded-md px-2 py-1 text-xs font-semibold">
+            <p className="bg-primary/75 text-primary-foreground absolute top-2 right-2 z-[10] rounded-md px-2 py-1 text-xs font-semibold">
               {faculty}
             </p>
           </div>
@@ -47,7 +47,7 @@ const CoursesCard = ({ image, title, faculty, subTitle, link }: props) => {
 
         <div className="flex flex-col justify-between gap-4">
           <div
-            className="line-clamp-3"
+            className="line-clamp-4"
             dangerouslySetInnerHTML={{ __html: subTitle }}
           ></div>
 

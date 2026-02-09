@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const data: headerType = {
-  title: "Latest Blog",
+  title: "Latest Blogs",
   isCenter: true,
 };
 

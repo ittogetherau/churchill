@@ -1,9 +1,9 @@
 "use client";
 import { KeyDatesFieldsFragment } from "@/graphql/generated/graphql";
-import { useState } from "react";
-import UpcomingKeyDates from "./UpcomingKeyDates";
 import TwoColumnLayout from "@/layouts/two-column-layout";
+import { useState } from "react";
 import HighlightedKeyDates from "./HighlightedKeyDates";
+import UpcomingKeyDates from "./UpcomingKeyDates";
 
 interface props {
   keyDates: KeyDatesFieldsFragment[];
@@ -13,20 +13,26 @@ const UpcomingKeyDatesSection = ({ keyDates, highlightedDates }: props) => {
   const [expandedMonth, setExpandedMonth] = useState<string | null>(null);
 
   return (
-    <TwoColumnLayout
-      sidebar={
-        <HighlightedKeyDates
+    <div>
+      <h2 className="mb-2 text-center text-[36px] font-bold text-[#2C2B4B]">
+        Key Dates
+      </h2>
+
+      <TwoColumnLayout
+        sidebar={
+          <HighlightedKeyDates
+            expandedMonth={expandedMonth}
+            data={highlightedDates}
+          />
+        }
+      >
+        <UpcomingKeyDates
           expandedMonth={expandedMonth}
-          data={highlightedDates}
+          setExpandedMonth={setExpandedMonth}
+          keyDates={keyDates}
         />
-      }
-    >
-      <UpcomingKeyDates
-        expandedMonth={expandedMonth}
-        setExpandedMonth={setExpandedMonth}
-        keyDates={keyDates}
-      />
-    </TwoColumnLayout>
+      </TwoColumnLayout>
+    </div>
   );
 };
 
