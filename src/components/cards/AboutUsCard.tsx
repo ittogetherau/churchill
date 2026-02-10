@@ -16,7 +16,8 @@ const AboutUsCard: React.FC<AboutUsCardProps> = ({ title, link, icon }) => {
         <div className="mt-6 mb-6 ml-6 grid h-7 w-7 scale-[250%] place-items-center rounded-md bg-white py-3">
           <i className={`-translate-y-2 ${icon}`} />
         </div>
-        <h3 className="clamp-1 text-foreground line-clamp-3 text-[20px] font-bold">
+
+        <h3 className="text-foreground line-clamp-3 text-[20px] font-bold">
           {title}
         </h3>
 

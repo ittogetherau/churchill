@@ -42,14 +42,14 @@ const Header: React.FC = () => {
       <AnnouncementBar text={announcements.announcement_text ?? ""} />
 
       <ContainerLayout>
-        <div className="flex items-center justify-between gap-4 py-1">
-          <Link className="block max-h-32" href="/">
+        <div className="flex items-center justify-between gap-4 py-3">
+          <Link className="block max-h-18 py-0" href="/">
             <Image
               src={`/assets/logo.svg`}
               width={400}
               height={400}
               alt="Main Logo"
-              className="h-auto w-[240px] object-contain"
+              className="h-auto w-[200px] object-contain"
               priority
             />
           </Link>

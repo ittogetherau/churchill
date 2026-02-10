@@ -64,7 +64,7 @@ const NavigationItems = ({ onLinkClick, courses = [], links }: props) => {
 
   return (
     <nav className="relative max-h-screen overflow-y-auto">
-      <div className="flex flex-col items-start gap-1 md:flex-row md:items-center xl:gap-4">
+      <div className="flex flex-col items-start gap-1 md:flex-row md:items-center xl:gap-1">
         {mergedNavItems.map((item) => {
           const hasSubItems = item.Catagories && item.Catagories.length > 0;
 
@@ -191,12 +191,14 @@ const NavigationItems = ({ onLinkClick, courses = [], links }: props) => {
               </HoverDropdown>
             );
           }
+
           return (
             <Link
               key={item.slug}
               target={item.redirectLink ? "_blank" : "_self"}
               href={item.redirectLink ? item.redirectLink : `/${item.slug}`}
               onClick={onLinkClick}
+              className={`${["agent-hub", "our-campuses"].includes(item.slug) ? "hidden lg:block" : ""} mx-1 block`}
             >
               <div
                 className={`hover:text-shadow-primary-orange text-center text-xs font-bold ${item.isEmergency && "text-destructive"}`}

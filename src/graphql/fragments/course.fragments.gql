@@ -18,6 +18,7 @@ fragment CourseSummaryFields on courses {
 fragment CourseListFields on courses {
   ...CourseSummaryFields
   program_details {
+    sort
     icon
     label
     description

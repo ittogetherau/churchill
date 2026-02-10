@@ -2,6 +2,7 @@ fragment TeamMemberSummaryFields on team_members {
   slug
   name
   post
+  description
   photo {
     ...FileFields
   }
@@ -9,5 +10,4 @@ fragment TeamMemberSummaryFields on team_members {
 
 fragment TeamMemberDetailFields on team_members {
   ...TeamMemberSummaryFields
-  description
 }

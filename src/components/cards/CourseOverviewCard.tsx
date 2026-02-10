@@ -17,35 +17,33 @@ const CourseOverviewSection = ({ data }: props) => {
   return (
     <ContainerLayout>
       <div className="grid grid-cols-1 gap-6 rounded-md md:grid-cols-2 lg:grid-cols-3">
-        {data
-          ?.filter((item): item is ProgramDetail => Boolean(item))
-          ?.map((item, index) => (
-            <FadeUpAnimation delay={0.1 * index} key={index}>
-              <div className="flex flex-row gap-3" key={index}>
-                <div className="bg-primary-orange grid h-12 w-12 place-items-center rounded-full text-2xl">
-                  <i
-                    className={`grid h-12 w-12 place-items-center text-white ${item?.icon ?? ""}`}
-                  ></i>
-                </div>
-
-                <div className="">
-                  {item?.label && item.label.length > 1 && (
-                    <div
-                      className="text-[#2C2B4B]"
-                      dangerouslySetInnerHTML={{ __html: item?.label }}
-                    ></div>
-                  )}
-
-                  {item?.description && (
-                    <h3
-                      className="text-lg font-bold text-[#2C2B4B]"
-                      dangerouslySetInnerHTML={{ __html: item?.description }}
-                    ></h3>
-                  )}
-                </div>
+        {data?.map((item, index) => (
+          <FadeUpAnimation delay={0.1 * index} key={index}>
+            <div className="flex flex-row gap-3" key={index}>
+              <div className="bg-primary-orange grid h-12 w-12 place-items-center rounded-full text-2xl">
+                <i
+                  className={`grid h-12 w-12 place-items-center text-white ${item?.icon ?? ""}`}
+                ></i>
               </div>
-            </FadeUpAnimation>
-          ))}
+
+              <div className="">
+                {item?.label && item.label.length > 1 && (
+                  <div
+                    className="text-[#2C2B4B]"
+                    dangerouslySetInnerHTML={{ __html: item?.label }}
+                  ></div>
+                )}
+
+                {item?.description && (
+                  <h3
+                    className="text-lg font-bold text-[#2C2B4B]"
+                    dangerouslySetInnerHTML={{ __html: item?.description }}
+                  ></h3>
+                )}
+              </div>
+            </div>
+          </FadeUpAnimation>
+        ))}
       </div>
     </ContainerLayout>
   );

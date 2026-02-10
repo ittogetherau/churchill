@@ -1,3 +1,21 @@
+.rich_text_container ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.rich_text_container ol {
+  list-style-type: decimal;
+}
+
+.rich_text_container ol > li > ol {
+  list-style-type: lower-alpha;
+}
+
+.rich_text_container ol > li > ol > li > ol {
+  list-style-type: lower-roman;
+}
+
 .rich_text_container ul {
   list-style: none;
   padding-left: 0;

@@ -78,7 +78,7 @@ const TopBannerCard = ({
             )}
 
             <FadeUpAnimation delay={0}>
-              <h1 className="text-4xl leading-8 font-extrabold text-[#ffffff] md:text-[70px] md:leading-[72px]">
+              <h1 className="text-5xl font-extrabold text-[#ffffff] md:text-7xl md:leading-none">
                 {titleSpan} {title}
               </h1>
             </FadeUpAnimation>

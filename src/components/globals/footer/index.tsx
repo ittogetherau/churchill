@@ -41,12 +41,14 @@ const Footer: React.FC = () => {
     (state) => state.data?.login_links?.links,
   );
 
+  const aboutUsNavItem = navItems.find((item) => item.slug === "about-us");
   const futureStudentsNavItem = navItems.find(
     (item) => item.slug === "future-students",
   );
   const currentStudentsNavItem = navItems.find(
     (item) => item.slug === "current-students",
   );
+  const aboutUsCategories = aboutUsNavItem?.Catagories || [];
   const futureStudentsCategories = futureStudentsNavItem?.Catagories || [];
   const currentStudentsCategories = currentStudentsNavItem?.Catagories || [];
 
@@ -146,34 +148,35 @@ const Footer: React.FC = () => {
             <div className="grid grid-cols-1 gap-4 text-white md:grid-cols-2 lg:grid-cols-3">
               <div>
                 <h3 className="pb-4 text-[16px]">
-                  <strong>About Us</strong>
+                  <strong>{"About Us"}</strong>
                 </h3>
-                <ul className="flex flex-col gap-1 pl-2 text-[14px]">
-                  <li>
-                    <Link href="/about-us/CIHE-governance-structure">
-                      Churchill Institute of Higher Education Governance
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about-us/CIHE-organisational-chart">
-                      Churchill Institute of Higher Education Governance
-                      Structure and Organisational Chart
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about-us/company-and-financial-documents">
-                      Financial Standing, TPS & Enrolment Summary
-                    </Link>
-                  </li>
-                  <li>
-                    <Link target="_blank" href={`${studentHubUrl}/policies`}>
-                      Policies and Procedures
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about-us/gallery">Gallery</Link>
-                  </li>
-                </ul>
+                {aboutUsCategories.length === 0 ? (
+                  <p className="text-[14px]">No about us links available</p>
+                ) : (
+                  <ul className="flex flex-col gap-1 pl-2 text-[14px]">
+                    {aboutUsCategories.map((item, index) => (
+                      <li key={index}>
+                        <Link
+                          href={
+                            item.redirectLink
+                              ? item.redirectLink
+                              : item.link
+                                ? item.link
+                                : `/about-us/${item.slug}`
+                          }
+                          target={item.redirectLink ? "_blank" : undefined}
+                          rel={
+                            item.redirectLink
+                              ? "noreferrer noopener"
+                              : undefined
+                          }
+                        >
+                          {item.menuTitle}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
               <div>
                 <h3 className="pb-4 text-[16px]">
@@ -314,7 +317,7 @@ const Footer: React.FC = () => {
                     <Link href="/">Home</Link>
                   </li>
                   <li>
-                    <Link href="https://elearning.churchill.nsw.edu.au/">
+                    <Link href="https://elearning.churchill.edu.au/">
                       Learning Management System (LMS)
                     </Link>
                   </li>

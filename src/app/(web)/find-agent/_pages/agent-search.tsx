@@ -78,9 +78,9 @@ const AgentSearch = ({ agents }: { agents: AgentFieldsFragment[] }) => {
         />
 
         <div className="flex gap-2">
-          <Button type="button">
+          {/* <Button type="button">
             <FaSearch /> Find an Educational Agent
-          </Button>
+          </Button> */}
           <Button
             type="button"
             variant="destructive-outline"

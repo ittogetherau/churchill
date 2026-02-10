@@ -46,9 +46,9 @@ const HoverDropdown = ({
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
-      <DropdownMenuTrigger asChild id={dropdownId}>
+      <DropdownMenuTrigger asChild id={dropdownId} className="px-1 py-3">
         <div
-          className="flex cursor-pointer items-center gap-0.5 text-xs font-bold"
+          className="flex cursor-pointer items-center gap-px text-xs font-bold"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           tabIndex={0}
@@ -63,7 +63,7 @@ const HoverDropdown = ({
 
       <DropdownMenuContent
         id={`${dropdownId}-content`}
-        className="border-t-primary-orange mt-[26px] w-screen rounded-none border-0 border-t-6 outline-none data-[state=closed]:animate-none data-[state=open]:animate-none"
+        className="border-t-primary-orange mt-[16px] w-screen rounded-none border-0 border-t-6 outline-none data-[state=closed]:animate-none data-[state=open]:animate-none"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         forceMount
