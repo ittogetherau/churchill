@@ -25,7 +25,8 @@ const Home = async () => {
         image={`/assets/sydney-city-in-australia.jpg`}
         titleSpan={
           <span>
-            Empowering A Brighter <span className="highlight">Tomorrow</span>
+            Empowering A <br /> Brighter{" "}
+            <span className="highlight">Tomorrow</span>
           </span>
         }
         subTitle={`<p className="my-4"> Explore our innovative programs and transform your career. </p>`}

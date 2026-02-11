@@ -54,7 +54,7 @@ const TopBannerCard = ({
         backgroundSize: "cover",
         backgroundPosition: "center top",
       }}
-      className="fade-in-animation relative flex items-center justify-center overflow-hidden lg:h-[80vh]"
+      className="fade-in-animation relative flex items-center justify-center overflow-hidden lg:h-[75vh]"
     >
       <video
         className="absolute inset-0 h-full w-full object-cover"
@@ -67,8 +67,8 @@ const TopBannerCard = ({
       />
       <div className="absolute inset-0 bg-gradient-to-tr from-[#616060bd] via-transparent to-transparent" />
       <div className="relative z-10 container mx-auto mt-[84px] mb-[84px] px-5 lg:mt-4 lg:mb-4">
-        <div className="grid grid-cols-1 items-center md:grid-cols-2">
-          <div className="flex flex-col gap-3 py-6">
+        <div className="grid grid-cols-1 items-center">
+          <div className="flex flex-col gap-3 py-6 md:max-w-4xl">
             {beforeTitle && (
               <FadeUpAnimation delay={0}>
                 <div className="highlight w-fit px-[2px] pt-[2px] pb-[1px] text-xl font-extrabold text-white">
@@ -78,7 +78,7 @@ const TopBannerCard = ({
             )}
 
             <FadeUpAnimation delay={0}>
-              <h1 className="text-5xl font-extrabold text-[#ffffff] md:text-7xl md:leading-none">
+              <h1 className="text-5xl font-extrabold text-[#ffffff] md:text-[68px] md:leading-none">
                 {titleSpan} {title}
               </h1>
             </FadeUpAnimation>
@@ -97,7 +97,7 @@ const TopBannerCard = ({
             {subTitle && (
               <FadeUpAnimation delay={0.2}>
                 <div
-                  className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-[22px]"
+                  className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-lg"
                   dangerouslySetInnerHTML={{ __html: subTitle }}
                 ></div>
               </FadeUpAnimation>
