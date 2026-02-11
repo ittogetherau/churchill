@@ -5,10 +5,13 @@ query Homepage {
   courses {
     ...CourseSummaryFields
   }
-  key_dates {
+  key_dates(sort: ["start_date"]) {
     ...KeyDatesFields
   }
-  Highlighted: key_dates(filter: { is_highlighted: { _eq: true } }) {
+  Highlighted: key_dates(
+    filter: { is_highlighted: { _eq: true } }
+    sort: ["start_date"]
+  ) {
     ...KeyDatesFields
   }
   blog(limit: 3) {
