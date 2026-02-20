@@ -30,7 +30,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
         BtnAText="Apply Now"
         slug={slug}
         BtnBText="Enquire Now"
-        link={`/assets/apply-at-churchill.pdf`}
+        link={`https://churchill.edu.au/f/apply-at-churchill`}
         linkA={`https://forms.zohopublic.com.au/CIHE/form/StudentHubEnquiry/formperma/XilFJje5kQ-h7f4saQYbSV4kJ-kAMiG7p1QNfWEvDXs`}
         imageAStyle={`lg:scale-[135%]`}
       />

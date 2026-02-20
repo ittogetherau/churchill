@@ -66,7 +66,10 @@ const CourseDetailsCard = ({
             style="w-full"
           />
         </Link>
-        <Link href={"/assets/apply-at-churchill.pdf"} className="w-full flex-1">
+        <Link
+          href={"https://churchill.edu.au/f/apply-at-churchill"}
+          className="w-full flex-1"
+        >
           <Button
             btnName="Apply Now"
             icon={<FaArrowRight />}

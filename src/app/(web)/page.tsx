@@ -31,7 +31,7 @@ const Home = async () => {
         }
         subTitle={`<p className="my-4"> Explore our innovative programs and transform your career. </p>`}
         link={`/courses`}
-        linkA={"/assets/apply-at-churchill.pdf"}
+        linkA={"https://churchill.edu.au/f/apply-at-churchill"}
         BtnAText={"Explore Our Courses"}
         BtnBText={"Apply Now"}
       />
