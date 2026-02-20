@@ -23,10 +23,16 @@ const Page = () => {
               Applying to churchill Institute of Higher Education is Easy
             </p>
             <div className="mt-6 flex flex-col gap-4 md:flex-row">
-              <Link target="_blank" href="/assets/apply-at-churchill.pdf">
+              <Link
+                target="_blank"
+                href="https://churchill.edu.au/apply-for-course-admission"
+              >
                 <Button>Domestic Student</Button>
               </Link>
-              <Link target="_blank" href="/assets/apply-at-churchill.pdf">
+              <Link
+                target="_blank"
+                href="https://churchill.edu.au/apply-for-course-admission"
+              >
                 <Button>International Student</Button>
               </Link>
             </div>
