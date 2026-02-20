@@ -67,7 +67,7 @@ const CourseDetailsCard = ({
           />
         </Link>
         <Link
-          href={"https://churchill.edu.au/f/apply-at-churchill"}
+          href={"https://churchill.edu.au/apply-for-course-admission"}
           className="w-full flex-1"
         >
           <Button

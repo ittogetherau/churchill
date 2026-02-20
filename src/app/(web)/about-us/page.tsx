@@ -21,7 +21,7 @@ const Page = () => {
           "Since our founding, Churchill Institute of Higher Education has been dedicated to providing industry-relevant education, empowering students with the skills and knowledge to thrive in their careers."
         }
         link={`/courses`}
-        linkA={`https://churchill.edu.au/f/apply-at-churchill`}
+        linkA={`https://churchill.edu.au/apply-for-course-admission`}
         BtnAText={"Explore Our Courses"}
         BtnBText={"Apply Now"}
       />

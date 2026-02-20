@@ -23,7 +23,7 @@ const ApplyCard = ({ title, description, image }: ApplyCardProps) => {
         <p>{description}</p>
         <div>
           <Link
-            href={"https://churchill.edu.au/f/apply-at-churchill"}
+            href={"https://churchill.edu.au/apply-for-course-admission"}
             className="w-max"
           >
             <Button

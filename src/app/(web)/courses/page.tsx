@@ -26,7 +26,7 @@ const Courses = async () => {
         subTitle="Explore our innovative programs and transform your career."
         BtnAText="Apply Now"
         BtnBText="View Courses"
-        link="https://churchill.edu.au/f/apply-at-churchill"
+        link="https://churchill.edu.au/apply-for-course-admission"
         linkA=""
       />
 
