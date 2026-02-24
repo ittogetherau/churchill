@@ -1,9 +1,13 @@
 import DataNotFound from "@/components/globals/DataNotFound";
+import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
 import { TeamMemberDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
+import TwoColumnLayout from "@/layouts/two-column-layout";
+import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -21,13 +25,41 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const photoUrl = resolveFileLink(member.photo);
 
   return (
-    <ContainerLayout className="mt-8">
-      <div className="flex flex-col-reverse gap-2 lg:flex-row">
-        <div className="flex flex-col gap-3">
+    <>
+      <ContainerLayout className="mt-8 mb-4">
+        <Link href={"/about-us/governance-and-leadership"}>
+          <Button variant={"secondary"} size={"sm"}>
+            <ChevronLeft /> Back
+          </Button>
+        </Link>
+      </ContainerLayout>
+
+      <ContainerLayout>
+        <TwoColumnLayout
+          sidebar={
+            <div className="grid place-items-center">
+              <div className="bg-primary-orange w-full max-w-sm p-1.5 md:[clip-path:polygon(50%_0%,95%_25%,95%_75%,50%_100%,10%_75%,10%_25%)]">
+                <div className="relative aspect-square w-full overflow-hidden md:[clip-path:polygon(50%_0%,95%_25%,95%_75%,50%_100%,10%_75%,10%_25%)]">
+                  <Image
+                    src={photoUrl}
+                    fill
+                    className="object-cover"
+                    alt={`Image for ${member.name}`}
+                  />
+                </div>
+              </div>
+            </div>
+          }
+          isReversedInSmall={true}
+          isContainer={false}
+        >
           <p className="text-primary-orange text-xl font-semibold">
             {member.post}
           </p>
-          <HeadingText level={1}>{member.name}</HeadingText>
+
+          <HeadingText className="mb-1" level={1}>
+            {member.name}
+          </HeadingText>
 
           {member.description && (
             <div
@@ -35,28 +67,9 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
               dangerouslySetInnerHTML={{ __html: member.description }}
             />
           )}
-        </div>
-
-        <div className="flex flex-col justify-center md:mx-auto md:justify-start">
-          <div className="md-hexagon bg-primary-orange top-36 grid place-items-center md:sticky md:h-[392px] md:w-[392px]">
-            <div className="md-hexagon aspect-square w-full overflow-hidden md:h-96 md:w-96">
-              <Image
-                src={photoUrl}
-                width={1000}
-                height={1000}
-                className="h-full w-full object-cover"
-                alt={`Image for ${member.name}`}
-              />
-            </div>
-          </div>
-          {/* <div className="w-fit mx-auto bg-primary-orange -translate-y-10 rounded-md text-white px-4 py-3">
-            <p className="text-lg text-center font-semibold ">
-              Email: <span>{member.email}</span>
-            </p>
-          </div> */}
-        </div>
-      </div>
-    </ContainerLayout>
+        </TwoColumnLayout>
+      </ContainerLayout>
+    </>
   );
 };
 

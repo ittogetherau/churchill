@@ -19,11 +19,11 @@ const GovernancePageSection = async () => {
         description="Churchill's senior leaders guide our institution towards big goals, focusing on excellence and innovative teaching to help our community, country, and the world."
       />
 
-      <ContainerLayout className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <ContainerLayout className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {data.map((el, index) => (
           <FadeUpAnimation
             key={el.slug ?? index}
-            delay={index * 0.1}
+            delay={index * (0.1 / 2)}
             className="h-full"
           >
             <GovernanceCard

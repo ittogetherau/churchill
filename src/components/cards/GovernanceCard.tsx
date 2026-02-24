@@ -21,21 +21,21 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({
 }) => {
   return (
     <div className="group h-full justify-between">
-      <div>
-        <div className="relative overflow-hidden rounded-md">
-          <Image
-            src={`${image}`}
-            alt={`Image of ${title}`}
-            width={400}
-            height={400}
-            className="aspect-square w-full object-cover transition-all duration-500 group-hover:scale-105"
-          />
-        </div>
+      <div className="relative overflow-hidden rounded-md">
+        <Image
+          src={`${image}`}
+          alt={`Image of ${title}`}
+          width={400}
+          height={400}
+          quality={75}
+          className="aspect-square w-full object-cover transition-all duration-500 group-hover:scale-105"
+        />
       </div>
-      <div className="group-hover:bg-alt-background flex -translate-y-8 flex-col gap-3 rounded-lg bg-[#f5f3ef] p-6 transition-all group-hover:-translate-y-12 md:mx-4">
+      <div className="group-hover:bg-alt-background flex -translate-y-8 flex-col gap-3 rounded-lg bg-[#f5f3ef] p-6 transition-all group-hover:-translate-y-12 md:mx-[2%]">
         <h3 className="text-2xl font-bold text-[#302f36] transition-all">
           {title}
         </h3>
+
         <p className="text-[#302f36]transition-all text-[16px] font-bold">
           {subTitle}
         </p>
