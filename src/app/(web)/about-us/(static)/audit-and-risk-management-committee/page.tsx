@@ -44,22 +44,22 @@ const content = `<div>
       <tr>
         <td>Chairperson</td>
         <td>Yes</td>
-        <td>Dr Joo-Gim Heaney</td>
+        <td><a href="/about-us/teams/dr-joo-gim-heaney">Dr Joo-Gim Heaney</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td>Mr Ron Day</td>
+        <td><a href="/about-us/teams/ron-day">Mr Ron Day</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td>Dr Angela Hecimovic</td>
+        <td><a href="/about-us/teams/dr-angela-hecimovic">Dr Angela Hecimovic</a></td>
       </tr>
       <tr>
         <td>CEO &amp; Dean</td>
         <td>No</td>
-        <td>Mr. David Knight</td>
+        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
       </tr>
     </tbody>
   </table>

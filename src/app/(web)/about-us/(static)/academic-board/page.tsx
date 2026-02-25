@@ -46,27 +46,27 @@ const content = `<div>
       <tr>
         <td>Chairperson</td>
         <td>Yes</td>
-        <td>Assoc Prof Maria Varua</td>
+        <td><a href="/about-us/teams/maria-varua">Assoc Prof Maria Varua</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td>Dr Belinda Davis</td>
+        <td><a href="/about-us/teams/dr-belinda-davis">Dr Belinda Davis</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td>Prof Jane Maley</td>
+        <td><a href="/about-us/teams/jane-maley">Prof Jane Maley</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td>Prof Ashish Malik</td>
+        <td><a href="/about-us/teams/ashish-malik">Prof Ashish Malik</a></td>
       </tr>
       <tr>
         <td>CEO &amp; Dean</td>
         <td>No</td>
-        <td>Mr David Knight</td>
+        <td><a href="/about-us/teams/david-knight">Mr David Knight</a></td>
       </tr>
       <tr>
         <td>Academic Staff Member</td>
@@ -119,11 +119,11 @@ const content = `<div>
     <tbody>
       <tr>
         <td>The CEO &amp; Dean as Chairperson</td>
-        <td>Mr. David Knight</td>
+        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
       </tr>
       <tr>
         <td>The Chair of the Academic Board</td>
-        <td>Assoc Prof Maria Varua</td>
+        <td><a href="/about-us/teams/maria-varua">Assoc Prof Maria Varua</a></td>
       </tr>
       <tr>
         <td>Deputy Dean</td>
@@ -191,7 +191,7 @@ const content = `<div>
     <tbody>
       <tr>
         <td>The CEO &amp; Dean as Chairperson</td>
-        <td>Mr. David Knight</td>
+        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
       </tr>
       <tr>
         <td>A member of the Academic Board</td>

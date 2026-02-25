@@ -38,22 +38,22 @@ const content = `<div>
       <tr>
         <td>Chairperson</td>
         <td>Yes</td>
-        <td>Professor Brendan Boyle</td>
+        <td><a href="/about-us/teams/brendan-boyle">Professor Brendan Boyle</a></td>
       </tr>
       <tr>
         <td>Chair of the Academic Board</td>
         <td>Yes</td>
-        <td>Assoc Prof Maria Varua</td>
+        <td><a href="/about-us/teams/maria-varua">Assoc Prof Maria Varua</a></td>
       </tr>
       <tr>
         <td>Chair of the Audit &amp; Risk Management Committee</td>
         <td>Yes</td>
-        <td>Dr Joo-Gim Heaney</td>
+        <td><a href="/about-us/teams/dr-joo-gim-heaney">Dr Joo-Gim Heaney</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td>Assoc Prof Ravi Seethamraju</td>
+        <td><a href="/about-us/teams/ravi-seethamraju">Assoc Prof Ravi Seethamraju</a></td>
       </tr>
       <tr>
         <td>Member</td>
@@ -63,7 +63,7 @@ const content = `<div>
       <tr>
         <td>CEO &amp; Dean</td>
         <td>No</td>
-        <td>Mr. David Knight</td>
+        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
       </tr>
     </tbody>
   </table>
