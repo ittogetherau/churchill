@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -23,9 +24,11 @@ const page = () => {
         Someone will get in touch with you very shortly.
       </p>
 
-      <a href="/" className="w-fit mx-auto block">
-        <Button>Return To Home page</Button>
-      </a>
+      <Button asChild>
+        <Link href="/" className="w-fit mx-auto block">
+          Return To Home page
+        </Link>
+      </Button>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import campusDetails from "@/constDatas/campusDetails";
+import campusDetails from "@/constDatas/campus-details";
 import { CampusDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";

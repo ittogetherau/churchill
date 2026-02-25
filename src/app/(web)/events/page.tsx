@@ -1,9 +1,9 @@
-import EventsCard from "@/components/cards/EventsCard";
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import DataNotFound from "@/components/globals/DataNotFound";
-import FilterComponent from "@/components/ui-elements/FilterComponent";
-import { TApiEvent } from "@/constDatas/eventsData";
-import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
+import EventsCard from "@/components/cards/events-card";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
+import DataNotFound from "@/components/globals/data-not-found";
+import FilterComponent from "@/components/ui-elements/filter-component";
+import { TApiEvent } from "@/constDatas/events-data";
+import { FetchUpcomingKeyEventsData } from "@/utils/api-queries";
 
 interface EventsPageProps {
   searchParams: Promise<{ keyword?: string }>;

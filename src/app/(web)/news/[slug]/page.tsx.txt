@@ -1,5 +1,5 @@
-import { NewsCategory } from "@/constDatas/NewsCategory";
-import { NewsData } from "@/constDatas/NewsData";
+import { NewsCategory } from "@/constDatas/news-category";
+import { NewsData } from "@/constDatas/news-data";
 import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import { notFound } from "next/navigation";

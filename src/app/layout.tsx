@@ -1,4 +1,4 @@
-import CookieBanner from "@/components/globals/CookieBanner";
+import CookieBanner from "@/components/globals/cookie-banner";
 import Footer from "@/components/globals/footer";
 import Header from "@/components/globals/header";
 import { Toaster } from "@/components/ui/sonner";

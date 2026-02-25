@@ -1,7 +1,7 @@
-import DataNotFound from "@/components/globals/DataNotFound";
+import DataNotFound from "@/components/globals/data-not-found";
 import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
-import ClientRedirect from "@/components/utils/FileRedirect";
+import ClientRedirect from "@/components/utils/file-redirect";
 import { FileBySlugDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";

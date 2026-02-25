@@ -1,6 +1,6 @@
-import BlogSection from "@/components/sections/blogSections/BlogSection";
-import Copyurl from "@/components/sections/blogSections/CopyUrl";
-import { siteConfig } from "@/config/siteConfig";
+import BlogSection from "@/components/sections/blogSections/blog-section";
+import Copyurl from "@/components/sections/blogSections/copy-url";
+import { siteConfig } from "@/config/site-config";
 import { BlogDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";

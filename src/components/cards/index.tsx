@@ -1,22 +1,22 @@
-import AboutUsCard from "@/components/cards/AboutUsCard";
-import ApplyCard from "@/components/cards/ApplyCard";
-import BlogItemCard from "@/components/cards/BlogItemCard";
+import AboutUsCard from "@/components/cards/about-us-card";
+import ApplyCard from "@/components/cards/apply-card";
+import BlogItemCard from "@/components/cards/blog-item-card";
 import {
   default as ContactUsCard,
   default as CourseDetailsCard,
-} from "@/components/cards/ContactUsCard";
-import CoursesCard from "@/components/cards/CoursesCard";
-import EventsCard from "@/components/cards/EventsCard";
-import GovernanceCard from "@/components/cards/GovernanceCard";
-import GuideCard from "@/components/cards/GuideCard";
-import HalfTopBannerCard from "@/components/cards/HalfTopBannerCard";
-import KeyDatesCard from "@/components/cards/KeyDatesCard";
-import NewsItemCard from "@/components/cards/NewsItemCard";
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import PopUpDetailsCard from "@/components/cards/PopUpDetailsCard";
-import RequestFormCard from "@/components/cards/RequestFormCard";
-import StyledHeroCard from "@/components/cards/StyledHeroSection";
-import TopBannerCard from "@/components/cards/TopBannerCard";
+} from "@/components/cards/contact-us-card";
+import CoursesCard from "@/components/cards/courses-card";
+import EventsCard from "@/components/cards/events-card";
+import GovernanceCard from "@/components/cards/governance-card";
+import GuideCard from "@/components/cards/guide-card";
+import HalfTopBannerCard from "@/components/cards/half-top-banner-card";
+import KeyDatesCard from "@/components/cards/key-dates-card";
+import NewsItemCard from "@/components/cards/news-item-card";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
+import PopUpDetailsCard from "@/components/cards/pop-up-details-card";
+import RequestFormCard from "@/components/cards/request-form-card";
+import StyledHeroCard from "@/components/cards/styled-hero-section";
+import TopBannerCard from "@/components/cards/top-banner-card";
 
 export {
   AboutUsCard,

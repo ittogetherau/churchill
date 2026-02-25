@@ -136,14 +136,16 @@ export default function ChurchillPrinterPortal() {
       </header>
 
       <main className="mx-auto max-w-4xl py-12">
-        <div className="mb-16 text-center">
-          <div className="bg-churchill/10 mb-6 inline-flex h-20 w-20 items-center justify-center rounded-lg">
-            <img
-              src="https://cdn-icons-png.flaticon.com/128/3917/3917119.png"
-              className="color-churchill h-10 w-10"
-              alt="Printer icon"
-            />
-          </div>
+          <div className="mb-16 text-center">
+            <div className="bg-churchill/10 mb-6 inline-flex h-20 w-20 items-center justify-center rounded-lg">
+              <Image
+                src="https://cdn-icons-png.flaticon.com/128/3917/3917119.png"
+                width={40}
+                height={40}
+                className="color-churchill h-10 w-10"
+                alt="Printer icon"
+              />
+            </div>
           <h2 className="mb-3 text-xl font-medium text-gray-900">
             Manage your printing account
           </h2>
@@ -157,8 +159,10 @@ export default function ChurchillPrinterPortal() {
           <div className="card-hover subtle-shadow rounded-xl border border-gray-100 bg-white p-6">
             <div className="mb-4 flex items-center">
               <div className="bg-churchill/10 mr-3 flex h-12 w-12 items-center justify-center rounded-lg">
-                <img
+                <Image
                   src="https://cdn-icons-png.flaticon.com/128/7653/7653265.png"
+                  width={32}
+                  height={32}
                   className="color-churchill h-8 w-8"
                   alt="Recharge icon"
                 />
@@ -179,8 +183,10 @@ export default function ChurchillPrinterPortal() {
           <div className="card-hover subtle-shadow rounded-xl border border-gray-100 bg-white p-6">
             <div className="mb-4 flex items-center">
               <div className="bg-churchill/10 mr-3 flex h-12 w-12 items-center justify-center rounded-lg">
-                <img
+                <Image
                   src="https://cdn-icons-png.flaticon.com/128/15399/15399215.png"
+                  width={32}
+                  height={32}
                   className="color-churchill h-8 w-8"
                   alt="Video guide icon"
                 />
@@ -201,8 +207,10 @@ export default function ChurchillPrinterPortal() {
           <div className="card-hover subtle-shadow rounded-xl border border-gray-100 bg-white p-6">
             <div className="mb-4 flex items-center">
               <div className="bg-churchill/10 mr-3 flex h-12 w-12 items-center justify-center rounded-lg">
-                <img
+                <Image
                   src="https://cdn-icons-png.flaticon.com/128/7653/7653142.png"
+                  width={32}
+                  height={32}
                   className="color-churchill h-8 w-8"
                   alt="Balance icon"
                 />

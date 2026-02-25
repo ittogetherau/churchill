@@ -1,9 +1,9 @@
 "use client";
-import { siteConfig } from "@/config/siteConfig";
-import { navItems } from "@/constDatas/navItems";
+import { siteConfig } from "@/config/site-config";
+import { navItems } from "@/constDatas/nav-items";
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
-import { useHeaderStore } from "@/store/headerStore";
+import { useHeaderStore } from "@/store/header-store";
 import { parseJsonData } from "@/utils/parse-json-data";
 import Image from "next/image";
 import Link from "next/link";

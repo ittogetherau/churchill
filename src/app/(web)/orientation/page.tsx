@@ -1,13 +1,13 @@
 "use client";
 
-import RequestIDCardForm from "@/components/forms/RequestIDCardForm";
-import Timer from "@/components/ui-elements/Timer";
+import RequestIDCardForm from "@/components/forms/request-id-card-form";
+import Timer from "@/components/ui-elements/timer";
 import { Button } from "@/components/ui/button";
 import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { siteConfig } from "@/config/siteConfig";
+import { siteConfig } from "@/config/site-config";
 
 const stepTitles = [
   { id: 1, title: "Create Your USI ID" },

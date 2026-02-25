@@ -1,4 +1,4 @@
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
 import { GovernanceStructureDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";

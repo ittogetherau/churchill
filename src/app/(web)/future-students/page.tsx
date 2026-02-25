@@ -1,7 +1,7 @@
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import AccordionComponent from "@/components/ui-elements/AccordionComponent";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
+import AccordionComponent from "@/components/ui-elements/accordion-component";
 import Button from "@/components/ui-elements/button";
-import { checklist } from "@/constDatas/contactData";
+import { checklist } from "@/constDatas/contact-data";
 import features from "@/constDatas/features";
 import ContainerLayout from "@/layouts/container-layout";
 import TwoColumnLayout from "@/layouts/two-column-layout";
@@ -90,6 +90,7 @@ const Page = () => {
           national capital (Canberra) and state capitals (capital cities):
         </h3>
         <iframe
+          title="Map of Australia"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29342471.43105036!2d126.27452645104982!3d-26.13660754270196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2snp!4v1744000380229!5m2!1sen!2snp"
           height="600"
           style={{
@@ -116,14 +117,20 @@ const Page = () => {
           1/16-18 Wentworth St. Parramatta.{" "}
         </p>
         <div className="flex flex-col items-center gap-4 md:flex-row">
-          <img
+          <Image
             src="/assets/route-paramatta.png"
-            alt="First Image"
+            alt="Route to Parramatta"
+            width={1200}
+            height={800}
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="w-full object-cover md:w-1/2"
           />
-          <img
+          <Image
             src="/assets/sydney-paramatta.png"
-            alt="Second Image"
+            alt="Sydney to Parramatta"
+            width={1200}
+            height={800}
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="w-full object-cover md:w-1/2"
           />
         </div>
@@ -171,10 +178,12 @@ const Page = () => {
           </div>
 
           <div className="relative mt-10 h-[50vh] w-full">
-            <img
-              src="/assets/opera-bridge.jpg" // Replace with your image path
+            <Image
+              src="/assets/opera-bridge.jpg"
               alt="Sydney Harbour and the iconic Sydney Opera House and Harbour Bridge"
-              className="h-full w-full object-cover object-center"
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
             />
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 transform rounded-md bg-black/50 px-4 py-2 text-center text-white">
               <p className="text-lg">

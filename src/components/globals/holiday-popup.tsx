@@ -1,7 +1,7 @@
 "use client";
 import { HolidayPopupQuery } from "@/graphql/generated/graphql";
 import { parseJsonData } from "@/utils/parse-json-data";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { Button } from "../ui/button";
 
 const STORAGE_KEY = "CIHE-popup-state-holiday";
@@ -12,46 +12,95 @@ type dateType = {
   is_holiday: boolean;
 };
 
+type StoreState = {
+  open: boolean;
+  popupData: HolidayPopupQuery["holiday_popup"];
+  status: "idle" | "loading" | "loaded" | "dismissed";
+};
+
+let storeState: StoreState = {
+  open: false,
+  popupData: null,
+  status: "idle",
+};
+
+const listeners = new Set<() => void>();
+
+const emitChange = () => {
+  for (const listener of listeners) listener();
+};
+
+const setStoreState = (partial: Partial<StoreState>) => {
+  storeState = { ...storeState, ...partial };
+  emitChange();
+};
+
+const getSnapshot = () => storeState;
+const getServerSnapshot = () =>
+  ({
+    open: false,
+    popupData: null,
+    status: "idle",
+  }) satisfies StoreState;
+
+const fetchHolidayPopupData = async () => {
+  if (typeof window === "undefined") return;
+  if (storeState.status !== "idle") return;
+
+  try {
+    const dismissed = window.sessionStorage.getItem(STORAGE_KEY);
+    if (dismissed) {
+      setStoreState({ open: false, status: "dismissed" });
+      return;
+    }
+  } catch {
+    return;
+  }
+
+  setStoreState({ status: "loading" });
+
+  const response = await fetch("/api/holiday-data", { cache: "no-store" });
+  const data = (await response.json()) as HolidayPopupQuery;
+  const holidayPopup = data?.holiday_popup ?? null;
+
+  if (holidayPopup?.show_popup) {
+    setStoreState({ popupData: holidayPopup, open: true, status: "loaded" });
+  } else {
+    setStoreState({ popupData: holidayPopup, open: false, status: "loaded" });
+  }
+};
+
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
+  if (listeners.size === 1) void fetchHolidayPopupData();
+  return () => listeners.delete(listener);
+};
+
+const dismissHolidayPopup = () => {
+  if (typeof window === "undefined") return;
+  try {
+    window.sessionStorage.setItem(STORAGE_KEY, "1");
+  } catch {
+    // ignore storage errors
+  }
+  setStoreState({ open: false, status: "dismissed" });
+};
+
 const HolidayPopup = () => {
-  const [open, setOpen] = useState(false);
-  const [popupData, setPopupData] =
-    useState<HolidayPopupQuery["holiday_popup"]>(null);
-
-  useEffect(() => {
-    try {
-      const dismissed = window.sessionStorage.getItem(STORAGE_KEY);
-      if (!dismissed) fetchData();
-    } catch {
-      setOpen(false);
-    }
-  }, []);
-
-  const fetchData = async () => {
-    const response = await fetch("/api/holiday-data", { cache: "no-store" });
-    const data = (await response.json()) as HolidayPopupQuery;
-    const holidayPopup = data?.holiday_popup ?? null;
-
-    if (holidayPopup?.show_popup) {
-      setPopupData(holidayPopup);
-      setOpen(true);
-    } else {
-      setOpen(false);
-    }
-  };
+  const { open, popupData } = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   const dismiss = useCallback(() => {
-    try {
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
-      setOpen(false);
-    } catch {
-      setOpen(false);
-    }
+    dismissHolidayPopup();
   }, []);
 
   if (!open || !popupData) return null;
 
   const dates: dateType[] = parseJsonData<dateType>(popupData.dates);
-  if (!dates || dates.length == 0) return;
+  if (!dates || dates.length == 0) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">

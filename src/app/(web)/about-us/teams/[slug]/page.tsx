@@ -1,4 +1,4 @@
-import DataNotFound from "@/components/globals/DataNotFound";
+import DataNotFound from "@/components/globals/data-not-found";
 import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
 import { TeamMemberDetailDocument } from "@/graphql/generated/graphql";

@@ -1,6 +1,6 @@
-import FadeUpAnimation from "@/animations/FadeUp";
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import { navItems } from "@/constDatas/navItems";
+import FadeUpAnimation from "@/animations/fade-up";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
+import { navItems } from "@/constDatas/nav-items";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import Link from "next/link";

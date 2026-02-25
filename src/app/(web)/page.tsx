@@ -1,10 +1,10 @@
 import { TopBannerCard } from "@/components/cards";
-import BlogSection from "@/components/sections/blogSections/BlogSection";
-import CoursesSection from "@/components/sections/homeSections/CoursesSection";
-import EnquirySection from "@/components/sections/homeSections/EnquirySection";
-import VideoSection from "@/components/sections/homeSections/VideoSection";
+import BlogSection from "@/components/sections/blogSections/blog-section";
+import CoursesSection from "@/components/sections/homeSections/courses-section";
+import EnquirySection from "@/components/sections/homeSections/enquiry-section";
+import VideoSection from "@/components/sections/homeSections/video-section";
 import StudentSatisfactionSection from "@/components/sections/student-satisfaction-section";
-import UpcomingKeyDatesSection from "@/comps/key-dates/UpcomingKeyDatesSection";
+import UpcomingKeyDatesSection from "@/comps/key-dates/upcoming-key-dates-section";
 import { HomepageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import SpacingLayout from "@/layouts/spacing-layout";

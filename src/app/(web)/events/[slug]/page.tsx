@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
-import Copyurl from "@/components/sections/blogSections/CopyUrl";
-import MoreEventsSection from "@/components/sections/EventsSection/MoreEventsSection";
-import { TEvent, TStaticEvent } from "@/constDatas/eventsData";
-import { siteConfig } from "@/config/siteConfig";
+import { FetchUpcomingKeyEventsData } from "@/utils/api-queries";
+import Copyurl from "@/components/sections/blogSections/copy-url";
+import MoreEventsSection from "@/components/sections/EventsSection/more-events-section";
+import { TEvent, TStaticEvent } from "@/constDatas/events-data";
+import { siteConfig } from "@/config/site-config";
 
 interface PageProps {
   params: { slug: string };

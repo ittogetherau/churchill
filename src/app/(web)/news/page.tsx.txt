@@ -1,6 +1,6 @@
 import { PatternBannerCard } from "@/components/cards";
-import NewsItemCard from "@/components/cards/NewsItemCard";
-import { NewsData } from "@/constDatas/NewsData";
+import NewsItemCard from "@/components/cards/news-item-card";
+import { NewsData } from "@/constDatas/news-data";
 import ContainerLayout from "@/layouts/container-layout";
 interface NewsPageProps {
   showAll?: boolean;

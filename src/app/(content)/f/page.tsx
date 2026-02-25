@@ -1,3 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default () => redirect("/files");
+export default function FilesRedirect() {
+  redirect("/files");
+}

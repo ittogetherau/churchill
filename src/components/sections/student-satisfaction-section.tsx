@@ -1,4 +1,4 @@
-import FadeUpAnimation from "@/animations/FadeUp";
+import FadeUpAnimation from "@/animations/fade-up";
 import ContainerLayout from "@/layouts/container-layout";
 const satisfactionData = [
   {

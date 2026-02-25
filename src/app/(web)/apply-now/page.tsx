@@ -1,4 +1,4 @@
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
 import { Button } from "@/components/ui/button";
 import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";

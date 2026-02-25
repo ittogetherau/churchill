@@ -1,6 +1,6 @@
 "use client";
 
-import DataNotFound from "@/components/globals/DataNotFound";
+import DataNotFound from "@/components/globals/data-not-found";
 import { Button } from "@/components/ui/button";
 import { AgentFieldsFragment } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import BlogItemCard from "@/components/cards/BlogItemCard";
+import React, { useState } from "react";
+import BlogItemCard from "@/components/cards/blog-item-card";
 import Button from "@/components/ui-elements/button";
-import DataNotFound from "@/components/globals/DataNotFound";
+import DataNotFound from "@/components/globals/data-not-found";
 import Search from "@/components/ui-elements";
 import { resolveFileLink } from "@/graphql/graphql";
 import type { BlogPageQuery } from "@/graphql/generated/graphql";
@@ -16,11 +16,12 @@ const BlogsSearch = ({ blogs }: BlogsSearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState(blogs);
 
-  useEffect(() => {
-    if (searchQuery.trim() === "") {
+  const onSearchText = (value: string) => {
+    setSearchQuery(value);
+    if (value.trim() === "") {
       setFilteredBlogs(blogs);
     }
-  }, [searchQuery, blogs]);
+  };
 
   const handleSearch = () => {
     const query = searchQuery.trim().toLowerCase();
@@ -48,7 +49,7 @@ const BlogsSearch = ({ blogs }: BlogsSearchProps) => {
               <div className="flex flex-col items-center gap-4 md:flex-row">
                 <Search
                   text={searchQuery}
-                  onSearchText={setSearchQuery}
+                  onSearchText={onSearchText}
                   placeholderText="Enter Your Search Query"
                 />
                 <div onClick={handleSearch}>

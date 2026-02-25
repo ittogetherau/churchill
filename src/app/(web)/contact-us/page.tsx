@@ -1,7 +1,7 @@
-import ContactUsCard from "@/components/cards/ContactUsCard";
-import EnquirySection from "@/components/sections/homeSections/EnquirySection";
+import ContactUsCard from "@/components/cards/contact-us-card";
+import EnquirySection from "@/components/sections/homeSections/enquiry-section";
 import { Button } from "@/components/ui/button";
-import { contactData } from "@/constDatas/contactData";
+import { contactData } from "@/constDatas/contact-data";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import Link from "next/link";

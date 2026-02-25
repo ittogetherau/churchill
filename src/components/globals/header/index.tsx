@@ -2,13 +2,13 @@
 
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
-import { useHeaderStore } from "@/store/headerStore";
+import { useHeaderStore } from "@/store/header-store";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import AnnouncementBar from "./AnnouncementBar";
-import MobileNavigation from "./MobileNavigation";
-import NavigationItems from "./NavigationItems";
+import AnnouncementBar from "./announcement-bar";
+import MobileNavigation from "./mobile-navigation";
+import NavigationItems from "./navigation-items";
 
 const HEADER_CACHE_TTL_MS = 5 * 60 * 1000;
 

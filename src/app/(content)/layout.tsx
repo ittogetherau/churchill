@@ -1,4 +1,4 @@
-import NewsletterSection from "@/components/sections/commonSections/NewsletterSection";
+import NewsletterSection from "@/components/sections/commonSections/newsletter-section";
 import SpacingLayout from "@/layouts/spacing-layout";
 import { ReactNode } from "react";
 

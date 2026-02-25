@@ -1,6 +1,6 @@
-import FadeUpAnimation from "@/animations/FadeUp";
-import GovernanceCard from "@/components/cards/GovernanceCard";
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
+import FadeUpAnimation from "@/animations/fade-up";
+import GovernanceCard from "@/components/cards/governance-card";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
 import {
   TeamMembersDocument,
   type TeamMembersQuery,

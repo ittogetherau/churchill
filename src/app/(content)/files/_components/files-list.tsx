@@ -3,9 +3,9 @@
 import HeadingText from "@/components/ui/heading-text";
 import { useMemo, useState } from "react";
 import { Download, FileText, Search, Share2 } from "lucide-react";
-import CopyUrl from "@/components/sections/blogSections/CopyUrl";
+import CopyUrl from "@/components/sections/blogSections/copy-url";
 import Link from "next/link";
-import { siteConfig } from "@/config/siteConfig";
+import { siteConfig } from "@/config/site-config";
 
 type FileListItem = {
   slug?: string | null;

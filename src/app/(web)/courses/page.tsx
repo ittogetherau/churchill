@@ -1,6 +1,6 @@
-import TopBannerCard from "@/components/cards/TopBannerCard";
-import CoursesFilterSection from "@/components/sections/filtersection/CoursesFilterSection";
-import EnquirySection from "@/components/sections/homeSections/EnquirySection";
+import TopBannerCard from "@/components/cards/top-banner-card";
+import CoursesFilterSection from "@/components/sections/filtersection/courses-filter-section";
+import EnquirySection from "@/components/sections/homeSections/enquiry-section";
 import { CoursePageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";

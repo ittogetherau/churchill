@@ -1,4 +1,4 @@
-import NewsletterSectionGate from "@/components/sections/commonSections/NewsletterSectionGate";
+import NewsletterSectionGate from "@/components/sections/commonSections/newsletter-section-gate";
 import SpacingLayout from "@/layouts/spacing-layout";
 import type { ReactNode } from "react";
 

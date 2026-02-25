@@ -1,8 +1,8 @@
-import TopBannerCard from "@/components/cards/TopBannerCard";
-import AboutSection from "@/components/sections/aboutUsSections/AboutSection";
-import CoreValuesSection from "@/components/sections/aboutUsSections/CoreValuesSection";
-import MissionVisionsection from "@/components/sections/aboutUsSections/MissionVisionsection";
-import AboutSlider from "@/components/sliders/AboutSlider";
+import TopBannerCard from "@/components/cards/top-banner-card";
+import AboutSection from "@/components/sections/aboutUsSections/about-section";
+import CoreValuesSection from "@/components/sections/aboutUsSections/core-values-section";
+import MissionVisionsection from "@/components/sections/aboutUsSections/mission-visionsection";
+import AboutSlider from "@/components/sliders/about-slider";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 

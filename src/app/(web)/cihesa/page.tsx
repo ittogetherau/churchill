@@ -1,5 +1,5 @@
-import StyledHeroCard from "@/components/cards/StyledHeroSection";
-import cihesaData from "@/constDatas/cihesaData";
+import StyledHeroCard from "@/components/cards/styled-hero-section";
+import cihesaData from "@/constDatas/cihesa-data";
 import Image from "next/image";
 
  

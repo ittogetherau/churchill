@@ -1,4 +1,4 @@
-import DataNotFound from "@/components/globals/DataNotFound";
+import DataNotFound from "@/components/globals/data-not-found";
 import { FilesDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";

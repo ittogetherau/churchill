@@ -1,29 +1,10 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-export default [
-  ...compat.extends(["next", "next/core-web-vitals"]),
+const config = [
+  ...nextCoreWebVitals,
   {
-    files: ["**/*.js", "**/*.jsx"],
-    languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: "module",
-    },
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
-  },
-  {
-    ignores: ["node_modules/**", ".next/**", "out/**"],
+    ignores: ["node_modules/**"],
   },
 ];
+
+export default config;

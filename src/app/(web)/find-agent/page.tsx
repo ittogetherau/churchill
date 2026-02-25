@@ -1,5 +1,5 @@
-import PatternBannerCard from "@/components/cards/PatternBannerCard";
-import NewsletterSection from "@/components/sections/commonSections/NewsletterSection";
+import PatternBannerCard from "@/components/cards/pattern-banner-card";
+import NewsletterSection from "@/components/sections/commonSections/newsletter-section";
 import AgentSearch from "./_pages/agent-search";
 import SpacingLayout from "@/layouts/spacing-layout";
 import { runQuery } from "@/graphql/graphql";

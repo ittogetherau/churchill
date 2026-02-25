@@ -1,8 +1,8 @@
-import CourseOverviewSection from "@/components/cards/CourseOverviewCard";
-import TopBannerCard from "@/components/cards/TopBannerCard";
-import EnquirySection from "@/components/sections/homeSections/EnquirySection";
-import CoursesSlider from "@/components/sliders/CoursesSlider";
-import TabbedPane from "@/components/ui-elements/TabbedPane";
+import CourseOverviewSection from "@/components/cards/course-overview-card";
+import TopBannerCard from "@/components/cards/top-banner-card";
+import EnquirySection from "@/components/sections/homeSections/enquiry-section";
+import CoursesSlider from "@/components/sliders/courses-slider";
+import TabbedPane from "@/components/ui-elements/tabbed-pane";
 import { CourseDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";

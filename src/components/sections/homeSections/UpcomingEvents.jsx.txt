@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
-import { eventsData } from "@/constDatas/eventsData";
+import { eventsData } from "@/constDatas/events-data";
 import Link from "next/link";
 import { Button, EventsCard } from "@/components";
-import FadeUpAnimation from "@/animations/FadeUp";
-import { FetchUpcomingKeyEventsData } from "@/components/utils/apiQueries";
+import FadeUpAnimation from "@/animations/fade-up";
+import { FetchUpcomingKeyEventsData } from "@/components/utils/api-queries";
 
 const UpcomingEvents = () => {
   const [data, setData] = useState([]);
