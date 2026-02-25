@@ -1,4 +1,10 @@
 query Header {
+  degree {
+    title
+    course {
+      ...CourseCoreFields
+    }
+  }
   courses {
     ...CourseCoreFields
   }

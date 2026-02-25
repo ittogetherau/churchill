@@ -26,7 +26,7 @@ export const useHeaderStore = create<HeaderStore>()(
       setHasHydrated: (hasHydrated) => set({ hasHydrated }),
     }),
     {
-      name: "churchill-header-cache",
+      name: "cihe-header-cache",
       version: 1,
       storage: createJSONStorage(() => localStorage),
       partialize: ({ data, lastFetchedAt }) => ({ data, lastFetchedAt }),

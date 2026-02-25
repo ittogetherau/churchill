@@ -25,17 +25,6 @@ const CoursesSection = ({
           Our Courses
           <span className="bg-primary-orange absolute bottom-0 left-0 z-[-1] block h-1/4 w-full"></span>
         </HeadingText>
-
-        <HeadingText level={4} heading={0}>
-          {degreeTitle}
-          {degreeCode ? ` (${degree?.short_title})` : ""}
-        </HeadingText>
-
-        {degreeCode && (
-          <HeadingText level={0}>CRICOS Course Code: {degreeCode}</HeadingText>
-        )}
-
-        <p className="mx-auto mt-2 max-w-4xl">{degree?.description}</p>
       </div>
 
       <CoursesSlider data={courses} />
