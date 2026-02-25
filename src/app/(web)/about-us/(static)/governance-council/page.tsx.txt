@@ -15,7 +15,7 @@ const GovernancePageSection = async () => {
   return (
     <>
       <PatternBannerCard
-        title="Governance And Leadership"
+        title="Governance Council"
         description="Churchill's senior leaders guide our institution towards big goals, focusing on excellence and innovative teaching to help our community, country, and the world."
       />
 

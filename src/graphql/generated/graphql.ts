@@ -26,6 +26,8 @@ export enum EventEnum {
 }
 
 export type Query = {
+  about_us_page?: Maybe<About_Us_Page>;
+  about_us_page_by_version?: Maybe<Version_About_Us_Page>;
   active_agents: Array<Active_Agents>;
   active_agents_aggregated: Array<Active_Agents_Aggregated>;
   active_agents_by_id?: Maybe<Active_Agents>;
@@ -158,6 +160,16 @@ export type Query = {
   useful_links_aggregated: Array<Useful_Links_Aggregated>;
   useful_links_by_id?: Maybe<Useful_Links>;
   useful_links_by_version?: Maybe<Version_Useful_Links>;
+};
+
+
+export type QueryAbout_Us_PageArgs = {
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryAbout_Us_Page_By_VersionArgs = {
+  version: Scalars['String']['input'];
 };
 
 
@@ -1211,6 +1223,7 @@ export type QueryUseful_Links_By_VersionArgs = {
 };
 
 export type Subscription = {
+  about_us_page_mutated?: Maybe<About_Us_Page_Mutated>;
   active_agents_mutated?: Maybe<Active_Agents_Mutated>;
   announcements_mutated?: Maybe<Announcements_Mutated>;
   blog_mutated?: Maybe<Blog_Mutated>;
@@ -1248,6 +1261,11 @@ export type Subscription = {
   team_members_mutated?: Maybe<Team_Members_Mutated>;
   understandng_ai_links_mutated?: Maybe<Understandng_Ai_Links_Mutated>;
   useful_links_mutated?: Maybe<Useful_Links_Mutated>;
+};
+
+
+export type SubscriptionAbout_Us_Page_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
 };
 
 
@@ -1433,6 +1451,20 @@ export type SubscriptionUnderstandng_Ai_Links_MutatedArgs = {
 
 export type SubscriptionUseful_Links_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
+};
+
+export type About_Us_Page = {
+  about_us_content?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  page_notes?: Maybe<Scalars['String']['output']>;
+  slider_items?: Maybe<Scalars['JSON']['output']>;
+  slider_items_func?: Maybe<Count_Functions>;
+};
+
+export type About_Us_Page_Mutated = {
+  data?: Maybe<About_Us_Page>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
 };
 
 export type Active_Agents = {
@@ -3846,6 +3878,14 @@ export type Useful_Links_Mutated = {
   key: Scalars['ID']['output'];
 };
 
+export type Version_About_Us_Page = {
+  about_us_content?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  page_notes?: Maybe<Scalars['String']['output']>;
+  slider_items?: Maybe<Scalars['JSON']['output']>;
+  slider_items_func?: Maybe<Count_Functions>;
+};
+
 export type Version_Active_Agents = {
   account_name?: Maybe<Scalars['String']['output']>;
   address?: Maybe<Scalars['String']['output']>;
@@ -4239,6 +4279,11 @@ export type TeamMemberSummaryFieldsFragment = { slug?: string | null, name?: str
 
 export type TeamMemberDetailFieldsFragment = { slug?: string | null, name?: string | null, post?: string | null, description?: string | null, photo?: { id: string, filename_download: string } | null };
 
+export type AboutUsPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AboutUsPageQuery = { about_us_page?: { about_us_content?: string | null, slider_items?: any | null, page_notes?: string | null } | null };
+
 export type AgentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4364,6 +4409,7 @@ export const TeamMemberDetailFieldsFragmentDoc = {"kind":"Document","definitions
 export const AgentFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AgentFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"active_agents"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"agent_name"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"zoho_id"}},{"kind":"Field","name":{"kind":"Name","value":"account_name"}}]}}]} as unknown as DocumentNode<AgentFieldsFragment, unknown>;
 export const FileItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<FileItemFragment, unknown>;
 export const PolicyItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PolicyItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"policies"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}}]} as unknown as DocumentNode<PolicyItemFragment, unknown>;
+export const AboutUsPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AboutUsPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"about_us_page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"about_us_content"}},{"kind":"Field","name":{"kind":"Name","value":"slider_items"}},{"kind":"Field","name":{"kind":"Name","value":"page_notes"}}]}}]}}]} as unknown as DocumentNode<AboutUsPageQuery, AboutUsPageQueryVariables>;
 export const AgentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Agent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active_agents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"AgentFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AgentFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"active_agents"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"agent_name"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"zoho_id"}},{"kind":"Field","name":{"kind":"Name","value":"account_name"}}]}}]} as unknown as DocumentNode<AgentQuery, AgentQueryVariables>;
 export const BlogDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}},{"kind":"Field","name":{"kind":"Name","value":"rich_text"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"otherBlogs"},"name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_neq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<BlogDetailQuery, BlogDetailQueryVariables>;
 export const BlogPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blog"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"date_created","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FileFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"directus_files"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"blog"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"date_created"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FileFields"}}]}}]}}]} as unknown as DocumentNode<BlogPageQuery, BlogPageQueryVariables>;

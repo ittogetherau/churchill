@@ -1,0 +1,7 @@
+query AboutUsPage {
+  about_us_page {
+    about_us_content
+    slider_items
+    page_notes
+  }
+}
