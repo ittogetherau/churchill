@@ -1,12 +1,23 @@
-import TopBannerCard from "@/components/cards/TopBannerCard";
-import AboutSection from "@/components/sections/aboutUsSections/AboutSection";
-import CoreValuesSection from "@/components/sections/aboutUsSections/CoreValuesSection";
-import MissionVisionsection from "@/components/sections/aboutUsSections/MissionVisionsection";
-import AboutSlider from "@/components/sliders/AboutSlider";
+import { TopBannerCard } from "@/components/cards";
+import AboutUsPageSlider, {
+  type AboutUsPageSliderItem,
+} from "@/components/sliders/AboutUsPageSlider";
+import { AboutUsPageDocument } from "@/graphql/generated/graphql";
+import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 
-const Page = () => {
+const page = async () => {
+  const data = await runQuery(AboutUsPageDocument);
+
+  const aboutContent = data.about_us_page?.about_us_content;
+  const pageNotes = data.about_us_page?.page_notes;
+  const aboutSlider: AboutUsPageSliderItem[] = Array.isArray(
+    data.about_us_page?.slider_items,
+  )
+    ? data.about_us_page.slider_items
+    : [];
+
   return (
     <SpacingLayout>
       <TopBannerCard
@@ -26,24 +37,24 @@ const Page = () => {
         BtnBText={"Apply Now"}
       />
 
+      <ContainerLayout size="sm">
+        {aboutContent && (
+          <div
+            className="rich_text_container"
+            dangerouslySetInnerHTML={{ __html: aboutContent }}
+          />
+        )}
+      </ContainerLayout>
+
       <ContainerLayout>
-        <SpacingLayout>
-          <MissionVisionsection />
+        <AboutUsPageSlider items={aboutSlider} />
+      </ContainerLayout>
 
-          <CoreValuesSection />
-
-          <AboutSection />
-
-          <div className="flex flex-col gap-[32px] lg:gap-[44px]">
-            <h2 className="text-center text-[36px] font-bold text-[#2C2B4B]">
-              Find Out More
-            </h2>
-            <AboutSlider />
-          </div>
-        </SpacingLayout>
+      <ContainerLayout>
+        <p className="italic">{pageNotes}</p>
       </ContainerLayout>
     </SpacingLayout>
   );
 };
 
-export default Page;
+export default page;
