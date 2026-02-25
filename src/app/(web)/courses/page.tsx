@@ -30,7 +30,7 @@ const Courses = async () => {
         linkA=""
       />
 
-      <ContainerLayout>
+      {/* <ContainerLayout>
         <div className="mb-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-5xl">
             {degreeData?.title ?? ""} ({degreeData?.short_title ?? ""})
@@ -68,7 +68,7 @@ const Courses = async () => {
             dangerouslySetInnerHTML={{ __html: degreeData.learning_outcomes }}
           ></div>
         </ContainerLayout>
-      )}
+      )} */}
 
       <span id="scrollToCourse" />
 

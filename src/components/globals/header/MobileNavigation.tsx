@@ -16,11 +16,14 @@ import { Button } from "@/components/ui/button";
 import { HeaderQuery } from "@/graphql/generated/graphql";
 
 type MobileNavigationProps = {
-  courses?: HeaderQuery["courses"];
+  degrees?: HeaderQuery["degree"];
   links?: any;
 };
 
-const MobileNavigation = ({ courses = [], links }: MobileNavigationProps) => {
+const MobileNavigation = ({
+  degrees = [],
+  links,
+}: MobileNavigationProps) => {
   const [open, setOpen] = useState(false);
   const isMobile = useMobile();
 
@@ -69,7 +72,7 @@ const MobileNavigation = ({ courses = [], links }: MobileNavigationProps) => {
 
               <NavigationItems
                 links={links}
-                courses={courses}
+                degrees={degrees}
                 onLinkClick={() => setOpen(false)}
               />
             </ContainerLayout>

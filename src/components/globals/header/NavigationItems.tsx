@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Category, navItems } from "@/constDatas/navItems";
+import { Category, navItems, type NavItem } from "@/constDatas/navItems";
 import ContainerLayout from "@/layouts/container-layout";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
@@ -11,30 +11,170 @@ import { useMobile } from "@/hooks/useMobile";
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import { parseJsonData } from "@/utils/parse-json-data";
 
-type props = {
+type NavigationItemsProps = {
   onLinkClick: () => void;
-  courses?: HeaderQuery["courses"];
+  degrees?: HeaderQuery["degree"];
   links?: unknown;
 };
 
 type LoginLink = { title?: string; link?: string; icon?: string };
 
-const NavigationItems = ({ onLinkClick, courses = [], links }: props) => {
+type Degree = HeaderQuery["degree"][number];
+type Course = NonNullable<NonNullable<Degree["course"]>[number]>;
+type DegreeGroup = { title: string; courses: Course[] };
+
+function isDefined<T>(value: T | null | undefined): value is T {
+  return value !== null && value !== undefined;
+}
+
+function getDegreeGroups(degrees: HeaderQuery["degree"] | undefined): DegreeGroup[] {
+  return (degrees ?? [])
+    .map((degree, degreeIndex) => {
+      const title = degree.title?.trim() || `Degree ${degreeIndex + 1}`;
+      const courses = (degree.course ?? []).filter(isDefined);
+
+      return courses.length ? { title, courses } : null;
+    })
+    .filter(isDefined);
+}
+
+function CourseLinkItem({
+  course,
+  variant,
+  onClick,
+}: {
+  course: Course;
+  variant: "mobile" | "desktop";
+  onClick?: () => void;
+}) {
+  if (variant === "mobile") {
+    return (
+      <Link
+        href={`/courses/${course.slug}`}
+        className="flex items-center gap-2 rounded-md px-2 py-2"
+        onClick={onClick}
+      >
+        <div className="bg-primary-orange/50 grid h-8 w-8 shrink-0 place-items-center rounded-full">
+          <i className={`${course.icon_string ?? "fi fi-rr-lesson"} flex text-sm`} />
+        </div>
+        <p className="text-sm leading-tight font-bold">
+          {course.title ?? course.slug}
+        </p>
+      </Link>
+    );
+  }
+
+  return (
+    <Link
+      href={`/courses/${course.slug}`}
+      className="hover:bg-alt-background flex items-center gap-2 rounded-md px-2 py-1 transition-all"
+    >
+      <div className="bg-primary-orange/50 grid h-10 w-10 place-items-center rounded-full">
+        <i className={`${course.icon_string ?? "fi fi-rr-lesson"} flex`} />
+      </div>
+      <div className="flex flex-1 flex-col gap-1">
+        <p className="line-clamp-2 text-base leading-tight font-bold">
+          {course.title ?? course.slug}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+function DegreeGroupSection({
+  group,
+  variant,
+  onLinkClick,
+}: {
+  group: DegreeGroup;
+  variant: "mobile" | "desktop";
+  onLinkClick?: () => void;
+}) {
+  const titleClass =
+    variant === "mobile" ? "px-2 pt-2 text-xs font-semibold" : "text-sm font-semibold";
+  const listClass = variant === "mobile" ? "space-y-1" : "space-y-2";
+
+  return (
+    <div className={variant === "mobile" ? "space-y-1" : "space-y-2"}>
+      <p className={titleClass}>{group.title}</p>
+      <ul className={listClass}>
+        {group.courses.map((course) => (
+          <li key={course.slug} className="w-full">
+            <CourseLinkItem
+              course={course}
+              variant={variant}
+              onClick={variant === "mobile" ? onLinkClick : undefined}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function CoursesMobileDetails({
+  item,
+  degreeGroups,
+  onLinkClick,
+}: {
+  item: NavItem;
+  degreeGroups: DegreeGroup[];
+  onLinkClick: () => void;
+}) {
+  return (
+    <div className="w-full">
+      <details className="group">
+        <summary className="flex cursor-pointer items-center justify-between text-xs font-bold">
+          {item.title}
+
+          <ChevronDown
+            size={16}
+            className="transition-transform group-open:rotate-180"
+          />
+        </summary>
+        <div className="border-t pt-2 pb-3">
+          <p className="pb-2 text-xs font-medium opacity-70">{item.headerDesc}</p>
+
+          <div className="space-y-3">
+            {degreeGroups.map((group, groupIndex) => (
+              <DegreeGroupSection
+                key={`${group.title}-${groupIndex}`}
+                group={group}
+                variant="mobile"
+                onLinkClick={onLinkClick}
+              />
+            ))}
+          </div>
+
+          {item.gotoPageRedirect && (
+            <Link href={`/${item.slug}`} className="mt-4 block">
+              <Button size="sm" className="w-fit">
+                Learn More <ArrowRight size={16} />
+              </Button>
+            </Link>
+          )}
+        </div>
+      </details>
+    </div>
+  );
+}
+
+function CoursesDesktopContent({ degreeGroups }: { degreeGroups: DegreeGroup[] }) {
+  return (
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {degreeGroups.map((group, groupIndex) => (
+        <DegreeGroupSection
+          key={`${group.title}-${groupIndex}`}
+          group={group}
+          variant="desktop"
+        />
+      ))}
+    </div>
+  );
+}
+
+const NavigationItems = ({ onLinkClick, links, degrees }: NavigationItemsProps) => {
   const mergedNavItems = navItems.map((item) => {
-    if (item.slug === "courses") {
-      const courseCategories =
-        courses?.map((course) => ({
-          menuTitle: course.title ?? course.slug,
-          headerIcon: course.icon_string ?? "fi fi-rr-octagon-xmark flex",
-          slug: course.slug,
-        })) ?? [];
-
-      return {
-        ...item,
-        Catagories: [...(item.Catagories ?? []), ...courseCategories],
-      };
-    }
-
     if (item.slug === "login") {
       const loginLinks = parseJsonData<LoginLink>(links);
 
@@ -61,14 +201,28 @@ const NavigationItems = ({ onLinkClick, courses = [], links }: props) => {
   });
 
   const isMobile = useMobile();
+  const degreeGroups = getDegreeGroups(degrees);
 
   return (
     <nav className="relative max-h-screen overflow-y-auto">
       <div className="flex flex-col items-start gap-1 md:flex-row md:items-center xl:gap-1">
         {mergedNavItems.map((item) => {
-          const hasSubItems = item.Catagories && item.Catagories.length > 0;
+          const hasSubItems =
+            item.slug === "courses"
+              ? degreeGroups.length > 0
+              : (item.Catagories?.length ?? 0) > 0;
 
-          if (hasSubItems && isMobile)
+          if (hasSubItems && isMobile) {
+            if (item.slug === "courses") {
+              return (
+                <CoursesMobileDetails
+                  key={item.slug}
+                  item={item}
+                  degreeGroups={degreeGroups}
+                  onLinkClick={onLinkClick}
+                />
+              );
+            }
             return (
               <div key={item.slug} className="w-full">
                 <details className="group">
@@ -124,6 +278,7 @@ const NavigationItems = ({ onLinkClick, courses = [], links }: props) => {
                 </details>
               </div>
             );
+          }
 
           if (hasSubItems) {
             return (
@@ -151,41 +306,39 @@ const NavigationItems = ({ onLinkClick, courses = [], links }: props) => {
                   </div>
 
                   <div className="col-span-2">
-                    {item.slug === "courses" && (
-                      <p className="mb-3 text-lg font-semibold">
-                        Bachelors of Business
-                      </p>
+                    {item.slug === "courses" ? (
+                      <CoursesDesktopContent degreeGroups={degreeGroups} />
+                    ) : (
+                      <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
+                        {item.Catagories?.map((el: Category, i) => (
+                          <li key={`${el.slug}-${i}`}>
+                            <Link
+                              href={
+                                el.redirectLink ||
+                                el.link ||
+                                `/${item.slug}/${el.slug}`
+                              }
+                              target={el.redirectLink ? "_blank" : undefined}
+                              rel={
+                                el.redirectLink
+                                  ? "noreferrer noopener"
+                                  : undefined
+                              }
+                              className="hover:bg-alt-background flex items-center gap-2 rounded-md px-2 py-1 transition-all"
+                            >
+                              <div className="bg-primary-orange/50 grid h-10 w-10 place-items-center rounded-full">
+                                <i className={`${el.headerIcon} flex`} />
+                              </div>
+                              <div className="flex flex-1 flex-col gap-1">
+                                <p className="line-clamp-2 text-base leading-tight font-bold">
+                                  {el.menuTitle}
+                                </p>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     )}
-
-                    <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
-                      {item.Catagories?.map((el: Category, i) => (
-                        <li key={`${el.slug}-${i}`}>
-                          <Link
-                            href={
-                              el.redirectLink ||
-                              el.link ||
-                              `/${item.slug}/${el.slug}`
-                            }
-                            target={el.redirectLink ? "_blank" : undefined}
-                            rel={
-                              el.redirectLink
-                                ? "noreferrer noopener"
-                                : undefined
-                            }
-                            className="hover:bg-alt-background flex items-center gap-2 rounded-md px-2 py-1 transition-all"
-                          >
-                            <div className="bg-primary-orange/50 grid h-10 w-10 place-items-center rounded-full">
-                              <i className={`${el.headerIcon} flex`} />
-                            </div>
-                            <div className="flex flex-1 flex-col gap-1">
-                              <p className="line-clamp-2 text-base leading-tight font-bold">
-                                {el.menuTitle}
-                              </p>
-                            </div>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </ContainerLayout>
               </HoverDropdown>

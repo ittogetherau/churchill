@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 
   const announcements = data?.announcements ?? {};
   const links = data?.login_links?.links ?? [];
-  const courses = data?.courses ?? [];
+  const degrees = data?.degree ?? [];
 
   useEffect(() => {
     async function fetchHeader() {
@@ -36,6 +36,8 @@ const Header: React.FC = () => {
 
     if (!data || isStale) fetchHeader();
   }, [data, hasHydrated, lastFetchedAt, setData]);
+
+  console.log(degrees);
 
   return (
     <div className="header sticky top-0 left-0 z-40 w-full bg-white shadow-sm/5">
@@ -57,13 +59,13 @@ const Header: React.FC = () => {
           <div className="hidden md:block">
             <NavigationItems
               links={links}
-              courses={courses}
+              degrees={degrees}
               onLinkClick={() => {}}
             />
           </div>
 
           <div className="block md:hidden">
-            <MobileNavigation links={links} courses={courses} />
+            <MobileNavigation links={links} degrees={degrees} />
           </div>
         </div>
       </ContainerLayout>
