@@ -71,6 +71,15 @@ const Page = async ({ params }: { params: Promise<{ degree: string }> }) => {
         </ContainerLayout>
       )}
 
+      {degreeData?.additional_content && (
+        <ContainerLayout size="sm">
+          <div
+            className="rich_text_container"
+            dangerouslySetInnerHTML={{ __html: degreeData.additional_content }}
+          ></div>
+        </ContainerLayout>
+      )}
+
       <div className="block h-4" id="courses"></div>
       <CoursesFilterSection data={coursesData} />
       <EnquirySection />

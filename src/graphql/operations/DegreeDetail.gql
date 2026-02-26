@@ -3,6 +3,7 @@ query DegreeDetail($slug: String!) {
     ...DegreeCompactFields
     summary
     learning_outcomes
+    additional_content
     course {
       ...CourseDetailFields
     }

@@ -37,8 +37,6 @@ const Header: React.FC = () => {
     if (!data || isStale) fetchHeader();
   }, [data, hasHydrated, lastFetchedAt, setData]);
 
-  console.log(degrees);
-
   return (
     <div className="header sticky top-0 left-0 z-40 w-full bg-white shadow-sm/5">
       <AnnouncementBar text={announcements.announcement_text ?? ""} />
