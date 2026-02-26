@@ -1,17 +1,21 @@
-import TopBannerCard from "@/components/cards/TopBannerCard";
+import { TopBannerCard } from "@/components/cards";
 import CoursesFilterSection from "@/components/sections/filtersection/CoursesFilterSection";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
-import { CoursePageDocument } from "@/graphql/generated/graphql";
+import {
+  CourseDetailFieldsFragment,
+  DegreeDetailDocument,
+} from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import Link from "next/link";
 
-const Courses = async () => {
-  const data = await runQuery(CoursePageDocument);
+const Page = async ({ params }: { params: Promise<{ degree: string }> }) => {
+  const { degree } = await params;
+  const raw = await runQuery(DegreeDetailDocument, { slug: degree });
 
-  const degreeData = data?.degree?.[0];
-  const coursesData = data?.courses ?? [];
+  const degreeData = raw.degree[0];
+  const coursesData = degreeData.course as CourseDetailFieldsFragment[];
 
   return (
     <SpacingLayout>
@@ -19,35 +23,32 @@ const Courses = async () => {
         image={`/assets/maincoursepage.jpg`}
         titleSpan={
           <span>
-            Study Bachelor of Business at Churchill Institute of Higher
-            Education.
+            Study {degreeData.title} at Churchill Institute of Higher Education.
           </span>
         }
         subTitle="Explore our innovative programs and transform your career."
         BtnAText="Apply Now"
         BtnBText="View Courses"
         link="https://churchill.edu.au/apply-for-course-admission"
-        linkA=""
+        linkA="#courses"
       />
 
-      {/* <ContainerLayout>
-        <div className="mb-10 text-center">
+      <ContainerLayout>
+        <div className="text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-5xl">
             {degreeData?.title ?? ""} ({degreeData?.short_title ?? ""})
           </h2>
           {degreeData?.course_code && (
-            <>
-              <p className="text-lg text-gray-600">
-                CRICOS Course Code:&nbsp;
-                <Link
-                  className="font-medium text-orange-600 hover:underline"
-                  href={`https://cricos.education.gov.au/Course/CourseDetails.aspx?CourseId=${degreeData.course_code}`}
-                  target="_blank"
-                >
-                  {degreeData.course_code}
-                </Link>
-              </p>
-            </>
+            <p className="text-lg text-gray-600">
+              CRICOS Course Code:&nbsp;
+              <Link
+                className="font-medium text-orange-600 hover:underline"
+                href={`https://cricos.education.gov.au/Course/CourseDetails.aspx?CourseId=${degreeData.course_code}`}
+                target="_blank"
+              >
+                {degreeData.course_code}
+              </Link>
+            </p>
           )}
         </div>
       </ContainerLayout>
@@ -68,15 +69,13 @@ const Courses = async () => {
             dangerouslySetInnerHTML={{ __html: degreeData.learning_outcomes }}
           ></div>
         </ContainerLayout>
-      )} */}
+      )}
 
-      <span id="scrollToCourse" />
-
+      <div className="block h-4" id="courses"></div>
       <CoursesFilterSection data={coursesData} />
-
       <EnquirySection />
     </SpacingLayout>
   );
 };
 
-export default Courses;
+export default Page;

@@ -12,6 +12,9 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      //
+      // About Us Fallback
+      //
       {
         source: "/about-us/teams/professor-ashish-malik",
         destination: "/about-us/teams/ashish-malik",
@@ -60,6 +63,61 @@ const nextConfig = {
       {
         source: "/about-us/teams/",
         destination: "/about-us/governance-and-leadership/",
+        permanent: true,
+      },
+      //
+      // old Courses fallback
+      //
+      {
+        source: "/courses",
+        destination: "/course/",
+        permanent: true,
+      },
+      {
+        source: "/courses/",
+        destination: "/course/",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-accounting",
+        destination: "/course/bachelor-of-business/major-in-accounting",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-accounting/",
+        destination: "/course/bachelor-of-business/major-in-accounting",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-management",
+        destination: "/course/bachelor-of-business/major-in-management",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-management/",
+        destination: "/course/bachelor-of-business/major-in-management",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-hospitality",
+        destination: "/course/bachelor-of-business/major-in-hospitality",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-hospitality/",
+        destination: "/course/bachelor-of-business/major-in-hospitality",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-information-systems",
+        destination:
+          "/course/bachelor-of-business/major-in-information-systems",
+        permanent: true,
+      },
+      {
+        source: "/courses/major-in-information-systems/",
+        destination:
+          "/course/bachelor-of-business/major-in-information-systems",
         permanent: true,
       },
     ];

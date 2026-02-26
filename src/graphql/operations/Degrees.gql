@@ -1,0 +1,8 @@
+query Degrees {
+  degree {
+    ...DegreeCompactFields
+    hero_image {
+      ...FileFields
+    }
+  }
+}

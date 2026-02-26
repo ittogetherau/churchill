@@ -1,5 +1,6 @@
 query Header {
   degree {
+    slug
     title
     course {
       ...CourseCoreFields

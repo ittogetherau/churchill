@@ -1,0 +1,10 @@
+query DegreeDetail($slug: String!) {
+  degree(filter: { slug: { _eq: $slug } }) {
+    ...DegreeCompactFields
+    summary
+    learning_outcomes
+    course {
+      ...CourseDetailFields
+    }
+  }
+}

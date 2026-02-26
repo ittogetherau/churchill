@@ -68,6 +68,11 @@ export const navItems: NavItem[] = [
     gotoPageRedirect: true,
     Catagories: [
       {
+        menuTitle: "Welcome From The CEO & Dean",
+        headerIcon: "fi fi-rr-benefit-diamond",
+        slug: "welcome-from-the-ceo-and-dean",
+      },
+      {
         menuTitle:
           "Churchill Institute of Higher Education Governance Structure and Organisational Chart",
         headerIcon: "fi fi-rr-department-structure",

@@ -9,35 +9,42 @@ import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import { notFound } from "next/navigation";
 
-const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params;
+const Page = async ({
+  params,
+}: {
+  params: Promise<{ degree: string; course: string }>;
+}) => {
+  const { degree, course } = await params;
 
-  const data = await runQuery(CourseDetailDocument, { slug });
+  const data = await runQuery(CourseDetailDocument, {
+    slug: course,
+    parent: degree,
+  });
 
-  const course = data?.courses?.[0];
+  const matchedCourse = data?.courses?.[0];
   const otherCourses = data?.otherCourses ?? [];
 
-  if (!course) notFound();
+  if (!matchedCourse) notFound();
 
   return (
     <SpacingLayout>
       <TopBannerCard
-        beforeTitle={course?.degree?.title ?? ""}
-        image={resolveFileLink(course?.hero_image)}
-        titleSpan={course?.title ?? ""}
-        courseCode={course?.degree?.course_code ?? ""}
-        subTitle={course?.description ?? ""}
+        beforeTitle={matchedCourse?.degree?.title ?? ""}
+        image={resolveFileLink(matchedCourse?.hero_image)}
+        titleSpan={matchedCourse?.title ?? ""}
+        courseCode={matchedCourse?.degree?.course_code ?? ""}
+        subTitle={matchedCourse?.description ?? ""}
         BtnAText="Apply Now"
-        slug={slug}
+        slug={course}
         BtnBText="Enquire Now"
         link={`https://churchill.edu.au/apply-for-course-admission`}
         linkA={`https://forms.zohopublic.com.au/CIHE/form/StudentHubEnquiry/formperma/XilFJje5kQ-h7f4saQYbSV4kJ-kAMiG7p1QNfWEvDXs`}
         imageAStyle={`lg:scale-[135%]`}
       />
 
-      <CourseOverviewSection data={course?.program_details ?? []} />
+      <CourseOverviewSection data={matchedCourse?.program_details ?? []} />
 
-      <TabbedPane data={course?.course_structure ?? []} />
+      <TabbedPane data={matchedCourse?.course_structure ?? []} />
 
       <EnquirySection />
 

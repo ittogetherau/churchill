@@ -10,14 +10,14 @@ type ProgramDetail = NonNullable<
 interface CourseDetailsProp {
   title: string;
   subTitle: string;
-  slug: string;
+  href: string;
   faculty: string;
   courseDetails: ProgramDetail[];
 }
 const CourseDetailsCard = ({
   title,
   subTitle,
-  slug,
+  href,
   faculty,
   courseDetails,
 }: CourseDetailsProp) => {
@@ -58,7 +58,7 @@ const CourseDetailsCard = ({
         </div>
       </div>
       <div className="flex max-w-fit flex-col gap-3">
-        <Link href={`/courses/${slug}`} className="w-full flex-1">
+        <Link href={href} className="w-full flex-1">
           <Button
             btnName="Learn More"
             icon={<FaArrowRight />}

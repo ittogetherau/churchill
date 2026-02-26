@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Category, navItems, type NavItem } from "@/constDatas/navItems";
 import ContainerLayout from "@/layouts/container-layout";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import GoogleSearch from "./GoogleSearch";
 import HoverDropdown from "./HoverDropdown";
@@ -21,41 +21,65 @@ type LoginLink = { title?: string; link?: string; icon?: string };
 
 type Degree = HeaderQuery["degree"][number];
 type Course = NonNullable<NonNullable<Degree["course"]>[number]>;
-type DegreeGroup = { title: string; courses: Course[] };
+type DegreeGroup = {
+  title: string;
+  degreeSlug: string | null;
+  courses: Course[];
+};
 
 function isDefined<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined;
 }
 
-function getDegreeGroups(degrees: HeaderQuery["degree"] | undefined): DegreeGroup[] {
+function toPathSlug(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getDegreeGroups(
+  degrees: HeaderQuery["degree"] | undefined,
+): DegreeGroup[] {
   return (degrees ?? [])
     .map((degree, degreeIndex) => {
       const title = degree.title?.trim() || `Degree ${degreeIndex + 1}`;
+      const degreeSlug =
+        degree.slug?.trim() || (degree.title ? toPathSlug(degree.title) : null);
       const courses = (degree.course ?? []).filter(isDefined);
 
-      return courses.length ? { title, courses } : null;
+      return courses.length ? { title, degreeSlug, courses } : null;
     })
     .filter(isDefined);
 }
 
 function CourseLinkItem({
   course,
+  degreeSlug,
   variant,
   onClick,
 }: {
   course: Course;
+  degreeSlug: string | null;
   variant: "mobile" | "desktop";
   onClick?: () => void;
 }) {
+  const href = degreeSlug
+    ? `/course/${degreeSlug}/${course.slug}`
+    : `/courses/${course.slug}`;
+
   if (variant === "mobile") {
     return (
       <Link
-        href={`/courses/${course.slug}`}
+        href={href}
         className="flex items-center gap-2 rounded-md px-2 py-2"
         onClick={onClick}
       >
         <div className="bg-primary-orange/50 grid h-8 w-8 shrink-0 place-items-center rounded-full">
-          <i className={`${course.icon_string ?? "fi fi-rr-lesson"} flex text-sm`} />
+          <i
+            className={`${course.icon_string ?? "fi fi-rr-lesson"} flex text-sm`}
+          />
         </div>
         <p className="text-sm leading-tight font-bold">
           {course.title ?? course.slug}
@@ -66,7 +90,7 @@ function CourseLinkItem({
 
   return (
     <Link
-      href={`/courses/${course.slug}`}
+      href={href}
       className="hover:bg-alt-background flex items-center gap-2 rounded-md px-2 py-1 transition-all"
     >
       <div className="bg-primary-orange/50 grid h-10 w-10 place-items-center rounded-full">
@@ -91,17 +115,26 @@ function DegreeGroupSection({
   onLinkClick?: () => void;
 }) {
   const titleClass =
-    variant === "mobile" ? "px-2 pt-2 text-xs font-semibold" : "text-sm font-semibold";
+    variant === "mobile"
+      ? "px-2 pt-2 text-xs font-semibold"
+      : "text-sm font-semibold";
   const listClass = variant === "mobile" ? "space-y-1" : "space-y-2";
 
   return (
     <div className={variant === "mobile" ? "space-y-1" : "space-y-2"}>
-      <p className={titleClass}>{group.title}</p>
+      <Link className="mb-2 block" href={`/course/${group.degreeSlug}`}>
+        <p className={titleClass}>{group.title}</p>
+      </Link>
+
       <ul className={listClass}>
         {group.courses.map((course) => (
-          <li key={course.slug} className="w-full">
+          <li
+            key={`${group.degreeSlug ?? group.title}-${course.slug}`}
+            className="w-full"
+          >
             <CourseLinkItem
               course={course}
+              degreeSlug={group.degreeSlug}
               variant={variant}
               onClick={variant === "mobile" ? onLinkClick : undefined}
             />
@@ -133,7 +166,9 @@ function CoursesMobileDetails({
           />
         </summary>
         <div className="border-t pt-2 pb-3">
-          <p className="pb-2 text-xs font-medium opacity-70">{item.headerDesc}</p>
+          <p className="pb-2 text-xs font-medium opacity-70">
+            {item.headerDesc}
+          </p>
 
           <div className="space-y-3">
             {degreeGroups.map((group, groupIndex) => (
@@ -159,21 +194,34 @@ function CoursesMobileDetails({
   );
 }
 
-function CoursesDesktopContent({ degreeGroups }: { degreeGroups: DegreeGroup[] }) {
+function CoursesDesktopContent({
+  degreeGroups,
+}: {
+  degreeGroups: DegreeGroup[];
+}) {
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
       {degreeGroups.map((group, groupIndex) => (
-        <DegreeGroupSection
-          key={`${group.title}-${groupIndex}`}
-          group={group}
-          variant="desktop"
-        />
+        <div key={`${group.title}-${groupIndex}`}>
+          <DegreeGroupSection group={group} variant="desktop" />
+
+          {/* <Link href={`/course/${group.degreeSlug}`}>
+            <Button variant={"secondary"} className="mt-4" size={"sm"}>
+              Learn More
+              <ChevronRight />
+            </Button>
+          </Link> */}
+        </div>
       ))}
     </div>
   );
 }
 
-const NavigationItems = ({ onLinkClick, links, degrees }: NavigationItemsProps) => {
+const NavigationItems = ({
+  onLinkClick,
+  links,
+  degrees,
+}: NavigationItemsProps) => {
   const mergedNavItems = navItems.map((item) => {
     if (item.slug === "login") {
       const loginLinks = parseJsonData<LoginLink>(links);

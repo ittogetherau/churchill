@@ -1,5 +1,5 @@
-query CourseDetail($slug: String!) {
-  courses(filter: { slug: { _eq: $slug } }) {
+query CourseDetail($slug: String!, $parent: String!) {
+  courses(filter: { slug: { _eq: $slug }, degree: { slug: { _eq: $parent } } }) {
     ...CourseDetailFields
   }
   otherCourses: courses(filter: { slug: { _neq: $slug } }) {

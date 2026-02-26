@@ -50,7 +50,7 @@ const CoursesSlider = ({ data }: { data: CourseSummaryFieldsFragment[] }) => {
                 faculty={item.degree?.title ?? ""}
                 title={item.title ?? ""}
                 subTitle={item.description ?? ""}
-                link={`/courses/${item?.slug ?? ""}`}
+                link={`/course/${item.degree?.slug}/${item?.slug ?? ""}`}
               />
             </CarouselItem>
           ))}

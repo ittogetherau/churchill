@@ -1,0 +1,8 @@
+query CourseDegreeBySlug($slug: String!) {
+  courses(filter: { slug: { _eq: $slug } }) {
+    slug
+    degree {
+      slug
+    }
+  }
+}

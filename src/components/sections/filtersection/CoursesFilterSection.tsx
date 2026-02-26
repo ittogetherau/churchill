@@ -14,16 +14,18 @@ const CoursesFilterSection: React.FC<prosp> = ({ data }) => {
   return (
     <ContainerLayout>
       <div className="space-y-4">
-        {data.map((el, i) => (
-          <CourseDetailsCard
-            key={i}
-            subTitle={el.description ?? ""}
-            faculty={el.degree?.title ?? ""}
-            title={el.title ?? ""}
-            slug={el.slug ?? ""}
-            courseDetails={el.program_details ?? []}
-          />
-        ))}
+        {data.map((el, i) => {
+          return (
+            <CourseDetailsCard
+              key={i}
+              subTitle={el.description ?? ""}
+              faculty={el.degree?.title ?? ""}
+              title={el.title ?? ""}
+              href={`/course/${el.degree?.slug}/${el.slug}`}
+              courseDetails={el.program_details ?? []}
+            />
+          );
+        })}
       </div>
     </ContainerLayout>
   );
