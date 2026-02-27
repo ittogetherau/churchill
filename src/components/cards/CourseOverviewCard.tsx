@@ -2,6 +2,7 @@ import React from "react";
 import FadeUpAnimation from "@/animations/FadeUp";
 import ContainerLayout from "@/layouts/container-layout";
 import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 type ProgramDetail = NonNullable<
   CourseDetailFieldsFragment["program_details"]
@@ -28,17 +29,21 @@ const CourseOverviewSection = ({ data }: props) => {
 
               <div className="">
                 {item?.label && item.label.length > 1 && (
-                  <div
+                  <RichTextRenderer
+                    content={item?.label}
+                    richText={false}
                     className="text-[#2C2B4B]"
-                    dangerouslySetInnerHTML={{ __html: item?.label }}
-                  ></div>
+                  />
                 )}
 
                 {item?.description && (
-                  <h3
-                    className="text-lg font-bold text-[#2C2B4B]"
-                    dangerouslySetInnerHTML={{ __html: item?.description }}
-                  ></h3>
+                  <h3 className="text-lg font-bold text-[#2C2B4B]">
+                    <RichTextRenderer
+                      as="span"
+                      content={item?.description}
+                      richText={false}
+                    />
+                  </h3>
                 )}
               </div>
             </div>

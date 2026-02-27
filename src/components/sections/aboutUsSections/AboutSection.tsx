@@ -1,6 +1,7 @@
 import { MessagesData } from "@/constDatas/about_page";
 import SpacingLayout from "@/layouts/spacing-layout";
 import Image from "next/image";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 const AboutSection = () => {
   return (
@@ -16,10 +17,7 @@ const AboutSection = () => {
                 <h2 className="mb-2 text-4xl font-bold text-[#2C2B4B]">
                   {item?.title}
                 </h2>
-                <div
-                  className="rich_text_container"
-                  dangerouslySetInnerHTML={{ __html: item?.description }}
-                />
+                <RichTextRenderer content={item?.description} richText />
               </div>
 
               <Image

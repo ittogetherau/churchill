@@ -1,10 +1,10 @@
+import FadeUpAnimation from "@/animations/FadeUp";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import Button from "../ui-elements/button";
-
-import FadeUpAnimation from "@/animations/FadeUp";
 
 type Props = {
   image: string;
@@ -96,10 +96,17 @@ const TopBannerCard = ({
 
             {subTitle && (
               <FadeUpAnimation delay={0.2}>
-                <div
-                  className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-lg"
-                  dangerouslySetInnerHTML={{ __html: subTitle }}
-                ></div>
+                {typeof subTitle === "string" ? (
+                  <RichTextRenderer
+                    content={subTitle}
+                    richText={false}
+                    className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-lg"
+                  />
+                ) : (
+                  <div className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-lg">
+                    {subTitle}
+                  </div>
+                )}
               </FadeUpAnimation>
             )}
 

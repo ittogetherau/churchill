@@ -1,6 +1,7 @@
 import { PatternBannerCard } from "@/components/cards";
 import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import {
   ColumnFieldsFragment,
   CustomPageDocument,
@@ -55,10 +56,7 @@ function Column({ column }: { column: ColumnFieldsFragment["columns_id"] }) {
       {column.description && <p>{column.description}</p>}
 
       {column.rich_text && (
-        <div
-          className="rich_text_container"
-          dangerouslySetInnerHTML={{ __html: column.rich_text }}
-        />
+        <RichTextRenderer content={column.rich_text} richText />
       )}
 
       {column.button_label && column.button_url && (
@@ -99,10 +97,7 @@ function Section({
       )}
 
       {section.rich_text && (
-        <div
-          className="rich_text_container"
-          dangerouslySetInnerHTML={{ __html: section.rich_text }}
-        />
+        <RichTextRenderer content={section.rich_text} richText />
       )}
 
       {validColumns.length > 0 && (

@@ -2,6 +2,7 @@
 import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import React, { useMemo, useState } from "react";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 type CourseStructure = NonNullable<
   CourseDetailFieldsFragment["course_structure"]
@@ -50,11 +51,10 @@ const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {
           (item, index) =>
             selectedIndex === index && (
               <div className="w-full rounded-md" key={index}>
-                <div
-                  className="rich_text_container w-full overflow-x-scroll"
-                  dangerouslySetInnerHTML={{
-                    __html: item?.rich_text ?? "",
-                  }}
+                <RichTextRenderer
+                  content={item?.rich_text ?? ""}
+                  richText
+                  className="w-full overflow-x-scroll"
                 />
               </div>
             )
@@ -66,9 +66,9 @@ const TabbedPane: React.FC<TabbedPaneProps> = ({ data }) => {
           (item, index) =>
             selectedIndex === index && (
               <div className="w-full rounded-md" key={index}>
-                <div
-                  className="rich_text_container"
-                  dangerouslySetInnerHTML={{ __html: item?.rich_text ?? "" }}
+                <RichTextRenderer
+                  content={item?.rich_text ?? ""}
+                  richText
                 />
               </div>
             )

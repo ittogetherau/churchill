@@ -1,4 +1,5 @@
 import Button from "@/components/ui-elements/button";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
@@ -32,10 +33,11 @@ const CourseDetailsCard = ({
           {title}
         </h2>
 
-        <div
-          dangerouslySetInnerHTML={{ __html: subTitle }}
+        <RichTextRenderer
+          content={subTitle}
+          richText={false}
           className="overflow-hidden md:max-h-[4.5rem]"
-        ></div>
+        />
 
         <div className="flex flex-col justify-around gap-4 md:justify-start md:gap-12 lg:flex-row">
           {courseDetails

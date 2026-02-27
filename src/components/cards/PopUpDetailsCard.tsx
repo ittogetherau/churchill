@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface PopUpDetailsCardProps {
   data: {
@@ -41,9 +42,10 @@ const PopUpDetailsCard: React.FC<PopUpDetailsCardProps> = ({
                 <p className="text-[16px] font-bold text-[#E59623]">
                   {subTitle}
                 </p>
-                <div
+                <RichTextRenderer
+                  content={description}
+                  richText={false}
                   className="flex flex-col gap-2"
-                  dangerouslySetInnerHTML={{ __html: description }}
                 />
               </div>
             </div>

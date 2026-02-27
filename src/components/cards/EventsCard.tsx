@@ -4,6 +4,7 @@ import Link from "next/link";
 import Button from "../ui-elements/button";
 import { FaArrowRight } from "react-icons/fa";
 import { TEventTag } from "@/constDatas/eventsData";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 export interface EventsCardProps {
   id?: string | number;
@@ -87,8 +88,9 @@ const EventsCard: React.FC<EventsCardProps> = ({
         </Link>
 
         {description && (
-          <div
-            dangerouslySetInnerHTML={{ __html: description }}
+          <RichTextRenderer
+            content={description}
+            richText={false}
             className="line-clamp-3"
           />
         )}

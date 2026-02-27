@@ -5,6 +5,7 @@ import Button from "../ui-elements/button";
 import { FaArrowRight } from "react-icons/fa";
 
 import FadeUpAnimation from "@/animations/FadeUp";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface HalfTopBannerCardProps {
   image: string;
@@ -69,10 +70,11 @@ const HalfTopBannerCard: React.FC<HalfTopBannerCardProps> = ({
             )}
 
             <FadeUpAnimation delay={0.2}>
-              <div
+              <RichTextRenderer
+                content={subTitle}
+                richText={false}
                 className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-[22px]"
-                dangerouslySetInnerHTML={{ __html: subTitle }}
-              ></div>
+              />
             </FadeUpAnimation>
 
             <div className="flex flex-col gap-1 md:flex-row md:gap-3">

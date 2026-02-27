@@ -1,5 +1,6 @@
 import FadeUpAnimation from "@/animations/FadeUp";
 import { GovernanceCard, PatternBannerCard } from "@/components/cards";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import { TeamMembersDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -43,10 +44,7 @@ const Page = async () => {
       <PatternBannerCard title="Governance & Leadership" />
 
       <ContainerLayout size="sm">
-        <div
-          className="rich_text_container"
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></div>
+        <RichTextRenderer content={content} richText />
       </ContainerLayout>
     </SpacingLayout>
   );

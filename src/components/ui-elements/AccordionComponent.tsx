@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface AccordionItem {
   title: string;
@@ -41,9 +42,10 @@ const AccordionComponent: React.FC<props> = ({ data }) => {
             </h2>
 
             {activeIndex === index && (
-              <div
-                className="rich_text_container px-4 py-2"
-                dangerouslySetInnerHTML={{ __html: item.description }}
+              <RichTextRenderer
+                content={item.description}
+                richText
+                className="px-4 py-2"
               />
             )}
           </div>

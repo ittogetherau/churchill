@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui-elements/button";
 import { FaArrowRight } from "react-icons/fa";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface NewsItemCardProps {
   image: string;
@@ -69,8 +70,9 @@ const NewsItemCard: React.FC<NewsItemCardProps> = ({
           </h3>
         </Link>
 
-        <div
-          dangerouslySetInnerHTML={{ __html: description }}
+        <RichTextRenderer
+          content={description}
+          richText={false}
           className="line-clamp-4"
         />
 

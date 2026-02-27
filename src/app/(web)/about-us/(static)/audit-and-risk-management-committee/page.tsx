@@ -1,6 +1,7 @@
 import { PatternBannerCard } from "@/components/cards";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 const content = `<div>
   <h2>Audit and Risk Management Committee</h2>
@@ -71,10 +72,7 @@ const Page = () => {
       <PatternBannerCard title="Governance & Leadership" />
 
       <ContainerLayout size="sm">
-        <div
-          className="rich_text_container"
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></div>
+        <RichTextRenderer content={content} richText />
       </ContainerLayout>
     </SpacingLayout>
   );

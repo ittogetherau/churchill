@@ -1,6 +1,7 @@
 import PatternBannerCard from "@/components/cards/PatternBannerCard";
 import AccordionComponent from "@/components/ui-elements/AccordionComponent";
 import Button from "@/components/ui-elements/button";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import { checklist } from "@/constDatas/contactData";
 import features from "@/constDatas/features";
 import ContainerLayout from "@/layouts/container-layout";
@@ -41,9 +42,10 @@ const Page = () => {
         reversed={true}
       >
         <h2 className="mb-4 text-3xl font-bold">{title}</h2>
-        <div
+        <RichTextRenderer
+          content={description}
+          richText={false}
           className="prose prose-lg mb-5 text-gray-800"
-          dangerouslySetInnerHTML={{ __html: description }}
         />
 
         <Link href={cta.href} target={cta.external ? "_blank" : "_self"}>

@@ -8,6 +8,7 @@ import TwoColumnLayout from "@/layouts/two-column-layout";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -62,9 +63,10 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
           </HeadingText>
 
           {member.description && (
-            <div
-              className="rich_text_Container space-y-4"
-              dangerouslySetInnerHTML={{ __html: member.description }}
+            <RichTextRenderer
+              content={member.description}
+              richText
+              className="space-y-4"
             />
           )}
         </TwoColumnLayout>

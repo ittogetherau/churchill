@@ -5,6 +5,7 @@ import Copyurl from "@/components/sections/blogSections/CopyUrl";
 import MoreEventsSection from "@/components/sections/EventsSection/MoreEventsSection";
 import { TEvent, TStaticEvent } from "@/constDatas/eventsData";
 import { siteConfig } from "@/config/siteConfig";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface PageProps {
   params: { slug: string };
@@ -84,8 +85,9 @@ const page = async ({ params }: PageProps) => {
                     {data?.title}
                   </h2>
 
-                  <div
-                    dangerouslySetInnerHTML={{ __html: data.description ?? "" }}
+                  <RichTextRenderer
+                    content={data.description ?? ""}
+                    richText={false}
                   />
                 </div>
 
@@ -100,10 +102,7 @@ const page = async ({ params }: PageProps) => {
                 </div>
 
                 <div className="container-blog">
-                  <div
-                    className="rich_text_container"
-                    dangerouslySetInnerHTML={{ __html: data.rich_text ?? "" }}
-                  />
+                  <RichTextRenderer content={data.rich_text ?? ""} richText />
                 </div>
               </article>
 

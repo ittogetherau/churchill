@@ -1,6 +1,7 @@
 import { TopBannerCard } from "@/components/cards";
 import CoursesFilterSection from "@/components/sections/filtersection/CoursesFilterSection";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import {
   CourseDetailFieldsFragment,
   DegreeDetailDocument,
@@ -55,28 +56,23 @@ const Page = async ({ params }: { params: Promise<{ degree: string }> }) => {
 
       {degreeData?.summary && (
         <ContainerLayout size="sm">
-          <div
-            className="rich_text_container"
-            dangerouslySetInnerHTML={{ __html: degreeData.summary }}
-          ></div>
+          <RichTextRenderer content={degreeData.summary} richText />
         </ContainerLayout>
       )}
 
       {degreeData?.learning_outcomes && (
         <ContainerLayout size="sm">
-          <div
-            className="rich_text_container ul_design"
-            dangerouslySetInnerHTML={{ __html: degreeData.learning_outcomes }}
-          ></div>
+          <RichTextRenderer
+            content={degreeData.learning_outcomes}
+            richText
+            className="ul_design"
+          />
         </ContainerLayout>
       )}
 
       {degreeData?.additional_content && (
         <ContainerLayout size="sm">
-          <div
-            className="rich_text_container"
-            dangerouslySetInnerHTML={{ __html: degreeData.additional_content }}
-          ></div>
+          <RichTextRenderer content={degreeData.additional_content} richText />
         </ContainerLayout>
       )}
 

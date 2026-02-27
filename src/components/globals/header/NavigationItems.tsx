@@ -2,14 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Category, navItems, type NavItem } from "@/constDatas/navItems";
+import { HeaderQuery } from "@/graphql/generated/graphql";
+import { useMobile } from "@/hooks/useMobile";
 import ContainerLayout from "@/layouts/container-layout";
-import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
+import { parseJsonData } from "@/utils/parse-json-data";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import GoogleSearch from "./GoogleSearch";
 import HoverDropdown from "./HoverDropdown";
-import { useMobile } from "@/hooks/useMobile";
-import { HeaderQuery } from "@/graphql/generated/graphql";
-import { parseJsonData } from "@/utils/parse-json-data";
 
 type NavigationItemsProps = {
   onLinkClick: () => void;
@@ -117,13 +117,16 @@ function DegreeGroupSection({
   const titleClass =
     variant === "mobile"
       ? "px-2 pt-2 text-xs font-semibold"
-      : "text-sm font-semibold";
+      : "text-base font-semibold";
   const listClass = variant === "mobile" ? "space-y-1" : "space-y-2";
 
   return (
     <div className={variant === "mobile" ? "space-y-1" : "space-y-2"}>
-      <Link className="mb-2 block" href={`/course/${group.degreeSlug}`}>
-        <p className={titleClass}>{group.title}</p>
+      <Link
+        className="decoration-primary mb-2 block underline decoration-2"
+        href={`/course/${group.degreeSlug}`}
+      >
+        <p className={`${titleClass}`}>{group.title}</p>
       </Link>
 
       <ul className={listClass}>
@@ -205,12 +208,7 @@ function CoursesDesktopContent({
         <div key={`${group.title}-${groupIndex}`}>
           <DegreeGroupSection group={group} variant="desktop" />
 
-          {/* <Link href={`/course/${group.degreeSlug}`}>
-            <Button variant={"secondary"} className="mt-4" size={"sm"}>
-              Learn More
-              <ChevronRight />
-            </Button>
-          </Link> */}
+          {/* <Link href={`/course/${group.degreeSlug}`}><Button variant={"secondary"} className="mt-4" size={"sm"}>Learn More <ChevronRight /></Button></Link>*/}
         </div>
       ))}
     </div>

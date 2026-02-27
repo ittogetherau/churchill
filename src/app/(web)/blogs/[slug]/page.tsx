@@ -1,5 +1,6 @@
 import BlogSection from "@/components/sections/blogSections/BlogSection";
 import Copyurl from "@/components/sections/blogSections/CopyUrl";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import { siteConfig } from "@/config/siteConfig";
 import { BlogDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
@@ -143,10 +144,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
       <ContainerLayout size="sm">
         <article>
           {blog?.rich_text && (
-            <div
-              className="rich_text_container"
-              dangerouslySetInnerHTML={{ __html: blog.rich_text }}
-            />
+            <RichTextRenderer content={blog.rich_text} richText />
           )}
         </article>
       </ContainerLayout>

@@ -6,6 +6,7 @@ import { AboutUsPageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 const page = async () => {
   const data = await runQuery(AboutUsPageDocument);
@@ -39,10 +40,7 @@ const page = async () => {
 
       <ContainerLayout size="sm">
         {aboutContent && (
-          <div
-            className="rich_text_container"
-            dangerouslySetInnerHTML={{ __html: aboutContent }}
-          />
+          <RichTextRenderer content={aboutContent} richText />
         )}
       </ContainerLayout>
 

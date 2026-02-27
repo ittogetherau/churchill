@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import HeadingText from "../ui/heading-text";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface props {
   image: string;
@@ -46,10 +47,11 @@ const CoursesCard = ({ image, title, faculty, subTitle, link }: props) => {
         </div>
 
         <div className="flex flex-col justify-between gap-4">
-          <div
+          <RichTextRenderer
+            content={subTitle}
+            richText={false}
             className="line-clamp-4"
-            dangerouslySetInnerHTML={{ __html: subTitle }}
-          ></div>
+          />
 
           <div className="flex flex-col items-center justify-center gap-3 pb-2 sm:flex-row sm:justify-between">
             <Link className="w-full" href={`${link}`}>

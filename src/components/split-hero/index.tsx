@@ -1,4 +1,5 @@
 import Button from "@/components/ui-elements/button";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,9 +31,10 @@ const SplitHero = ({ image, description, title, cta }: SplitHeroProps) => {
 
       <div className="w-full lg:w-1/2 lg:pl-10">
         <h2 className="mb-4 text-3xl font-bold">{title}</h2>
-        <div
+        <RichTextRenderer
+          content={description}
+          richText={false}
           className="prose prose-lg mb-5 text-gray-800"
-          dangerouslySetInnerHTML={{ __html: description }}
         />
 
         {cta && (

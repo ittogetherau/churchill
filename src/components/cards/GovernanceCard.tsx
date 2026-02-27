@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface GovernanceCardProps {
   image?: string;
@@ -41,9 +42,10 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({
         </p>
 
         {description && (
-          <div
+          <RichTextRenderer
+            content={description}
+            richText={false}
             className="line-clamp-3"
-            dangerouslySetInnerHTML={{ __html: description }}
           />
         )}
 
