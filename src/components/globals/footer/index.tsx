@@ -371,11 +371,31 @@ const Footer: React.FC = () => {
               the land and pays respect to their elders, past and present
             </p>
           </div>
-          <hr className="border-neutral-950/25" />
-          <p className="py-4 text-center text-[14px] text-[#323432]">
-            Copyright ©{new Date().getFullYear()} Mpika Holdings Pty Ltd (ACN:
-            612 507 141) t/as Churchill Institute of Higher Education (ABN: 91
-            612 507 141).
+          <hr className="mt-3 mb-px border-neutral-950/25" />
+
+          <p className="space-x-2 py-4 text-center text-sm font-semibold text-[#323432]">
+            <span>
+              Copyright &copy;{new Date().getFullYear()} Mpika Holdings Pty Ltd
+              (ACN: 612 507 141) t/as Churchill Institute of Higher Education
+              (ABN: 91 612 507 141).
+            </span>
+            <a
+              href="https://www.teqsa.gov.au/provider/mpika-holdings-pty-ltd"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Link PRV14305"
+            >
+              PRV14305
+            </a>
+            <span>|</span>
+            <a
+              href="https://cricos.education.gov.au/Institution/InstitutionDetails.aspx?ProviderID=4082"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Link CRICOS Provider: 04082E"
+            >
+              CRICOS Provider: 04082E
+            </a>
           </p>
         </ContainerLayout>
       </div>
