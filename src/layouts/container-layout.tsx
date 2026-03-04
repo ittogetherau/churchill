@@ -1,4 +1,5 @@
 import React, { type ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 export interface Props {
   size?: "sm" | "md" | "base";
@@ -8,24 +9,27 @@ export interface Props {
   children: ReactNode;
 }
 
-const ContainerLayout: React.FC<Props> = ({
+const ContainerLayout = ({
   size = "base",
   isCenter = true,
   children,
   pad = true,
   className,
-}) => (
-  <div
-    className={`${
-      size === "sm"
-        ? "container-sm"
-        : size === "md"
-          ? "container-md"
-          : "container"
-    } ${isCenter ? "mx-auto" : ""} ${pad ? "px-4" : ""} ${className} `}
-  >
-    {children}
-  </div>
-);
+}: Props) => {
+  const sizeClass =
+    size === "sm"
+      ? "container-sm"
+      : size === "md"
+        ? "container-md"
+        : "container";
+
+  return (
+    <div
+      className={cn(sizeClass, isCenter && "mx-auto", pad && "px-4", className)}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default ContainerLayout;

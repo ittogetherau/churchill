@@ -1,16 +1,21 @@
 query Campus {
   campus_locations {
-    title
-    summary
-    image {
-      id
-      filename_download
+    ...CampusCoreFields
+  }
+}
+
+query CampusDetails($slug: String!) {
+  campus_locations(filter: { slug: { _eq: $slug } }) {
+    ...CampusCoreFields
+    description
+    addtional_info_section
+  }
+
+  campus_locations_files(
+    filter: { campus_locations_id: { slug: { _eq: $slug } } }
+  ) {
+    directus_files_id {
+      ...FileFields
     }
-    address
-    website
-    phone
-    email
-    location_url
-    location_badge
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import ContainerLayout from "./container-layout";
 
 interface TwoColumnLayoutProps {
@@ -7,7 +7,7 @@ interface TwoColumnLayoutProps {
   sidebar: React.ReactNode;
   reversed?: boolean; // >= md
   isReversedInSmall?: boolean; // < md only
-  sticky?: boolean;
+  isSticky?: boolean;
   className?: string;
   mainClassName?: string;
   sidebarClassName?: string;
@@ -15,25 +15,25 @@ interface TwoColumnLayoutProps {
   isContainer?: boolean;
 }
 
-const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
+const TwoColumnLayout = ({
   children,
   sidebar,
   reversed = false,
   isReversedInSmall = false,
-  sticky = true,
+  isSticky = true,
   className,
   mainClassName,
   sidebarClassName,
   isEqual = false,
   isContainer = true,
-}) => {
-  const grid = clsx(
+}: TwoColumnLayoutProps) => {
+  const grid = cn(
     "relative grid grid-cols-1 gap-4 gap-y-10 md:grid-cols-4 xl:grid-cols-6 xl:gap-6",
     className,
   );
 
   const stickyWrap = (node: React.ReactNode) =>
-    sticky ? (
+    isSticky ? (
       <div className="h-fit w-full md:sticky md:top-30">{node}</div>
     ) : (
       node
@@ -47,23 +47,15 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
     ? "md:col-span-2 xl:col-span-3"
     : "md:col-span-2 xl:col-span-2";
 
-  // order logic
-  // mobile (<md)
   const mobileMainOrder = isReversedInSmall ? "order-2" : "order-1";
   const mobileSidebarOrder = isReversedInSmall ? "order-1" : "order-2";
 
-  // desktop (>=md)
   const desktopMainOrder = reversed ? "md:order-2" : "md:order-1";
   const desktopSidebarOrder = reversed ? "md:order-1" : "md:order-2";
 
   const Main = (
     <section
-      className={clsx(
-        mainCols,
-        mobileMainOrder,
-        desktopMainOrder,
-        mainClassName,
-      )}
+      className={cn(mainCols, mobileMainOrder, desktopMainOrder, mainClassName)}
     >
       {stickyWrap(children)}
     </section>
@@ -71,7 +63,7 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
 
   const Sidebar = (
     <aside
-      className={clsx(
+      className={cn(
         sidebarCols,
         mobileSidebarOrder,
         desktopSidebarOrder,
@@ -82,7 +74,7 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
     </aside>
   );
 
-  const Wrapper = isContainer ? ContainerLayout : "div";
+  const Wrapper: React.ElementType = isContainer ? ContainerLayout : "div";
 
   return (
     <Wrapper className={grid}>

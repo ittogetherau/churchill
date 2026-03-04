@@ -18,11 +18,13 @@ import { HeaderQuery } from "@/graphql/generated/graphql";
 type MobileNavigationProps = {
   degrees?: HeaderQuery["degree"];
   links?: any;
+  campusLocations?: HeaderQuery["campus_locations"];
 };
 
 const MobileNavigation = ({
   degrees = [],
   links,
+  campusLocations,
 }: MobileNavigationProps) => {
   const [open, setOpen] = useState(false);
   const isMobile = useMobile();
@@ -73,6 +75,7 @@ const MobileNavigation = ({
               <NavigationItems
                 links={links}
                 degrees={degrees}
+                campusLocations={campusLocations}
                 onLinkClick={() => setOpen(false)}
               />
             </ContainerLayout>

@@ -9,6 +9,11 @@ query Header {
   courses {
     ...CourseCoreFields
   }
+  campus_locations {
+    title
+    slug
+    icon
+  }
   announcements {
     announcement_text
   }

@@ -15,6 +15,7 @@ type NavigationItemsProps = {
   onLinkClick: () => void;
   degrees?: HeaderQuery["degree"];
   links?: unknown;
+  campusLocations?: HeaderQuery["campus_locations"];
 };
 
 type LoginLink = { title?: string; link?: string; icon?: string };
@@ -219,6 +220,7 @@ const NavigationItems = ({
   onLinkClick,
   links,
   degrees,
+  campusLocations,
 }: NavigationItemsProps) => {
   const mergedNavItems = navItems.map((item) => {
     if (item.slug === "login") {
@@ -240,6 +242,28 @@ const NavigationItems = ({
       return {
         ...item,
         Catagories: loginCategories.length ? loginCategories : item.Catagories,
+      };
+    }
+
+    if (item.slug === "our-campuses") {
+      const campusCategories = campusLocations?.map((el, i) => {
+        const title = el.title?.trim() || `Locaiton ${i + 1}`;
+        const slug = el.slug ?? "#";
+        const icon = el.icon?.trim() || "fi fi-rr-octagon";
+
+        return {
+          menuTitle: title,
+          headerIcon: icon,
+          slug: slug,
+        };
+      });
+
+      return {
+        ...item,
+        Catagories:
+          campusCategories && campusCategories.length
+            ? campusCategories
+            : item.Catagories,
       };
     }
 

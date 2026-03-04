@@ -1,12 +1,16 @@
 import React from "react";
+import { cn } from "@/lib/utils";
 
-interface Props extends React.HtmlHTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
+
 const SpacingLayout = ({ children, className, ...props }: Props) => {
-  const classes = `${className} md:space-y-22 md:mb-22 space-y-16 mb-16`;
   return (
-    <div {...props} className={classes}>
+    <div
+      {...props}
+      className={cn("mb-16 space-y-16 md:mb-22 md:space-y-22", className)}
+    >
       {children}
     </div>
   );

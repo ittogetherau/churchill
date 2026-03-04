@@ -1,0 +1,14 @@
+fragment CampusCoreFields on campus_locations {
+  title
+  summary
+  slug
+  image {
+    ...FileFields
+  }
+  address
+  website
+  phone
+  email
+  location_url
+  location_badge
+}

@@ -21,6 +21,7 @@ const Header: React.FC = () => {
   const announcements = data?.announcements ?? {};
   const links = data?.login_links?.links ?? [];
   const degrees = data?.degree ?? [];
+  const campusLocations = data?.campus_locations ?? [];
 
   useEffect(() => {
     async function fetchHeader() {
@@ -58,12 +59,17 @@ const Header: React.FC = () => {
             <NavigationItems
               links={links}
               degrees={degrees}
+              campusLocations={campusLocations}
               onLinkClick={() => {}}
             />
           </div>
 
           <div className="block md:hidden">
-            <MobileNavigation links={links} degrees={degrees} />
+            <MobileNavigation
+              links={links}
+              campusLocations={campusLocations}
+              degrees={degrees}
+            />
           </div>
         </div>
       </ContainerLayout>

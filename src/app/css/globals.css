@@ -190,7 +190,7 @@
   height: 25%;
   background-color: var(--color-primary-orange);
   position: absolute;
-  width: 75%;
+  width: 100%;
   left: 0;
   bottom: 5px;
   z-index: -1;

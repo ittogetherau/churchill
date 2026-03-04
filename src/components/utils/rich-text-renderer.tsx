@@ -24,6 +24,7 @@ export default function RichTextRenderer({
 
   return (
     <Component
+      suppressHydrationWarning
       className={combinedClassName}
       dangerouslySetInnerHTML={{ __html: html }}
     />
