@@ -1,13 +1,15 @@
-import React from "react";
-import Button from "../ui-elements/button";
-import { FaArrowRight } from "react-icons/fa";
+import { routes } from "@/config/routes";
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
+import Button from "../ui-elements/button";
+
 interface ApplyCardProps {
   title: string;
   description: string;
   image: string;
 }
+
 const ApplyCard = ({ title, description, image }: ApplyCardProps) => {
   return (
     <div
@@ -23,7 +25,7 @@ const ApplyCard = ({ title, description, image }: ApplyCardProps) => {
         <p>{description}</p>
         <div>
           <Link
-            href={"https://churchill.edu.au/apply-for-course-admission"}
+            href={routes.content.slug("apply-for-course-admission")}
             className="w-max"
           >
             <Button

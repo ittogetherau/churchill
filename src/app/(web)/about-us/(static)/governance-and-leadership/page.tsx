@@ -1,5 +1,6 @@
 import FadeUpAnimation from "@/animations/FadeUp";
 import { GovernanceCard, PatternBannerCard } from "@/components/cards";
+import { routes } from "@/config/routes";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import { TeamMembersDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
@@ -11,11 +12,11 @@ const content = `<div>
   <p>Churchill Institute of Higher Education is governed by:</p>
   <ul>
     <li>
-      The <a href="/about-us/governance-council">Governing Council</a> as the Institute’s corporate governing body; and its sub-committees:
+      The <a href="${routes.aboutUs.governanceCouncil}">Governing Council</a> as the Institute’s corporate governing body; and its sub-committees:
       <ul>
-        <li>The <a href="/about-us/audit-and-risk-management-committee">Audit &amp; Risk Management Committee (ARMC)</a></li>
+        <li>The <a href="${routes.aboutUs.auditAndRiskManagementCommittee}">Audit &amp; Risk Management Committee (ARMC)</a></li>
         <li>
-          The <a href="/about-us/academic-board">Academic Board</a> (the primary academic governing body), supported by:
+          The <a href="${routes.aboutUs.academicBoard}">Academic Board</a> (the primary academic governing body), supported by:
           <ul>
             <li>The Teaching and Learning Committee</li>
             <li>The Course and Industry Advisory Committee</li>

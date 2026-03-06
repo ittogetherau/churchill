@@ -1,5 +1,6 @@
 import CourseDetailsCard from "@/components/cards/CourseDetailsCard";
 import DataNotFound from "@/components/globals/DataNotFound";
+import { routes } from "@/config/routes";
 import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import React from "react";
@@ -21,7 +22,7 @@ const CoursesFilterSection: React.FC<prosp> = ({ data }) => {
               subTitle={el.description ?? ""}
               faculty={el.degree?.title ?? ""}
               title={el.title ?? ""}
-              href={`/course/${el.degree?.slug}/${el.slug}`}
+              href={routes.course.detail(el.degree?.slug ?? "", el.slug ?? "")}
               courseDetails={el.program_details ?? []}
             />
           );

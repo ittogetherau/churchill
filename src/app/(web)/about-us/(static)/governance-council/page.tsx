@@ -1,4 +1,5 @@
 import { PatternBannerCard } from "@/components/cards";
+import { routes } from "@/config/routes";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
@@ -6,7 +7,7 @@ import RichTextRenderer from "@/components/utils/rich-text-renderer";
 const content = `<div>
   <h2>Governing Council</h2>
   <p>
-    Per Churchill Institute’s Governance Framework, the Governing Council is Churchill Institute’s corporate and independent governing body, with powers over all matters related to the management of higher education. The Governing Council is advised on financial and risk management matters by the <a href="/about-us/audit-and-risk-management-committee">Audit &amp; Risk Management Committee (ARMC)</a> and delegates the academic governance of the Institute to the <a href="/about-us/academic-board">Academic Board</a>.
+    Per Churchill Institute’s Governance Framework, the Governing Council is Churchill Institute’s corporate and independent governing body, with powers over all matters related to the management of higher education. The Governing Council is advised on financial and risk management matters by the <a href="${routes.aboutUs.auditAndRiskManagementCommittee}">Audit &amp; Risk Management Committee (ARMC)</a> and delegates the academic governance of the Institute to the <a href="${routes.aboutUs.academicBoard}">Academic Board</a>.
   </p>
 
   <h3>Functions</h3>
@@ -39,22 +40,22 @@ const content = `<div>
       <tr>
         <td>Chairperson</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/brendan-boyle">Professor Brendan Boyle</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("brendan-boyle")}">Professor Brendan Boyle</a></td>
       </tr>
       <tr>
         <td>Chair of the Academic Board</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/maria-varua">Assoc Prof Maria Varua</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("maria-varua")}">Assoc Prof Maria Varua</a></td>
       </tr>
       <tr>
         <td>Chair of the Audit &amp; Risk Management Committee</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/dr-joo-gim-heaney">Dr Joo-Gim Heaney</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("dr-joo-gim-heaney")}">Dr Joo-Gim Heaney</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/ravi-seethamraju">Assoc Prof Ravi Seethamraju</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("ravi-seethamraju")}">Assoc Prof Ravi Seethamraju</a></td>
       </tr>
       <tr>
         <td>Member</td>
@@ -64,7 +65,7 @@ const content = `<div>
       <tr>
         <td>CEO &amp; Dean</td>
         <td>No</td>
-        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("david-knight")}">Mr. David Knight</a></td>
       </tr>
     </tbody>
   </table>

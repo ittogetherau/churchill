@@ -2,6 +2,7 @@ import { TopBannerCard } from "@/components/cards";
 import AboutUsPageSlider, {
   type AboutUsPageSliderItem,
 } from "@/components/sliders/AboutUsPageSlider";
+import { routes } from "@/config/routes";
 import { AboutUsPageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -33,8 +34,8 @@ const page = async () => {
         subTitle={
           "Churchill Institute of Higher Education delivers industry-relevant degrees designed to prepare students for real-world careers. With accredited programs in Business and Information Technology, strong industry engagement, and a supportive learning environment, Churchill equips students with the knowledge, practical skills, and global perspective needed to succeed in today’s evolving workforce."
         }
-        link={`/courses`}
-        linkA={`https://churchill.edu.au/apply-for-course-admission`}
+        link={routes.course.root}
+        linkA={routes.content.slug("apply-for-course-admission")}
         BtnAText={"Explore Our Courses"}
         BtnBText={"Apply Now"}
       />

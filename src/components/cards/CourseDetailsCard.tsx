@@ -1,5 +1,6 @@
 import Button from "@/components/ui-elements/button";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
+import { routes } from "@/config/routes";
 import { type CourseDetailFieldsFragment } from "@/graphql/generated/graphql";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
@@ -15,6 +16,7 @@ interface CourseDetailsProp {
   faculty: string;
   courseDetails: ProgramDetail[];
 }
+
 const CourseDetailsCard = ({
   title,
   subTitle,
@@ -69,7 +71,7 @@ const CourseDetailsCard = ({
           />
         </Link>
         <Link
-          href={"https://churchill.edu.au/apply-for-course-admission"}
+          href={routes.content.slug("apply-for-course-admission")}
           className="w-full flex-1"
         >
           <Button

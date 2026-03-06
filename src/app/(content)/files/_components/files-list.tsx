@@ -1,11 +1,12 @@
 "use client";
 
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
 import HeadingText from "@/components/ui/heading-text";
 import { useMemo, useState } from "react";
 import { Download, FileText, Search, Share2 } from "lucide-react";
 import CopyUrl from "@/components/sections/blogSections/CopyUrl";
 import Link from "next/link";
-import { siteConfig } from "@/config/siteConfig";
 
 type FileListItem = {
   slug?: string | null;
@@ -60,7 +61,7 @@ const FilesList = ({ items }: FilesListProps) => {
         {filteredItems.length > 0
           ? filteredItems.map((el, index) => {
               const fileUrl = el.slug
-                ? `${siteConfig.churchillUrl}/f/${el.slug}`
+                ? `${externalRoutes.churchill}${routes.files.slug(el.slug)}`
                 : "";
 
               return (

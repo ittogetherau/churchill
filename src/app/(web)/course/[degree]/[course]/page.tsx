@@ -3,6 +3,8 @@ import TopBannerCard from "@/components/cards/TopBannerCard";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import CoursesSlider from "@/components/sliders/CoursesSlider";
 import TabbedPane from "@/components/ui-elements/TabbedPane";
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
 import { CourseDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -37,8 +39,8 @@ const Page = async ({
         BtnAText="Apply Now"
         slug={course}
         BtnBText="Enquire Now"
-        link={`https://churchill.edu.au/apply-for-course-admission`}
-        linkA={`https://forms.zohopublic.com.au/CIHE/form/StudentHubEnquiry/formperma/XilFJje5kQ-h7f4saQYbSV4kJ-kAMiG7p1QNfWEvDXs`}
+        link={routes.content.slug("apply-for-course-admission")}
+        linkA={externalRoutes.enquiryForm}
         imageAStyle={`lg:scale-[135%]`}
       />
 

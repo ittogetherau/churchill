@@ -1,7 +1,8 @@
 import BlogSection from "@/components/sections/blogSections/BlogSection";
 import Copyurl from "@/components/sections/blogSections/CopyUrl";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
-import { siteConfig } from "@/config/siteConfig";
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
 import { BlogDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -95,19 +96,22 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   if (!blog) return null;
 
-  const siteUrl = `${siteConfig.churchillUrl}/blogs/${slug}`;
+  const siteUrl = `${externalRoutes.churchill}${routes.blogs.slug(slug)}`;
   const readingTime = calculateReadingTime(blog.rich_text ?? "");
 
   return (
     <>
       <ContainerLayout size="sm" className="mt-8">
         <nav className="flex flex-wrap gap-1 font-semibold text-wrap">
-          <Link className="hover:text-primary-orange transition-all" href="/">
+          <Link
+            className="hover:text-primary-orange transition-all"
+            href={routes.home}
+          >
             Home /
           </Link>
           <Link
             className="hover:text-primary-orange transition-all"
-            href="/blogs"
+            href={routes.blogs.root}
           >
             Blogs /
           </Link>

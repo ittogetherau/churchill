@@ -1,9 +1,10 @@
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
+import { routes } from "@/config/routes";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface GovernanceCardProps {
   image?: string;
@@ -51,7 +52,7 @@ const GovernanceCard: React.FC<GovernanceCardProps> = ({
 
         <Link
           className="w-fit group-hover:text-white"
-          href={`/about-us/teams/${slug}`}
+          href={routes.aboutUs.teams.slug(slug ?? "")}
         >
           <Button variant={"ghost"}>
             Learn More

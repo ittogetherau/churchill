@@ -2,6 +2,7 @@
 import FadeUpAnimation from "@/animations/FadeUp";
 import { BlogItemCard } from "@/components/cards";
 import { Button } from "@/components/ui/button";
+import { routes } from "@/config/routes";
 import { BlogFieldsFragment } from "@/graphql/generated/graphql";
 import { resolveFileLink } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -58,7 +59,7 @@ function BlogSection({
       </section>
 
       <div className="flex justify-center">
-        <Link href={"/blogs"} className="w-max">
+        <Link href={routes.blogs.root} className="w-max">
           <Button variant={"secondary"}>
             More Blogs
             <ArrowRight />

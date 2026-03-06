@@ -1,6 +1,6 @@
 import FadeUpAnimation from "@/animations/FadeUp";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/config/siteConfig";
+import { externalRoutes } from "@/config/externalRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
@@ -84,7 +84,7 @@ const AIHelpSection = () => {
               successfully complete their studies at the Institute.
             </p>
             <Link
-              href={`${siteConfig.studentHubUrl}/assets/Policy-and-procedure/SupportforStudentsPolicy.pdf`}
+              href={`${externalRoutes.studentHub}/assets/Policy-and-procedure/SupportforStudentsPolicy.pdf`}
               className="w-fit"
               target="_blank"
             >

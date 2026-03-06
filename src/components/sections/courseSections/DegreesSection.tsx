@@ -1,4 +1,5 @@
 import CoursesCard from "@/components/cards/CoursesCard";
+import { routes } from "@/config/routes";
 import { DegreesQuery } from "@/graphql/generated/graphql";
 import { resolveFileLink } from "@/graphql/graphql";
 
@@ -24,7 +25,7 @@ const DegreesSection = ({ degrees }: DegreesSectionProps) => {
                   : "Degree"
               }
               subTitle={degree.description ?? ""}
-              link={`/course/${degree.slug!}`}
+              link={routes.course.degree(degree.slug!)}
             />
           ))}
         </div>

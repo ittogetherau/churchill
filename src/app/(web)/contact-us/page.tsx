@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { contactData } from "@/constDatas/contactData";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
 
 const ContactUs = () => {
   return (
@@ -32,12 +32,9 @@ const ContactUs = () => {
                   "https://forms.zohopublic.com.au/CIHE/form/StudentHubEnquiry/formperma/XilFJje5kQ-h7f4saQYbSV4kJ-kAMiG7p1QNfWEvDXs"
                 }
               >
-                <Button
-                  className={
-                    "rounded-md border border-2 border-[#606060] bg-[#E59623] px-6 py-3 text-[14px] font-semibold transition duration-200 ease-in-out hover:scale-105 hover:bg-[#ff9700] md:px-8"
-                  }
-                >
-                  <FaArrowRight /> Ask Us
+                <Button>
+                  Ask us
+                  <ChevronRight />
                 </Button>
               </Link>
             </div>

@@ -2,6 +2,7 @@ import { TopBannerCard } from "@/components/cards";
 import CoursesFilterSection from "@/components/sections/filtersection/CoursesFilterSection";
 import EnquirySection from "@/components/sections/homeSections/EnquirySection";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
+import { routes } from "@/config/routes";
 import {
   CourseDetailFieldsFragment,
   DegreeDetailDocument,
@@ -30,7 +31,7 @@ const Page = async ({ params }: { params: Promise<{ degree: string }> }) => {
         subTitle="Explore our innovative programs and transform your career."
         BtnAText="Apply Now"
         BtnBText="View Courses"
-        link="https://churchill.edu.au/apply-for-course-admission"
+        link={routes.content.slug("apply-for-course-admission")}
         linkA="#courses"
       />
 

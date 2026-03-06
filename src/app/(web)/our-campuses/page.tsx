@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { routes } from "@/config/routes";
 import { CampusDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -146,7 +147,7 @@ const Page = async () => {
                   })}
                 </ul>
 
-                <Link href={`/our-campuses/${campus.slug}`}>
+                <Link href={routes.ourCampuses.slug(campus.slug ?? "")}>
                   <Button>
                     Learn More
                     <ChevronRight className="ml-1 h-4 w-4" />

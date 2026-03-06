@@ -8,7 +8,6 @@ import {
 import CoursesCard from "@/components/cards/CoursesCard";
 import EventsCard from "@/components/cards/EventsCard";
 import GovernanceCard from "@/components/cards/GovernanceCard";
-import GuideCard from "@/components/cards/GuideCard";
 import HalfTopBannerCard from "@/components/cards/HalfTopBannerCard";
 import KeyDatesCard from "@/components/cards/KeyDatesCard";
 import NewsItemCard from "@/components/cards/NewsItemCard";
@@ -27,7 +26,6 @@ export {
   CoursesCard,
   EventsCard,
   GovernanceCard,
-  GuideCard,
   HalfTopBannerCard,
   KeyDatesCard,
   NewsItemCard,

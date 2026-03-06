@@ -1,6 +1,8 @@
 import DataNotFound from "@/components/globals/DataNotFound";
 import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
+import { routes } from "@/config/routes";
 import { TeamMemberDetailDocument } from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -8,7 +10,6 @@ import TwoColumnLayout from "@/layouts/two-column-layout";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -28,7 +29,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   return (
     <>
       <ContainerLayout className="mt-8 mb-4">
-        <Link href={"/about-us/governance-and-leadership"}>
+        <Link href={routes.aboutUs.governanceAndLeadership}>
           <Button variant={"secondary"} size={"sm"}>
             <ChevronLeft /> Back
           </Button>

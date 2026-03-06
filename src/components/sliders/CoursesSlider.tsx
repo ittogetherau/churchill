@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import CoursesCard from "../cards/CoursesCard";
 import { Button } from "../ui/button";
+import { routes } from "@/config/routes";
 
 const CoursesSlider = ({ data }: { data: CourseSummaryFieldsFragment[] }) => {
   const [api, setApi] = useState<CarouselApi>();
@@ -39,18 +40,24 @@ const CoursesSlider = ({ data }: { data: CourseSummaryFieldsFragment[] }) => {
   if (!data || data.length === 0) return;
 
   return (
-    <div>
+    <div className="h-full">
       <Carousel setApi={setApi} opts={{ align: "start", loop: true }}>
-        <CarouselContent>
+        <CarouselContent className="h-full">
           {data?.map((item, index) => (
-            <CarouselItem key={item.slug} className="md:basis-1/2 lg:basis-1/4">
+            <CarouselItem
+              key={item.slug}
+              className="h-full md:basis-1/2 lg:basis-1/4"
+            >
               <CoursesCard
                 key={index}
                 image={resolveFileLink(item.hero_image)}
                 faculty={item.degree?.title ?? ""}
                 title={item.title ?? ""}
                 subTitle={item.description ?? ""}
-                link={`/course/${item.degree?.slug}/${item?.slug ?? ""}`}
+                link={routes.course.detail(
+                  item.degree?.slug ?? "",
+                  item.slug ?? "",
+                )}
               />
             </CarouselItem>
           ))}

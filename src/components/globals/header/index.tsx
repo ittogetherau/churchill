@@ -1,5 +1,6 @@
 "use client";
 
+import { routes } from "@/config/routes";
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import { useHeaderStore } from "@/store/headerStore";
@@ -44,7 +45,7 @@ const Header: React.FC = () => {
 
       <ContainerLayout>
         <div className="flex items-center justify-between gap-4 py-3">
-          <Link className="block max-h-18 py-0" href="/">
+          <Link className="block max-h-18 py-0" href={routes.home}>
             <Image
               src={`/assets/logo.svg`}
               width={400}

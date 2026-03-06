@@ -1,4 +1,5 @@
-import { siteConfig } from "@/config/siteConfig";
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
 
 export interface NavItem {
   title: string;
@@ -102,7 +103,7 @@ export const navItems: NavItem[] = [
         slug: "policies-and-procedures",
         link: "",
         image: "/assets/course-b.png",
-        redirectLink: `${siteConfig.studentHubUrl}/policies`,
+        redirectLink: `${externalRoutes.studentHub}/policies`,
         CatagoriesItem: [],
       },
       {
@@ -132,13 +133,13 @@ export const navItems: NavItem[] = [
         slug: "find-agent",
         headerIcon: "fi fi-rr-headphones",
         image: "/assets/course-b.png",
-        link: "/find-agent",
+        link: routes.findAgent,
         redirectLink: "",
       },
       {
         menuTitle: "Scholarships And Bursaries",
         slug: "scholarships-and-bursaries",
-        link: "/scholarships-and-bursaries",
+        link: routes.content.slug("scholarships-and-bursaries"),
         headerIcon: "fi fi-rr-student",
       },
       {
@@ -146,24 +147,21 @@ export const navItems: NavItem[] = [
         slug: "future-students",
         headerIcon: "fi fi-rr-calendar",
         image: "/assets/course-b.png",
-        link: "/future-students",
-        redirectLink: "",
+        link: routes.futureStudents,
       },
       {
         menuTitle: "Apply for Course Admission",
         slug: "apply-at-churchill",
         headerIcon: "fi fi-rr-chart-connected",
         image: "/assets/course-b.png",
-        link: "/apply-for-course-admission",
-        redirectLink: "",
+        link: routes.content.slug("apply-for-course-admission"),
       },
       {
         menuTitle: "Apply for advanced standing",
         slug: "apply-at-churchill",
         headerIcon: "fi fi-rr-chart-connected",
         image: "/assets/course-b.png",
-        link: "/apply-for-advanced-standing",
-        redirectLink: "",
+        link: routes.content.slug("apply-for-advanced-standing"),
       },
       {
         menuTitle: "Key Dates",
@@ -171,15 +169,14 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-calendar",
         image: "/assets/course-b.png",
         link: "",
-        redirectLink: `${siteConfig.studentHubUrl}/upcoming-key-dates`,
+        redirectLink: `${externalRoutes.studentHub}/upcoming-key-dates`,
       },
       {
         menuTitle: "Blogs",
         slug: "blogs",
         headerIcon: "fi fi-rr-blog-text",
         image: "/assets/course-b.png",
-        link: "/blogs",
-        redirectLink: "",
+        link: routes.blogs.root,
       },
       {
         menuTitle: "Enquire Now",
@@ -187,8 +184,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-person-circle-question",
         image: "/assets/course-b.png",
         link: "",
-        redirectLink:
-          "https://forms.zohopublic.com.au/CIHE/form/StudentHubEnquiry/formperma/XilFJje5kQ-h7f4saQYbSV4kJ-kAMiG7p1QNfWEvDXs",
+        redirectLink: externalRoutes.enquiryForm,
       },
     ],
   },
@@ -203,7 +199,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-lesson",
         subTitle: "Access your timetable, results, trimester invoices.",
         slug: "agent-login",
-        redirectLink: "https://elearning.churchill.nsw.edu.au/",
+        redirectLink: externalRoutes.lms,
         link: "",
         image: "/assets/hero-image.jpeg",
       },
@@ -213,7 +209,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-student",
         image: "/assets/course-b.png",
         link: "",
-        redirectLink: siteConfig.studentHubUrl,
+        redirectLink: externalRoutes.studentHub,
       },
       {
         menuTitle: "Enquire Now",
@@ -221,8 +217,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-person-circle-question",
         image: "/assets/course-b.png",
         link: "",
-        redirectLink:
-          "https://forms.zohopublic.com.au/CIHE/form/StudentHubEnquiry/formperma/XilFJje5kQ-h7f4saQYbSV4kJ-kAMiG7p1QNfWEvDXs",
+        redirectLink: externalRoutes.enquiryForm,
       },
       {
         menuTitle: "Online Student Grievance Application Form",
@@ -230,24 +225,22 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-sad",
         image: "/assets/course-b.png",
         link: "",
-        redirectLink:
-          "https://forms.zohopublic.com.au/CIHE/form/Grievanceform/formperma/5jf5-XC5SXb47VhUMTlxv30fih-aqYAUbQh8V3lncvQ", //
+        redirectLink: externalRoutes.grievanceForm,
       },
       {
         menuTitle: "Current Student Request Form",
         slug: "request-form",
         headerIcon: "fi fi-rr-form",
         image: "/assets/course-b.png",
-        link: "/blogs",
-        redirectLink: `${siteConfig.studentHubUrl}/request-form`,
+        link: routes.blogs.root,
+        redirectLink: `${externalRoutes.studentHub}/request-form`,
       },
       {
         menuTitle: "Blogs",
         slug: "blogs",
         headerIcon: "fi fi-rr-blog-text",
         image: "/assets/course-b.png",
-        link: "/blogs",
-        redirectLink: "",
+        link: routes.blogs.root,
       },
       {
         menuTitle: "Key Dates",
@@ -255,14 +248,14 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-calendar",
         image: "/assets/course-b.png",
         link: "",
-        redirectLink: `${siteConfig.agentHubUrl}/upcoming-key-dates`,
+        redirectLink: `${externalRoutes.studentHub}/upcoming-key-dates`,
       },
       {
         menuTitle: "Library Portal",
         headerIcon: "fi fi-rr-diary-bookmark-down",
         subTitle: "Access your timetable, results, trimester invoices.",
         slug: "library-login",
-        redirectLink: "https://churchill.softlinkhosting.com.au/",
+        redirectLink: externalRoutes.libraryPortal,
         link: "",
         image: "/assets/hero-image.jpeg",
       },
@@ -271,7 +264,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-book-alt",
         subTitle: "Enrolment and study load rules.",
         slug: "student-enrolment-and-study-load-rules",
-        link: "/student-enrolment-and-study-load-rules",
+        link: routes.content.slug("student-enrolment-and-study-load-rules"),
         image: "/assets/hero-image.jpeg",
       },
       {
@@ -279,7 +272,7 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-book-user",
         slug: "",
         subTitle: "",
-        link: "https://churchill.edu.au/f/student-handbook",
+        link: externalRoutes.studentHandbook,
       },
     ],
   },
@@ -338,7 +331,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Education Agent Hub",
-    redirectLink: siteConfig.agentHubUrl,
+    redirectLink: externalRoutes.agentHub,
     slug: "agent-hub",
   },
   {

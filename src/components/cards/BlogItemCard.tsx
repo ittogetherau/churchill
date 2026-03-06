@@ -1,7 +1,8 @@
+import { routes } from "@/config/routes";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
-import Button from "@/components/ui-elements/button";
+import { Button } from "../ui/button";
 
 interface props {
   slug: string;
@@ -27,11 +28,12 @@ const BlogItemCard = ({
     .toISOString()
     .split("T")[0]
     .replaceAll("-", "/");
+  const blogHref = routes.blogs.slug(slug.trim());
 
   return (
     <div key={index} className="group overflow-hidden rounded-md">
       <div className="overflow-hidden rounded-md">
-        <Link href={`/blogs/${slug.trim()}`}>
+        <Link href={blogHref}>
           <Image
             width={400}
             height={400}
@@ -55,7 +57,7 @@ const BlogItemCard = ({
           </p>
         </div>
 
-        <Link href={`/blogs/${slug}`} className="w-fit">
+        <Link href={blogHref} className="w-fit">
           <h3 className="text-matte-purple hover:text-primary-orange line-clamp-2 text-2xl leading-7 font-bold transition-all">
             {title}
           </h3>
@@ -63,13 +65,10 @@ const BlogItemCard = ({
 
         <p className="line-clamp-3 text-lg">{description}</p>
 
-        <Link href={`/blogs/${slug}`} className="w-fit">
-          <Button
-            btnName="Learn More"
-            icon={<FaArrowRight />}
-            styleA={"flex items-center gap-1"}
-            styleType="tertiary"
-          />
+        <Link href={blogHref} className="w-fit">
+          <Button variant={"ghost"}>
+            Learn More <ChevronRight />
+          </Button>
         </Link>
       </div>
     </div>

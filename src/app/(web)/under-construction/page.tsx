@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Button from "@/components/ui-elements/button";
+import { routes } from "@/config/routes";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -23,7 +24,7 @@ const UnderConstruction = () => {
             Sorry! This page is under construction.
           </h3>
 
-          <Link href={`/`} className="w-max">
+          <Link href={routes.home} className="w-max">
             <Button
               btnName={"Go to Home Page"}
               icon={<FaArrowRight />}

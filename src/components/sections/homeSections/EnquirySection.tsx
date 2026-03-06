@@ -1,10 +1,12 @@
+import FadeUpAnimation from "@/animations/FadeUp";
+import ApplyCard from "@/components/cards/ApplyCard";
+import { Button } from "@/components/ui/button";
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
+import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
-import ApplyCard from "@/components/cards/ApplyCard";
-import FadeUpAnimation from "@/animations/FadeUp";
-import ContainerLayout from "@/layouts/container-layout";
 
 interface ActionCardProps {
   title: string;
@@ -92,7 +94,7 @@ const EnquirySection = () => {
           <ActionCard
             title="Choosing the right course starts here"
             buttonText="View Courses"
-            href="/courses"
+            href={routes.course.root}
             imageSrc="/assets/right-course.png"
             imageAlt="Choose the right course"
             gradient="linear-gradient(to bottom left, rgb(235, 124, 158), rgb(235 124 158 / 43%) 100%)"
@@ -104,7 +106,7 @@ const EnquirySection = () => {
           <ActionCard
             title="Ask us for more info"
             buttonText="Enquire Now"
-            href="https://zfrmz.com.au/ThpIBv0BRCITpoh20tLf"
+            href={externalRoutes.enquireNowShortForm}
             imageSrc="/assets/ask-us.png"
             imageAlt="Ask us for more information"
             gradient="linear-gradient(to bottom right, rgb(244, 213, 107), rgb(244 213 107 / 43%) 100%)"

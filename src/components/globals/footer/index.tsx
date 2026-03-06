@@ -1,5 +1,6 @@
 "use client";
-import { siteConfig } from "@/config/siteConfig";
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
 import { navItems } from "@/constDatas/navItems";
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -32,8 +33,6 @@ type FooterLoginCategory = {
 const isNotNull = <T,>(value: T | null): value is T => value !== null;
 
 const Footer: React.FC = () => {
-  const { studentHubUrl, agentHubUrl } = siteConfig;
-
   const coursesData = useHeaderStore(
     (state) => (state.data?.courses ?? EMPTY_COURSES) as HeaderCourse[],
   );
@@ -86,7 +85,7 @@ const Footer: React.FC = () => {
         <ContainerLayout>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
-              <Link href="/">
+              <Link href={routes.home}>
                 <Image
                   src="/assets/logo.svg"
                   width={400}
@@ -119,7 +118,7 @@ const Footer: React.FC = () => {
                   info@churchill.edu.au
                 </Link>
                 <Link
-                  href="https://maps.app.goo.gl/h7FJyoQfasvUvck79"
+                  href={externalRoutes.parramattaCampusMap}
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -131,7 +130,7 @@ const Footer: React.FC = () => {
                   </p>
                 </Link>
                 <Link
-                  href="https://maps.google.com/?q=Level+8,+85+Queen+Street,+Melbourne,+VIC+3000,+Australia"
+                  href={externalRoutes.melbourneCampusMap}
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -162,7 +161,7 @@ const Footer: React.FC = () => {
                               ? item.redirectLink
                               : item.link
                                 ? item.link
-                                : `/about-us/${item.slug}`
+                                : routes.aboutUs.slug(item.slug)
                           }
                           target={item.redirectLink ? "_blank" : undefined}
                           rel={
@@ -192,7 +191,7 @@ const Footer: React.FC = () => {
                           href={
                             course.redirectLink
                               ? course.redirectLink
-                              : `/courses/${course.slug}`
+                              : routes.content.slug(`courses/${course.slug}`)
                           }
                           target={course.redirectLink ? "_blank" : undefined}
                           rel={
@@ -229,7 +228,7 @@ const Footer: React.FC = () => {
                               ? item.redirectLink
                               : item.link
                                 ? item.link
-                                : `/student/${item.slug}`
+                                : routes.content.slug(`student/${item.slug}`)
                           }
                           target={item.redirectLink ? "_blank" : undefined}
                           rel={
@@ -266,7 +265,7 @@ const Footer: React.FC = () => {
                               ? item.redirectLink
                               : item.link
                                 ? item.link
-                                : `/student/${item.slug}`
+                                : routes.content.slug(`student/${item.slug}`)
                           }
                           target={item.redirectLink ? "_blank" : undefined}
                           rel={
@@ -314,29 +313,31 @@ const Footer: React.FC = () => {
                 </p>
                 <ul className="flex flex-col gap-1 pl-2 text-[14px]">
                   <li>
-                    <Link href="/">Home</Link>
+                    <Link href={routes.home}>Home</Link>
                   </li>
                   <li>
-                    <Link href="https://elearning.churchill.edu.au/">
+                    <Link href={externalRoutes.lms}>
                       Learning Management System (LMS)
                     </Link>
                   </li>
                   <li>
-                    <Link href="/find-agent">Find an Education Agent</Link>
+                    <Link href={routes.findAgent}>Find an Education Agent</Link>
                   </li>
                   <li>
-                    <Link href="https://churchill.softlinkhosting.com.au/liberty/libraryHome.do">
-                      Library
+                    <Link href={externalRoutes.libraryCatalog}>Library</Link>
+                  </li>
+                  <li>
+                    <Link href={externalRoutes.studentHub || "#"}>
+                      Student Support
                     </Link>
                   </li>
                   <li>
-                    <Link href={studentHubUrl || "#"}>Student Support</Link>
+                    <Link href={externalRoutes.agentHub || "#"}>
+                      Education Agent Hub
+                    </Link>
                   </li>
                   <li>
-                    <Link href={agentHubUrl || "#"}>Education Agent Hub</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact-us">Contact Us</Link>
+                    <Link href={routes.contactUs.root}>Contact Us</Link>
                   </li>
                 </ul>
               </div>
@@ -380,7 +381,7 @@ const Footer: React.FC = () => {
               (ABN: 91 612 507 141).
             </span>
             <a
-              href="https://www.teqsa.gov.au/provider/mpika-holdings-pty-ltd"
+              href={externalRoutes.teqsaProvider}
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Link PRV14305"
@@ -389,7 +390,7 @@ const Footer: React.FC = () => {
             </a>
             <span>|</span>
             <a
-              href="https://cricos.education.gov.au/Institution/InstitutionDetails.aspx?ProviderID=4082"
+              href={externalRoutes.cricosInstitution}
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Link CRICOS Provider: 04082E"

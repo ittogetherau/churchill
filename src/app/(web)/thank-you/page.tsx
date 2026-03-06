@@ -1,3 +1,5 @@
+import { routes } from "@/config/routes";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const page = () => {
@@ -23,9 +25,9 @@ const page = () => {
         Someone will get in touch with you very shortly.
       </p>
 
-      <a href="/" className="w-fit mx-auto block">
+      <Link href={routes.home} className="w-fit mx-auto block">
         <Button>Return To Home page</Button>
-      </a>
+      </Link>
     </div>
   );
 };

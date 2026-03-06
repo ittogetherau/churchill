@@ -1,4 +1,5 @@
 import { PatternBannerCard } from "@/components/cards";
+import { routes } from "@/config/routes";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
@@ -7,7 +8,7 @@ const content = `<div>
   <h2>Audit and Risk Management Committee</h2>
 
   <p>
-    Per Churchill Institute’s Governance Framework, the Audit and Risk Management Committee (ARMC) was established to ensure the development and implementation of the Churchill Institute’s Risk Management Plan; to ensure that appropriate procedures are in place to identify, assess and manage risk from a strategic and operational perspective; to monitor the implementation of risk management procedures and to report to the <a href="/about-us/governance-council">Governing Council</a> after each meeting.
+    Per Churchill Institute’s Governance Framework, the Audit and Risk Management Committee (ARMC) was established to ensure the development and implementation of the Churchill Institute’s Risk Management Plan; to ensure that appropriate procedures are in place to identify, assess and manage risk from a strategic and operational perspective; to monitor the implementation of risk management procedures and to report to the <a href="${routes.aboutUs.governanceCouncil}">Governing Council</a> after each meeting.
   </p>
 
   <h3>Functions</h3>
@@ -45,22 +46,22 @@ const content = `<div>
       <tr>
         <td>Chairperson</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/dr-joo-gim-heaney">Dr Joo-Gim Heaney</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("dr-joo-gim-heaney")}">Dr Joo-Gim Heaney</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/ron-day">Mr Ron Day</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("ron-day")}">Mr Ron Day</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/dr-angela-hecimovic">Dr Angela Hecimovic</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("dr-angela-hecimovic")}">Dr Angela Hecimovic</a></td>
       </tr>
       <tr>
         <td>CEO &amp; Dean</td>
         <td>No</td>
-        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("david-knight")}">Mr. David Knight</a></td>
       </tr>
     </tbody>
   </table>

@@ -25,7 +25,7 @@ const ContactUsCard = ({
 }: ContactUsProp) => {
   return (
     <>
-      <div className="bg-[#E9E9E9] h-full p-4 md:p-6 rounded-md flex flex-col gap-4 hover:outline hover:outline-neutral-900/20">
+      <div className="flex h-full flex-col gap-4 rounded-md bg-[#E9E9E9] p-4 hover:outline hover:outline-neutral-900/20 md:p-6">
         <Image
           src={iconUrl}
           width={100}
@@ -44,10 +44,10 @@ const ContactUsCard = ({
         )}
 
         {socialLinks && (
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-wrap gap-3">
             {socialLinks?.map((item, index) => (
               <Link target="_blank" key={index} href={item.url}>
-                <div className=" flex flex-col items-center justify-center p-2 rounded-xl hover:bg-[#E5962310]">
+                <div className="flex flex-col items-center justify-center rounded-xl p-2 hover:bg-[#E5962310]">
                   <item.icon className="h-8 w-8 text-[#E59623]" />
                   <p>{item.title}</p>
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
+import { routes } from "@/config/routes";
 import ContainerLayout from "@/layouts/container-layout";
 import Link from "next/link";
 
@@ -29,7 +30,7 @@ const Error = () => {
           Something went wrong while processing your request.
         </p>
 
-        <Link className="mt-8 inline-block" href="/">
+        <Link className="mt-8 inline-block" href={routes.home}>
           <Button size="lg">Return home</Button>
         </Link>
       </div>

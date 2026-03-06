@@ -3,11 +3,11 @@
 import RequestIDCardForm from "@/components/forms/RequestIDCardForm";
 import Timer from "@/components/ui-elements/Timer";
 import { Button } from "@/components/ui/button";
+import { externalRoutes } from "@/config/externalRoutes";
 import ContainerLayout from "@/layouts/container-layout";
 import Image from "next/image";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { siteConfig } from "@/config/siteConfig";
 
 const stepTitles = [
   { id: 1, title: "Create Your USI ID" },
@@ -202,7 +202,7 @@ const Page = () => {
                         <a
                           className="w-fit"
                           target="_blank"
-                          href={`${siteConfig.studentHubUrl}/how-to-guide/how-to-install-Office-365-apps-in-personal-laptop-using-student-account`}
+                          href={`${externalRoutes.studentHub}/how-to-guide/how-to-install-Office-365-apps-in-personal-laptop-using-student-account`}
                         >
                           <button className="bg-primary-orange rounded-md border-2 border-black px-6 py-3 font-bold">
                             How to Download Office Apps in Laptop (Word, Excel,

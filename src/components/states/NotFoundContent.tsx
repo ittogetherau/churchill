@@ -1,6 +1,7 @@
 "use client";
 import Button from "@/components/ui-elements/button";
 import Animation from "@/constDatas/animations/PageNotFound.json";
+import { routes } from "@/config/routes";
 import ContainerLayout from "@/layouts/container-layout";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -29,7 +30,7 @@ export default function NotFoundContent() {
             Are You Lost?
           </h3>
           <p>The page you are looking for doesnt exist!</p>
-          <Link href={`/`} className="w-max">
+          <Link href={routes.home} className="w-max">
             <Button
               btnName={"Go Back Home"}
               icon={<FaArrowRight />}

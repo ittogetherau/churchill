@@ -1,19 +1,20 @@
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog-header";
+import { routes } from "@/config/routes";
+import { HeaderQuery } from "@/graphql/generated/graphql";
+import { useMobile } from "@/hooks/useMobile";
+import ContainerLayout from "@/layouts/container-layout";
 import { DialogPortal } from "@radix-ui/react-dialog";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import NavigationItems from "./NavigationItems";
-import { useMobile } from "@/hooks/useMobile";
-import ContainerLayout from "@/layouts/container-layout";
-import { Button } from "@/components/ui/button";
-import { HeaderQuery } from "@/graphql/generated/graphql";
 
 type MobileNavigationProps = {
   degrees?: HeaderQuery["degree"];
@@ -46,7 +47,7 @@ const MobileNavigation = ({
                 <DialogTitle className="max-h-22">
                   <Link
                     className="block"
-                    href="/"
+                    href={routes.home}
                     onClick={() => setOpen(false)}
                   >
                     <Image

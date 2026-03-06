@@ -7,6 +7,8 @@ import VideoSection from "@/components/sections/homeSections/VideoSection";
 import StudentSatisfactionSection from "@/components/sections/student-satisfaction-section";
 import HeadingText from "@/components/ui/heading-text";
 import UpcomingKeyDatesSection from "@/comps/key-dates/UpcomingKeyDatesSection";
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
 import { DegreesQuery, HomepageDocument } from "@/graphql/generated/graphql";
 import { runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
@@ -33,8 +35,8 @@ const Home = async () => {
           </span>
         }
         subTitle={`<p className="my-4"> Explore our innovative programs and transform your career. </p>`}
-        link={`/courses`}
-        linkA={"https://churchill.edu.au/apply-for-course-admission"}
+        link={routes.course.root}
+        linkA={routes.content.slug("apply-for-course-admission")}
         BtnAText={"Explore Our Courses"}
         BtnBText={"Apply Now"}
       />

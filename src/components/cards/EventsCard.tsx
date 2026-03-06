@@ -1,10 +1,10 @@
-import React from "react";
+import RichTextRenderer from "@/components/utils/rich-text-renderer";
+import { routes } from "@/config/routes";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../ui-elements/button";
+import React from "react";
 import { FaArrowRight } from "react-icons/fa";
-import { TEventTag } from "@/constDatas/eventsData";
-import RichTextRenderer from "@/components/utils/rich-text-renderer";
+import Button from "../ui-elements/button";
 
 export interface EventsCardProps {
   id?: string | number;
@@ -62,6 +62,7 @@ const EventsCard: React.FC<EventsCardProps> = ({
   const formattedDate = `${dateObj.getDate()}${getDaySuffix(
     dateObj.getDate(),
   )} ${month[dateObj.getMonth()]}`;
+  const eventHref = routes.events.slug(slug ?? "");
 
   return (
     <div className="group flex flex-col gap-3 overflow-hidden rounded-md border border-gray-500/40 bg-neutral-50 md:flex-row">
@@ -81,7 +82,7 @@ const EventsCard: React.FC<EventsCardProps> = ({
       </div>
 
       <div className="flex flex-1 flex-col justify-between gap-4 px-4 py-4 md:py-6">
-        <Link href={`/events/${slug}`} className="w-fit">
+        <Link href={eventHref} className="w-fit">
           <h3 className="hover:text-primary-orange line-clamp-3 text-xl leading-[28px] font-bold text-[#2C2B4B] transition-all md:text-3xl">
             {title}
           </h3>
@@ -95,7 +96,7 @@ const EventsCard: React.FC<EventsCardProps> = ({
           />
         )}
 
-        <Link href={`/events/${slug}`} className="w-fit">
+        <Link href={eventHref} className="w-fit">
           <Button
             icon={<FaArrowRight />}
             styleType="tertiary"

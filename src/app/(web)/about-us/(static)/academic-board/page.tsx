@@ -1,4 +1,5 @@
 import { PatternBannerCard } from "@/components/cards";
+import { routes } from "@/config/routes";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
@@ -47,27 +48,27 @@ const content = `<div>
       <tr>
         <td>Chairperson</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/maria-varua">Assoc Prof Maria Varua</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("maria-varua")}">Assoc Prof Maria Varua</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/dr-belinda-davis">Dr Belinda Davis</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("dr-belinda-davis")}">Dr Belinda Davis</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/jane-maley">Prof Jane Maley</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("jane-maley")}">Prof Jane Maley</a></td>
       </tr>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td><a href="/about-us/teams/ashish-malik">Prof Ashish Malik</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("ashish-malik")}">Prof Ashish Malik</a></td>
       </tr>
       <tr>
         <td>CEO &amp; Dean</td>
         <td>No</td>
-        <td><a href="/about-us/teams/david-knight">Mr David Knight</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("david-knight")}">Mr David Knight</a></td>
       </tr>
       <tr>
         <td>Academic Staff Member</td>
@@ -120,11 +121,11 @@ const content = `<div>
     <tbody>
       <tr>
         <td>The CEO &amp; Dean as Chairperson</td>
-        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("david-knight")}">Mr. David Knight</a></td>
       </tr>
       <tr>
         <td>The Chair of the Academic Board</td>
-        <td><a href="/about-us/teams/maria-varua">Assoc Prof Maria Varua</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("maria-varua")}">Assoc Prof Maria Varua</a></td>
       </tr>
       <tr>
         <td>Deputy Dean</td>
@@ -192,7 +193,7 @@ const content = `<div>
     <tbody>
       <tr>
         <td>The CEO &amp; Dean as Chairperson</td>
-        <td><a href="/about-us/teams/david-knight">Mr. David Knight</a></td>
+        <td><a href="${routes.aboutUs.teams.slug("david-knight")}">Mr. David Knight</a></td>
       </tr>
       <tr>
         <td>A member of the Academic Board</td>

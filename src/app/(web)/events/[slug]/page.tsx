@@ -4,7 +4,8 @@ import { FetchUpcomingKeyEventsData } from "@/utils/apiQueries";
 import Copyurl from "@/components/sections/blogSections/CopyUrl";
 import MoreEventsSection from "@/components/sections/EventsSection/MoreEventsSection";
 import { TEvent, TStaticEvent } from "@/constDatas/eventsData";
-import { siteConfig } from "@/config/siteConfig";
+import { externalRoutes } from "@/config/externalRoutes";
+import { routes } from "@/config/routes";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 interface PageProps {
@@ -35,7 +36,7 @@ const page = async ({ params }: PageProps) => {
   const data: TEvent = await items.data;
   const eventDate = data.start_time ? new Date(data.start_time) : new Date();
   const readTime = data.rich_text ? Math.ceil(data.rich_text.length / 300) : 0;
-  const siteUrl = siteConfig.churchillUrl;
+  const siteUrl = `${externalRoutes.churchill}${routes.events.slug(slug)}`;
 
   const author = isStaticEvent(data) ? data.author : "admin";
   const categories = isStaticEvent(data) ? data.catagories : [];
@@ -52,13 +53,13 @@ const page = async ({ params }: PageProps) => {
                   <nav className="flex flex-wrap gap-1 font-semibold text-wrap">
                     <Link
                       className="hover:text-primary-orange text-nowrap transition-all"
-                      href="/"
+                      href={routes.home}
                     >
                       Home /
                     </Link>
                     <Link
                       className="hover:text-primary-orange text-nowrap transition-all"
-                      href="/events"
+                      href={routes.events.root}
                     >
                       Events /
                     </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { routes } from "@/config/routes";
 import { Category, navItems, type NavItem } from "@/constDatas/navItems";
 import { HeaderQuery } from "@/graphql/generated/graphql";
 import { useMobile } from "@/hooks/useMobile";
@@ -40,6 +41,25 @@ function toPathSlug(value: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+function getTopLevelRoute(slug: string) {
+  switch (slug) {
+    case "about-us":
+      return routes.aboutUs.root;
+    case "courses":
+      return routes.course.root;
+    case "future-students":
+      return routes.futureStudents;
+    case "login":
+      return routes.login;
+    case "our-campuses":
+      return routes.ourCampuses.root;
+    case "emergency-contact":
+      return routes.emergencyContact;
+    default:
+      return routes.content.slug(slug);
+  }
+}
+
 function getDegreeGroups(
   degrees: HeaderQuery["degree"] | undefined,
 ): DegreeGroup[] {
@@ -67,8 +87,8 @@ function CourseLinkItem({
   onClick?: () => void;
 }) {
   const href = degreeSlug
-    ? `/course/${degreeSlug}/${course.slug}`
-    : `/courses/${course.slug}`;
+    ? routes.course.detail(degreeSlug, course.slug ?? "")
+    : routes.content.slug(`courses/${course.slug}`);
 
   if (variant === "mobile") {
     return (
@@ -125,7 +145,7 @@ function DegreeGroupSection({
     <div className={variant === "mobile" ? "space-y-1" : "space-y-2"}>
       <Link
         className="decoration-primary mb-2 block underline decoration-2"
-        href={`/course/${group.degreeSlug}`}
+        href={routes.course.degree(group.degreeSlug ?? "")}
       >
         <p className={`${titleClass}`}>{group.title}</p>
       </Link>
@@ -186,7 +206,7 @@ function CoursesMobileDetails({
           </div>
 
           {item.gotoPageRedirect && (
-            <Link href={`/${item.slug}`} className="mt-4 block">
+            <Link href={getTopLevelRoute(item.slug)} className="mt-4 block">
               <Button size="sm" className="w-fit">
                 Learn More <ArrowRight size={16} />
               </Button>
@@ -338,7 +358,10 @@ const NavigationItems = ({
                     </ul>
 
                     {item.gotoPageRedirect && (
-                      <Link href={`/${item.slug}`} className="mt-4 block">
+                      <Link
+                        href={getTopLevelRoute(item.slug)}
+                        className="mt-4 block"
+                      >
                         <Button size="sm" className="w-fit">
                           Learn More <ArrowRight size={16} />
                         </Button>
@@ -367,7 +390,10 @@ const NavigationItems = ({
                     </p>
 
                     {item.gotoPageRedirect && (
-                      <Link href={`/${item.slug}`} className="mt-4 block">
+                      <Link
+                        href={getTopLevelRoute(item.slug)}
+                        className="mt-4 block"
+                      >
                         <Button>
                           Learn More <ArrowRight />
                         </Button>
@@ -419,7 +445,11 @@ const NavigationItems = ({
             <Link
               key={item.slug}
               target={item.redirectLink ? "_blank" : "_self"}
-              href={item.redirectLink ? item.redirectLink : `/${item.slug}`}
+              href={
+                item.redirectLink
+                  ? item.redirectLink
+                  : getTopLevelRoute(item.slug)
+              }
               onClick={onLinkClick}
               className={`${["agent-hub", "our-campuses"].includes(item.slug) ? "hidden lg:block" : ""} mx-1 block`}
             >
