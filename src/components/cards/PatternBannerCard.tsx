@@ -34,9 +34,9 @@ const PatternBannerCard = ({
     >
       <div className="container mx-auto px-5">
         <div className="flex flex-col gap-4">
-          <h2 className="text-center text-3xl font-bold text-[#eb9320] capitalize md:text-5xl">
+          <h1 className="text-center text-3xl font-bold text-[#eb9320] capitalize md:text-5xl">
             {title}
-          </h2>
+          </h1>
 
           {description && (
             <p className="mx-auto w-fit text-center text-sm">{description}</p>

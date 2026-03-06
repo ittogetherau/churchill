@@ -1,0 +1,13 @@
+query EmergencyContact {
+  emergency_contact {
+    id
+    title
+    icon_string
+    values {
+      id
+      title
+      value
+      type
+    }
+  }
+}

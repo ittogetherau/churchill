@@ -1,4 +1,5 @@
 import { HalfTopBannerCard } from "@/components/cards";
+import CampusImagesCarousel from "@/components/sliders/CampusImagesCarousel";
 import HeadingText from "@/components/ui/heading-text";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
 import { CampusDetailsDocument } from "@/graphql/generated/graphql";
@@ -24,6 +25,7 @@ const Page = async ({ params }: PageProps) => {
   );
 
   const campus = campus_locations?.[0];
+  const heroImage = resolveFileLink(campus?.image);
   const filePaths =
     campus_locations_files?.length > 0
       ? campus_locations_files.map((item) => {
@@ -31,6 +33,13 @@ const Page = async ({ params }: PageProps) => {
           return src;
         })
       : [];
+  const galleryImages = Array.from(
+    new Set(
+      filePaths.filter(
+        (src): src is string => Boolean(src) && src !== heroImage,
+      ),
+    ),
+  );
 
   if (!campus) notFound();
 
@@ -72,7 +81,7 @@ const Page = async ({ params }: PageProps) => {
       <HalfTopBannerCard
         title={campus.title ?? ""}
         titleSpan="Welcome to"
-        image={[resolveFileLink(campus.image), ...filePaths]}
+        image={heroImage}
         description={campus.summary ?? ""}
       />
 
@@ -125,6 +134,15 @@ const Page = async ({ params }: PageProps) => {
           <RichTextRenderer content={campus.addtional_info_section} />
         </ContainerLayout>
       )}
+
+      <div className="mt-8">
+        {galleryImages.length > 0 && (
+          <CampusImagesCarousel
+            title={campus.title ?? "Campus"}
+            images={galleryImages}
+          />
+        )}
+      </div>
     </main>
   );
 };

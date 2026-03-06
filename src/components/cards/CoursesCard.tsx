@@ -26,7 +26,7 @@ const CoursesCard = ({ image, title, faculty, subTitle, link }: props) => {
                 alt={`for ${title}`}
                 width={500}
                 height={500}
-                className="relative aspect-[2/2] w-full object-cover transition-all group-hover:scale-105 md:aspect-[1/1]"
+                className="relative aspect-[2/2] max-h-96 w-full object-cover transition-all group-hover:scale-105 md:aspect-[1/1]"
               />
               <div className="bg-primary-orange/0 group-hover:bg-primary-orange/30 absolute top-0 left-0 z-[8] h-full w-full rounded-md transition-all" />
             </div>

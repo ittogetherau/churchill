@@ -51,6 +51,7 @@
   --color-normal-grey: #e9e9e9;
   --color-light-grey: #f3e4e4;
   --color-alt-background: #faf4f4;
+  --color-alt-background-dark: #f3e4e4;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -99,6 +100,7 @@
   --color-normal-grey: #e9e9e9;
   --color-light-grey: #f3e4e4;
   --color-alt-background: #faf4f4;
+  --color-alt-background-dark: #f3e4e4;
 
   --bg-gradient-radial: radial-gradient(var(--tw-gradient-stops));
   --bg-gradient-conic: conic-gradient(

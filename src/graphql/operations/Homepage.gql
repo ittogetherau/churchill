@@ -1,6 +1,9 @@
 query Homepage {
   degree {
     ...DegreeCompactFields
+    hero_image {
+      ...FileFields
+    }
   }
   courses {
     ...CourseSummaryFields

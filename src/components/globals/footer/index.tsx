@@ -97,9 +97,9 @@ const Footer: React.FC = () => {
                 />
               </Link>
               <div className="flex flex-col gap-2 text-white">
-                <h3 className="text-[16px]">
+                <p className="text-[16px]">
                   <strong>Churchill Institute of Higher Education</strong>
-                </h3>
+                </p>
                 <Link
                   href="tel:+61-02-8856-2997"
                   className="flex items-center gap-2 text-[14px]"
@@ -147,9 +147,9 @@ const Footer: React.FC = () => {
             {/* First Row: About Us, Courses, Future Students */}
             <div className="grid grid-cols-1 gap-4 text-white md:grid-cols-2 lg:grid-cols-3">
               <div>
-                <h3 className="pb-4 text-[16px]">
+                <p className="pb-4 text-[16px]">
                   <strong>{"About Us"}</strong>
-                </h3>
+                </p>
                 {aboutUsCategories.length === 0 ? (
                   <p className="text-[14px]">No about us links available</p>
                 ) : (
@@ -179,9 +179,9 @@ const Footer: React.FC = () => {
                 )}
               </div>
               <div>
-                <h3 className="pb-4 text-[16px]">
+                <p className="pb-4 text-[16px]">
                   <strong>Courses</strong>
-                </h3>
+                </p>
                 {coursesData.length === 0 ? (
                   <p className="text-[14px]">No courses available.</p>
                 ) : (
@@ -212,9 +212,9 @@ const Footer: React.FC = () => {
                 )}
               </div>
               <div>
-                <h3 className="pb-4 text-[16px]">
+                <p className="pb-4 text-[16px]">
                   <strong>Future Students</strong>
-                </h3>
+                </p>
                 {futureStudentsCategories.length === 0 ? (
                   <p className="text-[14px]">
                     No future student links available
@@ -249,9 +249,9 @@ const Footer: React.FC = () => {
             {/* Second Row: Current Students, Login, Quick Links */}
             <div className="grid grid-cols-1 gap-4 text-white md:grid-cols-2 lg:grid-cols-3">
               <div>
-                <h3 className="pb-4 text-[16px]">
+                <p className="pb-4 text-[16px]">
                   <strong>Current Students</strong>
-                </h3>
+                </p>
                 {currentStudentsCategories.length === 0 ? (
                   <p className="text-[14px]">
                     No current student links available
@@ -283,9 +283,9 @@ const Footer: React.FC = () => {
                 )}
               </div>
               <div>
-                <h3 className="pb-4 text-[16px]">
+                <p className="pb-4 text-[16px]">
                   <strong>Login</strong>
-                </h3>
+                </p>
                 {loginCategories.length === 0 ? (
                   <p className="text-[14px]">No login links available</p>
                 ) : (
@@ -309,9 +309,9 @@ const Footer: React.FC = () => {
                 )}
               </div>
               <div>
-                <h3 className="pb-4 text-[16px]">
+                <p className="pb-4 text-[16px]">
                   <strong>Quick Links</strong>
-                </h3>
+                </p>
                 <ul className="flex flex-col gap-1 pl-2 text-[14px]">
                   <li>
                     <Link href="/">Home</Link>

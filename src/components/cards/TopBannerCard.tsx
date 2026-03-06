@@ -100,7 +100,7 @@ const TopBannerCard = ({
                   <RichTextRenderer
                     content={subTitle}
                     richText={false}
-                    className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-lg"
+                    className="text-md line-clamp-4 leading-7 font-semibold text-[#ffffff] md:text-lg"
                   />
                 ) : (
                   <div className="text-md line-clamp-3 leading-7 font-semibold text-[#ffffff] md:text-lg">

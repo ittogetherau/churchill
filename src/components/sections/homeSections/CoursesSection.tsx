@@ -11,12 +11,9 @@ const CoursesSection = ({
   degree,
 }: {
   courses: CourseSummaryFieldsFragment[];
-  degree: DegreeCompactFieldsFragment | null;
+  degree?: DegreeCompactFieldsFragment | null;
 }) => {
   if (!courses?.length) return null;
-
-  const degreeTitle = degree?.title ?? "";
-  const degreeCode = degree?.course_code ?? "";
 
   return (
     <ContainerLayout className="space-y-8">

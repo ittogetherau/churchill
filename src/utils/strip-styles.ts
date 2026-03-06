@@ -34,7 +34,9 @@ function walk(node: Node): void {
   }
 
   for (const attr of Array.from(el.attributes)) {
-    if (!ALLOWED_ATTRS.has(attr.name)) el.removeAttribute(attr.name);
+    if (!ALLOWED_ATTRS.has(attr.name.toLowerCase())) {
+      el.removeAttribute(attr.name);
+    }
   }
 
   if (UNWRAP_TAGS.has(el.tagName.toLowerCase())) unwrapNode(el);
@@ -42,9 +44,17 @@ function walk(node: Node): void {
 
 export function stripStyles(html: string): string {
   if (typeof DOMParser === "undefined") {
+    const allowed = Array.from(ALLOWED_ATTRS).join("|");
+
     return html
-      .replace(/\s[\w-]+=(?:"[^"]*"|'[^']*')/gi, "")
-      .replace(/<\/?(?:font|span)\b[^>]*>/gi, "");
+      .replace(
+        new RegExp(`\\s(?!(${allowed})=)[\\w-]+=(?:"[^"]*"|'[^']*')`, "gi"),
+        "",
+      )
+      .replace(
+        /<\/?(?:font|span|b|i|u|s|em|strong|big|small|strike|tt)\b[^>]*>/gi,
+        "",
+      );
   }
 
   const parser = new DOMParser();

@@ -56,9 +56,9 @@ const BlogItemCard = ({
         </div>
 
         <Link href={`/blogs/${slug}`} className="w-fit">
-          <h4 className="text-matte-purple hover:text-primary-orange line-clamp-2 text-2xl leading-7 font-bold transition-all">
+          <h3 className="text-matte-purple hover:text-primary-orange line-clamp-2 text-2xl leading-7 font-bold transition-all">
             {title}
-          </h4>
+          </h3>
         </Link>
 
         <p className="line-clamp-3 text-lg">{description}</p>

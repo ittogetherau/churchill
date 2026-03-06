@@ -22,11 +22,11 @@ const NewsletterSection = ({
   return (
     <FadeUpAnimation>
       <ContainerLayout>
-        <div className="w-full flex flex-col md:flex-row bg-[#F3E4E4] relative hover-shadow overflow-hidden rounded-md">
-          <div className="flex z-[10] flex-1 flex-col gap-6 pt-8 pl-8 md:py-20 md:pl-20">
-            <h3 className="relative leading-10 font-bold text-[36px]  text-[#2C2B4B]">
+        <div className="hover-shadow relative flex w-full flex-col overflow-hidden rounded-md bg-[#F3E4E4] md:flex-row">
+          <div className="z-[10] flex flex-1 flex-col gap-6 pt-8 pl-8 md:py-20 md:pl-20">
+            <h2 className="relative text-[36px] leading-10 font-bold text-[#2C2B4B]">
               {title}
-            </h3>
+            </h2>
             <p className="max-w-lg">{subtitle}</p>
             <Link href={linkUrl} target="_blank" className="w-max">
               <Button>
@@ -40,7 +40,7 @@ const NewsletterSection = ({
             <Image
               width={600}
               height={600}
-              className="absolute z-[0] translate-y-1/2 translate-x-1/2 bottom-16 -left-1/2 md:left-auto md:right-48 group-hover:scale-105 transition-all"
+              className="absolute bottom-16 -left-1/2 z-[0] translate-x-1/2 translate-y-1/2 transition-all group-hover:scale-105 md:right-48 md:left-auto"
               src="/assets/churchil-circle.webp"
               alt="alt image for churchil circle"
             />

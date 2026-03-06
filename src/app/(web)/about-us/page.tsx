@@ -25,12 +25,13 @@ const page = async () => {
         image={"/assets/churchill-team.jpg"}
         titleSpan={
           <span>
-            Meet Our <span className="highlight">Team</span>
+            Professional Education for a{" "}
+            <span className="highlight">Changing</span> World.
           </span>
         }
         title={""}
         subTitle={
-          "Since our founding, Churchill Institute of Higher Education has been dedicated to providing industry-relevant education, empowering students with the skills and knowledge to thrive in their careers."
+          "Churchill Institute of Higher Education delivers industry-relevant degrees designed to prepare students for real-world careers. With accredited programs in Business and Information Technology, strong industry engagement, and a supportive learning environment, Churchill equips students with the knowledge, practical skills, and global perspective needed to succeed in today’s evolving workforce."
         }
         link={`/courses`}
         linkA={`https://churchill.edu.au/apply-for-course-admission`}
@@ -39,9 +40,7 @@ const page = async () => {
       />
 
       <ContainerLayout size="sm">
-        {aboutContent && (
-          <RichTextRenderer content={aboutContent} richText />
-        )}
+        {aboutContent && <RichTextRenderer content={aboutContent} richText />}
       </ContainerLayout>
 
       <ContainerLayout>
