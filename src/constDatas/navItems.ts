@@ -274,6 +274,11 @@ export const navItems: NavItem[] = [
         subTitle: "",
         link: externalRoutes.studentHandbook,
       },
+      {
+        menuTitle: "Dean's Awards and Prizes",
+        slug: "deans-awards-and-prizes",
+        headerIcon: "fi fi-rr-trophy-star",
+      },
     ],
   },
   {
