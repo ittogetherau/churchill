@@ -195,12 +195,9 @@ function AwardCard({
   const [open, setOpen] = useState(false);
   const Icon = award.icon;
 
-  const PRIMARY = 5;
+  const PRIMARY = 4;
   const primaryFields = award.fields.slice(0, PRIMARY);
   const extraFields = award.fields.slice(PRIMARY);
-  const MID = Math.ceil(extraFields.length / 2);
-  const extraFieldsCol1 = extraFields.slice(0, MID);
-  const extraFieldsCol2 = extraFields.slice(MID);
 
   return (
     <div className="relative flex gap-6">
@@ -261,24 +258,13 @@ function AwardCard({
               </CollapsibleTrigger>
 
               <CollapsibleContent className="pt-3">
-                <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-4">
-                  <div className="space-y-4">
-                    {extraFieldsCol1.map((f, i) => (
-                      <div key={i}>
-                        <RichTextRenderer content={`<h6>${f.title}</h6>`} />
-                        <RichTextRenderer content={f.valueHtml} />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="space-y-4">
-                    {extraFieldsCol2.map((f, i) => (
-                      <div key={i}>
-                        <RichTextRenderer content={`<h6>${f.title}</h6>`} />
-                        <RichTextRenderer content={f.valueHtml} />
-                      </div>
-                    ))}
-                  </div>
+                <div className="space-y-4">
+                  {extraFields.map((f, i) => (
+                    <div key={i}>
+                      <RichTextRenderer content={`<h6>${f.title}</h6>`} />
+                      <RichTextRenderer content={f.valueHtml} />
+                    </div>
+                  ))}
                 </div>
               </CollapsibleContent>
             </Collapsible>
