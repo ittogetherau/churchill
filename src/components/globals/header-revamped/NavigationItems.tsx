@@ -1,8 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import HeadingText from "@/components/ui/heading-text";
-import { Marquee, MarqueeContent } from "@/components/ui/shadcn-io/marquee";
 import { routes } from "@/config/routes";
 import { Category, navItems, type NavItem } from "@/constDatas/navItems";
 import { HeaderQuery } from "@/graphql/generated/graphql";
@@ -13,7 +11,6 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import GoogleSearch from "./GoogleSearch";
 import HoverDropdown from "./HoverDropdown";
-import HeaderAdditionalButtons from "./header-additional-buttons";
 
 type NavigationItemsProps = {
   onLinkClick: () => void;
@@ -457,7 +454,7 @@ const NavigationItems = ({
                     : getTopLevelRoute(item.slug)
                 }
                 onClick={onLinkClick}
-                className={`${["agent-hub", "our-campuses"].includes(item.slug) ? "hidden lg:block" : ""} md:mx-1 md:block`}
+                className={`${["agent-hub", "our-campuses"].includes(item.slug) ? "hidden lg:block" : ""} block md:mx-1`}
               >
                 <div
                   className={`hover:text-shadow-primary-orange text-center text-xs font-bold ${item.isEmergency && "text-destructive"}`}
@@ -470,13 +467,6 @@ const NavigationItems = ({
         </div>
         <GoogleSearch />
       </section>
-      <div className="mt-64 bg-[#0d0e2f]">
-        {/* <Marquee>
-          <MarqueeContent>
-            <HeaderAdditionalButtons />
-          </MarqueeContent>
-        </Marquee> */}
-      </div>
     </nav>
   );
 };
