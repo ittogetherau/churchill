@@ -1,8 +1,11 @@
 import DataNotFound from "@/components/globals/DataNotFound";
 import { Button } from "@/components/ui/button";
 import HeadingText from "@/components/ui/heading-text";
-import ClientRedirect from "@/components/utils/FileRedirect";
-import { FileBySlugDocument } from "@/graphql/generated/graphql";
+import ClientRedirect from "@/components/utils/client-redirect";
+import {
+  FileBySlugDocument,
+  FileBySlugQuery,
+} from "@/graphql/generated/graphql";
 import { resolveFileLink, runQuery } from "@/graphql/graphql";
 import ContainerLayout from "@/layouts/container-layout";
 import { FileText } from "lucide-react";
@@ -20,12 +23,14 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
       </ContainerLayout>
     );
 
-  const file = data[0];
+  const file = data[0] as FileBySlugQuery["files"][number];
   const fileUrl = resolveFileLink(file.file);
+  const proxyUrl = file.proxy_url;
+  const url = proxyUrl ? proxyUrl : fileUrl;
 
   return (
     <>
-      <ClientRedirect url={fileUrl} />
+      <ClientRedirect url={url} />
 
       <ContainerLayout size="sm" className="my-32">
         <div className="">
@@ -41,7 +46,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
             Your file is ready. Click below to open or download.
           </p>
 
-          <Link href={fileUrl} target="_blank" rel="noopener noreferrer">
+          <Link href={url} target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="lg:px-12">
               Open File
             </Button>

@@ -12,6 +12,16 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/f",
+        destination: "/files",
+        permanent: true,
+      },
+      {
+        source: "/f/",
+        destination: "/files",
+        permanent: true,
+      },
       //
       // About Us Fallback
       //

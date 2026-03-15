@@ -26,6 +26,7 @@ query Files {
 query FileBySlug($slug: String!) {
   files(filter: { slug: { _eq: $slug } }) {
     ...FileItem
+    proxy_url
   }
   policies(filter: { slug: { _eq: $slug } }) {
     ...PolicyItem
