@@ -1,11 +1,11 @@
 import CookieBanner from "@/components/globals/CookieBanner";
 import Footer from "@/components/globals/footer";
-import Header from "@/components/globals/header";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./css/globals.css";
 import HolidayPopup from "@/components/globals/holiday-popup";
+import Header from "@/components/globals/header-revamped";
 
 export const metadata: Metadata = {
   title: "Churchill Institute of Higher Education",
