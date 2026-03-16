@@ -11,6 +11,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import GoogleSearch from "./GoogleSearch";
 import HoverDropdown from "./HoverDropdown";
+import HeaderAdditionalButtons from "./header-additional-buttons";
 
 type NavigationItemsProps = {
   onLinkClick: () => void;
@@ -294,121 +295,43 @@ const NavigationItems = ({
   const degreeGroups = getDegreeGroups(degrees);
 
   return (
-    <nav className="relative max-h-screen overflow-y-auto">
-      <section className="flex flex-col gap-4 md:flex-row md:justify-between">
-        <div className="flex flex-col items-start gap-1 md:flex-row md:items-center xl:gap-1">
-          {mergedNavItems.map((item) => {
-            const hasSubItems =
-              item.slug === "courses"
-                ? degreeGroups.length > 0
-                : (item.Catagories?.length ?? 0) > 0;
+    <>
+      <nav className="relative max-h-screen overflow-y-auto">
+        <section className="flex flex-col gap-4 md:flex-row md:justify-between">
+          <div className="flex flex-col items-start gap-1 md:flex-row md:items-center xl:gap-1">
+            {mergedNavItems.map((item) => {
+              const hasSubItems =
+                item.slug === "courses"
+                  ? degreeGroups.length > 0
+                  : (item.Catagories?.length ?? 0) > 0;
 
-            if (hasSubItems && isMobile) {
-              if (item.slug === "courses") {
+              if (hasSubItems && isMobile) {
+                if (item.slug === "courses") {
+                  return (
+                    <CoursesMobileDetails
+                      key={item.slug}
+                      item={item}
+                      degreeGroups={degreeGroups}
+                      onLinkClick={onLinkClick}
+                    />
+                  );
+                }
                 return (
-                  <CoursesMobileDetails
-                    key={item.slug}
-                    item={item}
-                    degreeGroups={degreeGroups}
-                    onLinkClick={onLinkClick}
-                  />
-                );
-              }
-              return (
-                <div key={item.slug} className="w-full">
-                  <details className="group">
-                    <summary className="flex cursor-pointer items-center justify-between text-xs font-bold">
-                      {item.title}
-
-                      <ChevronDown
-                        size={16}
-                        className="transition-transform group-open:rotate-180"
-                      />
-                    </summary>
-                    <div className="border-t pt-2 pb-3">
-                      <p className="pb-2 text-xs font-medium opacity-70">
-                        {item.headerDesc}
-                      </p>
-                      <ul className="space-y-1">
-                        {item.Catagories?.map((el: Category, i) => (
-                          <li key={`${el.slug}-${i}`}>
-                            <Link
-                              href={
-                                el.redirectLink ||
-                                el.link ||
-                                `/${item.slug}/${el.slug}`
-                              }
-                              target={el.redirectLink ? "_blank" : undefined}
-                              rel={
-                                el.redirectLink
-                                  ? "noreferrer noopener"
-                                  : undefined
-                              }
-                              className="flex items-center gap-2 rounded-md px-2 py-2"
-                              onClick={onLinkClick}
-                            >
-                              <div className="bg-primary-orange/50 grid h-8 w-8 shrink-0 place-items-center rounded-full">
-                                <i
-                                  className={`${el.headerIcon} flex text-sm`}
-                                />
-                              </div>
-                              <p className="text-sm leading-tight font-bold">
-                                {el.menuTitle}
-                              </p>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {item.gotoPageRedirect && (
-                        <Link
-                          href={getTopLevelRoute(item.slug)}
-                          className="mt-4 block"
-                        >
-                          <Button size="sm" className="w-fit">
-                            Learn More <ArrowRight size={16} />
-                          </Button>
-                        </Link>
-                      )}
-                    </div>
-                  </details>
-                </div>
-              );
-            }
-
-            if (hasSubItems) {
-              return (
-                <HoverDropdown
-                  key={item.slug}
-                  title={item.title}
-                  id={`nav-${item.slug}`}
-                >
-                  <ContainerLayout className="grid grid-cols-1 gap-4 py-4 xl:grid-cols-3">
-                    <div>
-                      <h2 className="text-lg font-bold md:text-xl">
+                  <div key={item.slug} className="w-full">
+                    <details className="group">
+                      <summary className="flex cursor-pointer items-center justify-between text-xs font-bold">
                         {item.title}
-                      </h2>
-                      <p className="max-w-sm pt-1 pb-2 text-xs font-medium md:text-base">
-                        {item.headerDesc}
-                      </p>
 
-                      {item.gotoPageRedirect && (
-                        <Link
-                          href={getTopLevelRoute(item.slug)}
-                          className="mt-4 block"
-                        >
-                          <Button>
-                            Learn More <ArrowRight />
-                          </Button>
-                        </Link>
-                      )}
-                    </div>
-
-                    <div className="col-span-2">
-                      {item.slug === "courses" ? (
-                        <CoursesDesktopContent degreeGroups={degreeGroups} />
-                      ) : (
-                        <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
+                        <ChevronDown
+                          size={16}
+                          className="transition-transform group-open:rotate-180"
+                        />
+                      </summary>
+                      <div className="border-t pt-2 pb-3">
+                        <p className="pb-2 text-xs font-medium opacity-70">
+                          {item.headerDesc}
+                        </p>
+                        <ul className="space-y-1">
                           {item.Catagories?.map((el: Category, i) => (
                             <li key={`${el.slug}-${i}`}>
                               <Link
@@ -423,51 +346,138 @@ const NavigationItems = ({
                                     ? "noreferrer noopener"
                                     : undefined
                                 }
-                                className="hover:bg-alt-background flex items-center gap-2 rounded-md px-2 py-1 transition-all"
+                                className="flex items-center gap-2 rounded-md px-2 py-2"
+                                onClick={onLinkClick}
                               >
-                                <div className="bg-primary-orange/50 grid h-10 w-10 place-items-center rounded-full">
-                                  <i className={`${el.headerIcon} flex`} />
+                                <div className="bg-primary-orange/50 grid h-8 w-8 shrink-0 place-items-center rounded-full">
+                                  <i
+                                    className={`${el.headerIcon} flex text-sm`}
+                                  />
                                 </div>
-                                <div className="flex flex-1 flex-col gap-1">
-                                  <p className="line-clamp-2 text-base leading-tight font-bold">
-                                    {el.menuTitle}
-                                  </p>
-                                </div>
+                                <p className="text-sm leading-tight font-bold">
+                                  {el.menuTitle}
+                                </p>
                               </Link>
                             </li>
                           ))}
                         </ul>
-                      )}
-                    </div>
-                  </ContainerLayout>
-                </HoverDropdown>
-              );
-            }
 
-            return (
-              <Link
-                key={item.slug}
-                target={item.redirectLink ? "_blank" : "_self"}
-                href={
-                  item.redirectLink
-                    ? item.redirectLink
-                    : getTopLevelRoute(item.slug)
-                }
-                onClick={onLinkClick}
-                className={`${["agent-hub", "our-campuses"].includes(item.slug) ? "hidden lg:block" : ""} block md:mx-1`}
-              >
-                <div
-                  className={`hover:text-shadow-primary-orange text-center text-xs font-bold ${item.isEmergency && "text-destructive"}`}
+                        {item.gotoPageRedirect && (
+                          <Link
+                            href={getTopLevelRoute(item.slug)}
+                            className="mt-4 block"
+                          >
+                            <Button size="sm" className="w-fit">
+                              Learn More <ArrowRight size={16} />
+                            </Button>
+                          </Link>
+                        )}
+                      </div>
+                    </details>
+                  </div>
+                );
+              }
+
+              if (hasSubItems) {
+                return (
+                  <HoverDropdown
+                    key={item.slug}
+                    title={item.title}
+                    id={`nav-${item.slug}`}
+                  >
+                    <ContainerLayout className="grid grid-cols-1 gap-4 py-4 xl:grid-cols-3">
+                      <div>
+                        <h2 className="text-lg font-bold md:text-xl">
+                          {item.title}
+                        </h2>
+                        <p className="max-w-sm pt-1 pb-2 text-xs font-medium md:text-base">
+                          {item.headerDesc}
+                        </p>
+
+                        {item.gotoPageRedirect && (
+                          <Link
+                            href={getTopLevelRoute(item.slug)}
+                            className="mt-4 block"
+                          >
+                            <Button>
+                              Learn More <ArrowRight />
+                            </Button>
+                          </Link>
+                        )}
+                      </div>
+
+                      <div className="col-span-2">
+                        {item.slug === "courses" ? (
+                          <CoursesDesktopContent degreeGroups={degreeGroups} />
+                        ) : (
+                          <ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
+                            {item.Catagories?.map((el: Category, i) => (
+                              <li key={`${el.slug}-${i}`}>
+                                <Link
+                                  href={
+                                    el.redirectLink ||
+                                    el.link ||
+                                    `/${item.slug}/${el.slug}`
+                                  }
+                                  target={
+                                    el.redirectLink ? "_blank" : undefined
+                                  }
+                                  rel={
+                                    el.redirectLink
+                                      ? "noreferrer noopener"
+                                      : undefined
+                                  }
+                                  className="hover:bg-alt-background flex items-center gap-2 rounded-md px-2 py-1 transition-all"
+                                >
+                                  <div className="bg-primary-orange/50 grid h-10 w-10 place-items-center rounded-full">
+                                    <i className={`${el.headerIcon} flex`} />
+                                  </div>
+                                  <div className="flex flex-1 flex-col gap-1">
+                                    <p className="line-clamp-2 text-base leading-tight font-bold">
+                                      {el.menuTitle}
+                                    </p>
+                                  </div>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </ContainerLayout>
+                  </HoverDropdown>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.slug}
+                  target={item.redirectLink ? "_blank" : "_self"}
+                  href={
+                    item.redirectLink
+                      ? item.redirectLink
+                      : getTopLevelRoute(item.slug)
+                  }
+                  onClick={onLinkClick}
+                  className={`${["agent-hub", "our-campuses"].includes(item.slug) ? "hidden lg:block" : ""} block md:mx-1`}
                 >
-                  {item.title}
-                </div>
-              </Link>
-            );
-          })}
+                  <div
+                    className={`hover:text-shadow-primary-orange text-center text-xs font-bold ${item.isEmergency && "text-destructive"}`}
+                  >
+                    {item.title}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          <GoogleSearch />
+        </section>
+      </nav>
+      <div className="md:hidden">
+        <div className="xs:rounded-full xs:gap-4 absolute bottom-8 left-1/2 flex w-fit -translate-x-1/2 flex-wrap justify-center gap-2 rounded-lg bg-[#0d0e2f] p-3 px-4 sm:flex-nowrap">
+          <HeaderAdditionalButtons />
         </div>
-        <GoogleSearch />
-      </section>
-    </nav>
+      </div>
+    </>
   );
 };
 
