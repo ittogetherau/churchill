@@ -164,6 +164,11 @@ export const navItems: NavItem[] = [
         link: routes.content.slug("apply-for-advanced-standing"),
       },
       {
+        menuTitle: "Find Accommodation in Sydney",
+        slug: "find-accommodation-in-sydney",
+        headerIcon: "fi fi-rr-bed",
+      },
+      {
         menuTitle: "Key Dates",
         slug: "upcoming-key-dates",
         headerIcon: "fi fi-rr-calendar",
