@@ -191,6 +191,12 @@ export const navItems: NavItem[] = [
         link: "",
         redirectLink: externalRoutes.enquiryForm,
       },
+      {
+        menuTitle: "ESOS Framework",
+        slug: "esos-framework",
+        headerIcon: "fi fi-rr-galaxy-star",
+        redirectLink: `https://www.education.gov.au/esos-framework`,
+      },
     ],
   },
   {
