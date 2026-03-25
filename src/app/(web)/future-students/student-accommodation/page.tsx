@@ -161,10 +161,7 @@ const content = `<section>
 const Page = () => {
   return (
     <SpacingLayout>
-      <PatternBannerCard
-        title="Find Accommodation in Sydney"
-        description="Academic Board"
-      />
+      <PatternBannerCard title="Find Student Accommodation" />
 
       <ContainerLayout size="sm">
         <RichTextRenderer content={content} />
