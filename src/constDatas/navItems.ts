@@ -290,6 +290,14 @@ export const navItems: NavItem[] = [
         slug: "deans-awards-and-prizes",
         headerIcon: "fi fi-rr-trophy-star",
       },
+      {
+        menuTitle: "Churchill Students' Association",
+        slug: "churchill-students-association",
+        headerIcon: "fi fi-rr-users",
+        image: "/assets/course-b.png",
+        link: "",
+        redirectLink: routes.cihesa,
+      },
     ],
   },
   {
