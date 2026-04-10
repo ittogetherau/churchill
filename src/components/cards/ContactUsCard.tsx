@@ -14,6 +14,10 @@ interface ContactUsProp {
   description?: string;
   iconUrl: string | StaticImageData;
   redirect?: string;
+  locationLinks?: {
+    label: string;
+    url: string;
+  }[];
   socialLinks?: SocialLink[];
 }
 const ContactUsCard = ({
@@ -21,6 +25,7 @@ const ContactUsCard = ({
   description,
   iconUrl,
   redirect,
+  locationLinks,
   socialLinks,
 }: ContactUsProp) => {
   return (
@@ -33,14 +38,27 @@ const ContactUsCard = ({
           alt={`Icon for ${description} image`}
         />
         <p className="text-2xl font-bold">{title}</p>
-        {redirect ? (
-          <span className="font-semibold underline">
+        {locationLinks?.length ? (
+          <div className="flex flex-col gap-2">
+            {locationLinks.map((item) => (
+              <span
+                key={item.url}
+                className="font-semibold underline whitespace-pre-line"
+              >
+                <Link target="_blank" href={item.url}>
+                  {item.label}
+                </Link>
+              </span>
+            ))}
+          </div>
+        ) : redirect ? (
+          <span className="font-semibold underline whitespace-pre-line">
             <Link target="_blank" href={redirect}>
               {description}
             </Link>
           </span>
         ) : (
-          <p>{description}</p>
+          <p className="whitespace-pre-line">{description}</p>
         )}
 
         {socialLinks && (

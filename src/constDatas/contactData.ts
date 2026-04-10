@@ -13,6 +13,10 @@ export interface TContactItem {
   description?: string;
   iconUrl: string;
   redirect?: string;
+  locationLinks?: {
+    label: string;
+    url: string;
+  }[];
   socialLinks?: TSocialLink[];
 }
 
@@ -29,9 +33,19 @@ export interface TChecklistItem {
 export const contactData: TContactItem[] = [
   {
     title: "Visit us",
-    description: "Level 1, 16-18 Wentworth Street Parramatta NSW 2150",
     iconUrl: "/assets/navigation.svg",
-    redirect: "https://maps.app.goo.gl/8atQGN3b8tx2uPAz6",
+    locationLinks: [
+      {
+        label:
+          "Parramatta Campus: Level 1, 16-18 Wentworth Street, Parramatta, NSW 2150, Australia",
+        url: "https://maps.app.goo.gl/8atQGN3b8tx2uPAz6",
+      },
+      {
+        label:
+          "Melbourne Campus: Level 8, 85 Queen Street, Melbourne, VIC 3000, Australia",
+        url: "https://maps.app.goo.gl/3w3FE3WdGKxPHx7G8",
+      },
+    ],
   },
   {
     title: "Call us",

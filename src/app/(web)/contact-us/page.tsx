@@ -46,11 +46,11 @@ const ContactUs = () => {
             {contactData?.map((item, index) => (
               <div key={index}>
                 <ContactUsCard
-                  key={index}
                   title={item?.title}
                   description={item?.description}
                   iconUrl={item?.iconUrl}
                   redirect={item?.redirect}
+                  locationLinks={item?.locationLinks}
                   socialLinks={item?.socialLinks}
                 />
               </div>
