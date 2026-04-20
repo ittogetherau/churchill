@@ -270,7 +270,7 @@ const NavigationItems = ({
       const campusCategories = campusLocations?.map((el, i) => {
         const title = el.title?.trim() || `Locaiton ${i + 1}`;
         const slug = el.slug ?? "#";
-        const icon = el.icon?.trim() || "fi fi-rr-octagon";
+        const icon = el.icon?.trim() || "fi fi-rr-building";
 
         return {
           menuTitle: title,
