@@ -121,12 +121,41 @@ export async function POST(req: NextRequest) {
       return !existingZohoIds.has(String(id).trim());
     });
 
+    // --- Cleanup: delete Directus agents that are NOT present in Zoho's active list
+    // Build array of zoho ids returned from Zoho (exclude falsy)
+    const zohoIds = cleaned.map((a) => a.zoho_id).filter(Boolean).map(String);
+    let deletedCount = 0;
+    try {
+      if (zohoIds.length > 0) {
+        // Use Directus GraphQL delete mutation to remove records whose zoho_id is not in the Zoho list
+        const mutation = `mutation DeleteInactive($ids: [String!]){\n  delete_active_agents(filter:{ zoho_id: { _nnull: true, _nin: $ids } }){\n    data { id }\n    meta { count }\n  }\n}`;
+
+        const delRes = await fetch(DIRECTUS_GRAPHQL_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: mutation, variables: { ids: zohoIds } }),
+        });
+
+        if (delRes.ok) {
+          const delJson = await delRes.json().catch(() => null);
+          deletedCount = delJson?.data?.delete_active_agents?.meta?.count ?? 0;
+        } else {
+          const body = await delRes.text().catch(() => "");
+          console.warn("Directus delete mutation failed:", delRes.status, body);
+        }
+      } else {
+        console.warn("No Zoho IDs returned; skipping Directus cleanup to avoid accidental delete-all");
+      }
+    } catch (err) {
+      console.error("Error during Directus cleanup:", err);
+    }
+
     console.log(
       `[active-agents] Zoho: ${cleaned.length}, Directus IDs: ${existingZohoIds.size}, New: ${filtered.length}`,
     );
 
     return NextResponse.json(
-      { agents: filtered, count: filtered.length },
+      { agents: filtered, count: filtered.length, deletedCount },
       { status: 200 },
     );
   } catch (err: any) {

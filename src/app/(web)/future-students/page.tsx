@@ -28,6 +28,7 @@ const Page = () => {
         description="Welcome to Australia Your Study Abroad Journey Begins Here"
       />
 
+
       <TwoColumnLayout
         sidebar={
           <Image

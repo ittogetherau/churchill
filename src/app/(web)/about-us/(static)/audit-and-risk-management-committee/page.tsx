@@ -5,14 +5,14 @@ import SpacingLayout from "@/layouts/spacing-layout";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
 
 const content = `<div>
-  <h2>Audit and Risk Management Committee</h2>
+  <h2>Audit, Risk Management and Finance Committee (ARMFC)</h2>
 
   <p>
-    Per Churchill Institute’s Governance Framework, the Audit and Risk Management Committee (ARMC) was established to ensure the development and implementation of the Churchill Institute’s Risk Management Plan; to ensure that appropriate procedures are in place to identify, assess and manage risk from a strategic and operational perspective; to monitor the implementation of risk management procedures and to report to the <a href="${routes.aboutUs.governanceCouncil}">Governing Council</a> after each meeting.
+    Per Churchill Institute’s Governance Framework, the Audit, Risk Management and Finance Committee (ARMFC) was established to ensure the development and implementation of the Churchill Institute’s Risk Management Plan; to ensure that appropriate procedures are in place to identify, assess and manage risk from a strategic and operational perspective; to monitor the implementation of risk management procedures and to report to the <a href="${routes.aboutUs.governanceCouncil}">Governing Council</a> after each meeting.
   </p>
 
   <h3>Functions</h3>
-  <p>The functions of the Audit and Risk Management Committee (ARMC) are to:</p>
+  <p>The functions of the Audit, Risk Management and Finance Committee (ARMFC) are to:</p>
   <ol>
     <li>Oversee the processes for the identification and assessment of the general risk spectrum, review the outcomes of risk management processes and monitor emerging risks based on changes in the external environment;</li>
     <li>Review and recommend to the Governing Council new and significant amendments to policies and related items, in the areas of risk management;</li>
@@ -31,7 +31,7 @@ const content = `<div>
 
   <h3>Membership</h3>
   <p>
-    Members of the Audit and Risk Management Committee (ARMC) are approved by the Governing Council, and its membership comprises a majority of members who are independent and external to Churchill Institute.
+    Members of the Audit, Risk Management and Finance Committee (ARMFC) are approved by the Governing Council, and its membership comprises a majority of members who are independent and external to Churchill Institute.
   </p>
 
   <table>

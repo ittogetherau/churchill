@@ -1,5 +1,7 @@
 import { PatternBannerCard } from "@/components/cards";
+import LastUpdated from "@/components/globals/last-updated";
 import { routes } from "@/config/routes";
+import { getLastCommitDate } from "@/lib/get-last-commit-date";
 import ContainerLayout from "@/layouts/container-layout";
 import SpacingLayout from "@/layouts/spacing-layout";
 import RichTextRenderer from "@/components/utils/rich-text-renderer";
@@ -49,6 +51,11 @@ const content = `<div>
         <td>Chairperson</td>
         <td>Yes</td>
         <td><a href="${routes.aboutUs.teams.slug("maria-varua")}">Assoc Prof Maria Varua</a></td>
+      </tr>
+      <tr>
+        <td>Member</td>
+        <td>Yes</td>
+        <td><a href="${routes.aboutUs.teams.slug("ritesh-chugh")}">Prof Ritesh Chugh</a></td>
       </tr>
       <tr>
         <td>Member</td>
@@ -137,7 +144,7 @@ const content = `<div>
       </tr>
       <tr>
         <td>Two academic staff members (casual)</td>
-        <td>TBC</td>
+        <td>Dr Richard Robinson<br>Dr Nadine Campbell</td>
       </tr>
       <tr>
         <td>Head of Student Support Services</td>
@@ -220,6 +227,10 @@ const content = `<div>
 </div>`;
 
 const Page = () => {
+  const lastUpdated = getLastCommitDate(
+    "src/app/(web)/about-us/(static)/academic-board/page.tsx",
+  );
+
   return (
     <SpacingLayout>
       <PatternBannerCard title="Governance & Leadership" />
@@ -227,6 +238,8 @@ const Page = () => {
       <ContainerLayout size="sm">
         <RichTextRenderer content={content} richText />
       </ContainerLayout>
+
+      <LastUpdated date={lastUpdated} />
     </SpacingLayout>
   );
 };

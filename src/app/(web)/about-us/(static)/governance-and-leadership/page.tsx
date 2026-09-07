@@ -14,7 +14,7 @@ const content = `<div>
     <li>
       The <a href="${routes.aboutUs.governanceCouncil}">Governing Council</a> as the Institute’s corporate governing body; and its sub-committees:
       <ul>
-        <li>The <a href="${routes.aboutUs.auditAndRiskManagementCommittee}">Audit &amp; Risk Management Committee (ARMC)</a></li>
+        <li>The <a href="${routes.aboutUs.auditAndRiskManagementCommittee}">Audit, Risk Management and Finance Committee (ARMFC)</a></li>
         <li>
           The <a href="${routes.aboutUs.academicBoard}">Academic Board</a> (the primary academic governing body), supported by:
           <ul>

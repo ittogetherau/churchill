@@ -40,7 +40,7 @@ const AgentSearch = ({ agents }: { agents: AgentFieldsFragment[] }) => {
     const addressQuery = formatText(filter.addressSearch);
     const nameQuery = formatText(filter.nameSearch);
 
-    return agents.filter((agent) => {
+    const filtered = agents.filter((agent) => {
       const address = formatText(agent.address);
       const name = formatText(agent.name);
       const representative = formatText(agent.agent_name);
@@ -54,6 +54,10 @@ const AgentSearch = ({ agents }: { agents: AgentFieldsFragment[] }) => {
 
       return addressMatch && nameMatch;
     });
+
+    return filtered.sort((a, b) =>
+      formatText(a.name).localeCompare(formatText(b.name)),
+    );
   }, [agents, filter.addressSearch, filter.nameSearch]);
 
   return (

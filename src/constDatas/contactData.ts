@@ -60,7 +60,7 @@ export const contactData: TContactItem[] = [
     redirect: "mailto:info@churchill.edu.au",
   },
   {
-    title: "lodge a complain",
+    title: "Lodge a Complaint",
     description: "Fill a quick form",
     iconUrl: "/assets/complaint.svg",
     redirect:

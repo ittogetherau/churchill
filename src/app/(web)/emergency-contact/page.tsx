@@ -36,6 +36,23 @@ const EmergencyServicesPage = async () => {
       />
 
       <SpacingLayout>
+        <ContainerLayout size="sm">
+          <div className="bg-alt-background mt-12 rounded-lg p-6 text-center">
+            <HeadingText className="mb-2" heading={2} level={4}>
+              Need Immediate Help?
+            </HeadingText>
+            <p className="text-muted-foreground mb-4">
+              Don&apos;t hesitate to reach out to these services for support,
+              24/7.
+            </p>
+            <a href="tel:000">
+              <Button>
+                In an Emergency call 000 for Police, Ambulance and Fire Brigade (Australia-wide) 24/7.
+              </Button>
+            </a>
+          </div>
+        </ContainerLayout>
+
         <ContainerLayout
           size="sm"
           className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
@@ -91,21 +108,6 @@ const EmergencyServicesPage = async () => {
               </div>
             );
           })}
-        </ContainerLayout>
-
-        <ContainerLayout size="sm">
-          <div className="bg-alt-background mt-12 rounded-lg p-6 text-center">
-            <HeadingText className="mb-2" heading={2} level={4}>
-              Need Immediate Help?
-            </HeadingText>
-            <p className="text-muted-foreground mb-4">
-              Don&apos;t hesitate to reach out to these services for support,
-              24/7.
-            </p>
-            <a href="tel:000">
-              <Button>Call Emergency: 000</Button>
-            </a>
-          </div>
         </ContainerLayout>
       </SpacingLayout>
     </>

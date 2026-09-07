@@ -7,7 +7,7 @@ import RichTextRenderer from "@/components/utils/rich-text-renderer";
 const content = `<div>
   <h2>Governing Council</h2>
   <p>
-    Per Churchill Institute’s Governance Framework, the Governing Council is Churchill Institute’s corporate and independent governing body, with powers over all matters related to the management of higher education. The Governing Council is advised on financial and risk management matters by the <a href="${routes.aboutUs.auditAndRiskManagementCommittee}">Audit &amp; Risk Management Committee (ARMC)</a> and delegates the academic governance of the Institute to the <a href="${routes.aboutUs.academicBoard}">Academic Board</a>.
+    Per Churchill Institute’s Governance Framework, the Governing Council is Churchill Institute’s corporate and independent governing body, with powers over all matters related to the management of higher education. The Governing Council is advised on financial and risk management matters by the <a href="${routes.aboutUs.auditAndRiskManagementCommittee}">Audit, Risk Management and Finance Committee (ARMFC)</a> and delegates the academic governance of the Institute to the <a href="${routes.aboutUs.academicBoard}">Academic Board</a>.
   </p>
 
   <h3>Functions</h3>
@@ -48,7 +48,7 @@ const content = `<div>
         <td><a href="${routes.aboutUs.teams.slug("maria-varua")}">Assoc Prof Maria Varua</a></td>
       </tr>
       <tr>
-        <td>Chair of the Audit &amp; Risk Management Committee</td>
+        <td>Chair of the Audit, Risk Management and Finance Committee (ARMFC)</td>
         <td>Yes</td>
         <td><a href="${routes.aboutUs.teams.slug("dr-joo-gim-heaney")}">Dr Joo-Gim Heaney</a></td>
       </tr>
@@ -60,7 +60,7 @@ const content = `<div>
       <tr>
         <td>Member</td>
         <td>Yes</td>
-        <td>Vacant (October 2025)</td>
+        <td><a href="${routes.aboutUs.teams.slug("caroline-chan")}">Professor Caroline Chan</a></td>
       </tr>
       <tr>
         <td>CEO &amp; Dean</td>

@@ -1,5 +1,5 @@
 query Agent {
-  active_agents {
+  active_agents(limit: -1) {
     ...AgentFields
   }
 }

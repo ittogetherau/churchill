@@ -197,6 +197,13 @@ export const navItems: NavItem[] = [
         headerIcon: "fi fi-rr-galaxy-star",
         redirectLink: `https://www.education.gov.au/esos-framework`,
       },
+      {
+        menuTitle: "Student Handbook",
+        headerIcon: "fi fi-rr-book-user",
+        slug: "",
+        subTitle: "",
+        link: externalRoutes.studentHandbook,
+      },
     ],
   },
   {
@@ -360,6 +367,11 @@ export const navItems: NavItem[] = [
   {
     title: "Our Campuses",
     slug: "our-campuses",
+  },
+  {
+    title: "Contact Us",
+    slug: "contact-us",
+    link: routes.contactUs.root,
   },
   {
     title: "Emergency",

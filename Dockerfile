@@ -3,6 +3,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# git is used at build time to read each static page's last-commit date
+RUN apk add --no-cache git
+
 # Install pnpm
 # sRUN npm install -g pnpm
 
